@@ -1,0 +1,14 @@
+.a {
+  color: cadetblue;
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 20%;
+  font-size: 25px;
+  margin: 2rem;
+}
+.b {
+  font-size: 30px;
+  font-weight: 300px;
+}

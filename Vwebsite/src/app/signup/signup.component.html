@@ -1,0 +1,112 @@
+<!-- <div id="login">
+  <div class="login-card">
+
+    <div class="card-title">
+      <h1>Create Account</h1>
+    </div>
+
+    <mat-card-content>
+      <form class="my-form">
+      </form>
+    </mat-card-content>
+    <mat-card class="my-card">
+      <mat-card-content>
+
+        <div align="center">
+           <form class="my-form" [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
+            <mat-form-field class="full-width">
+              <mat-label>
+                <mat-icon>account_circle</mat-icon>First Name
+              </mat-label>
+              <input matInput placeholder="First name" name="fname" required />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>
+                <mat-icon>account_circle</mat-icon>Last Name
+              </mat-label>
+              <input matInput placeholder="Last Name" name="lname" required />
+            </mat-form-field>
+            <section class="example-section" required>
+              <mat-label>Gender</mat-label>
+              <mat-radio-group required>
+                <mat-radio-button class="example-margin" value="after">Male</mat-radio-button>
+                <mat-radio-button class="example-margin" value="before">Female</mat-radio-button>
+              </mat-radio-group>
+            </section>
+            <mat-form-field class="full-width">
+              <mat-label>
+                <mat-icon>location_on</mat-icon>Address
+              </mat-label>
+              <input matInput placeholder="Address" name="address" required />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>
+                <mat-icon>phone</mat-icon>Phone Number
+              </mat-label>
+              <input matInput placeholder="Phone Number" name="Phone Number" required />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>
+                <mat-icon>school</mat-icon>University
+              </mat-label>
+              <input placeholder="University" aria-label="Number" matInput [formControl]="myControl"
+                [matAutocomplete]="auto" required />
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let university of filtereduniversity | async" [value]="university">
+                  {{ university }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+              <mat-label>
+                <mat-icon>school</mat-icon>Faculty
+              </mat-label>
+              <input matInput name="Faculty" placeholder="Faculty" required />
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+              <mat-label for="email">
+                <mat-icon>email</mat-icon>Email
+              </mat-label>
+              <input type="email" matInput placeholder="Email" name="email" required />
+
+            </mat-form-field>-->
+
+<div class="container" style="padding-top:40px;">  
+    <div class="row">  
+      <div class="col-md-6 mx-auto">  
+        <div class="card mx-4">  
+          <div class="card-body p-4">  
+            <form [formGroup]="UserForm" (ngSubmit)="onFormSubmit(UserForm.value)">  
+              <h1 style="text-align:center">Register</h1>  
+
+              <div class="input-group mb-3">  
+
+                <input type="text" class="form-control" placeholder="Username"  formControlName="UserName" >  
+              </div>  
+              
+              <div class="input-group mb-3">  
+                <input type="password" class="form-control" placeholder="Password"  formControlName="Password">  
+              </div>  
+              <div class="input-group mb-4">  
+                <input type="text" class="form-control" placeholder="Email"  formControlName="Email" #Email> 
+              <div class="alert alert-danger" *ngIf='UserForm.get("Email").touched && UserForm.get("Email").invalid' >
+                    Email is required
+              </div> 
+              </div>  
+              <div class="input-group mb-4">  
+                <input type="text" class="form-control" placeholder="Phone Number"  formControlName="PhoneNumber">  
+              </div>  
+
+            <div class="input-group mb-4">  
+              <label id="Validuser"></label>  
+            </div>
+
+            <button type="submit" class="btn btn-block btn-success">Add User</button>  
+            </form>  
+          </div>  
+        </div>  
+      </div>   
+    </div>  
+  </div>  

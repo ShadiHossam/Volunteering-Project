@@ -1,0 +1,45 @@
+.spacer {
+  flex: 1 1 auto;
+}
+.outer-div {
+  display: flex;
+  height:0.1px ;
+  flex-direction: column;
+  align-items: center;
+}
+.outer-div > span {
+  font-size: 10px;
+}
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 30%;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 70%;
+  background-color: #f1f1f1;
+  height: 300px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.a{
+  width: 100%;
+  flex: 1 1 auto;
+ flex-direction: column;
+}
+

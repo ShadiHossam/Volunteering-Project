@@ -1,0 +1,209 @@
+<form class="form">
+  <mat-form-field floatLabel="never" style="float: left;">
+    <input matInput placeholder="Search" />
+  </mat-form-field>
+  <form class="form-inline" style="float: left;">
+    <div class="form-group">
+      <div class="input-group">
+        <input
+          class="form-control"
+          placeholder="yyyy-mm-dd"
+          name="dp"
+          [(ngModel)]="model"
+          ngbDatepicker
+          #d="ngbDatepicker"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary calendar"
+            (click)="d.toggle()"
+            type="button"
+          >
+            <i class="material-icons">today </i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col">
+      <div ngbDropdown class="d-inline-block">
+        <button
+          class="btn btn-outline-primary"
+          id="dropdownBasic1"
+          ngbDropdownToggle
+        >
+          Sort by
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem>Featured</button>
+          <button ngbDropdownItem>Newest</button>
+          <button ngbDropdownItem>Oldest</button>
+          <button ngbDropdownItem>Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div ngbDropdown class="d-inline-block">
+        <button
+          style="float: left;"
+          class="btn btn-outline-primary"
+          id="dropdownBasic1"
+          ngbDropdownToggle
+        >
+          Place
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem>Alexandria</button>
+          <button ngbDropdownItem>Cairo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div ngbDropdown class="d-inline-block">
+        <button
+          style="float: left;"
+          class="btn btn-outline-primary"
+          id="dropdownBasic1"
+          ngbDropdownToggle
+        >
+          Field
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem>Business</button>
+          <button ngbDropdownItem>Charity</button>
+          <button ngbDropdownItem>Engenering</button>
+          <button ngbDropdownItem>Medical</button>
+          <button ngbDropdownItem>Others</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add Event</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="dateOfBirth">Date of birth</label>
+          <div class="input-group">
+            <input
+              id="dateOfBirth"
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp"
+              ngbDatepicker
+              #dp="ngbDatepicker"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary calendar"
+                (click)="dp.toggle()"
+                type="button"
+              >
+                <i class="material-icons">today</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <mat-form-field class="modal-body">
+      <mat-label>Event Name </mat-label>
+      <input matInput placeholder="Event name" name="eventname" required />
+    </mat-form-field>
+    <mat-form-field class="modal-body">
+      <mat-label for="Field">Field:</mat-label>
+      <select id="Field" matNativeControl required>
+        <option value="Business">Business</option>
+        <option value="Charity">Charity</option>
+        <option value="Engenering">Engenering</option>
+        <option value="Medical">Medical</option>
+        <option value="Others">Others</option>
+      </select>
+    </mat-form-field>
+    <mat-form-field class="modal-body">
+      <mat-label for="Place">Place:</mat-label>
+      <select id="Place" matNativeControl required>
+        <option value="Alexandria">Alexandria</option>
+        <option value="Cairo">Cairo</option>
+      </select>
+    </mat-form-field>
+    <mat-form-field class="modal-body">
+      <mat-label maxlength="25">Headline</mat-label>
+      <input matInput placeholder="Headline" name="Headline" required />
+    </mat-form-field>
+    <mat-form-field class="modal-body" appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+    <mat-form-field class="modal-body" [formGroup]="form" (ngSubmit)="submit()">
+      <mat-label for="url">Tickets Link </mat-label>
+      <input
+        formControlName="url"
+        id="url"
+        type="text"
+        matInput
+        placeholder="Tickets Link"
+        name="Tickets Link"
+      />
+      <mat-error
+        *ngIf="f.url.touched && f.url.invalid"
+        class="alert alert-danger"
+      >
+        <mat-error *ngIf="f.url.errors.pattern"
+          >Please enter valid url</mat-error
+        >
+      </mat-error>
+    </mat-form-field>
+    <div class="modal-footer">
+      <button
+        class="btn btn-outline-dark"
+        type="submit"
+        [disabled]="!form.valid"
+      >
+        Add
+      </button>
+    </div>
+  </ng-template>
+
+  <button
+    style="float: left;"
+    class="btn btn-lg btn-outline-primary"
+    (click)="open(content)"
+    mat-fab
+    color="primary"
+    id="add-button"
+    matTooltip="Add Event"
+  >
+    <i class="material-icons">event </i>
+  </button>
+  <hr />
+
+  <mat-list>
+    <span class="courses">
+      <div class="course-card">
+        <img width="100" alt="Image " src="../assets/img/3327590.jpg" />
+      </div>
+    </span>
+    <span class="courses">
+      <div class="course-card">
+        <img width="100" alt="Image " src="../assets/img/3327590.jpg" />
+      </div>
+    </span>
+  </mat-list>
+</form>
