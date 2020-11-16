@@ -17,7 +17,6 @@ namespace last.Controllers
 
     public class LoginController : ApiController
     {
-        //NGOEntities DB = new NGOEntities();
         NGOEntities db = new NGOEntities();
 
         //For user login   

@@ -10,14 +10,8 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router,) {}
 
   ngOnInit(): void {}
-  onLogout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['organizations']);
-  }
-  userlogged(){
-  if (localStorage.getItem('token') != null)
-      return true;
-   
-  }
   
-}
+  }
+ 
+  
+

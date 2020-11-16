@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<mat-toolbar color="primary" *ngIf="!userlogged()">
+<mat-toolbar color="primary" >
   <mat-toolbar-row>
     <!--  <span>HOME</span> -->
     <mat-form-field floatLabel="never">
@@ -27,7 +27,7 @@
     </a>
   </mat-toolbar-row>
 </mat-toolbar>
-<mat-toolbar color="accent" *ngIf="userlogged()">
+<mat-toolbar color="accent" >
   <mat-toolbar-row>
     <mat-form-field floatLabel="never">
       <input matInput placeholder="Search" />
@@ -70,7 +70,7 @@
 
         <button mat-menu-item>Language</button>
         <button mat-menu-item>Settings</button>
-        <button mat-menu-item (click)="onLogout()">Sign Out</button>
+        <button mat-menu-item >Sign Out</button>
       </mat-menu>
       <img
         src="../assets/img/4ae94b54-0c55-493b-abad-23f79f7daae7.jpg"

@@ -18,15 +18,12 @@ import { DesigingComponent } from './volunteer/desiging/desiging.component';
 import { WebdevelopmentComponent } from './volunteer/webdevelopment/webdevelopment.component';
 import { BusinessdevelopmentComponent } from './volunteer/businessdevelopment/businessdevelopment.component';
 import { PrComponent } from './volunteer/pr/pr.component';
-import { HomeComponent } from './home/home.component';
 import { MembersComponent } from './profile/members/members.component';
 import { PProfileComponent } from './p-profile/p-profile.component';
-import { FormsComponent } from './forms/forms.component';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/organizations', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'contactus', component: ContactusComponent },
@@ -38,6 +35,8 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [AuthGuard],
+
   },
   {
     path: 'members',
@@ -45,11 +44,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
 
-  {
-    path: 'forms',
-    component: FormsComponent,
-    canActivate: [AuthGuard],
-  },
+  
 
   { path: 'volunteer', component: VolunteerComponent },
   { path: 'bd', component: BusinessdevelopmentComponent },
@@ -94,6 +89,5 @@ export const CRouting = [
   PrComponent,
   MembersComponent,
   PProfileComponent,
-  HomeComponent,
-  FormsComponent,
+ 
 ];

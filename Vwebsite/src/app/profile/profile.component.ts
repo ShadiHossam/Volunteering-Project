@@ -23,10 +23,7 @@ export class ProfileComponent implements OnInit {
   name = '';
   userDetails;
   x="";
-  onLogout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['organizations']);
-  }
+  
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,
