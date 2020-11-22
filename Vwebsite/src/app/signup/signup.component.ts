@@ -69,14 +69,16 @@ export class SignupComponent implements OnInit {
       this.massage = 'Data saved Successfully';    
       this.UserForm.reset();    
     });    
-  }    
 
+  }
+  
+ 
   ValidateUser(username) {
     $.ajax(  
       {  
           type: 'POST',  
           dataType: 'JSON',  
-          url: '/Login/Validuser',  
+          url: 'http://localhost:49826/Api/Login/Validuser?UserName={UserName}',  
           data: { UserName: username },  
           success:  
               function (response)  

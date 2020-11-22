@@ -6,10 +6,11 @@ import { Register } from "../register";
 @Injectable({  
   providedIn: 'root'  
 })  
-export class LoginService {        
+export class LoginService {         
   Url :string;  
   token : string;  
   header : any;  
+  // UserData:string [];
   constructor(private http : HttpClient) {   
 
     this.Url = 'http://localhost:49826/api/Login/';  
@@ -25,4 +26,8 @@ export class LoginService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };  
     return this.http.post<Register[]>(this.Url + '/createcontact/', register, httpOptions)  
    }  
+//    getUsers(): Observable < Register[] > {  
+//     return this.http.get < Register[] > (`${this.Url}GetUserDetails`);  
+// }  
+     
 }  

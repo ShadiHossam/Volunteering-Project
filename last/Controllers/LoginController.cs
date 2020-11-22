@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Data.Entity;
 using System.Web.UI.WebControls;
 using last.Models;
 
@@ -18,6 +19,19 @@ namespace last.Controllers
     public class LoginController : ApiController
     {
         NGOEntities db = new NGOEntities();
+        //[HttpGet]
+        //[Route("Api/Login/GetUserDetails")]
+        //public IQueryable<User> GetUser()
+        //{
+        //    try
+        //    {
+        //        return db.Users;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
 
         //For user login   
         [Route("Api/Login/userLogin")]
@@ -74,15 +88,29 @@ namespace last.Controllers
             return new Response
             { Status = "Error", Message = "Invalid Data." };
         }
+        [Route("Api/Login/Validuser")]
+        [HttpPost]
 
         public string Validuser(string UserName)
         {
             var User = db.Users.Where(w => w.UserName == UserName).FirstOrDefault();
 
-            if (User == null)
+            if (User != null)
                 return "user is vali";
             else
                 return "user is foun please choose another one";
         }
     }
-}  
+}
+//if (User != null)
+//{
+//    return new Response
+//    { Status = "Success", Message = "user is vali" };
+//}
+//else
+//{
+//    return new Response
+
+//    { Status = "Error", Message = "user is foun please choose another one" };
+//}
+//    }
