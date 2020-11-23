@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{AD5C7712-18A8-470C-B1E2-17DB11F4FA11}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="last/Controllers/LoginController.cs">
+    <Files>
+      <File FileName="last/Controllers/LoginController.cs" Line="85" Column="38" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="last" expanded="True">
+            <Node name="last" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="LoginController.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.last PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

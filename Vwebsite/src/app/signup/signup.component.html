@@ -73,40 +73,93 @@
 
             </mat-form-field>-->
 
-<div class="container" style="padding-top:40px;">  
-    <div class="row">  
-      <div class="col-md-6 mx-auto">  
-        <div class="card mx-4">  
-          <div class="card-body p-4">  
-            <form [formGroup]="UserForm" (ngSubmit)="onFormSubmit(UserForm.value)">  
-              <h1 style="text-align:center">Register</h1>  
+<div class="container" style="padding-top: 40px">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card mx-4">
+        <div class="card-body p-4">
+          <form
+            [formGroup]="UserForm"
+            (ngSubmit)="onFormSubmit(UserForm.value)"
+          >
+            <h1 style="text-align: center">Register</h1>
 
-              <div class="input-group mb-3">  
-
-                <input type="text" class="form-control" placeholder="Username"  formControlName="UserName" >  
-              </div>  
-              
-              <div class="input-group mb-3">  
-                <input type="password" class="form-control" placeholder="Password"  formControlName="Password">  
-              </div>  
-              <div class="input-group mb-4">  
-                <input type="text" class="form-control" placeholder="Email"  formControlName="Email" #Email> 
-              <div class="alert alert-danger" *ngIf='UserForm.get("Email").touched && UserForm.get("Email").invalid' >
-                    Email is required
-              </div> 
-              </div>  
-              <div class="input-group mb-4">  
-                <input type="text" class="form-control" placeholder="Phone Number"  formControlName="PhoneNumber">  
-              </div>  
-
-            <div class="input-group mb-4">  
-              <label id="Validuser"></label>  
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Username"
+                formControlName="UserName"
+              />
+            </div>
+            <div for="PhoneNumber" class="input-group mb-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Phone Number"
+                formControlName="PhoneNumber"
+                id="PhoneNumber"
+              />
             </div>
 
-            <button type="submit" class="btn btn-block btn-success">Add User</button>  
-            </form>  
-          </div>  
-        </div>  
-      </div>   
-    </div>  
-  </div>  
+            <mat-error *ngIf="f.PhoneNumber.touched && f.PhoneNumber.invalid">
+              <mat-error *ngIf="f.PhoneNumber.errors.required">
+                Mobile Number is required.
+              </mat-error>
+              <mat-error *ngIf="f.PhoneNumber.errors.pattern">
+                Please, Enter valid Mobile Number.
+              </mat-error>
+            </mat-error>
+
+            <div class="input-group mb-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Email"
+                formControlName="Email"
+                #Email
+              />
+            </div>
+            <mat-error
+              class="text-danger"
+              *ngIf="f.Email.touched && f.Email.invalid"
+            >
+              <mat-error class="text-danger" *ngIf="f.Email.errors.required">
+                Email is required.
+              </mat-error>
+              <mat-error class="text-danger" *ngIf="f.Email.errors.pattern">
+                Please, Enter valid Email .
+              </mat-error>
+            </mat-error>
+
+            <div class="input-group mb-3">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                formControlName="Password"
+              />
+            </div>
+            <mat-error *ngIf="f.Password.touched && f.Password.invalid">
+              <mat-error *ngIf="f.Password.errors.required">
+                Password is required.
+              </mat-error>
+              <mat-error *ngIf="f.Password.errors.pattern">
+                Please, Enter valid Password .
+              </mat-error>
+            </mat-error>
+
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" />
+              <label class="form-check-label">Accept Terms & Conditions</label>
+            </div>
+
+            <button type="submit" class="btn btn-block btn-success">
+              Add User
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

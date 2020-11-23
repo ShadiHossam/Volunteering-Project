@@ -25,7 +25,8 @@ export class SignupComponent implements OnInit {
 
   filtereduniversity: Observable<string[]>;
   data = false;    
-  UserForm: any;    
+  UserForm: FormGroup = new FormGroup({});
+
   massage:string;    
 
   constructor(private loginService:LoginService,private formbulider: FormBuilder,  service: UniversityService ) {
@@ -41,11 +42,14 @@ export class SignupComponent implements OnInit {
     );
     this.UserForm = this.formbulider.group({    
       UserName: ['', [Validators.required]],    
-      Password: ['', [Validators.required]],    
+      PhoneNumber: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],      
       Email: ['', [Validators.required  ,Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],    
-      PhoneNumber: ['', [Validators.required,Validators.minLength(6)]],    
+       Password: ['', [Validators.required,]], 
     });    
 
+  }
+  get f(){
+    return this.UserForm.controls;
   }
 
   private _filter(value: string): string[] {
@@ -59,6 +63,9 @@ export class SignupComponent implements OnInit {
   {
     this.ValidateUser(user.UserName);
     this.Createemployee(user);    
+    if (this.UserForm.invalid) {
+      return;
+  }
   }    
   Createemployee(register:Register)    
   {    
@@ -92,3 +99,4 @@ export class SignupComponent implements OnInit {
   }
 
 }
+

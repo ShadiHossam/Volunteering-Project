@@ -80,9 +80,9 @@ namespace last.Controllers
             var User = db.Users.Where(w => w.UserName == UserName).FirstOrDefault();
 
             if (User == null)
-                return "user is vali";
+                return "user is valid";
             else
-                return "user is foun please choose another one";
+                return "user is found please choose another one";
         }
     }
 }  
