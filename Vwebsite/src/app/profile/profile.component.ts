@@ -13,6 +13,8 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClientModule, HttpClient } from '@angular/common/http';  
+
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +23,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   name = '';
-  userDetails;
+  // UserData;
   x="";
   
   openSnackBar(message: string, action: string) {
@@ -37,11 +39,10 @@ export class ProfileComponent implements OnInit {
 
   submit() {
     console.log(this.form.value);
-  }
+  } 
 
   closeResult = '';
 
-  model: NgbDateStruct;
 
   constructor(
     private modalService: NgbModal,
@@ -49,7 +50,8 @@ export class ProfileComponent implements OnInit {
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute,
-    private router: Router,
+    private httpService: HttpClient   ,
+     private router: Router,
   ) {
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.form = fb.group({
@@ -81,9 +83,14 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.x=sessionStorage.getItem("UserName");
+    this.x=localStorage.getItem("UserName");
     alert(this.x);
-    
-      }
-      
+    // this.httpService.get('http://localhost:49826/Api/Login/GetUserDetails').subscribe(  
+     //   data => {  
+    //    this.UserData = data as string [];        }
+    // )};     
+}
+
+
+
 }

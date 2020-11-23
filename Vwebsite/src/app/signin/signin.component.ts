@@ -27,7 +27,11 @@ export class SigninComponent implements OnInit {
         if(data.Status=="Success")    
         {       
           this.router.navigate(['/profile']);    
-              
+          sessionStorage.setItem(this.model.UserName,'UserName')
+
+          // this.LoginService.Data(UserData).subscribe(
+          //   data
+          // )
         }    
         else{    
           this.errorMessage = data.Message;    
