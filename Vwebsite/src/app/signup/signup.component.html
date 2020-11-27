@@ -135,7 +135,7 @@
               />
             </div>
 
-            <button type="submit" class="btn btn-block btn-success">
+            <button type="submit" class="btn btn-block btn-success" [disabled]="!UserForm.valid">
               Add User
             </button>
           </form>

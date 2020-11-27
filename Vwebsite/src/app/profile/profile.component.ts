@@ -15,7 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';  
 
-
+import {  LoginService} from "../Services/login.service";
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -24,7 +24,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 export class ProfileComponent implements OnInit {
   name = '';
   // UserData;
-  x="";
+  UserData=[];
+    x="";
   
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
@@ -50,7 +51,8 @@ export class ProfileComponent implements OnInit {
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute,
-    private httpService: HttpClient   ,
+    private http: HttpClient   ,
+    private service:LoginService,
      private router: Router,
   ) {
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
@@ -85,12 +87,21 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.x=localStorage.getItem("UserName");
     alert(this.x);
+    this.service.getUsers().subscribe(data => this.UserData=data);
+
+    // this.RefreshUsersList();
     // this.httpService.get('http://localhost:49826/Api/Login/GetUserDetails').subscribe(  
      //   data => {  
     //    this.UserData = data as string [];        }
     // )};     
 }
-
-
+// RefreshUsersList(){
+//   this.service.GetUsers().subscribe(data=>{
+//     this.UsersList=data
+//   })
 
 }
+
+
+
+// }

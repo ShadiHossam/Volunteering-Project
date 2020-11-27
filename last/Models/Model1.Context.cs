@@ -29,5 +29,6 @@ namespace last.Models
         public virtual DbSet<JobReference> JobReferences { get; set; }
         public virtual DbSet<JobType> JobTypes { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<JobListing> JobListings { get; set; }
     }
 }

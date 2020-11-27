@@ -26,8 +26,18 @@ export class LoginService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };  
     return this.http.post<Register[]>(this.Url + '/createcontact/', register, httpOptions)  
    }  
-//    getUsers(): Observable < Register[] > {  
-//     return this.http.get < Register[] > (`${this.Url}GetUserDetails`);  
-// }  
+  //  GetUsers():Observable<any[]>{
+  //   return this.http.get<any>(this.Url+'GetUsers?id={id}')
+  
+  // }
+
+  x=localStorage.getItem("UserName");
+  xyz(){
+  alert(this.x);
+}
+     getUsers(): Observable < Register[] > {   
+      //alert(this.x);
+    return this.http.get < Register[] > (this.Url+'GetUserByUserName?UserName=' + this.x);  
+}  
      
 }  

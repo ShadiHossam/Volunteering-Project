@@ -62,12 +62,12 @@ export class SignupComponent implements OnInit {
   onFormSubmit(user)    
   {
     this.ValidateUser(user.UserName);
-    this.Createemployee(user);    
+    this.CreateUser(user);    
     if (this.UserForm.invalid) {
       return;
   }
   }    
-  Createemployee(register:Register)    
+  CreateUser(register:Register)    
   {    
   this.loginService.CreateUser(register).subscribe(    
     ()=>    

@@ -12,6 +12,7 @@
         <AssociationConnector Association="NGOModel.FK_User_Cities" ManuallyRouted="false" />
         <AssociationConnector Association="NGOModel.FK_JobReferences_JobTypes" ManuallyRouted="false" />
         <AssociationConnector Association="NGOModel.FK_User_JobTypes" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NGOModel.JobListing" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

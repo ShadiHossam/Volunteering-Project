@@ -7,10 +7,9 @@ using System.Web;
 using System.Web.Http;
 using System.Data.Entity;
 using System.Web.UI.WebControls;
+using System.Web.Script.Serialization;
 using last.Models;
-
-
-
+using System.Web.Http.Results;
 
 namespace last.Controllers
 {
@@ -19,20 +18,7 @@ namespace last.Controllers
     public class LoginController : ApiController
     {
         NGOEntities db = new NGOEntities();
-        //[HttpGet]
-        //[Route("Api/Login/GetUserDetails")]
-        //public IQueryable<User> GetUser()
-        //{
-        //    try
-        //    {
-        //        return db.Users;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
-
+       
         //For user login   
         [Route("Api/Login/userLogin")]
         [HttpPost]
@@ -74,7 +60,6 @@ namespace last.Controllers
                     user.Email = Lvm.Email;
                     user.PhoneNumber = Lvm.PhoneNumber;
                     db.Users.Add(user);
-                    // var x = db.user.Where(w => w.UserName == "").FirstOrDefault();
                     db.SaveChanges();
                     return new Response
                     { Status = "Success", Message = "SuccessFully Saved." };
@@ -88,6 +73,7 @@ namespace last.Controllers
             return new Response
             { Status = "Error", Message = "Invalid Data." };
         }
+       
         [Route("Api/Login/Validuser")]
         [HttpPost]
 
@@ -96,21 +82,151 @@ namespace last.Controllers
             var User = db.Users.Where(w => w.UserName == UserName).FirstOrDefault();
 
             if (User != null)
-                return "user is vali";
+                return "user is valid";
             else
-                return "user is foun please choose another one";
+                return "user is found please choose another one";
         }
+        [Route("Api/Login/GetUsers")]
+
+        [HttpGet]
+
+        public IEnumerable<User> GetUsers()
+        {
+            List<User> users = null;
+            using (NGOEntities entities = new NGOEntities())
+            {
+                users = entities.Users.AsEnumerable().Select(x => new User
+                {
+                    Id = x.Id,
+                    UserName = x.UserName,
+                    Email = x.Email,
+                    Password = x.Password,
+                    PhoneNumber = Convert.ToString(x.PhoneNumber)
+                }).ToList();
+                
+                
+            }
+            return users;
+        }
+
+        [Route("Api/Login/GetUserByUserName1")]
+
+        [HttpGet]
+        public User GetUserByUserName1(string UserName)
+        {
+            User users = null;
+            ///using (NGOEntities entities = new NGOEntities())
+            {
+                users = db.Users.Where(x => x.UserName == UserName).Select(x => new User
+                {
+                    Id = x.Id,
+                    UserName = x.UserName,
+                    Email = x.Email,
+                    PhoneNumber = Convert.ToString(x.PhoneNumber),
+                    Password =x.Password
+
+                }).FirstOrDefault();
+            }
+            return users;
+
+
+        }
+
+        [Route("Api/Login/GetUserByUserName")]
+
+        [HttpGet]
+        public IHttpActionResult GetUserByUserName(string UserName)
+        {
+            User users = null;
+            ///using (NGOEntities entities = new NGOEntities())
+            {
+                users = db.Users.Where(x => x.UserName == UserName).FirstOrDefault();
+            }
+            //return Json(users, JsonRequestBehavior.AllowGet)
+
+            return Json(users);
+                //OK(new { result = users });
+
+
+        }
+
+
+
+        //[HttpPut]
+        //[Route("Updateuserss")]
+        //public IHttpActionResult PutUsersMaster(User UserName)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    return Ok(UserName);
+        //}
+        //[HttpDelete]
+        //[Route("Deleteuserss")]
+        //public IHttpActionResult DeleteEmaployeeDelete(string UserName)
+        //{
+        //    //int empId = Convert.ToInt32(id);  
+        //    User UserName = db.Users.Find(UserName);
+        //    if (UserName == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    db.Users.Remove(UserName);
+        //    db.SaveChanges();
+
+        //    return Ok(UserName);
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //[HttpDelete]
+        //[Route("Api/Login/DeleteUsers")]
+        //public IHttpActionResult Delete(string UserName)
+        //{
+
+
+        //    using (var ctx = new NGOEntities())
+        //    {
+        //        var UserDeleted = ctx.Users
+        //            .Where(s => s.UserName == UserName)
+        //            .FirstOrDefault();
+
+        //        ctx.Entry(UserName).State = System.Data.Entity.EntityState.Deleted;
+        //        ctx.SaveChanges();
+        //    }
+
+        //    return Ok();
+        //}
+
+
     }
 }
-//if (User != null)
-//{
-//    return new Response
-//    { Status = "Success", Message = "user is vali" };
-//}
-//else
-//{
-//    return new Response
-
-//    { Status = "Error", Message = "user is foun please choose another one" };
-//}
-//    }
