@@ -1,0 +1,165 @@
+<form
+  class="example-form"
+  [formGroup]="JobForm"
+  (ngSubmit)="onFormSubmit(JobForm.value)"
+>
+  <p class="example-full-width" class="input-group mb-3" cellspacing="0">
+    <mat-form-field class="example-full-width">
+      <mat-label>Job Title</mat-label>
+      <input
+        matInput
+        class="form-control"
+        placeholder="Job Title"
+        formControlName="JobTitle"
+      />
+      <mat-error *ngIf="f.JobTitle.touched && f.JobTitle.invalid">
+        <mat-error *ngIf="f.JobTitle.errors.required"
+          >JobTitle is required.</mat-error
+        >
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p class="example-full-width" cellspacing="0">
+    <mat-form-field class="example-full-width">
+      <mat-label>Job Description</mat-label>
+      <textarea
+        matInput
+        class="form-control"
+        placeholder="Job Description"
+        formControlName="Description"
+      ></textarea>
+      <mat-error *ngIf="f.Description.touched && f.Description.invalid">
+        <mat-error *ngIf="f.Description.errors.required"
+          >Job Description is required.</mat-error
+        >
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p class="example-full-width" cellspacing="0">
+    <mat-form-field class="example-full-width">
+      <mat-label>Duration </mat-label>
+      <input
+        matInput
+        class="form-control"
+        placeholder="Duration "
+        formControlName="Duration"
+      />
+      <mat-error *ngIf="f.Duration.touched && f.Duration.invalid">
+        <mat-error *ngIf="f.Duration.errors.required"
+          >Duration is required.</mat-error
+        >
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p class="example-full-width" cellspacing="0">
+    <mat-form-field class="example-full-width">
+      <mat-label>ContactEmail </mat-label>
+      <input
+        matInput
+        class="form-control"
+        placeholder="ContactEmail "
+        formControlName="ContactEmail"
+      />
+      <mat-error *ngIf="f.ContactEmail.touched && f.ContactEmail.invalid">
+        <mat-error *ngIf="f.ContactEmail.errors.required"
+          >Email is required.</mat-error
+        >
+        <mat-error *ngIf="f.ContactEmail.errors.pattern"
+          >Please, Enter valid Email</mat-error
+        >
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p class="example-full-width" cellspacing="0">
+    <mat-form-field class="example-full-width">
+      <mat-label>ContactPhoneNumber </mat-label>
+      <input
+        matInput
+        class="form-control"
+        placeholder="ContactPhoneNumber "
+        formControlName="ContactPhoneNumber"
+      />
+      <mat-error
+        *ngIf="f.ContactPhoneNumber.touched && f.ContactPhoneNumber.invalid"
+      >
+        <mat-error *ngIf="f.ContactPhoneNumber.errors.required"
+          >Phone Number is required.</mat-error
+        >
+        <mat-error *ngIf="f.ContactPhoneNumber.errors.pattern"
+          >Please, Enter valid Phone Number</mat-error
+        >
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p class="example-full-width" cellspacing="0">
+    <mat-form-field class="example-full-width">
+      <mat-label>Language </mat-label>
+      <input
+        matInput
+        class="form-control"
+        placeholder="Language "
+        formControlName="Language"
+      />
+      <mat-error *ngIf="f.Language.touched && f.Language.invalid">
+        <mat-error *ngIf="f.Language.errors.required"
+          >Language is required.</mat-error
+        >
+      </mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>Location</mat-label>
+      <input
+        matInput
+        class="form-control"
+        placeholder="Location "
+        formControlName="Location"
+      />
+      <mat-error *ngIf="f.Location.touched && f.Location.invalid">
+        <mat-error *ngIf="f.Location.errors.required"
+          >Location is required.</mat-error
+        >
+      </mat-error>
+    </mat-form-field>
+  </p>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Country</mat-label>
+          <input
+            matInput
+            class="form-control"
+            placeholder="Country "
+            formControlName="Country"
+          />
+          <mat-error *ngIf="f.Country.touched && f.Country.invalid">
+            <mat-error *ngIf="f.Country.errors.required"
+              >Country is required.</mat-error
+            >
+          </mat-error>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>City</mat-label>
+          <input
+            matInput
+            class="form-control"
+            placeholder="City "
+            formControlName="City"
+          />
+          <mat-error *ngIf="f.City.touched && f.City.invalid">
+            <mat-error *ngIf="f.City.errors.required"
+              >City is required.</mat-error
+            >
+          </mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <button type="submit" [disabled]="!JobForm.valid">Add Job</button>
+</form>

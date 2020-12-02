@@ -5,8 +5,6 @@ el interaction bin el sora w el footer
 4-node eli kol showaya da yatla3ni bara
 5-snackbar error
 
-# email w password verification
-
 # Aboutus
 
 # el icons tatzbt (log out,..)
@@ -19,7 +17,7 @@ el interaction bin el sora w el footer
 
 # footer
 
-1-yakon mazbot ma3 el page man 3,ir ma yabawz el button eli f event
+1-yakon mazbot ma3 el page man 3'ir ma yabawz el button eli f event
 
 # Event
 
@@ -58,3 +56,11 @@ el interaction bin el sora w el footer
 
 1-buttons (sort,filter,add,delete,select)
 2-moshkalt el length
+
+IMPORTANT$$$$$$$$
+
+# Cities and Countries
+
+1-hansta7'dm code ll country wala id w law id han7oto ezay
+2-Ezay hanorbot el city bel country
+3-el databse shaklaha haykon ezay

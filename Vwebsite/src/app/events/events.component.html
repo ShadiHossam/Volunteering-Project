@@ -1,8 +1,8 @@
-<form class="form">
-  <mat-form-field floatLabel="never" style="float: left;">
+<form>
+  <mat-form-field floatLabel="never" style="float: left">
     <input matInput placeholder="Search" />
   </mat-form-field>
-  <form class="form-inline" style="float: left;">
+  <form class="form-inline" style="float: left">
     <div class="form-group">
       <div class="input-group">
         <input
@@ -48,7 +48,7 @@
     <div class="col">
       <div ngbDropdown class="d-inline-block">
         <button
-          style="float: left;"
+          style="float: left"
           class="btn btn-outline-primary"
           id="dropdownBasic1"
           ngbDropdownToggle
@@ -66,7 +66,7 @@
     <div class="col">
       <div ngbDropdown class="d-inline-block">
         <button
-          style="float: left;"
+          style="float: left"
           class="btn btn-outline-primary"
           id="dropdownBasic1"
           ngbDropdownToggle
@@ -84,105 +84,376 @@
     </div>
   </div>
 
-  <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Add Event</h4>
-      <button
-        type="button"
-        class="close"
-        aria-label="Close"
-        (click)="modal.dismiss('Cross click')"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form>
-        <div class="form-group">
-          <label for="dateOfBirth">Date of birth</label>
-          <div class="input-group">
+  <form
+    class="example-form"
+    [formGroup]="EventForm"
+    (ngSubmit)="onFormSubmit(EventForm.value)"
+  >
+    <p class="example-full-width" class="input-group mb-3" cellspacing="0">
+      <mat-form-field class="example-full-width">
+        <mat-label>Event Name</mat-label>
+        <input
+          matInput
+          class="form-control"
+          placeholder="Event Name"
+          formControlName="EventName"
+        />
+        <mat-error *ngIf="f.EventName.touched && f.EventName.invalid">
+          <mat-error *ngIf="f.EventName.errors.required"
+            >Event Name is required.</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p class="example-full-width" cellspacing="0">
+      <mat-form-field class="example-full-width">
+        <mat-label>Event Description</mat-label>
+        <textarea
+          matInput
+          class="form-control"
+          placeholder="Event Description"
+          formControlName="EventDescription"
+        ></textarea>
+        <mat-error
+          *ngIf="f.EventDescription.touched && f.EventDescription.invalid"
+        >
+          <mat-error *ngIf="f.EventDescription.errors.required"
+            >Event Description is required.</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p class="example-full-width" cellspacing="0">
+      <mat-form-field class="example-full-width">
+        <mat-label>Event Headline </mat-label>
+        <input
+          matInput
+          class="form-control"
+          placeholder="Event Headline "
+          formControlName="EventHeadline"
+        />
+        <mat-error *ngIf="f.EventHeadline.touched && f.EventHeadline.invalid">
+          <mat-error *ngIf="f.EventHeadline.errors.required"
+            >Event Headline is required.</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p class="example-full-width" cellspacing="0">
+      <mat-form-field class="example-full-width">
+        <mat-label>Event Date </mat-label>
+        <input
+          matInput
+          class="form-control"
+          placeholder="Event Date "
+          formControlName="EventDate"
+        />
+        <mat-error *ngIf="f.EventDate.touched && f.EventDate.invalid">
+          <mat-error *ngIf="f.EventDate.errors.required"
+            >Event Date is required.</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p class="example-full-width" cellspacing="0">
+      <mat-form-field class="example-full-width">
+        <mat-label>Ticket Links </mat-label>
+        <input
+          matInput
+          class="form-control"
+          placeholder="Ticket Links "
+          formControlName="TicketLinks"
+        />
+        <mat-error *ngIf="f.TicketLinks.touched && f.TicketLinks.invalid">
+          <mat-error *ngIf="f.TicketLinks.errors.required"
+            >Tickets Link is required.</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p class="example-full-width" cellspacing="0">
+      <mat-form-field class="example-full-width">
+        <mat-label>Language </mat-label>
+        <input
+          matInput
+          class="form-control"
+          placeholder="Language "
+          formControlName="Language"
+        />
+        <mat-error *ngIf="f.Language.touched && f.Language.invalid">
+          <mat-error *ngIf="f.Language.errors.required"
+            >Language is required.</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field class="example-full-width">
+        <mat-label>Location</mat-label>
+        <input
+          matInput
+          class="form-control"
+          placeholder="Location "
+          formControlName="Location"
+        />
+        <mat-error *ngIf="f.Location.touched && f.Location.invalid">
+          <mat-error *ngIf="f.Location.errors.required"
+            >Location is required.</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
+    </p>
+
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Country</mat-label>
             <input
-              id="dateOfBirth"
+              matInput
               class="form-control"
-              placeholder="yyyy-mm-dd"
-              name="dp"
-              ngbDatepicker
-              #dp="ngbDatepicker"
+              placeholder="Country "
+              formControlName="Country"
             />
-            <div class="input-group-append">
-              <button
-                class="btn btn-outline-secondary calendar"
-                (click)="dp.toggle()"
-                type="button"
+            <mat-error *ngIf="f.Country.touched && f.Country.invalid">
+              <mat-error *ngIf="f.Country.errors.required"
+                >Country is required.</mat-error
               >
-                <i class="material-icons">today</i>
-              </button>
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>City</mat-label>
+            <input
+              matInput
+              class="form-control"
+              placeholder="City "
+              formControlName="City"
+            />
+            <mat-error *ngIf="f.City.touched && f.City.invalid">
+              <mat-error *ngIf="f.City.errors.required"
+                >City is required.</mat-error
+              >
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <button type="submit">Add Event</button>
+  </form>
+  <form
+    class="example-form"
+    [formGroup]="EventForm"
+    (ngSubmit)="onFormSubmit(EventForm.value)"
+  >
+    <ng-template #content let-modal class="example-form">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Event</h4>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="modal.dismiss('Cross click')"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="dateOfBirth">Date of Event</label>
+            <div class="input-group">
+              <input
+                id="dateOfBirth"
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="dp"
+                ngbDatepicker
+                #dp="ngbDatepicker"
+                atInput
+                class="form-control"
+                formControlName="EventDate"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary calendar"
+                  (click)="dp.toggle()"
+                  type="button"
+                >
+                  <i class="material-icons">today</i>
+                </button>
+                <mat-error *ngIf="f.EventDate.touched && f.EventDate.invalid">
+                  <mat-error * ngIf="f.EventDate.errors.required">
+                    Event Date is required.</mat-error
+                  >
+                </mat-error>
+              </div>
             </div>
           </div>
-        </div>
-      </form>
-    </div>
-    <mat-form-field class="modal-body">
-      <mat-label>Event Name </mat-label>
-      <input matInput placeholder="Event name" name="eventname" required />
-    </mat-form-field>
-    <mat-form-field class="modal-body">
-      <mat-label for="Field">Field:</mat-label>
-      <select id="Field" matNativeControl required>
-        <option value="Business">Business</option>
-        <option value="Charity">Charity</option>
-        <option value="Engenering">Engenering</option>
-        <option value="Medical">Medical</option>
-        <option value="Others">Others</option>
-      </select>
-    </mat-form-field>
-    <mat-form-field class="modal-body">
-      <mat-label for="Place">Place:</mat-label>
-      <select id="Place" matNativeControl required>
-        <option value="Alexandria">Alexandria</option>
-        <option value="Cairo">Cairo</option>
-      </select>
-    </mat-form-field>
-    <mat-form-field class="modal-body">
-      <mat-label maxlength="25">Headline</mat-label>
-      <input matInput placeholder="Headline" name="Headline" required />
-    </mat-form-field>
-    <mat-form-field class="modal-body" appearance="fill">
-      <mat-label>Description</mat-label>
-      <textarea matInput></textarea>
-    </mat-form-field>
-    <mat-form-field class="modal-body" [formGroup]="form" (ngSubmit)="submit()">
-      <mat-label for="url">Tickets Link </mat-label>
-      <input
-        formControlName="url"
-        id="url"
-        type="text"
-        matInput
-        placeholder="Tickets Link"
-        name="Tickets Link"
-      />
-      <mat-error
-        *ngIf="f.url.touched && f.url.invalid"
-        class="alert alert-danger"
-      >
-        <mat-error *ngIf="f.url.errors.pattern"
-          >Please enter valid url</mat-error
+        </form>
+      </div>
+      <mat-form-field class="modal-body">
+        <mat-label>Event Name </mat-label>
+        <input
+          matInput
+          placeholder="Event name"
+          name="eventname"
+          required
+          class="form-control"
+          placeholder="Event Name"
+          formControlName="EventName"
+        />
+        <mat-error * ngIf="f.EventName.touched && f.EventName.invalid">
+          <mat-error * ngIf="f.EventName.errors.required">
+            Event Name is required.</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
+      <p class="example-full-width" cellspacing="0">
+        <mat-form-field class="example-full-width">
+          <mat-label> Language </mat-label>
+
+          <input
+            matInput
+            class="form-control"
+            placeholder="Language "
+            formControlName="Language"
+          />
+          <mat-error * ngIf="f.Language.touched && f.Language.invalid">
+            <mat-error * ngIf="f.Language.errors.required">
+              Language is required.</mat-error
+            >
+          </mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field class="example-full-width">
+          <mat-label> Location </mat-label>
+
+          <input
+            matInput
+            class="form-control"
+            placeholder="Location "
+            formControlName="Location"
+          />
+          <mat-error * ngIf="f.Location.touched && f.Location.invalid">
+            <mat-error * ngIf="f.Location.errors.required">
+              Location is required.</mat-error
+            >
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <mat-form-field class="modal-body">
+        <mat-label for="Field">Field:</mat-label>
+        <select id="Field" matNativeControl required>
+          <option value="Business">Business</option>
+          <option value="Charity">Charity</option>
+          <option value="Engenering">Engenering</option>
+          <option value="Medical">Medical</option>
+          <option value="Others">Others</option>
+        </select>
+      </mat-form-field>
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label> Country </mat-label>
+
+              <input
+                matInput
+                class="form-control"
+                placeholder="Country "
+                formControlName="Country"
+              />
+              <mat-error * ngIf="f.Country.touched && f.Country.invalid">
+                <mat-error * ngIf="f.Country.errors.required">
+                  Country is required.</mat-error
+                >
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label> City </mat-label>
+
+              <input
+                matInput
+                class="form-control"
+                placeholder="City "
+                formControlName="City"
+              />
+              <mat-error * ngIf="f.City.touched && f.City.invalid">
+                <mat-error * ngIf="f.City.errors.required">
+                  City is required.</mat-error
+                >
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <mat-form-field class="modal-body">
+        <mat-label maxlength="25">Headline</mat-label>
+        <input
+          matInput
+          class="form-control"
+          placeholder="Event Headline "
+          formControlName="EventHeadline"
+        />
+        <mat-error * ngIf="f.EventHeadline.touched && f.EventHeadline.invalid">
+          <mat-error * ngIf="f.EventHeadline.errors.required">
+            Event Headline is required.</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="modal-body" appearance="fill">
+        <mat-label>Event Description</mat-label>
+        <textarea
+          matInput
+          class="form-control"
+          placeholder="Event Description"
+          formControlName="EventDescription"
+        ></textarea>
+        <mat-error
+          *
+          ngIf="f.EventDescription.touched && f.EventDescription.invalid"
         >
-      </mat-error>
-    </mat-form-field>
-    <div class="modal-footer">
-      <button
-        class="btn btn-outline-dark"
-        type="submit"
-        [disabled]="!form.valid"
-      >
-        Add
-      </button>
-    </div>
-  </ng-template>
+          <mat-error * ngIf="f.EventDescription.errors.required">
+            Event Description is required.</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label for="url">Tickets Link </mat-label>
+        <input
+          class="form-control"
+          placeholder="Ticket Links "
+          formControlName="TicketLinks"
+          type="text"
+          matInput
+        />
+        <mat-error *ngIf="f.TicketLinks.touched && f.TicketLinks.invalid">
+          <mat-error *ngIf="f.TicketLinks.errors.required"
+            >Please enter valid url</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
+      <div class="modal-footer">
+        <button
+          class="btn btn-outline-dark"
+          type="submit"
+          [disabled]="!EventForm.valid"
+        >
+          Add
+        </button>
+      </div>
+    </ng-template>
+  </form>
 
   <button
-    style="float: left;"
+    style="float: left"
     class="btn btn-lg btn-outline-primary"
     (click)="open(content)"
     mat-fab
@@ -192,7 +463,6 @@
   >
     <i class="material-icons">event </i>
   </button>
-  <hr />
 
   <mat-list>
     <span class="courses">

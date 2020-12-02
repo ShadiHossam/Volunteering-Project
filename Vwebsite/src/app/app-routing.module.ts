@@ -20,6 +20,7 @@ import { BusinessdevelopmentComponent } from './volunteer/businessdevelopment/bu
 import { PrComponent } from './volunteer/pr/pr.component';
 import { MembersComponent } from './profile/members/members.component';
 import { PProfileComponent } from './p-profile/p-profile.component';
+import{JobsComponent} from './jobs/jobs.component'
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'organizations', component: OrganizationsComponent },
   { path: 'events', component: EventsComponent },
   { path: 'aboutus', component: AboutusComponent },
+  { path: 'jobs', component: JobsComponent },
   {
     path: 'profile',
     component: ProfileComponent,

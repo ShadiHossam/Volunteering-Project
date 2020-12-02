@@ -1,6 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
+import {BidiModule} from '@angular/cdk/bidi';
+import {LayoutModule} from '@angular/cdk/layout';
+import {ObserversModule} from '@angular/cdk/observers';
+import {OverlayModule} from '@angular/cdk/overlay';
+import {PlatformModule} from '@angular/cdk/platform';
+import {TextFieldModule} from '@angular/cdk/text-field';
+
+
+
 import { A11yModule } from '@angular/cdk/a11y';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -53,8 +63,9 @@ import {
   TableModule,
 } from 'angular-bootstrap-md';
 
-const material = [
-  CommonModule,
+const material = [ 
+    
+  CommonModule,TextFieldModule,PlatformModule,OverlayModule,ObserversModule,LayoutModule,BidiModule,
   A11yModule,
   ClipboardModule,
   CdkStepperModule,

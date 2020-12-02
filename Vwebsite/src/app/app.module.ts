@@ -27,11 +27,20 @@ import { TabViewModule } from 'primeng/tabview';
 import { UniversityService } from './Services/university.service';
 import { CountryService } from './Services/country.service';
 import { LoginService } from './Services/login.service';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JobPostingService } from './Services/job-posting.service';
+import { EventPostingService } from './Services/event-posting.service';
 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JobsComponent } from './jobs/jobs.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, CRouting],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    CRouting,
+    JobsComponent,
+  ],
   imports: [
     BrowserModule,
     MaterialModule,
@@ -59,6 +68,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     UniversityService,
     CountryService,
     LoginService,
+    JobPostingService,
+    EventPostingService,
   ],
   bootstrap: [AppComponent],
 })

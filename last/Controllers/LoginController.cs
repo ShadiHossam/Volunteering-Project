@@ -27,7 +27,9 @@ namespace last.Controllers
             var log = db.Users.Where(x => x.UserName.Equals(login.UserName) && x.Password.Equals(login.Password)).FirstOrDefault();
             if (log == null)
             {
+         
                 return new Response { Status = "Invalid", Message = "Invalid User or passwor." };
+               
             }
             else
             {
@@ -42,12 +44,16 @@ namespace last.Controllers
                 var x = session["UserName"].ToString();
                 return new Response { Status = "Success", Message = "Login Successfully" };
             }
+
+
+             
+
         }
 
         //For new user Registration  
         [Route("Api/Login/createcontact")]
         [HttpPost]
-        public object createcontact(Registration Lvm)
+        public object createcontact(Registration lvv)
         {
             try
             {
@@ -55,10 +61,10 @@ namespace last.Controllers
                 User user = new User();
                 if (user.Id == 0)
                 {
-                    user.UserName = Lvm.UserName;
-                    user.Password = Lvm.Password;
-                    user.Email = Lvm.Email;
-                    user.PhoneNumber = Lvm.PhoneNumber;
+                    user.UserName = lvv.UserName;
+                    user.Password = lvv.Password;
+                    user.Email = lvv.Email;
+                    user.PhoneNumber = lvv.PhoneNumber;
                     db.Users.Add(user);
                     db.SaveChanges();
                     return new Response

@@ -12,6 +12,8 @@ import {
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EventPostingService } from '../Services/event-posting.service';
+import { EventPosting } from '../EventPosting';
 
 @Component({
   selector: 'app-events',
@@ -19,20 +21,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./events.component.css'],
 })
 export class EventsComponent implements OnInit {
+  EventForm: FormGroup = new FormGroup({});
+  data = false;
+  massage: string;
+
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
-  }
-
-  form: FormGroup = new FormGroup({});
-
-  get f() {
-    return this.form.controls;
-  }
-
-  submit() {
-    console.log(this.form.value);
   }
 
   closeResult = '';
@@ -41,15 +37,11 @@ export class EventsComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private fb: FormBuilder,
+    private EventPostingService: EventPostingService,
+    private formbulider: FormBuilder,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar
-  ) {
-    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
-    this.form = fb.group({
-      url: ['', [Validators.pattern(reg)]],
-    });
-  }
+  ) {}
 
   open(content) {
     this.modalService
@@ -74,5 +66,41 @@ export class EventsComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.EventForm = this.formbulider.group({
+      EventDescription: ['', [Validators.required]],
+      EventHeadline: ['', [Validators.required]],
+      EventDate: ['', [Validators.required]],
+      TicketLinks: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'
+          ),
+        ],
+      ],
+      Language: ['', [Validators.required]],
+      Location: ['', [Validators.required]],
+      Country: ['', [Validators.required]],
+      City: ['', [Validators.required]],
+      EventName: ['', [Validators.required]],
+    });
+  }
+  get f() {
+    return this.EventForm.controls;
+  }
+  onFormSubmit(events) {
+    this.CreateEvents(events);
+    if (this.EventForm.invalid) {
+      return;
+    }
+  }
+  CreateEvents(eventposting: EventPosting) {
+    this.EventPostingService.CreateJobs(eventposting).subscribe(() => {
+      this.data = true;
+      this.massage = 'Data saved Successfully';
+      this.EventForm.reset();
+    });
+  }
 }

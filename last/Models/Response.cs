@@ -21,7 +21,9 @@ namespace last.Models
 
     }
     public class Registration : User { }
-    public class JobPosting : JobListing { }
+    public class Jobs : JobPosting { }
+    public class events : Event { }
+
 
 
 }

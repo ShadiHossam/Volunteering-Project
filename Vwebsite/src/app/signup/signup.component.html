@@ -92,6 +92,13 @@
                 formControlName="UserName"
               />
             </div>
+            <mat-error *ngIf="f.UserName.touched && f.UserName.invalid">
+              <mat-error *ngIf="f.UserName.errors.required"
+                >UserName  is required.</mat-error
+              >
+             
+            </mat-error>
+            
             <div class="input-group mb-4">
               <input
                 type="text"
@@ -133,10 +140,10 @@
                 placeholder="Password"
                 formControlName="Password"
               />
-            </div>
+            </div> 
 
             <button type="submit" class="btn btn-block btn-success" [disabled]="!UserForm.valid">
-              Add User
+              Sign Up
             </button>
           </form>
         </div>
@@ -144,3 +151,4 @@
     </div>
   </div>
 </div>
+ 

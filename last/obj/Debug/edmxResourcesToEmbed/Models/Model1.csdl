@@ -93,9 +93,11 @@
       <End Role="JobTypes" EntitySet="JobTypes" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
-    <EntitySet Name="JobListings" EntityType="NGOModel.JobListing" />
+    <EntitySet Name="JobPostings" EntityType="NGOModel.JobPosting" />
+    <EntitySet Name="Countries" EntityType="NGOModel.Country" />
+    <EntitySet Name="EventPostings" EntityType="NGOModel.EventPosting" />
   </EntityContainer>
-  <EntityType Name="JobListing">
+  <EntityType Name="JobPosting">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -110,5 +112,26 @@
     <Property Name="ContactPhoneNumber" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ContactEmail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Language" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Countries" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="EventPosting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="TicketLink" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EventName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EventDate" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EventDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EventHeadline" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JobTypeId" Type="Int32" Nullable="false" />
+    <Property Name="CitiesId" Type="Int32" Nullable="false" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
   </EntityType>
 </Schema>
