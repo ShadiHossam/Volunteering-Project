@@ -19,6 +19,11 @@ namespace last.Models
             get;
         }
 
+        public string data
+        {
+            set;
+            get;
+        }
     }
     public class Registration : User { }
     public class Jobs : JobPosting { }

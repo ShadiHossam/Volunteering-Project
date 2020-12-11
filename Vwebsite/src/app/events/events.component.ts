@@ -14,6 +14,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EventPostingService } from '../Services/event-posting.service';
 import { EventPosting } from '../EventPosting';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-events',
@@ -24,6 +26,9 @@ export class EventsComponent implements OnInit {
   EventForm: FormGroup = new FormGroup({});
   data = false;
   massage: string;
+  EventData;
+  Event: any;
+  x: string;
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
@@ -40,6 +45,7 @@ export class EventsComponent implements OnInit {
     private EventPostingService: EventPostingService,
     private formbulider: FormBuilder,
     public dialog: MatDialog,
+    private http: HttpClient,
     private _snackBar: MatSnackBar
   ) {}
 
@@ -71,7 +77,7 @@ export class EventsComponent implements OnInit {
       EventDescription: ['', [Validators.required]],
       EventHeadline: ['', [Validators.required]],
       EventDate: ['', [Validators.required]],
-      TicketLinks: [
+      TicketLink: [
         '',
         [
           Validators.required,
@@ -86,6 +92,9 @@ export class EventsComponent implements OnInit {
       City: ['', [Validators.required]],
       EventName: ['', [Validators.required]],
     });
+    this.EventPostingService.GetEvents().subscribe((data) => {
+      this.EventData = data;
+    });
   }
   get f() {
     return this.EventForm.controls;
@@ -97,10 +106,17 @@ export class EventsComponent implements OnInit {
     }
   }
   CreateEvents(eventposting: EventPosting) {
-    this.EventPostingService.CreateJobs(eventposting).subscribe(() => {
+    this.EventPostingService.CreateEvent(eventposting).subscribe(() => {
       this.data = true;
       this.massage = 'Data saved Successfully';
       this.EventForm.reset();
     });
+  }
+  GetThisEvent(x): Observable<EventPosting> {
+    {
+      return this.http.get<EventPosting>(
+        'http://localhost:49826/Api/EventPostings/' + this.x
+      );
+    }
   }
 }

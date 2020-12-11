@@ -9,6 +9,7 @@
 
 namespace last.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -21,8 +22,10 @@ namespace last.Models
         public string PhoneNumber { get; set; }
         public Nullable<int> CitiesId { get; set; }
         public Nullable<int> JobId { get; set; }
-    
+
+        [JsonIgnore]
         public virtual City City { get; set; }
-        public virtual JobType JobType { get; set; }
+        [JsonIgnore]
+        public virtual last.Models.JobType JobType { get; set; }
     }
 }

@@ -12,43 +12,52 @@ import { LoginService } from './../../app/Services/login.service';
 import { Register } from '../register';
 import * as $ from 'jquery';
 
-
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css'], 
+  styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
   university;
   myControl = new FormControl();
 
   filtereduniversity: Observable<string[]>;
-  data = false;    
+  data = false;
   UserForm: FormGroup = new FormGroup({});
 
-  massage:string;    
+  massage: string;
 
-  constructor(private loginService:LoginService,private formbulider: FormBuilder,  service: UniversityService ) {
+  constructor(
+    private loginService: LoginService,
+    private formbulider: FormBuilder,
+    service: UniversityService
+  ) {
     this.university = service.getuniversity();
-   
   }
 
- 
   ngOnInit(): void {
     this.filtereduniversity = this.myControl.valueChanges.pipe(
       startWith(''),
       map((value) => this._filter(value))
     );
-    this.UserForm = this.formbulider.group({    
-      UserName: ['', [Validators.required]],    
-      PhoneNumber: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],      
-      Email: ['', [Validators.required  ,Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],    
-       Password: ['', [Validators.required,]], 
-    });    
-
+    this.UserForm = this.formbulider.group({
+      UserName: ['', [Validators.required]],
+      PhoneNumber: [
+        '',
+        [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],
+      ],
+      Email: [
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        ],
+      ],
+      Password: ['', [Validators.required]],
+    });
   }
-  get f(){
+  get f() {
     return this.UserForm.controls;
   }
 
@@ -59,46 +68,20 @@ export class SignupComponent implements OnInit {
       university.toLowerCase().includes(filterValue)
     );
   }
-  onFormSubmit(user)    
-  {
-    this.ValidateUser(user.UserName);
-    this.CreateUser(user);    
+  onFormSubmit(user) {
+    this.loginService.ValidateUser(user);
+    this.CreateUser(user);
     if (this.UserForm.invalid) {
       return;
-  }
-  }    
-  CreateUser(register:Register)    
-  {    
-  this.loginService.CreateUser(register).subscribe(    
-    ()=>    
-    {    
-      this.data = true;    
-      this.massage = 'Data saved Successfully';    
-      this.UserForm.reset();    
-    });    
-
-  }
-  
- 
-  ValidateUser(username) {
-    $.ajax(  
-      {  
-          type: 'POST',  
-          dataType: 'JSON',  
-          url: 'http://localhost:49826/Api/Login/Validuser?UserName={UserName}',  
-          data: { UserName: username },  
-          success:  
-              function (response)  
-              {  
-                  $("Validuser").text = response;
-              },  
-          error:  
-              function (response)  
-              {  
-                  alert("Error: " + response);  
-              }  
-      });  
+    }
   }
 
+  CreateUser(register: Register) {
+    this.loginService.CreateUser(register).subscribe(() => {
+      this.data = true;
+      this.massage = 'Data saved Successfully';
+      this.UserForm.reset();
+    });
+  }
+  x = localStorage.getItem('UserName');
 }
-

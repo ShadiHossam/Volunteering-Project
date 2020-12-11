@@ -21,6 +21,7 @@
     <EntitySetMapping Name="JobTypes">
       <EntityTypeMapping TypeName="NGOModel.JobType">
         <MappingFragment StoreEntitySet="JobTypes">
+          <ScalarProperty Name="JobCode" ColumnName="JobCode" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="TypeName" ColumnName="TypeName" />
         </MappingFragment>

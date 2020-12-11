@@ -81,13 +81,13 @@ namespace last.Controllers
         }
        
         [Route("Api/Login/Validuser")]
-        [HttpPost]
+        [HttpGet]
 
         public string Validuser(string UserName)
         {
             var User = db.Users.Where(w => w.UserName == UserName).FirstOrDefault();
 
-            if (User != null)
+            if (User == null)
                 return "user is valid";
             else
                 return "user is found please choose another one";
@@ -115,33 +115,33 @@ namespace last.Controllers
             return users;
         }
 
-        [Route("Api/Login/GetUserByUserName1")]
+        //[Route("Api/Login/GetUserByUserName1")]
 
-        [HttpGet]
-        public User GetUserByUserName1(string UserName)
-        {
-            User users = null;
-            ///using (NGOEntities entities = new NGOEntities())
-            {
-                users = db.Users.Where(x => x.UserName == UserName).Select(x => new User
-                {
-                    Id = x.Id,
-                    UserName = x.UserName,
-                    Email = x.Email,
-                    PhoneNumber = Convert.ToString(x.PhoneNumber),
-                    Password =x.Password
+        //[HttpGet]
+        //public User GetUserByUserName1(string UserName)
+        //{
+        //    User users = null;
+        //    ///using (NGOEntities entities = new NGOEntities())
+        //    {
+        //        users = db.Users.Where(x => x.UserName == UserName).Select(s => new User
+        //        {
+        //            Id = s.Id,
+        //            UserName = s.UserName,
+        //            Email = s.Email,
+        //            PhoneNumber = Convert.ToString(s.PhoneNumber),
+        //            Password =s.Password
 
-                }).FirstOrDefault();
-            }
-            return users;
+        //        }).FirstOrDefault();
+        //    }
+        //    return users;
 
 
-        }
+        //}
 
         [Route("Api/Login/GetUserByUserName")]
 
         [HttpGet]
-        public IHttpActionResult GetUserByUserName(string UserName)
+        public User GetUserByUserName(string UserName)
         {
             User users = null;
             ///using (NGOEntities entities = new NGOEntities())
@@ -149,8 +149,9 @@ namespace last.Controllers
                 users = db.Users.Where(x => x.UserName == UserName).FirstOrDefault();
             }
             //return Json(users, JsonRequestBehavior.AllowGet)
-
-            return Json(users);
+            //var a = users.
+            //return Json(users);
+            return users;
                 //OK(new { result = users });
 
 
@@ -158,33 +159,32 @@ namespace last.Controllers
 
 
 
-        //[HttpPut]
-        //[Route("Updateuserss")]
-        //public IHttpActionResult PutUsersMaster(User UserName)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        [HttpPut]
+        [Route("Updateuserss")]
+        public IHttpActionResult PutUsersMaster(User UserName)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    return Ok(UserName);
-        //}
-        //[HttpDelete]
-        //[Route("Deleteuserss")]
-        //public IHttpActionResult DeleteEmaployeeDelete(string UserName)
-        //{
-        //    //int empId = Convert.ToInt32(id);  
-        //    User UserName = db.Users.Find(UserName);
-        //    if (UserName == null)
-        //    {
-        //        return NotFound();
-        //    }
+            return Ok(UserName);
+        }
+        [HttpDelete]
+        [Route("Api/Login/Deleteusers")]
+        public IHttpActionResult DeleteEmaployeeDelete(string UserName)
+        {
+            User DeleteUser = db.Users.Find(UserName);
+            if (UserName == null)
+            {
+                return NotFound();
+            }
 
-        //    db.Users.Remove(UserName);
-        //    db.SaveChanges();
+            db.Users.Remove(DeleteUser);
+            db.SaveChanges();
 
-        //    return Ok(UserName);
-        //}
+            return Ok(UserName);
+        }
 
 
 

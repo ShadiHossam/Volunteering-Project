@@ -13,9 +13,9 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClientModule, HttpClient } from '@angular/common/http';  
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
-import {  LoginService} from "../Services/login.service";
+import { LoginService } from '../Services/login.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -23,10 +23,9 @@ import {  LoginService} from "../Services/login.service";
 })
 export class ProfileComponent implements OnInit {
   name = '';
-  // UserData;
-  UserData=[];
-    x="";
-  
+  UserData;
+  x = '';
+
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,
@@ -40,10 +39,9 @@ export class ProfileComponent implements OnInit {
 
   submit() {
     console.log(this.form.value);
-  } 
+  }
 
   closeResult = '';
-
 
   constructor(
     private modalService: NgbModal,
@@ -51,9 +49,9 @@ export class ProfileComponent implements OnInit {
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute,
-    private http: HttpClient   ,
-    private service:LoginService,
-     private router: Router,
+    private http: HttpClient,
+    private service: LoginService,
+    private router: Router
   ) {
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.form = fb.group({
@@ -85,23 +83,11 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.x=localStorage.getItem("UserName");
-    alert(this.x);
-    this.service.getUsers().subscribe(data => this.UserData=data);
-
-    // this.RefreshUsersList();
-    // this.httpService.get('http://localhost:49826/Api/Login/GetUserDetails').subscribe(  
-     //   data => {  
-    //    this.UserData = data as string [];        }
-    // )};     
+    this.service.getUsers().subscribe((data) => {
+      this.UserData = data;
+    });
+  }
+  DeleteUsers() {
+    this.service.DeleteUsers();
+  }
 }
-// RefreshUsersList(){
-//   this.service.GetUsers().subscribe(data=>{
-//     this.UsersList=data
-//   })
-
-}
-
-
-
-// }

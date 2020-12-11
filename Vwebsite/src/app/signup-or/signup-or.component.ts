@@ -10,7 +10,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { UniversityService } from '../Services/university.service';
-import { CountryService } from '../Services/country.service';
 
 @Component({
   selector: 'app-signup-or',
@@ -32,21 +31,15 @@ export class SignupORComponent implements OnInit {
   filteredcity: Observable<string[]>;
 
   form: FormGroup = new FormGroup({});
-  constructor(
-    private fb: FormBuilder,
-    UniversityService: UniversityService,
-    CountryService: CountryService
-  ) {
+  constructor(private fb: FormBuilder, UniversityService: UniversityService) {
     this.university = UniversityService.getuniversity();
-    this.country = CountryService.getcountry();
-    this.city = CountryService.getcity();
+
     this.form = fb.group(
       {
         password: ['', [Validators.required]],
         confirm_password: ['', [Validators.required]],
       },
-      {
-      }
+      {}
     );
   }
 

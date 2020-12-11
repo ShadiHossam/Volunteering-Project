@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JobPostingService } from './../../app/Services/job-posting.service';
+import { JobTypesService } from './../../app/Services/job-types.service';
 import { JobPosting } from '../JobPosting';
 
 import { Observable } from 'rxjs';
@@ -19,9 +20,11 @@ export class JobsComponent implements OnInit {
   JobForm: FormGroup = new FormGroup({});
   data = false;
   massage: string;
+  JobTypes;
 
   constructor(
     private JobPostingService: JobPostingService,
+    private JobTypesService: JobTypesService,
     private formbulider: FormBuilder
   ) {}
 
@@ -46,6 +49,9 @@ export class JobsComponent implements OnInit {
       Location: ['', [Validators.required]],
       Country: ['', [Validators.required]],
       City: ['', [Validators.required]],
+    });
+    this.JobTypesService.GetJobs().subscribe((res) => {
+      this.JobTypes = res;
     });
   }
   get f() {

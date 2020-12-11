@@ -18,15 +18,15 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TicketLink" Type="nvarchar(max)" Nullable="false" />
     <Property Name="EventName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="EventDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EventDate" Type="datetime" Nullable="false" />
     <Property Name="EventDescription" Type="nvarchar(max)" Nullable="false" />
     <Property Name="EventHeadline" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="JobTypeId" Type="int" Nullable="false" />
-    <Property Name="CitiesId" Type="int" Nullable="false" />
-    <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobTypeId" Type="int" />
+    <Property Name="CitiesId" Type="int" />
+    <Property Name="CountryId" Type="int" />
   </EntityType>
   <EntityType Name="JobPosting">
     <Key>
@@ -58,6 +58,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="JobCode" Type="varchar" MaxLength="5" Nullable="false" />
   </EntityType>
   <EntityType Name="User">
     <Key>

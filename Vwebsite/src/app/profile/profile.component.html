@@ -164,11 +164,10 @@
     <mat-divider></mat-divider>
 
     <div>
-      <button mat-raised-button class="a" >Log Out</button>
+      <button mat-raised-button class="a">Log Out</button>
     </div>
   </nav>
   <article>
-    
     <div class="p-grid p-fluid">
       <ul class="p-col-12 p-md-4">
         <div class="p-inputgroup">
@@ -177,9 +176,7 @@
         </div>
       </ul>
     </div>
-<ul *ngFor="let user of  UserData">
-  <li> {{user.UserName}}</li>
-</ul>  
-    
+    <p>Name:{{ UserData.UserName }}</p>
+    <button (click)="DeleteUsers()">Delete User</button>
   </article>
 </section>

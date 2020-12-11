@@ -17,16 +17,16 @@ namespace last.Controllers
         private NGOEntities db = new NGOEntities();
 
         // GET: api/EventPostings
-        public IQueryable<eventposting> GetEventPostings()
+        public IQueryable<EventPosting> GetEventPostings()
         {
             return db.EventPostings;
         }
 
         // GET: api/EventPostings/5
-        [ResponseType(typeof(eventposting))]
+        [ResponseType(typeof(EventPosting))]
         public IHttpActionResult GetEventPosting(int id)
         {
-            eventposting eventPosting = db.EventPostings.Find(id);
+            EventPosting eventPosting = db.EventPostings.Find(id);
             if (eventPosting == null)
             {
                 return NotFound();
@@ -37,7 +37,7 @@ namespace last.Controllers
 
         // PUT: api/EventPostings/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutEventPosting(int id, eventposting eventPosting)
+        public IHttpActionResult PutEventPosting(int id, EventPosting eventPosting)
         {
             if (!ModelState.IsValid)
             {
@@ -71,8 +71,8 @@ namespace last.Controllers
         }
 
         // POST: api/EventPostings
-        [ResponseType(typeof(eventposting))]
-        public IHttpActionResult PostEventPosting(eventposting eventPosting)
+        [ResponseType(typeof(EventPosting))]
+        public IHttpActionResult PostEventPosting(EventPosting eventPosting)
         {
             if (!ModelState.IsValid)
             {
@@ -101,10 +101,10 @@ namespace last.Controllers
         }
 
         // DELETE: api/EventPostings/5
-        [ResponseType(typeof(eventposting))]
+        [ResponseType(typeof(EventPosting))]
         public IHttpActionResult DeleteEventPosting(int id)
         {
-            eventposting eventPosting = db.EventPostings.Find(id);
+            EventPosting eventPosting = db.EventPostings.Find(id);
             if (eventPosting == null)
             {
                 return NotFound();
@@ -143,13 +143,13 @@ namespace last.Controllers
 
         [Route("Api/Event/CreateEvent")]
         [HttpPost]
-        public object CreateEvent(eventposting lv1)
+        public object CreateEvent(EventPosting lv1)
         {
             try
             {
 
-                eventposting Event = new eventposting();
-                if (Event.Id == 0)
+                EventPosting Event = new EventPosting();
+                //if (Event.Id == 0)
                 {
                     Event.TicketLink = lv1.TicketLink;
                     Event.EventDescription = lv1.EventDescription;
@@ -162,11 +162,12 @@ namespace last.Controllers
 
                     db.EventPostings.Add(Event);
                     db.SaveChanges();
+                    int EventId = Event.Id;
                     return new Response
                     { Status = "Success", Message = "SuccessFully Saved." };
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;

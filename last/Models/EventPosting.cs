@@ -12,16 +12,16 @@ namespace last.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class eventposting
+    public partial class EventPosting
     {
         public int Id { get; set; }
         public string TicketLink { get; set; }
         public string EventName { get; set; }
-        public string EventDate { get; set; }
+        public DateTime EventDate { get; set; }
         public string EventDescription { get; set; }
         public string EventHeadline { get; set; }
-        public int JobTypeId { get; set; }
-        public int CitiesId { get; set; }
-        public int CountryId { get; set; }
+        public int? JobTypeId { get; set; }
+        public int? CitiesId { get; set; }
+        public int? CountryId { get; set; }
     }
 }

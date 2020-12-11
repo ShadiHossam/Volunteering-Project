@@ -25,13 +25,13 @@ import { RippleModule } from 'primeng/ripple';
 import { TabViewModule } from 'primeng/tabview';
 
 import { UniversityService } from './Services/university.service';
-import { CountryService } from './Services/country.service';
 import { LoginService } from './Services/login.service';
 import { JobPostingService } from './Services/job-posting.service';
 import { EventPostingService } from './Services/event-posting.service';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JobsComponent } from './jobs/jobs.component';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ import { JobsComponent } from './jobs/jobs.component';
   ],
   imports: [
     BrowserModule,
+    NgxJsonViewerModule,
     MaterialModule,
     HttpClientModule,
     AppRoutingModule,
@@ -66,7 +67,6 @@ import { JobsComponent } from './jobs/jobs.component';
 
   providers: [
     UniversityService,
-    CountryService,
     LoginService,
     JobPostingService,
     EventPostingService,

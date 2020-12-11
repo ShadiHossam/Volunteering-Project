@@ -1,3 +1,10 @@
+<div *ngFor="let event of EventData">
+  <button>
+    {{ event.EventName }}
+  </button>
+  <p>{{ event.Id }}</p>
+</div>
+
 <form>
   <mat-form-field floatLabel="never" style="float: left">
     <input matInput placeholder="Search" />
@@ -162,10 +169,10 @@
           matInput
           class="form-control"
           placeholder="Ticket Links "
-          formControlName="TicketLinks"
+          formControlName="TicketLink"
         />
-        <mat-error *ngIf="f.TicketLinks.touched && f.TicketLinks.invalid">
-          <mat-error *ngIf="f.TicketLinks.errors.required"
+        <mat-error *ngIf="f.TicketLink.touched && f.TicketLink.invalid">
+          <mat-error *ngIf="f.TicketLink.errors.required"
             >Tickets Link is required.</mat-error
           >
         </mat-error>
@@ -430,12 +437,12 @@
         <input
           class="form-control"
           placeholder="Ticket Links "
-          formControlName="TicketLinks"
+          formControlName="TicketLink"
           type="text"
           matInput
         />
-        <mat-error *ngIf="f.TicketLinks.touched && f.TicketLinks.invalid">
-          <mat-error *ngIf="f.TicketLinks.errors.required"
+        <mat-error *ngIf="f.TicketLink.touched && f.TicketLink.invalid">
+          <mat-error *ngIf="f.TicketLink.errors.required"
             >Please enter valid url</mat-error
           >
         </mat-error>

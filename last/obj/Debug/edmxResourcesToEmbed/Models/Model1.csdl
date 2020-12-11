@@ -25,6 +25,7 @@
     <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="JobReferences" Relationship="Self.FK_JobReferences_JobTypes" FromRole="JobTypes" ToRole="JobReferences" />
     <NavigationProperty Name="Users" Relationship="Self.FK_User_JobTypes" FromRole="JobTypes" ToRole="User" />
+    <Property Name="JobCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -124,14 +125,14 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TicketLink" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="EventName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="EventDate" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="EventDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="EventHeadline" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="JobTypeId" Type="Int32" Nullable="false" />
-    <Property Name="CitiesId" Type="Int32" Nullable="false" />
-    <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobTypeId" Type="Int32" />
+    <Property Name="CitiesId" Type="Int32" />
+    <Property Name="CountryId" Type="Int32" />
   </EntityType>
 </Schema>

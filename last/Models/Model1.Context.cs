@@ -31,6 +31,6 @@ namespace last.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<JobPosting> JobPostings { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
-        public virtual DbSet<eventposting> EventPostings { get; set; }
+        public virtual DbSet<EventPosting> EventPostings { get; set; }
     }
 }
