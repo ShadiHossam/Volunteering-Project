@@ -9,35 +9,68 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using last.Models;
+using NGOdata;
+using AutoMapper;
 
 namespace last.Controllers
 {
     public class JobTypesController : ApiController
     {
-        private NGOEntities db = new NGOEntities();
+        NGOdata.NGOEntities db = new NGOdata.NGOEntities();
 
-        // GET: api/JobTypes
-        public IQueryable<JobType> GetJobTypes()
+        // GET: api/JobType
+        public List<JobTypeViewModel> GetJobTypes()
         {
-            return db.JobTypes;
-        }
+            var jobTypeList = db.JobTypes.ToList();
 
-        // GET: api/JobTypes/5
-        [ResponseType(typeof(JobType))]
-        public IHttpActionResult GetJobType(int id)
-        {
-            JobType jobType = db.JobTypes.Find(id);
-            if (jobType == null)
+            List<JobTypeViewModel> jobTypeViewModelList = new List<JobTypeViewModel>();
+
+            foreach (var item in jobTypeList)
             {
-                return NotFound();
-            }
+                JobTypeViewModel jobTypeViewModel = new JobTypeViewModel();
 
-            return Ok(jobType);
+                Mapper.CreateMap<JobTypes, JobTypeViewModel>();
+                jobTypeViewModel = Mapper.Map<JobTypes, JobTypeViewModel>(item);
+
+                jobTypeViewModelList.Add(jobTypeViewModel);
+            }
+            
+
+            return jobTypeViewModelList;
         }
 
-        // PUT: api/JobTypes/5
+        // GET: api/JobType/5
+        [ResponseType(typeof(JobTypeViewModel))]
+        //public IHttpActionResult GetJobType(int id)
+           public JobTypeViewModel GetJobType(int id)
+
+        {
+            JobTypeViewModel jobTypeViewModel = new JobTypeViewModel();
+            NGOdata.JobTypes GetJobType;
+
+            GetJobType = db.JobTypes.Where(x => x.Id == id ).FirstOrDefault();
+
+            Mapper.CreateMap<JobTypes, JobTypeViewModel>();
+            jobTypeViewModel = Mapper.Map<JobTypes, JobTypeViewModel>(GetJobType);
+
+            return jobTypeViewModel;
+
+
+            //  JobTypes jobType = db.JobTypes.Find(id);
+
+
+            //jobTypeViewModel.Id = jobType.Id;
+            //if (jobType == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return Ok(jobTypeViewModel);
+        }
+
+        // PUT: api/JobType/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutJobType(int id, JobType jobType)
+        public IHttpActionResult PutJobType(int id, JobTypeViewModel jobType)
         {
             if (!ModelState.IsValid)
             {
@@ -70,14 +103,18 @@ namespace last.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/JobTypes
-        [ResponseType(typeof(JobType))]
-        public IHttpActionResult PostJobType(JobType jobType)
+        // POST: api/JobType
+        [ResponseType(typeof(JobTypeViewModel))]
+        public IHttpActionResult PostJobType(JobTypeViewModel jobTypeViewModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            JobTypes jobType = new JobTypes();
+            Mapper.CreateMap<JobTypeViewModel, JobTypes>();
+            jobType = Mapper.Map<JobTypeViewModel, JobTypes>(jobTypeViewModel);            
 
             db.JobTypes.Add(jobType);
             db.SaveChanges();
@@ -86,10 +123,10 @@ namespace last.Controllers
         }
 
         // DELETE: api/JobTypes/5
-        [ResponseType(typeof(JobType))]
+        [ResponseType(typeof(JobTypeViewModel))]
         public IHttpActionResult DeleteJobType(int id)
         {
-            JobType jobType = db.JobTypes.Find(id);
+            var jobType = db.JobTypes.Find(id);
             if (jobType == null)
             {
                 return NotFound();

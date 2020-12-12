@@ -1,9 +1,129 @@
-<div *ngFor="let event of EventData">
-  <button>
-    {{ event.EventName }}
-  </button>
-  <p>{{ event.Id }}</p>
-</div>
+<table class="table table-sm table-hover">
+  <tr *ngFor="let event of Events">
+    <td>{{ event.EventName }} - {{ event.EventDescription }}</td>
+    <td>{{ event.EventHeadline }}</td>
+    <td>
+      <a class="btn" (click)="showForEdit(event)">
+        <i class="fa fa-pencil-square-o"></i>
+      </a>
+      <a class="btn text-danger" (click)="onDelete(event.Id)">
+        <i class="fa fa-trash-o"></i>
+      </a>
+    </td>
+  </tr>
+</table>
+
+<!-- <form class="emp-form" #EventForm="ngForm" (ngSubmit)="onSubmit(EventForm)">
+  <input
+    type="hidden"
+    name="Id"
+    #Id="ngModel"
+    [(ngModel)]="EventPostingService.SelectedEvent.Id"
+  />
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input
+        class="form-control"
+        name="EventName"
+        #EventName="ngModel"
+        [(ngModel)]="EventPostingService.SelectedEvent.EventName"
+        placeholder="Last Name"
+        required
+      />
+      <div
+        class="validation-error"
+        *ngIf="EventName.invalid && EventName.touched"
+      >
+        This Field is Required.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <input
+      class="form-control"
+      name="EventDescription"
+      #EventDescription="ngModel"
+      [(ngModel)]="EventPostingService.SelectedEvent.EventDescription"
+      placeholder="EventDescription"
+    />
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input
+        class="form-control"
+        name="EventHeadline"
+        #EventHeadline="ngModel"
+        [(ngModel)]="EventPostingService.SelectedEvent.EventHeadline"
+        placeholder="EventHeadline"
+      />
+    </div>
+    <div class="form-group col-md-6">
+      <input
+        class="form-control"
+        name="EventDate"
+        #EventDate="ngModel"
+        [(ngModel)]="EventPostingService.SelectedEvent.EventDate"
+        placeholder="EventDate"
+      />
+    </div>
+    <div class="form-group col-md-6">
+      <input
+        class="form-control"
+        name="City"
+        #EventDate="ngModel"
+        [(ngModel)]="EventPostingService.SelectedEvent.City"
+        placeholder="City"
+      />
+    </div>
+    <div class="form-group col-md-6">
+      <input
+        class="form-control"
+        name="Language"
+        #EventDate="ngModel"
+        [(ngModel)]="EventPostingService.SelectedEvent.Language"
+        placeholder="Language"
+      />
+    </div>
+    <div class="form-group col-md-6">
+      <input
+        class="form-control"
+        name="Location"
+        #EventDate="ngModel"
+        [(ngModel)]="EventPostingService.SelectedEvent.Location"
+        placeholder="Location"
+      />
+    </div>
+    <div class="form-group col-md-6">
+      <input
+        class="form-control"
+        name="TicketLink"
+        #EventDate="ngModel"
+        [(ngModel)]="EventPostingService.SelectedEvent.TicketLink"
+        placeholder="TicketLink"
+      />
+    </div>
+    <div class="form-group col-md-6">
+      <input
+        class="form-control"
+        name="Country"
+        #EventDate="ngModel"
+        [(ngModel)]="EventPostingService.SelectedEvent.Country"
+        placeholder="Country"
+      />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <button
+        [disabled]="!EventForm.valid"
+        type="submit"
+        class="btn btn-lg btn-block btn-info"
+      >
+        <i class="fa fa-floppy-o"></i> Submit
+      </button>
+    </div>
+  </div>
+</form> -->
 
 <form>
   <mat-form-field floatLabel="never" style="float: left">

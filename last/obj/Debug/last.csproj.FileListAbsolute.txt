@@ -215,6 +215,7 @@ D:\Volunteering-Project\last\bin\Microsoft.Web.Infrastructure.dll
 D:\Volunteering-Project\last\bin\NewId.dll
 D:\Volunteering-Project\last\bin\Newtonsoft.Json.Bson.dll
 D:\Volunteering-Project\last\bin\Newtonsoft.Json.dll
+D:\Volunteering-Project\last\bin\NGOdata.dll
 D:\Volunteering-Project\last\bin\System.Buffers.dll
 D:\Volunteering-Project\last\bin\System.Diagnostics.DiagnosticSource.dll
 D:\Volunteering-Project\last\bin\System.IdentityModel.Tokens.Jwt.dll
@@ -250,6 +251,8 @@ D:\Volunteering-Project\last\bin\Microsoft.IdentityModel.Logging.xml
 D:\Volunteering-Project\last\bin\Microsoft.IdentityModel.Tokens.xml
 D:\Volunteering-Project\last\bin\NewId.xml
 D:\Volunteering-Project\last\bin\Newtonsoft.Json.Bson.xml
+D:\Volunteering-Project\last\bin\NGOdata.pdb
+D:\Volunteering-Project\last\bin\NGOdata.dll.config
 D:\Volunteering-Project\last\bin\System.Buffers.xml
 D:\Volunteering-Project\last\bin\System.Diagnostics.DiagnosticSource.xml
 D:\Volunteering-Project\last\bin\System.IdentityModel.Tokens.Jwt.xml
@@ -273,8 +276,9 @@ D:\Volunteering-Project\last\bin\System.Web.WebPages.Deployment.xml
 D:\Volunteering-Project\last\bin\System.Web.WebPages.Razor.xml
 D:\Volunteering-Project\last\bin\Antlr3.Runtime.pdb
 D:\Volunteering-Project\last\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Volunteering-Project\last\obj\Debug\last.csprojAssemblyReference.cache
 D:\Volunteering-Project\last\obj\Debug\last.csproj.CoreCompileInputs.cache
 D:\Volunteering-Project\last\obj\Debug\last.csproj.CopyComplete
 D:\Volunteering-Project\last\obj\Debug\last.dll
 D:\Volunteering-Project\last\obj\Debug\last.pdb
-D:\Volunteering-Project\last\obj\Debug\last.csprojAssemblyReference.cache
+D:\Volunteering-Project\last\bin\AutoMapper.dll

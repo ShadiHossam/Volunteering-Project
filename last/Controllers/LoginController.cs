@@ -7,9 +7,11 @@ using System.Web;
 using System.Web.Http;
 using System.Data.Entity;
 using System.Web.UI.WebControls;
-using System.Web.Script.Serialization;
+using System.Web.Script.Serialization; 
 using last.Models;
 using System.Web.Http.Results;
+using NGOdata;
+using AutoMapper;
 
 namespace last.Controllers
 {
@@ -17,14 +19,14 @@ namespace last.Controllers
 
     public class LoginController : ApiController
     {
-        NGOEntities db = new NGOEntities();
-       
+        NGOdata.NGOEntities db = new NGOdata.NGOEntities();       
+
         //For user login   
         [Route("Api/Login/userLogin")]
         [HttpPost]
         public Response userLogin(last.Models.login login)
         {
-            var log = db.Users.Where(x => x.UserName.Equals(login.UserName) && x.Password.Equals(login.Password)).FirstOrDefault();
+            var log = db.User.Where(x => x.UserName.Equals(login.UserName) && x.Password.Equals(login.Password)).FirstOrDefault();
             if (log == null)
             {
          
@@ -53,31 +55,40 @@ namespace last.Controllers
         //For new user Registration  
         [Route("Api/Login/createcontact")]
         [HttpPost]
-        public object createcontact(Registration lvv)
+        public object createcontact(UserViewModel userViewModel)
         {
             try
             {
-                
+
+                //User user = new User();
+                //if (user.Id == 0)
+                //{
+                //    user.UserName = lvv.UserName;
+                //    user.Password = lvv.Password;
+                //    user.Email = lvv.Email;
+                //    user.PhoneNumber = lvv.PhoneNumber;
+                //    db.User.Add(user);
+                //    db.SaveChanges();
+                //    return new Response
+                //    { Status = "Success", Message = "SuccessFully Saved." };
+                //}
+
                 User user = new User();
-                if (user.Id == 0)
-                {
-                    user.UserName = lvv.UserName;
-                    user.Password = lvv.Password;
-                    user.Email = lvv.Email;
-                    user.PhoneNumber = lvv.PhoneNumber;
-                    db.Users.Add(user);
-                    db.SaveChanges();
-                    return new Response
-                    { Status = "Success", Message = "SuccessFully Saved." };
-                }
+
+                Mapper.CreateMap<UserViewModel, User>();
+                user = Mapper.Map<UserViewModel, User>(userViewModel);
+                db.User.Add(user);
+                db.SaveChanges();
+                return new Response
+                { Status = "Success", Message = "SuccessFully Saved." };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                return new Response
+                { Status = "Error", Message = "Invalid Data." + ex.Message };
             }
-            return new Response
-            { Status = "Error", Message = "Invalid Data." };
+            
         }
        
         [Route("Api/Login/Validuser")]
@@ -85,23 +96,22 @@ namespace last.Controllers
 
         public string Validuser(string UserName)
         {
-            var User = db.Users.Where(w => w.UserName == UserName).FirstOrDefault();
+            var User = db.User.Where(w => w.UserName == UserName).FirstOrDefault();
 
             if (User == null)
                 return "user is valid";
             else
                 return "user is found please choose another one";
         }
-        [Route("Api/Login/GetUsers")]
+        [Route("Api/Login/GetUser")]
 
         [HttpGet]
-
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<User> GetUser()
         {
-            List<User> users = null;
+            List<User> User = null;
             using (NGOEntities entities = new NGOEntities())
             {
-                users = entities.Users.AsEnumerable().Select(x => new User
+                User = entities.User.AsEnumerable().Select(x => new User
                 {
                     Id = x.Id,
                     UserName = x.UserName,
@@ -112,75 +122,57 @@ namespace last.Controllers
                 
                 
             }
-            return users;
+            return User;
         }
-
-        //[Route("Api/Login/GetUserByUserName1")]
-
-        //[HttpGet]
-        //public User GetUserByUserName1(string UserName)
-        //{
-        //    User users = null;
-        //    ///using (NGOEntities entities = new NGOEntities())
-        //    {
-        //        users = db.Users.Where(x => x.UserName == UserName).Select(s => new User
-        //        {
-        //            Id = s.Id,
-        //            UserName = s.UserName,
-        //            Email = s.Email,
-        //            PhoneNumber = Convert.ToString(s.PhoneNumber),
-        //            Password =s.Password
-
-        //        }).FirstOrDefault();
-        //    }
-        //    return users;
-
-
-        //}
 
         [Route("Api/Login/GetUserByUserName")]
 
-        [HttpGet]
-        public User GetUserByUserName(string UserName)
+        [HttpGet] 
+        public UserViewModel GetUserByUserName(string UserName)
         {
-            User users = null;
-            ///using (NGOEntities entities = new NGOEntities())
-            {
-                users = db.Users.Where(x => x.UserName == UserName).FirstOrDefault();
-            }
-            //return Json(users, JsonRequestBehavior.AllowGet)
-            //var a = users.
-            //return Json(users);
-            return users;
-                //OK(new { result = users });
+            UserViewModel User = new UserViewModel();
+            //NGOdata.User getUser = new NGOdata.User();
+            NGOdata.User GetUser;
 
+            GetUser = db.User.Where(x => x.UserName == UserName).FirstOrDefault();
 
+            //IMapper iMapper = config.CreateMapper();
+
+            Mapper.CreateMap<User, UserViewModel>();
+            User = Mapper.Map<User, UserViewModel>(GetUser);
+
+            
+            User.CityName = GetUser.Cities.CityName;
+            User.JobName = GetUser.JobTypes.TypeName;
+
+            return User;
         }
 
 
-
         [HttpPut]
-        [Route("Updateuserss")]
-        public IHttpActionResult PutUsersMaster(User UserName)
+        [Route("Api/Login/UpdateUser")]
+        public IHttpActionResult PutUserMaster(User UserName)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            //db.User.
+
             return Ok(UserName);
         }
         [HttpDelete]
-        [Route("Api/Login/Deleteusers")]
+        [Route("Api/Login/DeleteUser")]
         public IHttpActionResult DeleteEmaployeeDelete(string UserName)
         {
-            User DeleteUser = db.Users.Find(UserName);
+            User DeleteUser = db.User.Find(UserName);
             if (UserName == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(DeleteUser);
+            db.User.Remove(DeleteUser);
             db.SaveChanges();
 
             return Ok(UserName);
@@ -215,14 +207,14 @@ namespace last.Controllers
 
 
         //[HttpDelete]
-        //[Route("Api/Login/DeleteUsers")]
+        //[Route("Api/Login/DeleteUser")]
         //public IHttpActionResult Delete(string UserName)
         //{
 
 
         //    using (var ctx = new NGOEntities())
         //    {
-        //        var UserDeleted = ctx.Users
+        //        var UserDeleted = ctx.User
         //            .Where(s => s.UserName == UserName)
         //            .FirstOrDefault();
 

@@ -46,6 +46,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\sha\Downloads\uSI Source Code\uSI Source Code\uSI\bin\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Automatonymous, Version=5.0.2.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
       <HintPath>..\packages\Automatonymous.5.0.2\lib\netstandard2.0\Automatonymous.dll</HintPath>
     </Reference>
@@ -85,6 +89,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json.Bson, Version=1.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.Bson.1.0.1\lib\net45\Newtonsoft.Json.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="NGOdata">
+      <HintPath>..\NGOdata\bin\Debug\NGOdata.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -247,58 +254,21 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\EventPostingsController.cs" />
+    <Compile Include="Controllers\EventPostingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\JobPostingController.cs" />
     <Compile Include="Controllers\JobTypesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\City.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Country.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Event.cs" />
-    <Compile Include="Models\EventPosting.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\EventPostingViewModel.cs" />
     <Compile Include="Models\Job.cs" />
-    <Compile Include="Models\JobPosting.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\JobReference.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\JobType.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\JobTypeViewModel.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\login.cs" />
     <Compile Include="Models\LoginResponse.cs" />
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\Response.cs" />
-    <Compile Include="Models\User.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -310,16 +280,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -341,13 +301,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

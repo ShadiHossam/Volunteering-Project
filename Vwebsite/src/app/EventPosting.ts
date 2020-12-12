@@ -8,4 +8,6 @@ export class EventPosting {
   TicketLink: string;
   Location: string;
   Country: string;
+
+  Id: number;
 }

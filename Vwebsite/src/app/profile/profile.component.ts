@@ -16,6 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { LoginService } from '../Services/login.service';
+import { Register } from '../register';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -50,7 +51,7 @@ export class ProfileComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute,
     private http: HttpClient,
-    private service: LoginService,
+    public LoginService: LoginService,
     private router: Router
   ) {
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
@@ -83,11 +84,24 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getUsers().subscribe((data) => {
+    this.LoginService.getUsers().subscribe((data) => {
       this.UserData = data;
     });
+
+    // this.LoginService.GetUserList();
   }
   DeleteUsers() {
-    this.service.DeleteUsers();
+    this.LoginService.DeleteUsers();
   }
+  // showForEdit(emp: Register) {
+  //   this.LoginService.SelectedUser = Object.assign({}, emp);
+  // }
+
+  // onDelete(id: number) {
+  //   if (confirm('Are you sure to delete this record ?') == true) {
+  //     this.LoginService.deleteEmployee(id).subscribe((x) => {
+  //       this.LoginService.GetUserList();
+  //     });
+  //   }
+  // }
 }

@@ -94,11 +94,10 @@
             </div>
             <mat-error *ngIf="f.UserName.touched && f.UserName.invalid">
               <mat-error *ngIf="f.UserName.errors.required"
-                >UserName  is required.</mat-error
+                >UserName is required.</mat-error
               >
-             
             </mat-error>
-            
+
             <div class="input-group mb-4">
               <input
                 type="text"
@@ -140,9 +139,13 @@
                 placeholder="Password"
                 formControlName="Password"
               />
-            </div> 
+            </div>
 
-            <button type="submit" class="btn btn-block btn-success" [disabled]="!UserForm.valid">
+            <button
+              type="submit"
+              class="btn btn-block btn-success"
+              [disabled]="!UserForm.valid"
+            >
               Sign Up
             </button>
           </form>
@@ -151,4 +154,74 @@
     </div>
   </div>
 </div>
- 
+
+<!-- <form
+  class="emp-form"
+  #employeeForm="ngForm"
+  (ngSubmit)="onSubmit(employeeForm)"
+>
+  <input
+    type="hidden"
+    name="UserID"
+    #UserID="ngModel"
+    [(ngModel)]="LoginService.SelectedUser.UserID"
+  />
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input
+        class="form-control"
+        name="UserName"
+        #UserName="ngModel"
+        [(ngModel)]="LoginService.SelectedUser.UserName"
+        placeholder="Last Name"
+        required
+      />
+      <div
+        class="validation-error"
+        *ngIf="UserName.invalid && UserName.touched"
+      >
+        This Field is Required.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <input
+      class="form-control"
+      name="PhoneNumber"
+      #PhoneNumber="ngModel"
+      [(ngModel)]="LoginService.SelectedUser.PhoneNumber"
+      placeholder="PhoneNumber"
+    />
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input
+        class="form-control"
+        name="Email"
+        #Email="ngModel"
+        [(ngModel)]="LoginService.SelectedUser.Email"
+        placeholder="Email"
+      />
+    </div>
+    <div class="form-group col-md-6">
+      <input
+        class="form-control"
+        name="Password"
+        #Password="ngModel"
+        [(ngModel)]="LoginService.SelectedUser.Password"
+        placeholder="Password"
+      />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <button
+        [disabled]="!employeeForm.valid"
+        type="submit"
+        class="btn btn-lg btn-block btn-info"
+      >
+        <i class="fa fa-floppy-o"></i> Submit
+      </button>
+    </div>
+  </div>
+</form> -->

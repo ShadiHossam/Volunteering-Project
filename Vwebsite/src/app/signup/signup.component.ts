@@ -6,6 +6,7 @@ import {
   FormGroup,
   FormControl,
   Validators,
+  NgForm,
 } from '@angular/forms';
 import { UniversityService } from '../Services/university.service';
 import { LoginService } from './../../app/Services/login.service';
@@ -28,7 +29,7 @@ export class SignupComponent implements OnInit {
   massage: string;
 
   constructor(
-    private loginService: LoginService,
+    public LoginService: LoginService,
     private formbulider: FormBuilder,
     service: UniversityService
   ) {
@@ -68,8 +69,22 @@ export class SignupComponent implements OnInit {
       university.toLowerCase().includes(filterValue)
     );
   }
+
+  // onSubmit(form: NgForm) {
+  //   if (form.value.UserID == null) {
+  //     this.LoginService.postEmployee(form.value).subscribe((data) => {
+  //       this.LoginService.GetUserList();
+  //     });
+  //   } else {
+  //     this.LoginService.putEmployee(form.value.UserID, form.value).subscribe(
+  //       (data) => {
+  //         this.LoginService.GetUserList();
+  //       }
+  //     );
+  //   }
+  // }
   onFormSubmit(user) {
-    this.loginService.ValidateUser(user);
+    this.LoginService.ValidateUser(user);
     this.CreateUser(user);
     if (this.UserForm.invalid) {
       return;
@@ -77,7 +92,7 @@ export class SignupComponent implements OnInit {
   }
 
   CreateUser(register: Register) {
-    this.loginService.CreateUser(register).subscribe(() => {
+    this.LoginService.CreateUser(register).subscribe(() => {
       this.data = true;
       this.massage = 'Data saved Successfully';
       this.UserForm.reset();

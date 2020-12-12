@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpHeaders,
+} from '@angular/common/http';
 import { from, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { Register } from '../register';
 @Injectable({
   providedIn: 'root',
@@ -11,6 +16,7 @@ export class LoginService {
   token: string;
   header: any;
   username: string;
+
   // UserData:string [];
   constructor(private http: HttpClient) {
     this.Url = 'http://localhost:49826/api/Login/';
@@ -22,6 +28,32 @@ export class LoginService {
       headers: this.header,
     });
   }
+  //   SelectedUser: Register;
+  //   UserList: Register[];
+
+  //   postEmployee(emp: Register) {
+  //     var body = JSON.stringify(emp);
+  //     const httpOptions = {
+  //       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  //     };
+  //     return this.http.post(this.Url + 'createcontact/', body, httpOptions);
+  //   }
+
+  //   putEmployee(id, emp) {
+  //     var body = JSON.stringify(emp);
+  //     const httpOptions = {
+  //       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  //     };
+  //     return this.http.put(this.Url + 'Updateusers' + id, body, httpOptions);
+  //   }
+  //   GetUserList(): Observable<Register[]> {
+  //     return this.http.get<Register[]>(this.Url + 'Employee');
+  //   }
+
+  //   deleteEmployee(id: number) {
+  //     return this.http.delete(this.Url + 'Deleteusers?UserName=' + id);
+  //   }
+  // }
   CreateUser(register: Register) {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

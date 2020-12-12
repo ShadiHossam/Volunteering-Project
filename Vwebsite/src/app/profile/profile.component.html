@@ -177,6 +177,22 @@
       </ul>
     </div>
     <p>Name:{{ UserData.UserName }}</p>
-    <button (click)="DeleteUsers()">Delete User</button>
+    <p>Name:{{ UserData.CityName }}</p>
+    <!-- <button (click)="DeleteUsers()">Delete User</button> -->
+    <!-- 
+    <table class="table table-sm table-hover">
+      <tr *ngFor="let User of LoginService.UserList">
+        <td>{{ User.FirstName }} - {{ User.LastName }}</td>
+        <td>{{ User.EmpCode }}</td>
+        <td>
+          <a class="btn" (click)="showForEdit(User)">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+          <a class="btn text-danger" (click)="onDelete(User.UserID)">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </td>
+      </tr>
+    </table> -->
   </article>
 </section>

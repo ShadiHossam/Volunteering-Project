@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NGOModelStoreContainer" CdmEntityContainer="NGOEntities">
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="NGOModel.Cities">
+        <MappingFragment StoreEntitySet="Cities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="NGOModel.Countries">
+        <MappingFragment StoreEntitySet="Countries">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventPosting">
+      <EntityTypeMapping TypeName="NGOModel.EventPosting">
+        <MappingFragment StoreEntitySet="EventPosting">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TicketLink" ColumnName="TicketLink" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+          <ScalarProperty Name="EventDescription" ColumnName="EventDescription" />
+          <ScalarProperty Name="EventHeadline" ColumnName="EventHeadline" />
+          <ScalarProperty Name="JobTypeId" ColumnName="JobTypeId" />
+          <ScalarProperty Name="CitiesId" ColumnName="CitiesId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobPosting">
+      <EntityTypeMapping TypeName="NGOModel.JobPosting">
+        <MappingFragment StoreEntitySet="JobPosting">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="JobTypeId" ColumnName="JobTypeId" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="ContactPhoneNumber" ColumnName="ContactPhoneNumber" />
+          <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobReferences">
+      <EntityTypeMapping TypeName="NGOModel.JobReferences">
+        <MappingFragment StoreEntitySet="JobReferences">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ref_Name" ColumnName="Ref_Name" />
+          <ScalarProperty Name="JobTypeId" ColumnName="JobTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobTypes">
+      <EntityTypeMapping TypeName="NGOModel.JobTypes">
+        <MappingFragment StoreEntitySet="JobTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="JobCode" ColumnName="JobCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="NGOModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="CitiesId" ColumnName="CitiesId" />
+          <ScalarProperty Name="JobId" ColumnName="JobId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

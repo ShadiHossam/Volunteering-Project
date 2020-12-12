@@ -9,6 +9,7 @@ import {
   FormGroup,
   FormControl,
   Validators,
+  NgForm,
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -29,6 +30,7 @@ export class EventsComponent implements OnInit {
   EventData;
   Event: any;
   x: string;
+  Events: EventPosting[];
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
@@ -42,7 +44,7 @@ export class EventsComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private EventPostingService: EventPostingService,
+    public EventPostingService: EventPostingService,
     private formbulider: FormBuilder,
     public dialog: MatDialog,
     private http: HttpClient,
@@ -74,6 +76,7 @@ export class EventsComponent implements OnInit {
 
   ngOnInit(): void {
     this.EventForm = this.formbulider.group({
+      Id: null,
       EventDescription: ['', [Validators.required]],
       EventHeadline: ['', [Validators.required]],
       EventDate: ['', [Validators.required]],
@@ -92,10 +95,13 @@ export class EventsComponent implements OnInit {
       City: ['', [Validators.required]],
       EventName: ['', [Validators.required]],
     });
-    this.EventPostingService.GetEvents().subscribe((data) => {
-      this.EventData = data;
+    this.EventPostingService.GetEventList().subscribe((data) => {
+      this.Events = data;
     });
   }
+  // this.EventPostingService.GetEvents().subscribe((data) => {
+  //   this.EventData = data;
+  // });
   get f() {
     return this.EventForm.controls;
   }
@@ -112,11 +118,40 @@ export class EventsComponent implements OnInit {
       this.EventForm.reset();
     });
   }
-  GetThisEvent(x): Observable<EventPosting> {
-    {
-      return this.http.get<EventPosting>(
-        'http://localhost:49826/Api/EventPostings/' + this.x
-      );
+  // GetThisEvent(x): Observable<EventPosting> {
+  //   {
+  //     return this.http.get<EventPosting>(
+  //       'http://localhost:49826/Api/EventPostings/' + this.x
+  //     );
+  //   }
+  // }
+
+  onSubmit(EventForm) {
+    if (EventForm.value.Id == null) {
+      this.EventPostingService.PostEvent(EventForm.value).subscribe((data) => {
+        this.EventPostingService.GetEventList();
+      });
+    } else {
+      this.EventPostingService.PutEvent(
+        EventForm.value.Id,
+        EventForm.value
+      ).subscribe((data) => {
+        this.EventPostingService.GetEventList();
+      });
+    }
+  }
+
+  showForEdit(emp: EventPosting) {
+    this.EventPostingService.SelectedEvent = Object.assign({}, emp);
+  }
+
+  onDelete(id: number) {
+    if (confirm('Are you sure to delete this record ?') == true) {
+      this.EventPostingService.DeleteEvent(id).subscribe((x) => {
+        this.EventPostingService.GetEventList().subscribe((data) => {
+          this.Events = data;
+        });
+      });
     }
   }
 }

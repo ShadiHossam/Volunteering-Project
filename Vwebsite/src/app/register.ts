@@ -1,6 +1,7 @@
-export class Register {  
-    UserName:string; 
-    PhoneNumber:string;  
-    Email:string;  
-    Password:string;  
-}  
+export class Register {
+  //  Id: number;
+  UserName: string;
+  PhoneNumber: string;
+  Email: string;
+  Password: string;
+}

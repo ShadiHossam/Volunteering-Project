@@ -1,21 +1,11 @@
-<!-- 
-<h4>Basic mat-select</h4>
 <mat-form-field appearance="fill">
-  <mat-label>Favorite food</mat-label>
+  <mat-label>Type Name </mat-label>
   <mat-select>
-    <mat-option *ngFor="let food of foods" [value]="food.value">
-      {{food.viewValue}}
+    <mat-option *ngFor="let jobs of JobTypes" [value]="jobs.value">
+      {{ jobs.TypeName }}
     </mat-option>
   </mat-select>
 </mat-form-field>
-
-<h4>Basic native select</h4>
-<mat-form-field appearance="fill">
-  <mat-label>job type</mat-label>
-  <select matNativeControl required>
-    <option value="volvo">Volvo</option>
-  </select>
-</mat-form-field> -->
 
 <form
   class="example-form"

@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NGOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Countries" Relationship="Self.FK_Cities_Countries" FromRole="Cities" ToRole="Countries" />
+    <NavigationProperty Name="User" Relationship="NGOModel.FK_User_Cities" FromRole="Cities" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Countries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cities" Relationship="Self.FK_Cities_Countries" FromRole="Countries" ToRole="Cities" />
+  </EntityType>
+  <EntityType Name="EventPosting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TicketLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EventDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventHeadline" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="JobTypeId" Type="Int32" />
+    <Property Name="CitiesId" Type="Int32" />
+    <Property Name="CountryId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="JobPosting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JobTypeId" Type="Int32" />
+    <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Duration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContactPhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContactEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Language" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="JobTypes" Relationship="Self.FK_JobPosting_JobTypes" FromRole="JobPosting" ToRole="JobTypes" />
+  </EntityType>
+  <EntityType Name="JobReferences">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ref_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="JobTypeId" Type="Int32" />
+    <NavigationProperty Name="JobTypes" Relationship="Self.FK_JobReferences_JobTypes" FromRole="JobReferences" ToRole="JobTypes" />
+  </EntityType>
+  <EntityType Name="JobTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="JobCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="JobPosting" Relationship="Self.FK_JobPosting_JobTypes" FromRole="JobTypes" ToRole="JobPosting" />
+    <NavigationProperty Name="JobReferences" Relationship="Self.FK_JobReferences_JobTypes" FromRole="JobTypes" ToRole="JobReferences" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_JobTypes" FromRole="JobTypes" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CitiesId" Type="Int32" />
+    <Property Name="JobId" Type="Int32" />
+    <NavigationProperty Name="JobTypes" Relationship="Self.FK_User_JobTypes" FromRole="User" ToRole="JobTypes" />
+    <NavigationProperty Name="Cities" Relationship="NGOModel.FK_User_Cities" FromRole="User" ToRole="Cities" />
+  </EntityType>
+  <Association Name="FK_Cities_Countries">
+    <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+    <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cities">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobPosting_JobTypes">
+    <End Role="JobTypes" Type="Self.JobTypes" Multiplicity="0..1" />
+    <End Role="JobPosting" Type="Self.JobPosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobPosting">
+        <PropertyRef Name="JobTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobReferences_JobTypes">
+    <End Role="JobTypes" Type="Self.JobTypes" Multiplicity="0..1" />
+    <End Role="JobReferences" Type="Self.JobReferences" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobReferences">
+        <PropertyRef Name="JobTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_JobTypes">
+    <End Role="JobTypes" Type="Self.JobTypes" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NGOEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cities" EntityType="Self.Cities" />
+    <EntitySet Name="Countries" EntityType="Self.Countries" />
+    <EntitySet Name="EventPosting" EntityType="Self.EventPosting" />
+    <EntitySet Name="JobPosting" EntityType="Self.JobPosting" />
+    <EntitySet Name="JobReferences" EntityType="Self.JobReferences" />
+    <EntitySet Name="JobTypes" EntityType="Self.JobTypes" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_Cities_Countries" Association="Self.FK_Cities_Countries">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Cities" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobPosting_JobTypes" Association="Self.FK_JobPosting_JobTypes">
+      <End Role="JobTypes" EntitySet="JobTypes" />
+      <End Role="JobPosting" EntitySet="JobPosting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobReferences_JobTypes" Association="Self.FK_JobReferences_JobTypes">
+      <End Role="JobTypes" EntitySet="JobTypes" />
+      <End Role="JobReferences" EntitySet="JobReferences" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_JobTypes" Association="Self.FK_User_JobTypes">
+      <End Role="JobTypes" EntitySet="JobTypes" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Cities" Association="NGOModel.FK_User_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_User_Cities">
+    <End Type="NGOModel.Cities" Role="Cities" Multiplicity="0..1" />
+    <End Type="NGOModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="CitiesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

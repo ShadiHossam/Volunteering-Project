@@ -25,10 +25,5 @@ namespace last.Models
             get;
         }
     }
-    public class Registration : User { }
-    public class Jobs : JobPosting { }
-    public class events : Event { }
-
-
-
+    
 }
