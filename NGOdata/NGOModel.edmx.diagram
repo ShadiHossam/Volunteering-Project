@@ -5,18 +5,23 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d6c4250f6a8b43e2bcd229161975b67a" Name="Diagram1">
-        <EntityTypeShape EntityType="NGOModel.Cities" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NGOModel.Countries" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="NGOModel.EventPosting" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NGOModel.JobPosting" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NGOModel.JobReferences" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NGOModel.JobTypes" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NGOModel.User" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
-        <AssociationConnector Association="NGOModel.FK_Cities_Countries" ManuallyRouted="false" />
-        <AssociationConnector Association="NGOModel.FK_JobPosting_JobTypes" ManuallyRouted="false" />
-        <AssociationConnector Association="NGOModel.FK_JobReferences_JobTypes" ManuallyRouted="false" />
-        <AssociationConnector Association="NGOModel.FK_User_JobTypes" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NGOModel.Cities" Width="1.5" PointX="3" PointY="5.5" />
+        <EntityTypeShape EntityType="NGOModel.Countries" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="NGOModel.EventPosting" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="NGOModel.JobPosting" Width="1.5" PointX="8.25" PointY="5" />
+        <EntityTypeShape EntityType="NGOModel.JobReferences" Width="1.5" PointX="5.25" PointY="9.875" />
+        <EntityTypeShape EntityType="NGOModel.JobTypes" Width="1.5" PointX="3" PointY="2.75" />
+        <EntityTypeShape EntityType="NGOModel.User" Width="1.5" PointX="5.25" PointY="5.375" />
+        <AssociationConnector Association="NGOModel.FK_Cities_Countries" />
+        <AssociationConnector Association="NGOModel.FK_EventPosting_Cities" />
+        <AssociationConnector Association="NGOModel.FK_JobPosting_Cities" />
         <AssociationConnector Association="NGOModel.FK_User_Cities" />
+        <AssociationConnector Association="NGOModel.FK_EventPosting_Countries" />
+        <AssociationConnector Association="NGOModel.FK_JobPosting_Countries" />
+        <AssociationConnector Association="NGOModel.FK_JobReferences_JobTypes" />
+        <AssociationConnector Association="NGOModel.FK_User_JobTypes" />
+        <AssociationConnector Association="NGOModel.FK_EventPosting_JobTypes" />
+        <AssociationConnector Association="NGOModel.FK_JobPosting_JobTypes" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -23,5 +23,9 @@ namespace NGOdata
         public Nullable<int> JobTypeId { get; set; }
         public Nullable<int> CitiesId { get; set; }
         public Nullable<int> CountryId { get; set; }
+    
+        public virtual Cities Cities { get; set; }
+        public virtual Countries Countries { get; set; }
+        public virtual JobTypes JobTypes { get; set; }
     }
 }

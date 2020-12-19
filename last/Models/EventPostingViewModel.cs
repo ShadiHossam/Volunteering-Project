@@ -9,7 +9,7 @@ namespace last.Models
     {
         public int Id { get; set; }
         public string EventName { get; set; }
-        public string EventDate { get; set; }
+        public DateTime EventDate { get; set; }
         public string EventHeadline { get; set; }
         public string EventDescription { get; set; }
         public string TicketLink { get; set; }
@@ -19,9 +19,9 @@ namespace last.Models
         //public Nullable<int> CitiesId { get; set; }
         //public Nullable<int> CountryId { get; set; }
         //public Nullable<int> JobTypeId { get; set; }
-        //public string CityName { get; set; }
-        //public string JobType { get; set; }
-        //public string CountryName { get; set; }
+        public string CityName { get; set; }
+        public string JobType { get; set; }
+        public string CountryName { get; set; }
 
 
 

@@ -4,4 +4,9 @@ export class Register {
   PhoneNumber: string;
   Email: string;
   Password: string;
+  CitiesId: number;
+  JobId: number;
+
+  JobName: string;
+  CityName: string;
 }

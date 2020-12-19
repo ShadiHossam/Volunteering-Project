@@ -256,13 +256,14 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\EventPostingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobPostingController.cs" />
     <Compile Include="Controllers\JobTypesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EventPostingViewModel.cs" />
-    <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\JobPostingViewModel.cs" />
     <Compile Include="Models\JobTypeViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\login.cs" />

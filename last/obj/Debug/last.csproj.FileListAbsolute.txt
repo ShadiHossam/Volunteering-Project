@@ -281,4 +281,3 @@ D:\Volunteering-Project\last\obj\Debug\last.csproj.CoreCompileInputs.cache
 D:\Volunteering-Project\last\obj\Debug\last.csproj.CopyComplete
 D:\Volunteering-Project\last\obj\Debug\last.dll
 D:\Volunteering-Project\last\obj\Debug\last.pdb
-D:\Volunteering-Project\last\bin\AutoMapper.dll

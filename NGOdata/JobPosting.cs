@@ -17,15 +17,16 @@ namespace NGOdata
         public int Id { get; set; }
         public string JobTitle { get; set; }
         public string Description { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
+        public Nullable<int> City { get; set; }
+        public Nullable<int> Country { get; set; }
         public Nullable<int> JobTypeId { get; set; }
-        public string Location { get; set; }
         public string Duration { get; set; }
-        public string ContactPhoneNumber { get; set; }
+        public int ContactPhoneNumber { get; set; }
         public string ContactEmail { get; set; }
         public string Language { get; set; }
     
+        public virtual Cities Cities { get; set; }
+        public virtual Countries Countries { get; set; }
         public virtual JobTypes JobTypes { get; set; }
     }
 }

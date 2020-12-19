@@ -22,16 +22,24 @@ namespace last.Controllers
     
        public List<EventPostingViewModel> GetEventPosting()
         {
+            //NGOdata.EventPosting GetEvent;
+
             var EventPostingList = db.EventPosting.ToList();
              List<EventPostingViewModel> eventPostingViewModelList = new List<EventPostingViewModel>();
             foreach (var item in EventPostingList)
             {
+
                 EventPostingViewModel eventPostingViewModel = new EventPostingViewModel();
 
                 Mapper.CreateMap<EventPosting, EventPostingViewModel>();
                 eventPostingViewModel = Mapper.Map<EventPosting, EventPostingViewModel>(item);
 
+
+                eventPostingViewModel.CityName = item.Cities.CityName;
+                eventPostingViewModel.JobType = item.JobTypes.TypeName;
+                eventPostingViewModel.CountryName = item.Countries.CountryName;
                 eventPostingViewModelList.Add(eventPostingViewModel);
+
             }
 
 
@@ -51,11 +59,15 @@ namespace last.Controllers
             Mapper.CreateMap<EventPosting, EventPostingViewModel>();
             eventPostingViewModel = Mapper.Map<EventPosting, EventPostingViewModel>(GetEvent);
 
-            EventPosting eventPosting = db.EventPosting.Find(id);
+            //EventPosting eventPosting = db.EventPosting.Find(id);
 
-            eventPostingViewModel.Id = eventPosting.Id;
+            ///eventPostingViewModel.Id = eventPosting.Id;
 
-          
+
+            eventPostingViewModel.CityName = GetEvent.Cities.CityName;
+         eventPostingViewModel.JobType = GetEvent.JobTypes.TypeName;
+            eventPostingViewModel.CountryName = GetEvent.Countries.CountryName;
+
             //eventPostingViewModel.CityName=GetEvent.Cities.CityName;
 
 
@@ -98,7 +110,7 @@ namespace last.Controllers
         }
 
         // POST: api/EventPosting
-
+        [HttpPost]
         [ResponseType(typeof(EventPosting))]
         public IHttpActionResult PostEventPosting(EventPostingViewModel eventPostingViewModel)
         {

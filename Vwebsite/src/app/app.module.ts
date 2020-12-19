@@ -30,17 +30,11 @@ import { JobPostingService } from './Services/job-posting.service';
 import { EventPostingService } from './Services/event-posting.service';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JobsComponent } from './jobs/jobs.component';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { JobTypesService } from './Services/job-types.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    CRouting,
-    JobsComponent,
-  ],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, CRouting],
   imports: [
     BrowserModule,
     NgxJsonViewerModule,
@@ -69,6 +63,7 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
     UniversityService,
     LoginService,
     JobPostingService,
+    JobTypesService,
     EventPostingService,
   ],
   bootstrap: [AppComponent],

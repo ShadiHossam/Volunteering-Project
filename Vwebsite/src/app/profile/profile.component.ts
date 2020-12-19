@@ -24,7 +24,8 @@ import { Register } from '../register';
 })
 export class ProfileComponent implements OnInit {
   name = '';
-  UserData;
+  UN = '';
+  UserData: Register = <Register>{};
   x = '';
 
   openSnackBar(message: string, action: string) {
@@ -85,7 +86,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.LoginService.getUsers().subscribe((data) => {
-      this.UserData = data;
+      this.UserData = <Register>data;
     });
 
     // this.LoginService.GetUserList();

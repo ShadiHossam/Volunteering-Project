@@ -17,6 +17,8 @@ namespace NGOdata
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Cities()
         {
+            this.EventPosting = new HashSet<EventPosting>();
+            this.JobPosting = new HashSet<JobPosting>();
             this.User = new HashSet<User>();
         }
     
@@ -25,6 +27,10 @@ namespace NGOdata
         public int CountryId { get; set; }
     
         public virtual Countries Countries { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EventPosting> EventPosting { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<JobPosting> JobPosting { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> User { get; set; }
     }

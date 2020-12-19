@@ -20,7 +20,7 @@
               </mat-label>
               <input matInput placeholder="First name" name="fname" required />
             </mat-form-field>
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width"> 
               <mat-label>
                 <mat-icon>account_circle</mat-icon>Last Name
               </mat-label>
@@ -90,12 +90,21 @@
                 class="form-control"
                 placeholder="Username"
                 formControlName="UserName"
+                id="UserName"
+                value=""
               />
+              <!-- (change)="ValidateUser()" -->
             </div>
             <mat-error *ngIf="f.UserName.touched && f.UserName.invalid">
               <mat-error *ngIf="f.UserName.errors.required"
                 >UserName is required.</mat-error
               >
+              <mat-error
+                class="help is-danger"
+                *ngIf="f.UserName.errors.existingEmail"
+              >
+                User already exists.
+              </mat-error>
             </mat-error>
 
             <div class="input-group mb-4">

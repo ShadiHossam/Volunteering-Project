@@ -12,7 +12,7 @@ import { UniversityService } from '../Services/university.service';
 import { LoginService } from './../../app/Services/login.service';
 import { Register } from '../register';
 import * as $ from 'jquery';
-
+import { UserName } from '../UserName';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -29,6 +29,7 @@ export class SignupComponent implements OnInit {
   massage: string;
 
   constructor(
+    public UserName: UserName,
     public LoginService: LoginService,
     private formbulider: FormBuilder,
     service: UniversityService
@@ -42,7 +43,11 @@ export class SignupComponent implements OnInit {
       map((value) => this._filter(value))
     );
     this.UserForm = this.formbulider.group({
-      UserName: ['', [Validators.required]],
+      UserName: [
+        '',
+        [Validators.required],
+        [this.UserName.existingEmailValidator()],
+      ],
       PhoneNumber: [
         '',
         [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],
@@ -89,6 +94,9 @@ export class SignupComponent implements OnInit {
     if (this.UserForm.invalid) {
       return;
     }
+  }
+  ValidateUser(username) {
+    this.LoginService.ValidateUser(username);
   }
 
   CreateUser(register: Register) {

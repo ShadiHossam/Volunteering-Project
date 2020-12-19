@@ -1,7 +1,8 @@
-<table class="table table-sm table-hover">
+<!-- <table class="table table-sm table-hover">
   <tr *ngFor="let event of Events">
-    <td>{{ event.EventName }} - {{ event.EventDescription }}</td>
-    <td>{{ event.EventHeadline }}</td>
+    <td>EventName:{{ event.EventName }}</td>
+    <td>EventDescription:{{ event.EventDescription }}</td>
+    <td>EventHeadline:{{ event.EventHeadline }}</td>
     <td>
       <a class="btn" (click)="showForEdit(event)">
         <i class="fa fa-pencil-square-o"></i>
@@ -11,7 +12,7 @@
       </a>
     </td>
   </tr>
-</table>
+</table> -->
 
 <!-- <form class="emp-form" #EventForm="ngForm" (ngSubmit)="onSubmit(EventForm)">
   <input
@@ -292,8 +293,8 @@
           formControlName="TicketLink"
         />
         <mat-error *ngIf="f.TicketLink.touched && f.TicketLink.invalid">
-          <mat-error *ngIf="f.TicketLink.errors.required"
-            >Tickets Link is required.</mat-error
+          <mat-error *ngIf="f.TicketLink.errors.pattern"
+            >Please, Enter valid Ticket Link</mat-error
           >
         </mat-error>
       </mat-form-field>
@@ -368,7 +369,7 @@
         </td>
       </tr>
     </table>
-    <button type="submit">Add Event</button>
+    <button type="submit" [disabled]="!EventForm.valid">Add Event</button>
   </form>
   <form
     class="example-form"
@@ -587,6 +588,7 @@
     color="primary"
     id="add-button"
     matTooltip="Add Event"
+    [disabled]="!EventForm.valid"
   >
     <i class="material-icons">event </i>
   </button>

@@ -34,14 +34,13 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="JobTitle" Type="nvarchar(max)" />
-    <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="City" Type="nvarchar(max)" />
-    <Property Name="Country" Type="nvarchar(max)" />
+    <Property Name="JobTitle" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="int" />
+    <Property Name="Country" Type="int" />
     <Property Name="JobTypeId" Type="int" />
-    <Property Name="Location" Type="nvarchar(max)" />
     <Property Name="Duration" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ContactPhoneNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ContactPhoneNumber" Type="int" Nullable="false" />
     <Property Name="ContactEmail" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Language" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
@@ -82,6 +81,66 @@
       </Principal>
       <Dependent Role="Cities">
         <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventPosting_Cities">
+    <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+    <End Role="EventPosting" Type="Self.EventPosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventPosting">
+        <PropertyRef Name="CitiesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventPosting_Countries">
+    <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+    <End Role="EventPosting" Type="Self.EventPosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventPosting">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventPosting_JobTypes">
+    <End Role="JobTypes" Type="Self.JobTypes" Multiplicity="0..1" />
+    <End Role="EventPosting" Type="Self.EventPosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventPosting">
+        <PropertyRef Name="JobTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobPosting_Cities">
+    <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+    <End Role="JobPosting" Type="Self.JobPosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobPosting">
+        <PropertyRef Name="City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobPosting_Countries">
+    <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+    <End Role="JobPosting" Type="Self.JobPosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobPosting">
+        <PropertyRef Name="Country" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -144,6 +203,26 @@
     <AssociationSet Name="FK_Cities_Countries" Association="Self.FK_Cities_Countries">
       <End Role="Countries" EntitySet="Countries" />
       <End Role="Cities" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventPosting_Cities" Association="Self.FK_EventPosting_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="EventPosting" EntitySet="EventPosting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventPosting_Countries" Association="Self.FK_EventPosting_Countries">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="EventPosting" EntitySet="EventPosting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventPosting_JobTypes" Association="Self.FK_EventPosting_JobTypes">
+      <End Role="JobTypes" EntitySet="JobTypes" />
+      <End Role="EventPosting" EntitySet="EventPosting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobPosting_Cities" Association="Self.FK_JobPosting_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="JobPosting" EntitySet="JobPosting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobPosting_Countries" Association="Self.FK_JobPosting_Countries">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="JobPosting" EntitySet="JobPosting" />
     </AssociationSet>
     <AssociationSet Name="FK_JobPosting_JobTypes" Association="Self.FK_JobPosting_JobTypes">
       <End Role="JobTypes" EntitySet="JobTypes" />

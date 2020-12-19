@@ -13,24 +13,22 @@ import {
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { EventPostingService } from '../Services/event-posting.service';
-import { EventPosting } from '../EventPosting';
+import { EventPostingService } from '../../Services/event-posting.service';
+import { EventPosting } from '../../EventPosting';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
 @Component({
-  selector: 'app-events',
-  templateUrl: './events.component.html',
-  styleUrls: ['./events.component.css'],
+  selector: 'app-add-event',
+  templateUrl: './add-event.component.html',
+  styleUrls: ['./add-event.component.css'],
 })
-export class EventsComponent implements OnInit {
+export class AddEventComponent implements OnInit {
   EventForm: FormGroup = new FormGroup({});
   data = false;
   massage: string;
   EventData;
   Event: any;
   x: string;
-  Events: EventPosting[];
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
@@ -82,21 +80,17 @@ export class EventsComponent implements OnInit {
       EventDate: ['', [Validators.required]],
       TicketLink: [
         '',
-        [
-          Validators.required,
-          Validators.pattern(
-            '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'
-          ),
-        ],
+        // [
+        //   Validators.pattern(
+        //     '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'
+        //   ),
+        // ],
       ],
       Language: ['', [Validators.required]],
       Location: ['', [Validators.required]],
       Country: ['', [Validators.required]],
       City: ['', [Validators.required]],
       EventName: ['', [Validators.required]],
-    });
-    this.EventPostingService.GetEventList().subscribe((data) => {
-      this.Events = data;
     });
   }
   // this.EventPostingService.GetEvents().subscribe((data) => {
@@ -106,52 +100,33 @@ export class EventsComponent implements OnInit {
     return this.EventForm.controls;
   }
   onFormSubmit(events) {
+    debugger;
     this.CreateEvents(events);
     if (this.EventForm.invalid) {
       return;
     }
   }
   CreateEvents(eventposting: EventPosting) {
+    debugger;
     this.EventPostingService.CreateEvent(eventposting).subscribe(() => {
       this.data = true;
       this.massage = 'Data saved Successfully';
       this.EventForm.reset();
     });
   }
-  // GetThisEvent(x): Observable<EventPosting> {
-  //   {
-  //     return this.http.get<EventPosting>(
-  //       'http://localhost:49826/Api/EventPostings/' + this.x
-  //     );
+  y;
+  // onSubmit(EventForm) {
+  //   if (EventForm.value.Id == null) {
+  //     this.EventPostingService.PostEvent(EventForm.value).subscribe((data) => {
+  //       this.EventPostingService.GetEventList();
+  //     });
+  //   } else {
+  //     this.EventPostingService.PutEvent(
+  //       EventForm.value.Id,
+  //       EventForm.value
+  //     ).subscribe((data) => {
+  //       this.EventPostingService.GetEventList();
+  //     });
   //   }
   // }
-
-  onSubmit(EventForm) {
-    if (EventForm.value.Id == null) {
-      this.EventPostingService.PostEvent(EventForm.value).subscribe((data) => {
-        this.EventPostingService.GetEventList();
-      });
-    } else {
-      this.EventPostingService.PutEvent(
-        EventForm.value.Id,
-        EventForm.value
-      ).subscribe((data) => {
-        this.EventPostingService.GetEventList();
-      });
-    }
-  }
-
-  showForEdit(emp: EventPosting) {
-    this.EventPostingService.SelectedEvent = Object.assign({}, emp);
-  }
-
-  onDelete(id: number) {
-    if (confirm('Are you sure to delete this record ?') == true) {
-      this.EventPostingService.DeleteEvent(id).subscribe((x) => {
-        this.EventPostingService.GetEventList().subscribe((data) => {
-          this.Events = data;
-        });
-      });
-    }
-  }
 }

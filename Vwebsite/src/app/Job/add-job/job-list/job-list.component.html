@@ -1,0 +1,24 @@
+<p>job-list works!</p>
+<p></p>
+<div *ngFor="let job of Jobs">
+  <div>JobTitle:{{ job.JobTitle }}</div>
+  <div>Description:{{ job.Description }}</div>
+  <div>ContactEmail:{{ job.ContactEmail }}</div>
+  <div>Language:{{ job.Language }}</div>
+  <div>ContactPhoneNumber:{{ job.ContactPhoneNumber }}</div>
+  <div>Duration:{{ job.Duration }}</div>
+  <div>Country:{{ job.Country }}</div>
+  <div>City:{{ job.City }}</div>
+  <div>JobTypeId:{{ job.JobTypeId }}</div>
+  <div>CountryName:{{ job.CountryName }}</div>
+  <div>JobType:{{ job.JobType }}</div>
+  <div>CityName:{{ job.CityName }}</div>
+
+  <a class="btn text-danger" (click)="onDelete(job.Id)">
+    <i class="fa fa-trash-o"></i>
+  </a>
+  <button (click)="JobId(job.Id)">get this event</button>
+
+  <p></p>
+  <p></p>
+</div>

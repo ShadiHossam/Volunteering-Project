@@ -13,7 +13,7 @@ export class EventPostingService {
   EventUrl: string;
   x: string;
   constructor(private http: HttpClient) {
-    this.EventUrl = 'http://localhost:49826/Api/EventPosting';
+    this.EventUrl = 'http://localhost:49826/Api/EventPosting/';
     const headerSettings: { [name: string]: string | string[] } = {};
     this.header = new HttpHeaders(headerSettings);
   }
@@ -23,6 +23,7 @@ export class EventPostingService {
   // }
 
   CreateEvent(eventposting: EventPosting) {
+    debugger;
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
@@ -59,6 +60,9 @@ export class EventPostingService {
     return this.http.get<EventPosting[]>(this.EventUrl);
   }
 
+  GetEvent(id: number) {
+    return this.http.get(this.EventUrl + id);
+  }
   DeleteEvent(id: number) {
     return this.http.delete(this.EventUrl + id);
   }

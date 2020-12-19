@@ -77,6 +77,7 @@ namespace last.Controllers
 
                 Mapper.CreateMap<UserViewModel, User>();
                 user = Mapper.Map<UserViewModel, User>(userViewModel);
+
                 db.User.Add(user);
                 db.SaveChanges();
                 return new Response
@@ -103,27 +104,27 @@ namespace last.Controllers
             else
                 return "user is found please choose another one";
         }
-        [Route("Api/Login/GetUser")]
+        //[Route("Api/Login/GetUser")]
 
-        [HttpGet]
-        public IEnumerable<User> GetUser()
-        {
-            List<User> User = null;
-            using (NGOEntities entities = new NGOEntities())
-            {
-                User = entities.User.AsEnumerable().Select(x => new User
-                {
-                    Id = x.Id,
-                    UserName = x.UserName,
-                    Email = x.Email,
-                    Password = x.Password,
-                    PhoneNumber = Convert.ToString(x.PhoneNumber)
-                }).ToList();
+        //[HttpGet]
+        //public IEnumerable<User> GetUser()
+        //{
+        //    List<User> User = null;
+        //    using (NGOEntities entities = new NGOEntities())
+        //    {
+        //        User = entities.User.AsEnumerable().Select(x => new User
+        //        {
+        //            Id = x.Id,
+        //            UserName = x.UserName,
+        //            Email = x.Email,
+        //            Password = x.Password,
+        //            PhoneNumber = Convert.ToString(x.PhoneNumber)
+        //        }).ToList();
                 
                 
-            }
-            return User;
-        }
+        //    }
+        //    return User;
+        //}
 
         [Route("Api/Login/GetUserByUserName")]
 
@@ -147,9 +148,35 @@ namespace last.Controllers
 
             return User;
         }
+        [Route("Api/Login/GetUser")]
+        [HttpGet]
+        public List<UserViewModel> GetUsers()
+            {
+
+                var UserList = db.User.ToList();
+                List<UserViewModel> userViewModelViewModelList = new List<UserViewModel>();
+                foreach (var item in UserList)
+                {
+
+                UserViewModel userViewModel = new UserViewModel();
+
+                    Mapper.CreateMap<User, UserViewModel>();
+                userViewModel = Mapper.Map<User, UserViewModel>(item);
 
 
-        [HttpPut]
+                userViewModel.CityName = item.Cities.CityName;
+                userViewModel.JobName = item.JobTypes.TypeName;
+                userViewModelViewModelList.Add(userViewModel);
+
+                }
+
+
+                return userViewModelViewModelList;
+
+            }
+
+
+            [HttpPut]
         [Route("Api/Login/UpdateUser")]
         public IHttpActionResult PutUserMaster(User UserName)
         {

@@ -22,7 +22,7 @@ namespace NGOdata
         public Nullable<int> CitiesId { get; set; }
         public Nullable<int> JobId { get; set; }
     
-        public virtual JobTypes JobTypes { get; set; }
         public virtual Cities Cities { get; set; }
+        public virtual JobTypes JobTypes { get; set; }
     }
 }

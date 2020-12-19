@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { JobPostingService } from './../../app/Services/job-posting.service';
-import { JobTypesService } from './../../app/Services/job-types.service';
-import { JobPosting } from '../JobPosting';
-
+import { JobPostingService } from '../../Services/job-posting.service';
+import { JobTypesService } from '../../Services/job-types.service';
+import { JobPosting } from '../../JobPosting';
+import { JobListComponent } from '../add-job/job-list/job-list.component';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import {
@@ -11,19 +11,22 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
-  selector: 'app-jobs',
-  templateUrl: './jobs.component.html',
-  styleUrls: ['./jobs.component.css'],
+  selector: 'app-add-job',
+  templateUrl: './add-job.component.html',
+  styleUrls: ['./add-job.component.css'],
 })
-export class JobsComponent implements OnInit {
+export class AddJobComponent implements OnInit {
   JobForm: FormGroup = new FormGroup({});
   data = false;
   massage: string;
   JobTypes;
+  Job: Object;
 
   constructor(
     private JobPostingService: JobPostingService,
+    private router: Router,
     private JobTypesService: JobTypesService,
     private formbulider: FormBuilder
   ) {}
@@ -58,13 +61,15 @@ export class JobsComponent implements OnInit {
     return this.JobForm.controls;
   }
   onFormSubmit(job) {
+    debugger;
     this.CreateJobs(job);
     if (this.JobForm.invalid) {
       return;
     }
   }
   CreateJobs(jobposting: JobPosting) {
-    this.JobPostingService.CreateJobs(jobposting).subscribe(() => {
+    debugger;
+    this.JobPostingService.PostJob(jobposting).subscribe(() => {
       this.data = true;
       this.massage = 'Data saved Successfully';
       this.JobForm.reset();
