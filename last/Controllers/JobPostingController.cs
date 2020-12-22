@@ -37,7 +37,7 @@ namespace last.Controllers
 
 
                 jobPostingViewModel.CityName = item.Cities.CityName;
-                jobPostingViewModel.JobType = item.JobTypes.TypeName;
+               jobPostingViewModel.JobType = item.JobTypes.TypeName;
                 jobPostingViewModel.CountryName = item.Countries.CountryName;
 
                 JobPostingViewModelList.Add(jobPostingViewModel);
@@ -84,19 +84,22 @@ namespace last.Controllers
 
         // PUT: api/JobPosting/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutJobPosting(int id, JobPosting JobPosting)
+        public IHttpActionResult PutJobPosting(int id, JobPostingViewModel jobPostingViewModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != JobPosting.Id)
+            if (id != jobPostingViewModel.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(JobPosting).State = EntityState.Modified;
+            JobPosting jobPosting = new JobPosting();
+            Mapper.CreateMap<JobPostingViewModel, JobPosting>();
+            jobPosting = Mapper.Map<JobPostingViewModel, JobPosting>(jobPostingViewModel);
+            db.Entry(jobPosting).State = EntityState.Modified;
 
             try
             {
@@ -119,17 +122,23 @@ namespace last.Controllers
 
         // POST: api/JobPosting
         [ResponseType(typeof(JobPosting))]
-        public IHttpActionResult PostJobPosting(JobPosting JobPosting)
+        public IHttpActionResult PostJobPosting(JobPostingViewModel jobPostingViewModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            JobPosting jobPosting = new JobPosting();
+            Mapper.CreateMap<JobPostingViewModel, JobPosting>();
+            jobPosting = Mapper.Map<JobPostingViewModel, JobPosting>(jobPostingViewModel);
 
-            db.JobPosting.Add(JobPosting);
+
+
+  
+            db.JobPosting.Add(jobPosting);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = JobPosting.Id }, JobPosting);
+            return CreatedAtRoute("DefaultApi", new { id = jobPosting.Id }, jobPosting);
         }
 
         // DELETE: api/JobPosting/5

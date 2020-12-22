@@ -1,0 +1,70 @@
+<div class="p-grid p-fluid">
+  <ul class="p-col-12 p-md-4">
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">Event Name</span>
+      <input type="text" [(ngModel)]="Event.EventName" />
+    </div>
+  </ul>
+</div>
+<div class="p-grid p-fluid">
+  <ul class="p-col-12 p-md-4">
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">Event Description</span>
+      <input type="text" [(ngModel)]="Event.EventDescription" />
+    </div>
+  </ul>
+</div>
+<div class="p-grid p-fluid">
+  <ul class="p-col-12 p-md-4">
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">Event Headline</span>
+      <input type="text" [(ngModel)]="Event.EventHeadline" />
+    </div>
+  </ul>
+</div>
+<div class="p-grid p-fluid">
+  <ul class="p-col-12 p-md-4">
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">Event Date</span>
+      <input type="text" [(ngModel)]="Event.EventDate" />
+    </div>
+  </ul>
+</div>
+<div class="p-grid p-fluid">
+  <ul class="p-col-12 p-md-4">
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">Ticket Link </span>
+      <input type="text" [(ngModel)]="Event.TicketLink" />
+    </div>
+  </ul>
+</div>
+<div class="p-grid p-fluid">
+  <ul class="p-col-12 p-md-4">
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">Country</span>
+      <input type="text" [(ngModel)]="Event.CountryName" />
+    </div>
+  </ul>
+</div>
+<div class="p-grid p-fluid">
+  <ul class="p-col-12 p-md-4">
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">City</span>
+      <input type="text" [(ngModel)]="Event.CityName" />
+    </div>
+  </ul>
+</div>
+<div class="p-grid p-fluid">
+  <ul class="p-col-12 p-md-4">
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">Type</span>
+      <input type="text" [(ngModel)]="Event.TypeName" />
+    </div>
+  </ul>
+</div>
+
+<a class="btn text-danger" (click)="onDelete(Event.Id)">
+  <i class="fa fa-trash-o"></i>
+</a>
+
+<a class="btn text-danger" (click)="Edit(Event.Id, Event)"> Edit</a>

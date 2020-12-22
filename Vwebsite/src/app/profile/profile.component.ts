@@ -23,10 +23,7 @@ import { Register } from '../register';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  name = '';
-  UN = '';
   UserData: Register = <Register>{};
-  x = '';
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
@@ -93,6 +90,13 @@ export class ProfileComponent implements OnInit {
   }
   DeleteUsers() {
     this.LoginService.DeleteUsers();
+  }
+  SaveChanges(changes) {
+    if (confirm('Are you sure to save this record ?') == true) {
+      this.LoginService.UpdateUser(changes).subscribe((data) => {
+        this.UserData = data;
+      });
+    }
   }
   // showForEdit(emp: Register) {
   //   this.LoginService.SelectedUser = Object.assign({}, emp);

@@ -56,32 +56,25 @@ namespace last.Controllers
             return jobTypeViewModel;
 
 
-            //  JobTypes jobType = db.JobTypes.Find(id);
-
-
-            //jobTypeViewModel.Id = jobType.Id;
-            //if (jobType == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //return Ok(jobTypeViewModel);
+           
         }
 
         // PUT: api/JobType/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutJobType(int id, JobTypeViewModel jobType)
+        public IHttpActionResult PutJobType(int id, JobTypeViewModel jobTypeViewModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != jobType.Id)
+            if (id != jobTypeViewModel.Id)
             {
                 return BadRequest();
             }
-
+            JobTypes jobType = new JobTypes();
+            Mapper.CreateMap<JobTypeViewModel, JobTypes>();
+            jobType = Mapper.Map<JobTypeViewModel, JobTypes>(jobTypeViewModel);
             db.Entry(jobType).State = EntityState.Modified;
 
             try

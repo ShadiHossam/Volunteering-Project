@@ -1,0 +1,21 @@
+<div *ngFor="let job of Jobs">
+  <div (click)="JobId(job.Id)">
+    <h3 class="h">JobTitle:{{ job.JobTitle }}</h3>
+    <h4>Description:{{ job.Description }}</h4>
+    <p>{{ job.CountryName }}-{{ job.CityName }}</p>
+    <div>JobType:{{ job.JobType }}</div>
+  </div>
+  <mat-divider></mat-divider>
+  <div>Language:{{ job.Language }}</div>
+  <div>ContactPhoneNumber:{{ job.ContactPhoneNumber }}</div>
+  <div>Duration:{{ job.Duration }}</div>
+
+  <div>
+    <i> ContactInfo: </i>
+    <p>Email:{{ job.ContactEmail }}</p>
+    <p>Phone Number:{{ job.ContactPhoneNumber }}</p>
+  </div>
+
+  <p></p>
+  <p></p>
+</div>

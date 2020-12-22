@@ -91,20 +91,20 @@
                 placeholder="Username"
                 formControlName="UserName"
                 id="UserName"
-                value=""
+                [(ngModel)]="UserName1"
+                (change)="ValidateUser(UserName1)"
               />
-              <!-- (change)="ValidateUser()" -->
             </div>
             <mat-error *ngIf="f.UserName.touched && f.UserName.invalid">
               <mat-error *ngIf="f.UserName.errors.required"
                 >UserName is required.</mat-error
               >
-              <mat-error
+              <!-- <mat-error
                 class="help is-danger"
                 *ngIf="f.UserName.errors.existingEmail"
               >
                 User already exists.
-              </mat-error>
+              </mat-error> -->
             </mat-error>
 
             <div class="input-group mb-4">
@@ -147,6 +147,7 @@
                 class="form-control"
                 placeholder="Password"
                 formControlName="Password"
+                pPassword
               />
             </div>
 

@@ -92,17 +92,28 @@ namespace last.Controllers
             
         }
        
-        [Route("Api/Login/Validuser")]
+        [Route("api/Login/Validuser")]
         [HttpGet]
 
         public string Validuser(string UserName)
+          //public Response Validuser(string UserName)
+       // public Boolean Validuser(string UserName)
+
         {
             var User = db.User.Where(w => w.UserName == UserName).FirstOrDefault();
 
-            if (User == null)
-                return "user is valid";
+            if (User != null)
+                   return "user is valid";
+                    //return new Response { Status = "valid", Message = " user is valid" };
+              //  return true;
+
             else
-                return "user is found please choose another one";
+                //return false;
+
+           return "user is found please choose another one";
+            //return new Response { Status = "Invalid", Message = "user is found please choose another one" };
+
+
         }
         //[Route("Api/Login/GetUser")]
 
@@ -120,8 +131,8 @@ namespace last.Controllers
         //            Password = x.Password,
         //            PhoneNumber = Convert.ToString(x.PhoneNumber)
         //        }).ToList();
-                
-                
+
+
         //    }
         //    return User;
         //}
@@ -132,18 +143,18 @@ namespace last.Controllers
         public UserViewModel GetUserByUserName(string UserName)
         {
             UserViewModel User = new UserViewModel();
-            //NGOdata.User getUser = new NGOdata.User();
+            
             NGOdata.User GetUser;
 
             GetUser = db.User.Where(x => x.UserName == UserName).FirstOrDefault();
 
-            //IMapper iMapper = config.CreateMapper();
+            
 
             Mapper.CreateMap<User, UserViewModel>();
             User = Mapper.Map<User, UserViewModel>(GetUser);
 
             
-            User.CityName = GetUser.Cities.CityName;
+           // User.CityName = GetUser.Cities.CityName;
             User.JobName = GetUser.JobTypes.TypeName;
 
             return User;
@@ -178,16 +189,25 @@ namespace last.Controllers
 
             [HttpPut]
         [Route("Api/Login/UpdateUser")]
-        public IHttpActionResult PutUserMaster(User UserName)
+        public IHttpActionResult PutUserMaster(String UserName ,UserViewModel userViewModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            if (UserName != userViewModel.UserName)
+            {
+                return NotFound();
+            }
+            User User = new User();
+            Mapper.CreateMap<UserViewModel, User>();
+            User = Mapper.Map<UserViewModel, User>(userViewModel);
+            db.Entry(User).State = EntityState.Modified;
 
-            //db.User.
+          
+               db.SaveChanges();
+            return StatusCode(HttpStatusCode.NoContent);
 
-            return Ok(UserName);
         }
         [HttpDelete]
         [Route("Api/Login/DeleteUser")]

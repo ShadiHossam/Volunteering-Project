@@ -49,7 +49,7 @@ export class EventPostingService {
     return this.http.post<EventPosting[]>(this.EventUrl, body, httpOptions);
   }
 
-  PutEvent(id, emp) {
+  PutEvent(id: number, emp: EventPosting) {
     var body = JSON.stringify(emp);
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

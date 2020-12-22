@@ -1,3 +1,4 @@
+import { UserName } from './../UserName';
 import { Injectable } from '@angular/core';
 import {
   HttpClient,
@@ -15,7 +16,6 @@ export class LoginService {
   Url: string;
   token: string;
   header: any;
-  username: string;
 
   // UserData:string [];
   constructor(private http: HttpClient) {
@@ -72,13 +72,19 @@ export class LoginService {
       this.Url + 'GetUserByUserName?UserName=' + this.x
     );
   }
-  ValidateUser(username) {
-    return this.http.get(this.Url + 'Validuser?UserName=' + this.username);
+  ValidateUser(UserName: string) {
+    return this.http.get(this.Url + 'Validuser?UserName=' + UserName);
   }
 
   DeleteUsers(): Observable<Register> {
     return this.http.delete<Register>(
       this.Url + 'Deleteuserss?UserName=' + this.x
+    );
+  }
+  UpdateUser(register: Register) {
+    return this.http.put<Register>(
+      this.Url + 'UpdateUser?UserName=' + this.x,
+      register
     );
   }
 }

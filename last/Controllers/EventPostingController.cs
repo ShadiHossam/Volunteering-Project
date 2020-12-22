@@ -58,17 +58,13 @@ namespace last.Controllers
             GetEvent = db.EventPosting.Where(x => x.Id == id).FirstOrDefault();
             Mapper.CreateMap<EventPosting, EventPostingViewModel>();
             eventPostingViewModel = Mapper.Map<EventPosting, EventPostingViewModel>(GetEvent);
-
-            //EventPosting eventPosting = db.EventPosting.Find(id);
-
-            ///eventPostingViewModel.Id = eventPosting.Id;
+;
 
 
             eventPostingViewModel.CityName = GetEvent.Cities.CityName;
          eventPostingViewModel.JobType = GetEvent.JobTypes.TypeName;
             eventPostingViewModel.CountryName = GetEvent.Countries.CountryName;
 
-            //eventPostingViewModel.CityName=GetEvent.Cities.CityName;
 
 
             return eventPostingViewModel;
@@ -76,17 +72,20 @@ namespace last.Controllers
 
         // PUT: api/EventPosting/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutEventPosting(int id, EventPosting eventPosting)
+        public IHttpActionResult PutEventPosting(int id, EventPostingViewModel eventPostingViewModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if (id != eventPosting.Id)
+          
+            if (id != eventPostingViewModel.Id)
             {
                 return BadRequest();
             }
+            EventPosting eventPosting = new EventPosting();
+            Mapper.CreateMap<EventPostingViewModel, EventPosting>();
+            eventPosting = Mapper.Map<EventPostingViewModel, EventPosting>(eventPostingViewModel);
 
             db.Entry(eventPosting).State = EntityState.Modified;
 
@@ -99,7 +98,7 @@ namespace last.Controllers
                 if (!EventPostingExists(id))
                 {
                     return NotFound();
-                }
+                }   
                 else
                 {
                     throw;

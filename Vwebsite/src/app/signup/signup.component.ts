@@ -1,3 +1,4 @@
+import { UserName } from './../UserName';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -12,7 +13,6 @@ import { UniversityService } from '../Services/university.service';
 import { LoginService } from './../../app/Services/login.service';
 import { Register } from '../register';
 import * as $ from 'jquery';
-import { UserName } from '../UserName';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -25,7 +25,7 @@ export class SignupComponent implements OnInit {
   filtereduniversity: Observable<string[]>;
   data = false;
   UserForm: FormGroup = new FormGroup({});
-
+  UserName1;
   massage: string;
 
   constructor(
@@ -43,11 +43,7 @@ export class SignupComponent implements OnInit {
       map((value) => this._filter(value))
     );
     this.UserForm = this.formbulider.group({
-      UserName: [
-        '',
-        [Validators.required],
-        [this.UserName.existingEmailValidator()],
-      ],
+      UserName: ['', [Validators.required]],
       PhoneNumber: [
         '',
         [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],
@@ -75,6 +71,25 @@ export class SignupComponent implements OnInit {
     );
   }
 
+  onFormSubmit(user) {
+    this.LoginService.ValidateUser(user);
+    this.CreateUser(user);
+    if (this.UserForm.invalid) {
+      return;
+    }
+  }
+  ValidateUser(username) {
+    console.log(username);
+    debugger;
+    this.LoginService.ValidateUser(username);
+  }
+  CreateUser(register: Register) {
+    this.LoginService.CreateUser(register).subscribe(() => {
+      this.data = true;
+      this.UserForm.reset();
+    });
+  }
+  x = localStorage.getItem('UserName');
   // onSubmit(form: NgForm) {
   //   if (form.value.UserID == null) {
   //     this.LoginService.postEmployee(form.value).subscribe((data) => {
@@ -88,23 +103,4 @@ export class SignupComponent implements OnInit {
   //     );
   //   }
   // }
-  onFormSubmit(user) {
-    this.LoginService.ValidateUser(user);
-    this.CreateUser(user);
-    if (this.UserForm.invalid) {
-      return;
-    }
-  }
-  ValidateUser(username) {
-    this.LoginService.ValidateUser(username);
-  }
-
-  CreateUser(register: Register) {
-    this.LoginService.CreateUser(register).subscribe(() => {
-      this.data = true;
-      this.massage = 'Data saved Successfully';
-      this.UserForm.reset();
-    });
-  }
-  x = localStorage.getItem('UserName');
 }

@@ -45,7 +45,7 @@ export class JobPostingService {
     return this.http.post<JobPosting[]>(this.JobUrl, body, httpOptions);
   }
 
-  PutJob(id, emp) {
+  PutJob(id: number, emp: JobPosting) {
     var body = JSON.stringify(emp);
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

@@ -1,0 +1,15 @@
+<input type="text" [(ngModel)]="Job.JobTitle" />
+<input type="text" [(ngModel)]="Job.Description" />
+<input type="text" [(ngModel)]="Job.Duration" />
+<input type="text" [(ngModel)]="Job.ContactPhoneNumber" />
+<input type="text" [(ngModel)]="Job.ContactEmail" />
+<input type="text" [(ngModel)]="Job.Language" />
+<input type="text" [(ngModel)]="Job.CountryName" />
+<input type="text" [(ngModel)]="Job.CityName" />
+<input type="text" [(ngModel)]="Job.JobType" />
+
+<a class="btn text-danger" (click)="onDelete(Job.Id)">
+  <i class="fa fa-trash-o"></i>
+</a>
+
+<a class="btn text-danger" (click)="Edit(Job.Id, Job)"> Edit</a>

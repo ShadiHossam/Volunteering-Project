@@ -1,5 +1,4 @@
-<section>
-  <nav>
+<!-- <nav>
     <img
       src="../assets/img/4ae94b54-0c55-493b-abad-23f79f7daae7.jpg"
       alt="Avatar"
@@ -166,25 +165,58 @@
     <div>
       <button mat-raised-button class="a">Log Out</button>
     </div>
-  </nav>
-  <article>
-    <div class="p-grid p-fluid">
-      <ul class="p-col-12 p-md-4">
-        <div class="p-inputgroup">
-          <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-          <li class="list-group-item" pInputText></li>
-        </div>
-      </ul>
+  </nav> -->
+<div class="p-grid p-fluid">
+  <ul class="p-col-12 p-md-4">
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">User Name</span>
+      <input type="text" [(ngModel)]="UserData.UserName" disabled />
     </div>
-    <p>Name:{{ UserData.UserName }}</p>
-    <p>Name:{{ UserData.CityName }}</p>
-    <!-- 
+  </ul>
+</div>
+<div class="p-grid p-fluid">
+  <ul class="p-col-12 p-md-4">
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">Email</span>
+      <input type="text" [(ngModel)]="UserData.Email" />
+    </div>
+  </ul>
+</div>
+<div class="p-grid p-fluid">
+  <ul class="p-col-12 p-md-4">
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">Phone Number</span>
+      <input type="text" [(ngModel)]="UserData.PhoneNumber" />
+    </div>
+  </ul>
+</div>
+<div class="p-grid p-fluid">
+  <ul class="p-col-12 p-md-4">
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">Password</span>
+
+      <input type="text" [(ngModel)]="UserData.Password" />
+    </div>
+  </ul>
+</div>
+<div class="p-grid p-fluid">
+  <ul class="p-col-12 p-md-4">
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">City</span>
+      <input type="text" [(ngModel)]="UserData.CityName" />
+    </div>
+  </ul>
+</div>
+
+<button (click)="SaveChanges(UserData)">save</button>
+<button>cancel</button>
+<!-- 
     <div *ngFor="let user of UserData">
       <p>{{ user.UserName }}</p>
     </div> -->
 
-    <!-- <button (click)="DeleteUsers()">Delete User</button> -->
-    <!-- 
+<!-- <button (click)="DeleteUsers()">Delete User</button> -->
+<!-- 
     <table class="table table-sm table-hover">
       <tr *ngFor="let User of LoginService.UserList">
         <td>{{ User.FirstName }} - {{ User.LastName }}</td>
@@ -199,5 +231,3 @@
         </td>
       </tr>
     </table> -->
-  </article>
-</section>

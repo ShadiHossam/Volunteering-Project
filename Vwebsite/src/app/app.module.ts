@@ -28,10 +28,13 @@ import { UniversityService } from './Services/university.service';
 import { LoginService } from './Services/login.service';
 import { JobPostingService } from './Services/job-posting.service';
 import { EventPostingService } from './Services/event-posting.service';
+import { CountiesService } from './Services/counties.service';
+import { CitiesService } from './Services/cities.service';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { JobTypesService } from './Services/job-types.service';
+import { PasswordModule } from 'primeng/password';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, CRouting],
@@ -54,6 +57,7 @@ import { JobTypesService } from './Services/job-types.service';
     ButtonModule,
     RadioButtonModule,
     RippleModule,
+    PasswordModule,
     ToastrModule.forRoot({
       progressBar: true,
     }),
@@ -65,6 +69,8 @@ import { JobTypesService } from './Services/job-types.service';
     JobPostingService,
     JobTypesService,
     EventPostingService,
+    CountiesService,
+    CitiesService,
   ],
   bootstrap: [AppComponent],
 })

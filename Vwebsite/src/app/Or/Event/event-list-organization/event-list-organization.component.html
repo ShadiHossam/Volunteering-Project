@@ -1,0 +1,14 @@
+<div *ngFor="let event of Events" (click)="EventId(event.Id)">
+  <h3 class="h">Event Name:{{ event.EventName }}</h3>
+  <h4>Event Description:{{ event.EventDescription }}</h4>
+  <h4>Event Headline:{{ event.EventHeadline }}</h4>
+  <div>Event Date:{{ event.EventDate }}</div>
+  <div>Event Type:{{ event.JobType }}</div>
+  <div>Country:{{ event.CountryName }}</div>
+  <div>City:{{ event.CityName }}</div>
+  <div>TicketLink:{{ event.TicketLink }}</div>
+  <mat-divider></mat-divider>
+
+  <p></p>
+  <p></p>
+</div>
