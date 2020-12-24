@@ -90,11 +90,11 @@
                 class="form-control"
                 placeholder="Username"
                 formControlName="UserName"
-                id="UserName"
                 [(ngModel)]="UserName1"
-                (change)="ValidateUser(UserName1)"
+                (change)="CheckUser(UserName1)"
               />
             </div>
+            <mat-error>{{ errormessage }}</mat-error>
             <mat-error *ngIf="f.UserName.touched && f.UserName.invalid">
               <mat-error *ngIf="f.UserName.errors.required"
                 >UserName is required.</mat-error
@@ -154,7 +154,7 @@
             <button
               type="submit"
               class="btn btn-block btn-success"
-              [disabled]="!UserForm.valid"
+              [disabled]="!UserForm.valid || errormessage != null"
             >
               Sign Up
             </button>

@@ -72,8 +72,10 @@ export class LoginService {
       this.Url + 'GetUserByUserName?UserName=' + this.x
     );
   }
-  ValidateUser(UserName: string) {
-    return this.http.get(this.Url + 'Validuser?UserName=' + UserName);
+  ValidateUser(UserName) {
+    return this.http.get(this.Url + 'Validuser?UserName=' + UserName, {
+      headers: this.header,
+    });
   }
 
   DeleteUsers(): Observable<Register> {

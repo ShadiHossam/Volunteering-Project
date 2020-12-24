@@ -95,23 +95,23 @@ namespace last.Controllers
         [Route("api/Login/Validuser")]
         [HttpGet]
 
-        public string Validuser(string UserName)
-          //public Response Validuser(string UserName)
-       // public Boolean Validuser(string UserName)
+      ///  public string Validuser(string UserName)
+      public Response Validuser(string UserName)
+     //public Boolean Validuser(string UserName)
 
         {
             var User = db.User.Where(w => w.UserName == UserName).FirstOrDefault();
 
-            if (User != null)
-                   return "user is valid";
-                    //return new Response { Status = "valid", Message = " user is valid" };
-              //  return true;
+            if (User==null)
+                  // return "user is valid";
+                return new Response { Status = "valid", Message = " user is valid" };
+            // return true;
 
             else
-                //return false;
+              //return false;
 
-           return "user is found please choose another one";
-            //return new Response { Status = "Invalid", Message = "user is found please choose another one" };
+           //return "user is found please choose another one";
+        return new Response { Status = "Invalid", Message = "user is found please choose another one" };
 
 
         }

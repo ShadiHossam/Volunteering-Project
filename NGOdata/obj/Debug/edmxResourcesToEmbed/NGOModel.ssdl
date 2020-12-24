@@ -40,7 +40,7 @@
     <Property Name="Country" Type="int" />
     <Property Name="JobTypeId" Type="int" />
     <Property Name="Duration" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ContactPhoneNumber" Type="int" Nullable="false" />
+    <Property Name="ContactPhoneNumber" Type="nvarchar(max)" />
     <Property Name="ContactEmail" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Language" Type="nvarchar(max)" Nullable="false" />
   </EntityType>

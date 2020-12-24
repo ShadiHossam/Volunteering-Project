@@ -45,7 +45,7 @@
           <Property Name="Country" Type="int" />
           <Property Name="JobTypeId" Type="int" />
           <Property Name="Duration" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ContactPhoneNumber" Type="int" Nullable="false" />
+          <Property Name="ContactPhoneNumber" Type="nvarchar(max)" />
           <Property Name="ContactEmail" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Language" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
@@ -254,7 +254,6 @@
           <EntitySet Name="Cities" EntityType="NGOModel.Cities" />
           <EntitySet Name="Countries" EntityType="NGOModel.Countries" />
           <EntitySet Name="EventPosting" EntityType="NGOModel.EventPosting" />
-          <EntitySet Name="JobPosting" EntityType="NGOModel.JobPosting" />
           <EntitySet Name="JobReferences" EntityType="NGOModel.JobReferences" />
           <EntitySet Name="JobTypes" EntityType="NGOModel.JobTypes" />
           <EntitySet Name="User" EntityType="NGOModel.User" />
@@ -266,10 +265,6 @@
             <End Role="Cities" EntitySet="Cities" />
             <End Role="EventPosting" EntitySet="EventPosting" />
           </AssociationSet>
-          <AssociationSet Name="FK_JobPosting_Cities" Association="NGOModel.FK_JobPosting_Cities">
-            <End Role="Cities" EntitySet="Cities" />
-            <End Role="JobPosting" EntitySet="JobPosting" />
-          </AssociationSet>
           <AssociationSet Name="FK_User_Cities" Association="NGOModel.FK_User_Cities">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="User" EntitySet="User" />
@@ -277,10 +272,6 @@
           <AssociationSet Name="FK_EventPosting_Countries" Association="NGOModel.FK_EventPosting_Countries">
             <End Role="Countries" EntitySet="Countries" />
             <End Role="EventPosting" EntitySet="EventPosting" />
-          </AssociationSet>
-          <AssociationSet Name="FK_JobPosting_Countries" Association="NGOModel.FK_JobPosting_Countries">
-            <End Role="Countries" EntitySet="Countries" />
-            <End Role="JobPosting" EntitySet="JobPosting" />
           </AssociationSet>
           <AssociationSet Name="FK_JobReferences_JobTypes" Association="NGOModel.FK_JobReferences_JobTypes">
             <End Role="JobTypes" EntitySet="JobTypes" />
@@ -293,6 +284,15 @@
           <AssociationSet Name="FK_EventPosting_JobTypes" Association="NGOModel.FK_EventPosting_JobTypes">
             <End Role="JobTypes" EntitySet="JobTypes" />
             <End Role="EventPosting" EntitySet="EventPosting" />
+          </AssociationSet>
+          <EntitySet Name="JobPosting" EntityType="NGOModel.JobPosting" />
+          <AssociationSet Name="FK_JobPosting_Cities" Association="NGOModel.FK_JobPosting_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="JobPosting" EntitySet="JobPosting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobPosting_Countries" Association="NGOModel.FK_JobPosting_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="JobPosting" EntitySet="JobPosting" />
           </AssociationSet>
           <AssociationSet Name="FK_JobPosting_JobTypes" Association="NGOModel.FK_JobPosting_JobTypes">
             <End Role="JobTypes" EntitySet="JobTypes" />
@@ -308,8 +308,8 @@
           <Property Name="CountryId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Countries" Relationship="NGOModel.FK_Cities_Countries" FromRole="Cities" ToRole="Countries" />
           <NavigationProperty Name="EventPosting" Relationship="NGOModel.FK_EventPosting_Cities" FromRole="Cities" ToRole="EventPosting" />
-          <NavigationProperty Name="JobPosting" Relationship="NGOModel.FK_JobPosting_Cities" FromRole="Cities" ToRole="JobPosting" />
           <NavigationProperty Name="User" Relationship="NGOModel.FK_User_Cities" FromRole="Cities" ToRole="User" />
+          <NavigationProperty Name="JobPosting" Relationship="NGOModel.FK_JobPosting_Cities" FromRole="Cities" ToRole="JobPosting" />
         </EntityType>
         <EntityType Name="Countries">
           <Key>
@@ -337,24 +337,6 @@
           <NavigationProperty Name="Cities" Relationship="NGOModel.FK_EventPosting_Cities" FromRole="EventPosting" ToRole="Cities" />
           <NavigationProperty Name="Countries" Relationship="NGOModel.FK_EventPosting_Countries" FromRole="EventPosting" ToRole="Countries" />
           <NavigationProperty Name="JobTypes" Relationship="NGOModel.FK_EventPosting_JobTypes" FromRole="EventPosting" ToRole="JobTypes" />
-        </EntityType>
-        <EntityType Name="JobPosting">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="JobTitle" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="Int32" />
-          <Property Name="Country" Type="Int32" />
-          <Property Name="JobTypeId" Type="Int32" />
-          <Property Name="Duration" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ContactPhoneNumber" Type="Int32" Nullable="false" />
-          <Property Name="ContactEmail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Language" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Cities" Relationship="NGOModel.FK_JobPosting_Cities" FromRole="JobPosting" ToRole="Cities" />
-          <NavigationProperty Name="Countries" Relationship="NGOModel.FK_JobPosting_Countries" FromRole="JobPosting" ToRole="Countries" />
-          <NavigationProperty Name="JobTypes" Relationship="NGOModel.FK_JobPosting_JobTypes" FromRole="JobPosting" ToRole="JobTypes" />
         </EntityType>
         <EntityType Name="JobReferences">
           <Key>
@@ -415,18 +397,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_JobPosting_Cities">
-          <End Type="NGOModel.Cities" Role="Cities" Multiplicity="0..1" />
-          <End Type="NGOModel.JobPosting" Role="JobPosting" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cities">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="JobPosting">
-              <PropertyRef Name="City" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_User_Cities">
           <End Type="NGOModel.Cities" Role="Cities" Multiplicity="0..1" />
           <End Type="NGOModel.User" Role="User" Multiplicity="*" />
@@ -448,18 +418,6 @@
             </Principal>
             <Dependent Role="EventPosting">
               <PropertyRef Name="CountryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_JobPosting_Countries">
-          <End Type="NGOModel.Countries" Role="Countries" Multiplicity="0..1" />
-          <End Type="NGOModel.JobPosting" Role="JobPosting" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Countries">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="JobPosting">
-              <PropertyRef Name="Country" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -496,6 +454,48 @@
             </Principal>
             <Dependent Role="EventPosting">
               <PropertyRef Name="JobTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="JobPosting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobTitle" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="Int32" />
+          <Property Name="Country" Type="Int32" />
+          <Property Name="JobTypeId" Type="Int32" />
+          <Property Name="Duration" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactEmail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Language" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cities" Relationship="NGOModel.FK_JobPosting_Cities" FromRole="JobPosting" ToRole="Cities" />
+          <NavigationProperty Name="Countries" Relationship="NGOModel.FK_JobPosting_Countries" FromRole="JobPosting" ToRole="Countries" />
+          <NavigationProperty Name="JobTypes" Relationship="NGOModel.FK_JobPosting_JobTypes" FromRole="JobPosting" ToRole="JobTypes" />
+        </EntityType>
+        <Association Name="FK_JobPosting_Cities">
+          <End Type="NGOModel.Cities" Role="Cities" Multiplicity="0..1" />
+          <End Type="NGOModel.JobPosting" Role="JobPosting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobPosting">
+              <PropertyRef Name="City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobPosting_Countries">
+          <End Type="NGOModel.Countries" Role="Countries" Multiplicity="0..1" />
+          <End Type="NGOModel.JobPosting" Role="JobPosting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobPosting">
+              <PropertyRef Name="Country" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -549,22 +549,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="JobPosting">
-            <EntityTypeMapping TypeName="NGOModel.JobPosting">
-              <MappingFragment StoreEntitySet="JobPosting">
-                <ScalarProperty Name="Language" ColumnName="Language" />
-                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
-                <ScalarProperty Name="ContactPhoneNumber" ColumnName="ContactPhoneNumber" />
-                <ScalarProperty Name="Duration" ColumnName="Duration" />
-                <ScalarProperty Name="JobTypeId" ColumnName="JobTypeId" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="JobReferences">
             <EntityTypeMapping TypeName="NGOModel.JobReferences">
               <MappingFragment StoreEntitySet="JobReferences">
@@ -592,6 +576,22 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobPosting">
+            <EntityTypeMapping TypeName="NGOModel.JobPosting">
+              <MappingFragment StoreEntitySet="JobPosting">
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="ContactPhoneNumber" ColumnName="ContactPhoneNumber" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="JobTypeId" ColumnName="JobTypeId" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

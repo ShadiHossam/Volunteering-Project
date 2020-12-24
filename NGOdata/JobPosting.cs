@@ -21,7 +21,7 @@ namespace NGOdata
         public Nullable<int> Country { get; set; }
         public Nullable<int> JobTypeId { get; set; }
         public string Duration { get; set; }
-        public int ContactPhoneNumber { get; set; }
+        public string ContactPhoneNumber { get; set; }
         public string ContactEmail { get; set; }
         public string Language { get; set; }
     

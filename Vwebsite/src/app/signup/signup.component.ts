@@ -8,6 +8,7 @@ import {
   FormControl,
   Validators,
   NgForm,
+  AbstractControl,
 } from '@angular/forms';
 import { UniversityService } from '../Services/university.service';
 import { LoginService } from './../../app/Services/login.service';
@@ -27,6 +28,7 @@ export class SignupComponent implements OnInit {
   UserForm: FormGroup = new FormGroup({});
   UserName1;
   massage: string;
+  errormessage: string;
 
   constructor(
     public UserName: UserName,
@@ -42,6 +44,7 @@ export class SignupComponent implements OnInit {
       startWith(''),
       map((value) => this._filter(value))
     );
+
     this.UserForm = this.formbulider.group({
       UserName: ['', [Validators.required]],
       PhoneNumber: [
@@ -59,6 +62,7 @@ export class SignupComponent implements OnInit {
       Password: ['', [Validators.required]],
     });
   }
+
   get f() {
     return this.UserForm.controls;
   }
@@ -72,17 +76,28 @@ export class SignupComponent implements OnInit {
   }
 
   onFormSubmit(user) {
-    this.LoginService.ValidateUser(user);
     this.CreateUser(user);
     if (this.UserForm.invalid) {
       return;
     }
   }
-  ValidateUser(username) {
-    console.log(username);
-    debugger;
-    this.LoginService.ValidateUser(username);
+  CheckUser(username) {
+    this.LoginService.ValidateUser(username).subscribe((x: any) => {
+      if (x.Status == 'Invalid') {
+        this.errormessage = x.Message;
+      } else {
+        this.errormessage = null;
+      }
+    });
   }
+  // usernameValidator(errormessage: AbstractControl): { [key: string]: boolean } {
+  //   // check a property of c, the Control this validator is attached to
+  //   if (errormessage.value === 'user is found please choose another one') {
+  //     // if a bad username is detected, return an error
+  //     return { 'user is found please choose another one': true };
+  //   }
+  //   return null;
+  // }
   CreateUser(register: Register) {
     this.LoginService.CreateUser(register).subscribe(() => {
       this.data = true;

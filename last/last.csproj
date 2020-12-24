@@ -272,7 +272,6 @@
     <Compile Include="Models\JobTypeViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\login.cs" />
-    <Compile Include="Models\LoginResponse.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

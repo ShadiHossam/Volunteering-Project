@@ -58,8 +58,8 @@ export class AddJobOrganizationComponent implements OnInit {
         [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],
       ],
       Location: ['', [Validators.required]],
-      CountryId: ['', [Validators.required]],
-      CitiesId: ['', [Validators.required]],
+      Country: ['', [Validators.required]],
+      City: ['', [Validators.required]],
       JobTypeId: ['', [Validators.required]],
     });
     this.JobTypesService.GetJobs().subscribe((res) => {

@@ -140,7 +140,7 @@
 
   <mat-form-field class="example-full-width">
     <mat-label>Country</mat-label>
-    <mat-select class="form-control" formControlName="CountryId">
+    <mat-select class="form-control" formControlName="Country">
       <mat-option *ngFor="let countries of Countries" [value]="countries.Id">
         {{ countries.CountryName }}
       </mat-option>
@@ -151,8 +151,8 @@
             placeholder="Country "
             formControlName="Country"
           /> -->
-    <mat-error *ngIf="f.CountryId.touched && f.CountryId.invalid">
-      <mat-error *ngIf="f.CountryId.errors.required"
+    <mat-error *ngIf="f.Country.touched && f.Country.invalid">
+      <mat-error *ngIf="f.Country.errors.required"
         >Country is required.</mat-error
       >
     </mat-error>
@@ -160,7 +160,7 @@
 
   <mat-form-field class="example-full-width">
     <mat-label>City</mat-label>
-    <mat-select class="form-control" formControlName="CitiesId">
+    <mat-select class="form-control" formControlName="City">
       <mat-option *ngFor="let cities of Cities" [value]="cities.Id">
         {{ cities.CityName }}
       </mat-option>
@@ -171,10 +171,8 @@
       placeholder="City "
       formControlName="City"
     /> -->
-    <mat-error *ngIf="f.CitiesId.touched && f.CitiesId.invalid">
-      <mat-error *ngIf="f.CitiesId.errors.required"
-        >City is required.</mat-error
-      >
+    <mat-error *ngIf="f.City.touched && f.City.invalid">
+      <mat-error *ngIf="f.City.errors.required">City is required.</mat-error>
     </mat-error>
   </mat-form-field>
 

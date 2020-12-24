@@ -28,9 +28,9 @@ namespace NGOdata
         public virtual DbSet<Cities> Cities { get; set; }
         public virtual DbSet<Countries> Countries { get; set; }
         public virtual DbSet<EventPosting> EventPosting { get; set; }
-        public virtual DbSet<JobPosting> JobPosting { get; set; }
         public virtual DbSet<JobReferences> JobReferences { get; set; }
         public virtual DbSet<JobTypes> JobTypes { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<JobPosting> JobPosting { get; set; }
     }
 }

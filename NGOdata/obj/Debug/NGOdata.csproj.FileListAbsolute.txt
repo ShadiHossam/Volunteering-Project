@@ -1,5 +1,3 @@
-D:\Volunteering-Project\NGOdata\obj\Debug\NGOdata.csprojAssemblyReference.cache
-D:\Volunteering-Project\NGOdata\obj\Debug\NGOdata.csproj.CoreCompileInputs.cache
 D:\Volunteering-Project\NGOdata\bin\Debug\NGOdata.dll.config
 D:\Volunteering-Project\NGOdata\bin\Debug\NGOdata.dll
 D:\Volunteering-Project\NGOdata\bin\Debug\NGOdata.pdb
@@ -7,6 +5,7 @@ D:\Volunteering-Project\NGOdata\bin\Debug\EntityFramework.dll
 D:\Volunteering-Project\NGOdata\bin\Debug\EntityFramework.SqlServer.dll
 D:\Volunteering-Project\NGOdata\bin\Debug\EntityFramework.xml
 D:\Volunteering-Project\NGOdata\bin\Debug\EntityFramework.SqlServer.xml
+D:\Volunteering-Project\NGOdata\obj\Debug\NGOdata.csproj.CoreCompileInputs.cache
 D:\Volunteering-Project\NGOdata\obj\Debug\NGOdata.csproj.CopyComplete
 D:\Volunteering-Project\NGOdata\obj\Debug\NGOdata.dll
 D:\Volunteering-Project\NGOdata\obj\Debug\NGOdata.pdb

@@ -1,4 +1,4 @@
-import { LoginService} from './../Services/login.service';
+import { LoginService } from './../Services/login.service';
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -9,37 +9,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent implements OnInit {
- 
-  
-  model : any={};    
+  model: any = {};
 
-  errorMessage:string;    
-  constructor(private router:Router,private LoginService:LoginService) { }    
+  errorMessage: string;
+  constructor(private router: Router, private LoginService: LoginService) {}
 
-
-  ngOnInit() {    
-    sessionStorage.removeItem('UserName');    
-    sessionStorage.clear();    
-  }    
-  login(){    
-    this.LoginService.Login(this.model).subscribe(    
-      data => {    
-        if(data.Status=="Success")    
-        {       
-          this.router.navigate(['/profile']);    
-          sessionStorage.setItem(this.model.UserName,'UserName')
+  ngOnInit() {
+    sessionStorage.removeItem('UserName');
+    sessionStorage.clear();
+  }
+  login() {
+    this.LoginService.Login(this.model).subscribe(
+      (data) => {
+        if (data.Status == 'Success') {
+          this.router.navigate(['/profile']);
+          sessionStorage.setItem(this.model.UserName, 'UserName');
 
           // this.LoginService.Data(UserData).subscribe(
           //   data
           // )
-        }    
-        else{    
-          this.errorMessage = data.Message;    
-        }    
-      },    
-      error => {    
-        this.errorMessage = error.message;    
-      });    
-  };    
-
+        } else {
+          this.errorMessage = data.Message;
+        }
+      },
+      (error) => {
+        this.errorMessage = error.message;
+      }
+    );
+  }
 }
