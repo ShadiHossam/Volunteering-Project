@@ -254,26 +254,48 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\CitiesController.cs" />
-    <Compile Include="Controllers\CountriesController.cs" />
+    <Compile Include="Controllers\CityController.cs" />
+    <Compile Include="Controllers\CorporatesController.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\EventPostingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\JobPostingController.cs" />
-    <Compile Include="Controllers\JobTypesController.cs" />
+    <Compile Include="Controllers\JobApplianceStatusController.cs" />
+    <Compile Include="Controllers\JobApplyController.cs" />
+    <Compile Include="Controllers\JobFormController.cs" />
+    <Compile Include="Controllers\JobsController.cs" />
+    <Compile Include="Controllers\AreaOfExpertiseController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Data\lastContext.cs" />
+    <Compile Include="Controllers\QuestionChoicesController.cs" />
+    <Compile Include="Controllers\RequirementsController.cs" />
+    <Compile Include="Controllers\SegmentsController.cs" />
+    <Compile Include="Controllers\SkillsController.cs" />
+    <Compile Include="Controllers\UserAnswersController.cs" />
+    <Compile Include="Controllers\UserSkillsController.cs" />
+    <Compile Include="Controllers\YearsOfExperienceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CitiesViewModel.cs" />
-    <Compile Include="Models\CountriesViewModel.cs" />
+    <Compile Include="Models\CityViewModel.cs" />
+    <Compile Include="Models\CorporatesViewModel.cs" />
+    <Compile Include="Models\CountryViewModel.cs" />
     <Compile Include="Models\EventPostingViewModel.cs" />
-    <Compile Include="Models\JobPostingViewModel.cs" />
-    <Compile Include="Models\JobTypeViewModel.cs" />
+    <Compile Include="Models\JobApplianceStatusViewModel.cs" />
+    <Compile Include="Models\JobApplyViewModel.cs" />
+    <Compile Include="Models\JobFormViewModel.cs" />
+    <Compile Include="Models\JobsViewModel.cs" />
+    <Compile Include="Models\AreaOfExpertiseViewModel.cs" />
+    <Compile Include="Models\QuestionsChoicesViewModel.cs" />
+    <Compile Include="Models\RequirementsViewModel.cs" />
+    <Compile Include="Models\SegmentsViewModel.cs" />
+    <Compile Include="Models\SkillsViewModel.cs" />
+    <Compile Include="Models\UserAnswersViewModel.cs" />
+    <Compile Include="Models\UserSkillsViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\login.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\YearsOfExperienceViewModel.cs" />
+    <Compile Include="NGODBEntities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -329,6 +351,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

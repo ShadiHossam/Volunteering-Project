@@ -134,6 +134,7 @@ D:\last\last\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\last\last\obj\Debug\last.csproj.CopyComplete
 D:\last\last\obj\Debug\last.dll
 D:\last\last\obj\Debug\last.pdb
+D:\Volunteering-Project\last\obj\Debug\last.csproj.CoreCompileInputs.cache
 D:\Volunteering-Project\last\bin\librdkafka\x86\librdkafka.dll
 D:\Volunteering-Project\last\bin\librdkafka\x86\librdkafkacpp.dll
 D:\Volunteering-Project\last\bin\librdkafka\x86\libzstd.dll
@@ -277,7 +278,6 @@ D:\Volunteering-Project\last\bin\System.Web.WebPages.Razor.xml
 D:\Volunteering-Project\last\bin\Antlr3.Runtime.pdb
 D:\Volunteering-Project\last\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Volunteering-Project\last\obj\Debug\last.csprojAssemblyReference.cache
-D:\Volunteering-Project\last\obj\Debug\last.csproj.CoreCompileInputs.cache
 D:\Volunteering-Project\last\obj\Debug\last.csproj.CopyComplete
 D:\Volunteering-Project\last\obj\Debug\last.dll
 D:\Volunteering-Project\last\obj\Debug\last.pdb

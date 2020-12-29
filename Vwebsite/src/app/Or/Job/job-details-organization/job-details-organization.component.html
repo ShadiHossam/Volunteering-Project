@@ -1,13 +1,28 @@
-<input type="text" [(ngModel)]="Job.JobTitle" />
-<input type="text" [(ngModel)]="Job.Description" />
-<input type="text" [(ngModel)]="Job.Duration" />
-<input type="text" [(ngModel)]="Job.ContactPhoneNumber" />
-<input type="text" [(ngModel)]="Job.ContactEmail" />
-<input type="text" [(ngModel)]="Job.Language" />
-<input type="text" [(ngModel)]="Job.CountryName" />
-<input type="text" [(ngModel)]="Job.CityName" />
-<input type="text" [(ngModel)]="Job.JobType" />
+JobTitle:<input type="text" [(ngModel)]="Job.JobTitle" /> JobDescription:<input
+  type="text"
+  [(ngModel)]="Job.JobDescription"
+/>
+CreationDate:<input type="text" [(ngModel)]="Job.CreationDate" /> Salary:<input
+  type="text"
+  [(ngModel)]="Job.Salary"
+/>
+YearsOfExperienceName:<input
+  type="text"
+  [(ngModel)]="Job.YearsOFExpertiseName"
+/>
+CorporatesName:<input type="text" [(ngModel)]="Job.CorporateName" />
+CountryName:<input type="text" [(ngModel)]="Job.CountryName" /> CityName:<input
+  type="text"
+  [(ngModel)]="Job.CityName"
+/>
 
+<p>
+  AreaOfExpertiseName:<input
+    type="text"
+    [(ngModel)]="Job.AreaOfExpertiseName"
+  />
+  RequirementName:<input type="text" [(ngModel)]="Job.RequirementName" />
+</p>
 <a class="btn text-danger" (click)="onDelete(Job.Id)">
   <i class="fa fa-trash-o"></i>
 </a>

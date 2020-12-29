@@ -21,6 +21,7 @@
     <EntitySetMapping Name="EventPosting">
       <EntityTypeMapping TypeName="NGOModel.EventPosting">
         <MappingFragment StoreEntitySet="EventPosting">
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
           <ScalarProperty Name="CountryId" ColumnName="CountryId" />
           <ScalarProperty Name="CitiesId" ColumnName="CitiesId" />
           <ScalarProperty Name="JobTypeId" ColumnName="JobTypeId" />
@@ -54,7 +55,8 @@
     <EntitySetMapping Name="User">
       <EntityTypeMapping TypeName="NGOModel.User">
         <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="JobId" ColumnName="JobId" />
+          <ScalarProperty Name="JobTypeId" ColumnName="JobTypeId" />
+          <ScalarProperty Name="CountriesId" ColumnName="CountriesId" />
           <ScalarProperty Name="CitiesId" ColumnName="CitiesId" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="Password" ColumnName="Password" />
@@ -67,6 +69,7 @@
     <EntitySetMapping Name="JobPosting">
       <EntityTypeMapping TypeName="NGOModel.JobPosting">
         <MappingFragment StoreEntitySet="JobPosting">
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
           <ScalarProperty Name="Language" ColumnName="Language" />
           <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
           <ScalarProperty Name="ContactPhoneNumber" ColumnName="ContactPhoneNumber" />

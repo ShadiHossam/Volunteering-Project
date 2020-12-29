@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { JobPostingService } from '../../../Services/job-posting.service';
-import { JobPosting } from '../../../JobPosting';
+import { JobsService } from '../../../Services/jobs.service';
+import { Jobs } from '../../../Jobs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,23 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./job-list-organization.component.css'],
 })
 export class JobListOrganizationComponent implements OnInit {
-  Job: Object;
-
-  constructor(
-    private router: Router,
-    private JobPostingService: JobPostingService
-  ) {}
-  Jobs: JobPosting[];
+  constructor(private router: Router, private JobsService: JobsService) {}
+  Jobs: Jobs[];
 
   ngOnInit(): void {
-    this.JobPostingService.GetJobList().subscribe((data) => {
+    this.JobsService.GetJobList().subscribe((data) => {
       this.Jobs = data;
     });
   }
   onDelete(id: number) {
     if (confirm('Are you sure to delete this record ?') == true) {
-      this.JobPostingService.DeleteJob(id).subscribe((x) => {
-        this.JobPostingService.GetJobList().subscribe((data) => {
+      this.JobsService.DeleteJob(id).subscribe((x) => {
+        this.JobsService.GetJobList().subscribe((data) => {
           this.Jobs = data;
         });
       });

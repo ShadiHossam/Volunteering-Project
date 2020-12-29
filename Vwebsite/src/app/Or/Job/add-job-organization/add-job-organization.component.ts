@@ -1,10 +1,12 @@
-import { Countries } from './../../../Countries';
+import { City } from './../../../City';
+import { Country } from '../../../Country';
 import { Component, OnInit } from '@angular/core';
-import { JobPostingService } from '../../../Services/job-posting.service';
-import { JobTypesService } from '../../../Services/job-types.service';
-import { CountiesService } from '../../../Services/counties.service';
-import { CitiesService } from '../../../Services/cities.service';
-import { JobPosting } from '../../../JobPosting';
+import { JobsService } from '../../../Services/jobs.service';
+import { AreaOfExpertiseService } from '../../../Services/AreaOfExpertise.service';
+import { YearsOfExperienceService } from '../../../Services/years-of-experience.service';
+import { CountryService } from '../../../Services/country.service';
+import { CityService } from '../../../Services/city.service';
+import { Jobs } from '../../../Jobs';
 import { JobListOrganizationComponent } from '../job-list-organization/job-list-organization.component';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -25,51 +27,45 @@ export class AddJobOrganizationComponent implements OnInit {
   JobForm: FormGroup = new FormGroup({});
   data = false;
   massage: string;
-  JobTypes;
+  AreaOfExpertise;
   Job: Object;
-  Cities;
-  Countries;
+  City;
+  Country;
+  YearsOfExperience: any;
 
   constructor(
-    private JobPostingService: JobPostingService,
+    private JobsService: JobsService,
     private router: Router,
-    private JobTypesService: JobTypesService,
-    private CitiesService: CitiesService,
-    private CountriesService: CountiesService,
+    private AreaOfExpertiseService: AreaOfExpertiseService,
+    private YearsOfExperienceService: YearsOfExperienceService,
+    private cityService: CityService,
+    private CountryService: CountryService,
     private formbulider: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.JobForm = this.formbulider.group({
       JobTitle: ['', [Validators.required]],
-      Description: ['', [Validators.required]],
-      Duration: ['', [Validators.required]],
-      ContactEmail: [
-        '',
-        [
-          Validators.required,
-          Validators.email,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-        ],
-      ],
-      Language: ['', [Validators.required]],
-      ContactPhoneNumber: [
-        '',
-        [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],
-      ],
-      Location: ['', [Validators.required]],
+      JobDescription: ['', [Validators.required]],
+      DisplaySalary: [, [Validators.required]],
+      Salary: [],
+      Requirement: ['', [Validators.required]],
+      YearsOfExperience: ['', [Validators.required]],
       Country: ['', [Validators.required]],
       City: ['', [Validators.required]],
-      JobTypeId: ['', [Validators.required]],
+      AreaOfExpertise: ['', [Validators.required]],
     });
-    this.JobTypesService.GetJobs().subscribe((res) => {
-      this.JobTypes = res;
+    this.AreaOfExpertiseService.GetJobs().subscribe((res) => {
+      this.AreaOfExpertise = res;
     });
-    this.CitiesService.GetCities().subscribe((res) => {
-      this.Cities = res;
+    this.YearsOfExperienceService.GetYears().subscribe((res) => {
+      this.YearsOfExperience = res;
     });
-    this.CountriesService.GetCountries().subscribe((res) => {
-      this.Countries = res;
+    this.cityService.Getcity().subscribe((res) => {
+      this.City = res;
+    });
+    this.CountryService.GetCountry().subscribe((res) => {
+      this.Country = res;
     });
   }
   get f() {
@@ -81,10 +77,9 @@ export class AddJobOrganizationComponent implements OnInit {
       return;
     }
   }
-  CreateJobs(jobposting: JobPosting) {
-    console.log(jobposting);
-    debugger;
-    this.JobPostingService.PostJob(jobposting).subscribe(() => {
+  CreateJobs(Jobs: Jobs) {
+    console.log(Jobs);
+    this.JobsService.PostJob(Jobs).subscribe(() => {
       this.data = true;
       this.massage = 'Data saved Successfully';
       this.JobForm.reset();

@@ -14,9 +14,9 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EventPostingService } from '../../../Services/event-posting.service';
-import { JobTypesService } from '../../../Services/job-types.service';
-import { CitiesService } from '../../../Services/cities.service';
-import { CountiesService } from '../../../Services/counties.service';
+import { AreaOfExpertiseService } from '../../../Services/AreaOfExpertise.service';
+import { CityService } from '../../../Services/city.service';
+import { CountryService } from '../../../Services/country.service';
 import { EventPosting } from '../../../EventPosting';
 
 import { Observable } from 'rxjs';
@@ -34,9 +34,9 @@ export class AddEventOrganizationComponent implements OnInit {
   EventData;
   Event: any;
   x: string;
-  JobTypes: any;
-  Cities: any;
-  Countries: any;
+  AreaOfExpertises: any;
+  City: any;
+  Country: any;
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
@@ -51,9 +51,9 @@ export class AddEventOrganizationComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     public EventPostingService: EventPostingService,
-    private JobTypesService: JobTypesService,
-    private CitiesService: CitiesService,
-    private CountriesService: CountiesService,
+    private AreaOfExpertisesService: AreaOfExpertiseService,
+    private CityService: CityService,
+    private CountryService: CountryService,
     private formbulider: FormBuilder,
     public dialog: MatDialog,
     private http: HttpClient,
@@ -101,18 +101,18 @@ export class AddEventOrganizationComponent implements OnInit {
       Language: ['', [Validators.required]],
       Location: ['', [Validators.required]],
       CountryId: ['', [Validators.required]],
-      CitiesId: ['', [Validators.required]],
+      CityId: ['', [Validators.required]],
       EventName: ['', [Validators.required]],
-      JobTypeId: ['', [Validators.required]],
+      AreaOfExpertiseId: ['', [Validators.required]],
     });
-    this.JobTypesService.GetJobs().subscribe((res) => {
-      this.JobTypes = res;
+    this.AreaOfExpertisesService.GetJobs().subscribe((res) => {
+      this.AreaOfExpertises = res;
     });
-    this.CitiesService.GetCities().subscribe((res) => {
-      this.Cities = res;
+    this.CityService.Getcity().subscribe((res) => {
+      this.City = res;
     });
-    this.CountriesService.GetCountries().subscribe((res) => {
-      this.Countries = res;
+    this.CountryService.GetCountry().subscribe((res) => {
+      this.Country = res;
     });
   }
 

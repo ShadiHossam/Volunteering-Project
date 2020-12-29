@@ -5,135 +5,115 @@
 >
   <p class="example-full-width" class="input-group mb-3" cellspacing="0">
     <mat-form-field class="example-full-width">
-      <mat-label>Job Title</mat-label>
+      <mat-label>Job Name</mat-label>
       <input
         matInput
         class="form-control"
-        placeholder="Job Title"
+        placeholder="Job Name"
         formControlName="JobTitle"
       />
       <mat-error *ngIf="f.JobTitle.touched && f.JobTitle.invalid">
         <mat-error *ngIf="f.JobTitle.errors.required"
-          >JobTitle is required.</mat-error
+          >Job Name is required.</mat-error
         >
       </mat-error>
     </mat-form-field>
   </p>
   <p class="example-full-width" cellspacing="0">
     <mat-form-field class="example-full-width">
-      <mat-label>Job Description</mat-label>
+      <mat-label> Job Description</mat-label>
       <textarea
         matInput
         class="form-control"
-        placeholder="Job Description"
-        formControlName="Description"
+        placeholder=" Job Description"
+        formControlName="JobDescription"
       ></textarea>
-      <mat-error *ngIf="f.Description.touched && f.Description.invalid">
-        <mat-error *ngIf="f.Description.errors.required"
-          >Job Description is required.</mat-error
+      <mat-error *ngIf="f.JobDescription.touched && f.JobDescription.invalid">
+        <mat-error *ngIf="f.JobDescription.errors.required">
+          Job Description is required.</mat-error
         >
       </mat-error>
     </mat-form-field>
   </p>
   <p class="example-full-width" cellspacing="0">
-    <mat-form-field class="example-full-width">
-      <mat-label>Duration </mat-label>
-      <input
-        matInput
-        class="form-control"
-        placeholder="Duration "
-        formControlName="Duration"
-      />
-      <mat-error *ngIf="f.Duration.touched && f.Duration.invalid">
-        <mat-error *ngIf="f.Duration.errors.required"
-          >Duration is required.</mat-error
-        >
-      </mat-error>
-    </mat-form-field>
-  </p>
-  <p class="example-full-width" cellspacing="0">
-    <mat-form-field class="example-full-width">
-      <mat-label>ContactEmail </mat-label>
-      <input
-        matInput
-        class="form-control"
-        placeholder="ContactEmail "
-        formControlName="ContactEmail"
-      />
-      <mat-error *ngIf="f.ContactEmail.touched && f.ContactEmail.invalid">
-        <mat-error *ngIf="f.ContactEmail.errors.required"
-          >Email is required.</mat-error
-        >
-        <mat-error *ngIf="f.ContactEmail.errors.pattern"
-          >Please, Enter valid Email</mat-error
-        >
-      </mat-error>
-    </mat-form-field>
-  </p>
-  <p class="example-full-width" cellspacing="0">
-    <mat-form-field class="example-full-width">
-      <mat-label>ContactPhoneNumber </mat-label>
-      <input
-        matInput
-        class="form-control"
-        placeholder="ContactPhoneNumber "
-        formControlName="ContactPhoneNumber"
-      />
-      <mat-error
-        *ngIf="f.ContactPhoneNumber.touched && f.ContactPhoneNumber.invalid"
-      >
-        <mat-error *ngIf="f.ContactPhoneNumber.errors.required"
-          >Phone Number is required.</mat-error
-        >
-        <mat-error *ngIf="f.ContactPhoneNumber.errors.pattern"
-          >Please, Enter valid Phone Number</mat-error
-        >
-      </mat-error>
-    </mat-form-field>
-  </p>
-  <p class="example-full-width" cellspacing="0">
-    <mat-form-field class="example-full-width">
-      <mat-label>Language </mat-label>
-      <input
-        matInput
-        class="form-control"
-        placeholder="Language "
-        formControlName="Language"
-      />
-      <mat-error *ngIf="f.Language.touched && f.Language.invalid">
-        <mat-error *ngIf="f.Language.errors.required"
-          >Language is required.</mat-error
-        >
-      </mat-error>
-    </mat-form-field>
-  </p>
+    <mat-card>
+      <section>
+        <mat-label>DisplaySalary </mat-label>
 
-  <p>
+        <mat-radio-group class="form-control" formControlName="DisplaySalary">
+          <mat-radio-button class="example-margin" value="True"
+            >True</mat-radio-button
+          >
+          <mat-radio-button class="example-margin" value="False"
+            >False</mat-radio-button
+          >
+        </mat-radio-group>
+      </section>
+    </mat-card>
+  </p>
+  <p class="example-full-width" cellspacing="0">
     <mat-form-field class="example-full-width">
-      <mat-label>Location</mat-label>
+      <mat-label>Salary </mat-label>
       <input
         matInput
         class="form-control"
-        placeholder="Location "
-        formControlName="Location"
+        placeholder="Salary "
+        formControlName="Salary"
       />
-      <mat-error *ngIf="f.Location.touched && f.Location.invalid">
-        <mat-error *ngIf="f.Location.errors.required"
-          >Location is required.</mat-error
+    </mat-form-field>
+  </p>
+  <p class="example-full-width" cellspacing="0">
+    <mat-form-field class="example-full-width">
+      <mat-label>Requirement </mat-label>
+      <textarea
+        matInput
+        class="form-control"
+        placeholder="Requirement "
+        formControlName="Requirement"
+      ></textarea>
+      <mat-error *ngIf="f.Requirement.touched && f.Requirement.invalid">
+        <mat-error *ngIf="f.Requirement.errors.required"
+          >Requirement is required.</mat-error
+        >
+        <mat-error *ngIf="f.Requirement.errors.pattern"
+          >Please, Enter valid Requirement</mat-error
+        >
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p class="example-full-width" cellspacing="0">
+    <mat-form-field class="example-full-width">
+      <mat-label>Years Of Experience </mat-label>
+      <mat-select class="form-control" formControlName="YearsOfExperience">
+        <mat-option
+          *ngFor="let yearsOfExperience of YearsOfExperience"
+          [value]="yearsOfExperience.Id"
+        >
+          {{ yearsOfExperience.YearsOfExperienceThreshold }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="f.YearsOfExperience.touched && f.YearsOfExperience.invalid"
+      >
+        <mat-error *ngIf="f.YearsOfExperience.errors.required"
+          >Years Of Experience is required.</mat-error
         >
       </mat-error>
     </mat-form-field>
   </p>
   <mat-form-field appearance="fill">
-    <mat-label>Type Name </mat-label>
-    <mat-select class="form-control" formControlName="JobTypeId">
-      <mat-option *ngFor="let jobs of JobTypes" [value]="jobs.Id">
-        {{ jobs.TypeName }}
+    <mat-label>Area Of Expertise </mat-label>
+    <mat-select class="form-control" formControlName="AreaOfExpertise">
+      <mat-option
+        *ngFor="let areaOfExpertise of AreaOfExpertise"
+        [value]="areaOfExpertise.Id"
+      >
+        {{ areaOfExpertise.AreaOfExpertiseName }}
       </mat-option>
     </mat-select>
-    <mat-error *ngIf="f.JobTypeId.touched && f.JobTypeId.invalid">
-      <mat-error *ngIf="f.JobTypeId.errors.required"
-        >Job Type is required.</mat-error
+    <mat-error *ngIf="f.AreaOfExpertise.touched && f.AreaOfExpertise.invalid">
+      <mat-error *ngIf="f.AreaOfExpertise.errors.required"
+        >Area Of Expertise is required.</mat-error
       >
     </mat-error>
   </mat-form-field>
@@ -141,8 +121,8 @@
   <mat-form-field class="example-full-width">
     <mat-label>Country</mat-label>
     <mat-select class="form-control" formControlName="Country">
-      <mat-option *ngFor="let countries of Countries" [value]="countries.Id">
-        {{ countries.CountryName }}
+      <mat-option *ngFor="let Country of Country" [value]="Country.Id">
+        {{ Country.CountryName }}
       </mat-option>
     </mat-select>
     <!-- <input
@@ -161,12 +141,12 @@
   <mat-form-field class="example-full-width">
     <mat-label>City</mat-label>
     <mat-select class="form-control" formControlName="City">
-      <mat-option *ngFor="let cities of Cities" [value]="cities.Id">
-        {{ cities.CityName }}
+      <mat-option *ngFor="let city of City" [value]="city.Id">
+        {{ city.CityName }}
       </mat-option>
     </mat-select>
     <!-- <input
-      matInput
+      matInput 
       class="form-control"
       placeholder="City "
       formControlName="City"

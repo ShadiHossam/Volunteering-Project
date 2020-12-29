@@ -1,6 +1,8 @@
+import { Register } from '../../../Register';
 import { Component, OnInit } from '@angular/core';
-import { JobPostingService } from '../../../Services/job-posting.service';
-import { JobPosting } from '../../../JobPosting';
+import { JobsService } from '../../../Services/jobs.service';
+import { LoginService } from '../../../Services/login.service';
+import { Jobs } from '../../../Jobs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,17 +11,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./job-list.component.css'],
 })
 export class JobListComponent implements OnInit {
-  Job: Object;
+  Job: Register;
 
   constructor(
     private router: Router,
-    private JobPostingService: JobPostingService
+    private JobsService: JobsService,
+    private LoginService: LoginService
   ) {}
-  Jobs: JobPosting[];
+  Jobs: Jobs[];
 
   ngOnInit(): void {
-    this.JobPostingService.GetJobList().subscribe((data) => {
-      this.Jobs = data;
+    this.LoginService.GetJobListByUserName().subscribe((data) => {
+      this.Job = data;
     });
   }
 

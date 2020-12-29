@@ -5,9 +5,9 @@ import {
   ViewChild,
   AfterViewInit,
 } from '@angular/core';
-import { JobPostingService } from '../../../Services/job-posting.service';
+import { JobsService } from '../../../Services/jobs.service';
 import { ActivatedRoute } from '@angular/router';
-import { JobPosting } from 'src/app/JobPosting';
+import { Jobs } from 'src/app/Jobs';
 @Component({
   selector: 'app-job-details-organization',
   templateUrl: './job-details-organization.component.html',
@@ -15,23 +15,23 @@ import { JobPosting } from 'src/app/JobPosting';
 })
 export class JobDetailsOrganizationComponent implements OnInit {
   Id;
-  Job: JobPosting = <JobPosting>{};
+  Job: Jobs = <Jobs>{};
 
   constructor(
-    private JobPostingService: JobPostingService,
+    private JobsService: JobsService,
     private route: ActivatedRoute
   ) {}
 
   // GetJob(id: number) {
-  //   this.JobPostingService.GetJob(id).subscribe((x) => {
+  //   this.JobsService.GetJob(id).subscribe((x) => {
   //     x = this.Job;
   //   });
   // }
   ngOnInit(): void {
     this.Id = this.route.snapshot.paramMap.get('id');
 
-    this.JobPostingService.GetJob(Number(this.Id)).subscribe((x: any) => {
-      this.Job = <JobPosting>x;
+    this.JobsService.GetJob(Number(this.Id)).subscribe((x: any) => {
+      this.Job = <Jobs>x;
     });
   }
   Edit(Id, changes) {
@@ -39,17 +39,17 @@ export class JobDetailsOrganizationComponent implements OnInit {
     if (confirm('Are you sure to Edit this record ?') == true) {
       debugger;
       console.log(this.Job.Id);
-      this.JobPostingService.PutJob(Id, changes).subscribe((data: any) => {
-        this.Job = <JobPosting>data;
+      this.JobsService.PutJob(Id, changes).subscribe((data: any) => {
+        this.Job = <Jobs>data;
       });
     }
   }
 
   onDelete(id: number) {
     if (confirm('Are you sure to delete this record ?') == true) {
-      this.JobPostingService.DeleteJob(id).subscribe((x) => {
-        this.JobPostingService.GetJobList().subscribe((data: any) => {
-          this.Job = <JobPosting>data;
+      this.JobsService.DeleteJob(id).subscribe((x) => {
+        this.JobsService.GetJobList().subscribe((data: any) => {
+          this.Job = <Jobs>data;
         });
       });
     }

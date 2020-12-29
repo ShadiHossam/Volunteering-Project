@@ -19,14 +19,14 @@ namespace last.Controllers
 
     public class LoginController : ApiController
     {
-        NGOdata.NGOEntities db = new NGOdata.NGOEntities();       
+        NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();       
 
         //For user login   
         [Route("Api/Login/userLogin")]
         [HttpPost]
         public Response userLogin(last.Models.login login)
         {
-            var log = db.User.Where(x => x.UserName.Equals(login.UserName) && x.Password.Equals(login.Password)).FirstOrDefault();
+            var log = db.Users.Where(x => x.UserName.Equals(login.UserName) && x.Password.Equals(login.Password)).FirstOrDefault();
             if (log == null)
             {
          
@@ -73,12 +73,12 @@ namespace last.Controllers
                 //    { Status = "Success", Message = "SuccessFully Saved." };
                 //}
 
-                User user = new User();
+                Users user = new Users();
 
-                Mapper.CreateMap<UserViewModel, User>();
-                user = Mapper.Map<UserViewModel, User>(userViewModel);
+                Mapper.CreateMap<UserViewModel, Users>();
+                user = Mapper.Map<UserViewModel, Users>(userViewModel);
 
-                db.User.Add(user);
+                db.Users.Add(user);
                 db.SaveChanges();
                 return new Response
                 { Status = "Success", Message = "SuccessFully Saved." };
@@ -100,7 +100,7 @@ namespace last.Controllers
      //public Boolean Validuser(string UserName)
 
         {
-            var User = db.User.Where(w => w.UserName == UserName).FirstOrDefault();
+            var User = db.Users.Where(w => w.UserName == UserName).FirstOrDefault();
 
             if (User==null)
                   // return "user is valid";
@@ -121,7 +121,7 @@ namespace last.Controllers
         //public IEnumerable<User> GetUser()
         //{
         //    List<User> User = null;
-        //    using (NGOEntities entities = new NGOEntities())
+        //    using (NGODBEntities entities = new NGODBEntities())
         //    {
         //        User = entities.User.AsEnumerable().Select(x => new User
         //        {
@@ -144,39 +144,123 @@ namespace last.Controllers
         {
             UserViewModel User = new UserViewModel();
             
-            NGOdata.User GetUser;
+            NGOdata.Users GetUser;
 
-            GetUser = db.User.Where(x => x.UserName == UserName).FirstOrDefault();
+            GetUser = db.Users.Where(x => x.UserName == UserName).FirstOrDefault();
 
             
 
-            Mapper.CreateMap<User, UserViewModel>();
-            User = Mapper.Map<User, UserViewModel>(GetUser);
+            Mapper.CreateMap<Users, UserViewModel>();
+            User = Mapper.Map<Users, UserViewModel>(GetUser);
 
             
            // User.CityName = GetUser.Cities.CityName;
-            User.JobName = GetUser.JobTypes.TypeName;
+            User.AreaOfExpertiseName = GetUser.AreaOfExpertise.AreaOfExpertiseName;
+            User.CountryName = GetUser.Country.CountryName;
+            User.CityName = GetUser.City.CityName;
+
 
             return User;
         }
+        [Route("Api/Login/GetJobListByUserName")]
+
+        [HttpGet]
+        public IEnumerable<JobsViewModel> GetJobListByUserName(string UserName)
+        {            
+            List<JobsViewModel> JobsViewModelList = new List<JobsViewModel>();
+            
+            List<Jobs> JobsList = new List<Jobs>();
+            NGOdata.Users GetUser;
+
+            GetUser = db.Users.Where(x => x.UserName == UserName).FirstOrDefault();
+
+
+            if (GetUser == null || GetUser.AreaOfExpertiseId == null)
+            {
+                JobsList = db.Jobs.Take(2).ToList();
+
+            }
+            else
+            {
+                int AreaOfExpertiseId = (int)GetUser.AreaOfExpertiseId;
+                JobsList = db.Jobs.Where(w => w.AreaOfExpertiseId == AreaOfExpertiseId).OrderByDescending(o => o.CreationDate).Take(1).ToList();
+                //var JobsList1 = JobsList.Take(1);
+                // JobsList = db.Jobs.Where(w => w.JobTypeId == JobTypeId).OrderByDescending(o => o.Language).Take(20).ToList();
+                //return JobsList1;
+            }
+
+            foreach (var item in JobsList)
+            {
+                JobsViewModel JobsViewModel = new JobsViewModel();
+
+                JobsViewModel.Id = item.Id;
+
+                JobsViewModel.JobTitle = item.JobTitle;
+                JobsViewModel.JobDescription = item.JobDescription;
+
+                JobsViewModelList.Add(JobsViewModel);
+            }
+
+            return JobsViewModelList;
+        }
+        //[Route("Api/Login/GetEventListByUserName")]
+
+        //[HttpGet]
+        //public IEnumerable<EventPostingViewModel> GetEventListByUserName(string UserName)
+        //{
+        //    List<EventPostingViewModel> JobsViewModelList = new List<EventPostingViewModel>();
+
+        //    List<EventPosting> EventPostingList = new List<EventPosting>();
+        //    NGOdata.User GetUser;
+
+        //    GetUser = db.User.Where(x => x.UserName == UserName).FirstOrDefault();
+
+        //    if (GetUser.JobTypeId == null)
+        //    {
+        //        EventPostingList = db.EventPosting.Take(2).ToList();
+
+        //    }
+        //    else
+        //    {
+        //        int JobTypeId = (int)GetUser.JobTypeId;
+        //        EventPostingList = db.EventPosting.Where(w => w.JobTypeId == JobTypeId).OrderByDescending(o => o.CreationDate).Take(1).ToList();
+        //        //var JobsList1 = JobsList.Take(1);
+        //        // JobsList = db.Jobs.Where(w => w.JobTypeId == JobTypeId).OrderByDescending(o => o.Language).Take(20).ToList();
+        //        //return JobsList1;
+        //    }
+
+        //    foreach (var item in EventPostingList)
+        //    {
+        //        EventPostingViewModel EventPostingViewModel = new EventPostingViewModel();
+
+        //        EventPostingViewModel.Id = item.Id;
+
+        //        EventPostingViewModel.EventHeadline = item.EventHeadline;
+        //        EventPostingViewModel.EventDescription = item.EventDescription;
+
+        //        EventPostingList.Add(EventPostingViewModel);
+        //    }
+
+        //    return EventPostingList;
+        //}
         [Route("Api/Login/GetUser")]
         [HttpGet]
         public List<UserViewModel> GetUsers()
             {
 
-                var UserList = db.User.ToList();
+                var UserList = db.Users.ToList();
                 List<UserViewModel> userViewModelViewModelList = new List<UserViewModel>();
                 foreach (var item in UserList)
                 {
 
                 UserViewModel userViewModel = new UserViewModel();
 
-                    Mapper.CreateMap<User, UserViewModel>();
-                userViewModel = Mapper.Map<User, UserViewModel>(item);
+                    Mapper.CreateMap<Users, UserViewModel>();
+                userViewModel = Mapper.Map<Users, UserViewModel>(item);
 
 
-                userViewModel.CityName = item.Cities.CityName;
-                userViewModel.JobName = item.JobTypes.TypeName;
+                userViewModel.CityName = item.City.CityName;
+                userViewModel.AreaOfExpertiseName = item.AreaOfExpertise.AreaOfExpertiseName;
                 userViewModelViewModelList.Add(userViewModel);
 
                 }
@@ -199,9 +283,9 @@ namespace last.Controllers
             {
                 return NotFound();
             }
-            User User = new User();
-            Mapper.CreateMap<UserViewModel, User>();
-            User = Mapper.Map<UserViewModel, User>(userViewModel);
+            Users User = new Users();
+            Mapper.CreateMap<UserViewModel, Users>(); 
+            User = Mapper.Map<UserViewModel, Users>(userViewModel);
             db.Entry(User).State = EntityState.Modified;
 
           
@@ -213,13 +297,13 @@ namespace last.Controllers
         [Route("Api/Login/DeleteUser")]
         public IHttpActionResult DeleteEmaployeeDelete(string UserName)
         {
-            User DeleteUser = db.User.Find(UserName);
+            Users DeleteUser = db.Users.Find(UserName);
             if (UserName == null)
             {
                 return NotFound();
             }
 
-            db.User.Remove(DeleteUser);
+            db.Users.Remove(DeleteUser);
             db.SaveChanges();
 
             return Ok(UserName);
@@ -259,7 +343,7 @@ namespace last.Controllers
         //{
 
 
-        //    using (var ctx = new NGOEntities())
+        //    using (var ctx = new NGODBEntities())
         //    {
         //        var UserDeleted = ctx.User
         //            .Where(s => s.UserName == UserName)

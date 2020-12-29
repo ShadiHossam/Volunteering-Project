@@ -16,7 +16,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { LoginService } from '../Services/login.service';
-import { Register } from '../register';
+import { AreaOfExpertiseService } from '../Services/AreaOfExpertise.service';
+import { CityService } from '../Services/city.service';
+import { CountryService } from '../Services/country.service';
+import { Register } from '../Register';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -24,7 +27,9 @@ import { Register } from '../register';
 })
 export class ProfileComponent implements OnInit {
   UserData: Register = <Register>{};
-
+  AreaOfExpertise: any;
+  City: any;
+  Country: any;
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,
@@ -50,6 +55,9 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     public LoginService: LoginService,
+    private AreaOfExpertiseService: AreaOfExpertiseService,
+    private CityService: CityService,
+    private CountryService: CountryService,
     private router: Router
   ) {
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
@@ -85,7 +93,15 @@ export class ProfileComponent implements OnInit {
     this.LoginService.getUsers().subscribe((data) => {
       this.UserData = <Register>data;
     });
-
+    this.AreaOfExpertiseService.GetJobs().subscribe((res) => {
+      this.AreaOfExpertise = res;
+    });
+    this.CityService.Getcity().subscribe((res) => {
+      this.City = res;
+    });
+    this.CountryService.GetCountry().subscribe((res) => {
+      this.Country = res;
+    });
     // this.LoginService.GetUserList();
   }
   DeleteUsers() {

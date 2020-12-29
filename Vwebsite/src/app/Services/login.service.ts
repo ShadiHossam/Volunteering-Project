@@ -1,4 +1,3 @@
-import { UserName } from './../UserName';
 import { Injectable } from '@angular/core';
 import {
   HttpClient,
@@ -8,7 +7,7 @@ import {
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Register } from '../register';
+import { Register } from '../Register';
 @Injectable({
   providedIn: 'root',
 })
@@ -66,6 +65,16 @@ export class LoginService {
   }
 
   x = localStorage.getItem('UserName');
+  GetJobListByUserName() {
+    return this.http.get<Register>(
+      this.Url + 'GetJobListByUserName?UserName=' + this.x
+    );
+  }
+  GetEventListByUserName() {
+    return this.http.get<Register>(
+      this.Url + 'GetEventListByUserName?UserName=' + this.x
+    );
+  }
 
   getUsers(): Observable<Register> {
     return this.http.get<Register>(

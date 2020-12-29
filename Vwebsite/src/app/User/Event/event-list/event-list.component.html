@@ -1,15 +1,16 @@
 <div *ngFor="let event of Events" (click)="EventId(event.Id)">
-  <h3 class="h">EventName:{{ event.EventName }}</h3>
+  <!-- <h3 class="h">EventName:{{ event.EventName }}</h3> -->
   <h4>EventDescription:{{ event.EventDescription }}</h4>
   <h4>EventHeadline:{{ event.EventHeadline }}</h4>
-  <div>EventDate:{{ event.EventDate }}</div>
+  <!-- <div>EventDate:{{ event.EventDate }}</div>
   <div>Country:{{ event.Country }}</div>
   <div>City:{{ event.City }}</div>
-  <div>TicketLink:{{ event.TicketLink }}</div>
-  <a class="btn text-danger" (click)="onDelete(event.Id)">
+  <div>TicketLink:{{ event.TicketLink }}</div> -->
+  <!-- <a class="btn text-danger" (click)="onDelete(event.Id)">
     <i class="fa fa-trash-o"></i>
-  </a>
+  </a> -->
 
   <p></p>
   <p></p>
+  <button>Apply</button>
 </div>

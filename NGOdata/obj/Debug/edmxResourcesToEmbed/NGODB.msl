@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NGODBModelStoreContainer" CdmEntityContainer="NGODBEntities">
+    <EntitySetMapping Name="AreaOfExpertise">
+      <EntityTypeMapping TypeName="NGODBModel.AreaOfExpertise">
+        <MappingFragment StoreEntitySet="AreaOfExpertise">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AreaOfExpertiseCode" ColumnName="AreaOfExpertiseCode" />
+          <ScalarProperty Name="AreaOfExpertiseName" ColumnName="AreaOfExpertiseName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="City">
+      <EntityTypeMapping TypeName="NGODBModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Corporates">
+      <EntityTypeMapping TypeName="NGODBModel.Corporates">
+        <MappingFragment StoreEntitySet="Corporates">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CorporateName" ColumnName="CorporateName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phonenumber" ColumnName="Phonenumber" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="SegmentId" ColumnName="SegmentId" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Country">
+      <EntityTypeMapping TypeName="NGODBModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobApplianceStatus">
+      <EntityTypeMapping TypeName="NGODBModel.JobApplianceStatus">
+        <MappingFragment StoreEntitySet="JobApplianceStatus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobApply">
+      <EntityTypeMapping TypeName="NGODBModel.JobApply">
+        <MappingFragment StoreEntitySet="JobApply">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="JobId" ColumnName="JobId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CorporateId" ColumnName="CorporateId" />
+          <ScalarProperty Name="JobFormId" ColumnName="JobFormId" />
+          <ScalarProperty Name="UserAnswerId" ColumnName="UserAnswerId" />
+          <ScalarProperty Name="JobApplyStatusId" ColumnName="JobApplyStatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobForm">
+      <EntityTypeMapping TypeName="NGODBModel.JobForm">
+        <MappingFragment StoreEntitySet="JobForm">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="JobId" ColumnName="JobId" />
+          <ScalarProperty Name="QuestionHeader" ColumnName="QuestionHeader" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jobs">
+      <EntityTypeMapping TypeName="NGODBModel.Jobs">
+        <MappingFragment StoreEntitySet="Jobs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="DisplaySalary" ColumnName="DisplaySalary" />
+          <ScalarProperty Name="RequirementsId" ColumnName="RequirementsId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="YearsOFExpertiseId" ColumnName="YearsOFExpertiseId" />
+          <ScalarProperty Name="CorporateId" ColumnName="CorporateId" />
+          <ScalarProperty Name="AreaOfExpertiseId" ColumnName="AreaOfExpertiseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionsChoices">
+      <EntityTypeMapping TypeName="NGODBModel.QuestionsChoices">
+        <MappingFragment StoreEntitySet="QuestionsChoices">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="QuestionsId" ColumnName="QuestionsId" />
+          <ScalarProperty Name="Choices" ColumnName="Choices" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Requirements">
+      <EntityTypeMapping TypeName="NGODBModel.Requirements">
+        <MappingFragment StoreEntitySet="Requirements">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="JobId" ColumnName="JobId" />
+          <ScalarProperty Name="Requirements1" ColumnName="Requirements" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Segments">
+      <EntityTypeMapping TypeName="NGODBModel.Segments">
+        <MappingFragment StoreEntitySet="Segments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SegmentsName" ColumnName="SegmentsName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Skills">
+      <EntityTypeMapping TypeName="NGODBModel.Skills">
+        <MappingFragment StoreEntitySet="Skills">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SkillsName" ColumnName="SkillsName" />
+          <ScalarProperty Name="AreaOfExpertiseId" ColumnName="AreaOfExpertiseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAnswers">
+      <EntityTypeMapping TypeName="NGODBModel.UserAnswers">
+        <MappingFragment StoreEntitySet="UserAnswers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="NGODBModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobilenumber" ColumnName="Mobilenumber" />
+          <ScalarProperty Name="HomeNumber" ColumnName="HomeNumber" />
+          <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="AreaOfExpertiseId" ColumnName="AreaOfExpertiseId" />
+          <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserSkills">
+      <EntityTypeMapping TypeName="NGODBModel.UserSkills">
+        <MappingFragment StoreEntitySet="UserSkills">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YearsOfExperience">
+      <EntityTypeMapping TypeName="NGODBModel.YearsOfExperience">
+        <MappingFragment StoreEntitySet="YearsOfExperience">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="YearsOfExperienceThreshold" ColumnName="YearsOfExperienceThreshold" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

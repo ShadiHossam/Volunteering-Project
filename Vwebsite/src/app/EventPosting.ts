@@ -8,7 +8,7 @@ export class EventPosting {
   Country: string;
   CityName: string;
   CountryName: string;
-  JobType: string;
+  AreaOfExpertise: string;
   TypeName: string;
 
   Id: number;

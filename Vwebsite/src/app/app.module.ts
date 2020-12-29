@@ -26,15 +26,16 @@ import { TabViewModule } from 'primeng/tabview';
 
 import { UniversityService } from './Services/university.service';
 import { LoginService } from './Services/login.service';
-import { JobPostingService } from './Services/job-posting.service';
+import { JobsService } from './Services/jobs.service';
 import { EventPostingService } from './Services/event-posting.service';
-import { CountiesService } from './Services/counties.service';
-import { CitiesService } from './Services/cities.service';
+import { CountryService } from './Services/country.service';
+import { CityService } from './Services/city.service';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
-import { JobTypesService } from './Services/job-types.service';
+import { AreaOfExpertiseService } from './Services/AreaOfExpertise.service';
 import { PasswordModule } from 'primeng/password';
+import { YearsOfExperienceService } from './Services/years-of-experience.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, CRouting],
@@ -66,11 +67,12 @@ import { PasswordModule } from 'primeng/password';
   providers: [
     UniversityService,
     LoginService,
-    JobPostingService,
-    JobTypesService,
+    JobsService,
+    AreaOfExpertiseService,
+    YearsOfExperienceService,
     EventPostingService,
-    CountiesService,
-    CitiesService,
+    CountryService,
+    CityService,
   ],
   bootstrap: [AppComponent],
 })

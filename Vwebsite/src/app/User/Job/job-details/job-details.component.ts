@@ -5,9 +5,9 @@ import {
   ViewChild,
   AfterViewInit,
 } from '@angular/core';
-import { JobPostingService } from '../../../Services/job-posting.service';
+import { JobsService } from '../../../Services/jobs.service';
 import { ActivatedRoute } from '@angular/router';
-import { JobPosting } from 'src/app/JobPosting';
+import { Jobs } from 'src/app/Jobs';
 @Component({
   selector: 'app-job-details',
   templateUrl: './job-details.component.html',
@@ -15,18 +15,18 @@ import { JobPosting } from 'src/app/JobPosting';
 })
 export class JobDetailsComponent implements OnInit {
   Id;
-  Job: JobPosting = <JobPosting>{};
+  Job: Jobs = <Jobs>{};
 
   constructor(
-    private JobPostingService: JobPostingService,
+    private JobsService: JobsService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.Id = this.route.snapshot.paramMap.get('id');
 
-    this.JobPostingService.GetJob(Number(this.Id)).subscribe((x: any) => {
-      this.Job = <JobPosting>x;
+    this.JobsService.GetJob(Number(this.Id)).subscribe((x: any) => {
+      this.Job = <Jobs>x;
     });
   }
 }

@@ -28,6 +28,7 @@
     <Property Name="JobTypeId" Type="int" />
     <Property Name="CitiesId" Type="int" />
     <Property Name="CountryId" Type="int" />
+    <Property Name="CreationDate" Type="datetime" />
   </EntityType>
   <EntityType Name="JobPosting">
     <Key>
@@ -43,6 +44,7 @@
     <Property Name="ContactPhoneNumber" Type="nvarchar(max)" />
     <Property Name="ContactEmail" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Language" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" />
   </EntityType>
   <EntityType Name="JobReferences">
     <Key>
@@ -70,7 +72,8 @@
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="PhoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="CitiesId" Type="int" />
-    <Property Name="JobId" Type="int" />
+    <Property Name="CountriesId" Type="int" />
+    <Property Name="JobTypeId" Type="int" />
   </EntityType>
   <Association Name="FK_Cities_Countries">
     <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
@@ -180,6 +183,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_User_Countries">
+    <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="CountriesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_User_JobTypes">
     <End Role="JobTypes" Type="Self.JobTypes" Multiplicity="0..1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -188,7 +203,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="User">
-        <PropertyRef Name="JobId" />
+        <PropertyRef Name="JobTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -234,6 +249,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_User_Cities" Association="Self.FK_User_Cities">
       <End Role="Cities" EntitySet="Cities" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Countries" Association="Self.FK_User_Countries">
+      <End Role="Countries" EntitySet="Countries" />
       <End Role="User" EntitySet="User" />
     </AssociationSet>
     <AssociationSet Name="FK_User_JobTypes" Association="Self.FK_User_JobTypes">

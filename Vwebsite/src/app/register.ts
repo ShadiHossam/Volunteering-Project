@@ -1,12 +1,17 @@
 export class Register {
-  //  Id: number;
+  FirstName: string;
+  LastName: string;
   UserName: string;
-  PhoneNumber: string;
-  Email: string;
   Password: string;
-  CitiesId: number;
-  JobId: number;
-
-  JobName: string;
+  Email: string;
+  PhoneNumber: string;
+  HomeNumber: string;
+  BirthDate: Date;
+  Address: string;
+  CityId: number;
+  CountryId: number;
+  AreaOfExpertise: number;
+  AreaOfExpertiseName: string;
   CityName: string;
+  CountryName: string;
 }

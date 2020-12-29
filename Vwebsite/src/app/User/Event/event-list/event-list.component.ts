@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../../../Services/login.service';
 
 import { EventPostingService } from '../../../Services/event-posting.service';
 import { EventPosting } from '../../../EventPosting';
 import { Router } from '@angular/router';
+import { Register } from '../../../Register';
 
 @Component({
   selector: 'app-event-list',
@@ -11,15 +13,17 @@ import { Router } from '@angular/router';
 })
 export class EventListComponent implements OnInit {
   Events: EventPosting[];
+  Event: Register;
 
   constructor(
     private router: Router,
-    public EventPostingService: EventPostingService
+    public EventPostingService: EventPostingService,
+    private LoginService: LoginService
   ) {}
 
   ngOnInit(): void {
-    this.EventPostingService.GetEventList().subscribe((data) => {
-      this.Events = data;
+    this.LoginService.GetEventListByUserName().subscribe((data) => {
+      this.Event = data;
     });
   }
 

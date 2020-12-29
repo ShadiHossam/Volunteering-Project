@@ -37,12 +37,12 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="NGOModel.edmx">
+    <EntityDeploy Include="NGODB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NGOModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>NGODB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="NGOModel.edmx.diagram">
-      <DependentUpon>NGOModel.edmx</DependentUpon>
+    <None Include="NGODB.edmx.diagram">
+      <DependentUpon>NGODB.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -64,53 +64,80 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cities.cs">
-      <DependentUpon>NGOModel.tt</DependentUpon>
+    <Compile Include="AreaOfExpertise.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Countries.cs">
-      <DependentUpon>NGOModel.tt</DependentUpon>
+    <Compile Include="City.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
     </Compile>
-    <Compile Include="EventPosting.cs">
-      <DependentUpon>NGOModel.tt</DependentUpon>
+    <Compile Include="Corporates.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
     </Compile>
-    <Compile Include="JobPosting.cs">
-      <DependentUpon>NGOModel.tt</DependentUpon>
+    <Compile Include="Country.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
     </Compile>
-    <Compile Include="JobReferences.cs">
-      <DependentUpon>NGOModel.tt</DependentUpon>
+    <Compile Include="JobApplianceStatus.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
     </Compile>
-    <Compile Include="JobTypes.cs">
-      <DependentUpon>NGOModel.tt</DependentUpon>
+    <Compile Include="JobApply.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
     </Compile>
-    <Compile Include="NGOModel.Context.cs">
+    <Compile Include="JobForm.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Jobs.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NGODB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NGOModel.Context.tt</DependentUpon>
+      <DependentUpon>NGODB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="NGOModel.cs">
+    <Compile Include="NGODB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NGOModel.tt</DependentUpon>
+      <DependentUpon>NGODB.tt</DependentUpon>
     </Compile>
-    <Compile Include="NGOModel.Designer.cs">
+    <Compile Include="NGODB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NGOModel.edmx</DependentUpon>
+      <DependentUpon>NGODB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>NGOModel.tt</DependentUpon>
+    <Compile Include="QuestionsChoices.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Requirements.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Segments.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Skills.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAnswers.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserSkills.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="YearsOfExperience.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="NGOModel.Context.tt">
+    <Content Include="NGODB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NGOModel.edmx</DependentUpon>
-      <LastGenOutput>NGOModel.Context.cs</LastGenOutput>
+      <DependentUpon>NGODB.edmx</DependentUpon>
+      <LastGenOutput>NGODB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="NGOModel.tt">
+    <Content Include="NGODB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NGOModel.edmx</DependentUpon>
-      <LastGenOutput>NGOModel.cs</LastGenOutput>
+      <DependentUpon>NGODB.edmx</DependentUpon>
+      <LastGenOutput>NGODB.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -177,6 +177,15 @@
 <div class="p-grid p-fluid">
   <ul class="p-col-12 p-md-4">
     <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">Password</span>
+
+      <input type="text" [(ngModel)]="UserData.Password" />
+    </div>
+  </ul>
+</div>
+<div class="p-grid p-fluid">
+  <ul class="p-col-12 p-md-4">
+    <div class="p-inputgroup">
       <span class="p-inputgroup-addon">Email</span>
       <input type="text" [(ngModel)]="UserData.Email" />
     </div>
@@ -190,23 +199,36 @@
     </div>
   </ul>
 </div>
-<div class="p-grid p-fluid">
-  <ul class="p-col-12 p-md-4">
-    <div class="p-inputgroup">
-      <span class="p-inputgroup-addon">Password</span>
 
-      <input type="text" [(ngModel)]="UserData.Password" />
-    </div>
-  </ul>
-</div>
-<div class="p-grid p-fluid">
-  <ul class="p-col-12 p-md-4">
-    <div class="p-inputgroup">
-      <span class="p-inputgroup-addon">City</span>
-      <input type="text" [(ngModel)]="UserData.CityName" />
-    </div>
-  </ul>
-</div>
+<mat-form-field appearance="fill">
+  <mat-label>City</mat-label>
+  <mat-select [(ngModel)]="UserData.CityId">
+    <mat-option *ngFor="let city of City" [value]="city.Id">
+      {{ city.CityName }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Country</mat-label>
+
+  <mat-select [(ngModel)]="UserData.CountryName">
+    <mat-option *ngFor="let Country of Country" [value]="Country.Id">
+      {{ Country.CountryName }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Type Name </mat-label>
+  <mat-select [(ngModel)]="UserData.AreaOfExpertise">
+    <mat-option
+      *ngFor="let areaOfExpertise of AreaOfExpertise"
+      [value]="areaOfExpertise.Id"
+    >
+      {{ areaOfExpertise.AreaOfExpertiseName }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 
 <button (click)="SaveChanges(UserData)">save</button>
 <button>cancel</button>

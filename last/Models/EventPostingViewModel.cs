@@ -10,6 +10,8 @@ namespace last.Models
         public int Id { get; set; }
         public string EventName { get; set; }
         public DateTime EventDate { get; set; }
+        public DateTime CreationDate { get; set; }
+
         public string EventHeadline { get; set; }
         public string EventDescription { get; set; }
         public string TicketLink { get; set; }

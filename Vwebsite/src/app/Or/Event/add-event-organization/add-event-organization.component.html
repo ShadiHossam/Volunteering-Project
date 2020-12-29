@@ -126,7 +126,7 @@
   </div>
 </form> -->
 
-<form>
+<!-- <form>
   <mat-form-field floatLabel="never" style="float: left">
     <input matInput placeholder="Search" />
   </mat-form-field>
@@ -340,14 +340,19 @@
       </mat-form-field>
     </p>
     <mat-form-field appearance="fill">
-      <mat-label>Type Name </mat-label>
-      <mat-select class="form-control" formControlName="JobTypeId">
-        <mat-option *ngFor="let jobs of JobTypes" [value]="jobs.Id">
-          {{ jobs.TypeName }}
+      <mat-label>AreaOfExpertise </mat-label>
+      <mat-select class="form-control" formControlName="AreaOfExpertiseId">
+        <mat-option
+          *ngFor="let areaOfExpertise of AreaOfExpertise"
+          [value]="areaOfExpertise.Id"
+        >
+          {{ areaOfExpertise.AreaOfExpertiseName }}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="f.JobTypeId.touched && f.JobTypeId.invalid">
-        <mat-error *ngIf="f.JobTypeId.errors.required"
+      <mat-error
+        *ngIf="f.AreaOfExpertiseId.touched && f.AreaOfExpertiseId.invalid"
+      >
+        <mat-error *ngIf="f.AreaOfExpertiseId.errors.required"
           >Job Type is required.</mat-error
         >
       </mat-error>
@@ -356,17 +361,17 @@
     <mat-form-field class="example-full-width">
       <mat-label>Country</mat-label>
       <mat-select class="form-control" formControlName="CountryId">
-        <mat-option *ngFor="let countries of Countries" [value]="countries.Id">
-          {{ countries.CountryName }}
+        <mat-option *ngFor="let Country of Country" [value]="Country.Id">
+          {{ Country.CountryName }}
         </mat-option>
-      </mat-select>
-      <!-- <input
+      </mat-select> -->
+<!-- <input
               matInput
               class="form-control"
               placeholder="Country "
               formControlName="Country"
             /> -->
-      <mat-error *ngIf="f.CountryId.touched && f.CountryId.invalid">
+<!-- <mat-error *ngIf="f.CountryId.touched && f.CountryId.invalid">
         <mat-error *ngIf="f.CountryId.errors.required"
           >Country is required.</mat-error
         >
@@ -375,19 +380,19 @@
 
     <mat-form-field class="example-full-width">
       <mat-label>City</mat-label>
-      <mat-select class="form-control" formControlName="CitiesId">
-        <mat-option *ngFor="let cities of Cities" [value]="cities.Id">
-          {{ cities.CityName }}
+      <mat-select class="form-control" formControlName="CityId">
+        <mat-option *ngFor="let city of City" [value]="city.Id">
+          {{ city.CityName }}
         </mat-option>
-      </mat-select>
-      <!-- <input
+      </mat-select> -->
+<!-- <input
         matInput
         class="form-control"
         placeholder="City "
         formControlName="City"
       /> -->
-      <mat-error *ngIf="f.CitiesId.touched && f.CitiesId.invalid">
-        <mat-error *ngIf="f.CitiesId.errors.required"
+<!-- <mat-error *ngIf="f.cityId.touched && f.cityId.invalid">
+        <mat-error *ngIf="f.cityId.errors.required"
           >City is required.</mat-error
         >
       </mat-error>
@@ -629,4 +634,4 @@
       </div>
     </span>
   </mat-list>
-</form>
+</form> -->

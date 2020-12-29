@@ -1,5 +1,5 @@
 import { LoginService } from './../Services/login.service';
-
+import { Register } from '../Register';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -14,16 +14,15 @@ export class SigninComponent implements OnInit {
   errorMessage: string;
   constructor(private router: Router, private LoginService: LoginService) {}
 
-  ngOnInit() {
-    sessionStorage.removeItem('UserName');
-    sessionStorage.clear();
-  }
+  ngOnInit() {}
   login() {
     this.LoginService.Login(this.model).subscribe(
       (data) => {
         if (data.Status == 'Success') {
           this.router.navigate(['/profile']);
-          sessionStorage.setItem(this.model.UserName, 'UserName');
+          localStorage.setItem(this.model.UserName, 'UserName');
+
+          alert(localStorage.getItem('UserName'));
 
           // this.LoginService.Data(UserData).subscribe(
           //   data

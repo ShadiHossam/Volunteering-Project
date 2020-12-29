@@ -1,4 +1,3 @@
-import { UserName } from './../UserName';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -12,7 +11,7 @@ import {
 } from '@angular/forms';
 import { UniversityService } from '../Services/university.service';
 import { LoginService } from './../../app/Services/login.service';
-import { Register } from '../register';
+import { Register } from '../Register';
 import * as $ from 'jquery';
 @Component({
   selector: 'app-signup',
@@ -31,7 +30,6 @@ export class SignupComponent implements OnInit {
   errormessage: string;
 
   constructor(
-    public UserName: UserName,
     public LoginService: LoginService,
     private formbulider: FormBuilder,
     service: UniversityService
