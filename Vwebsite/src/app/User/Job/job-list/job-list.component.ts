@@ -1,7 +1,7 @@
 import { Register } from '../../../Register';
 import { Component, OnInit } from '@angular/core';
-import { JobsService } from '../../../Services/jobs.service';
-import { LoginService } from '../../../Services/login.service';
+import { JobsService } from '../../../Services/JobsService/jobs.service';
+import { LoginService } from '../../../Services/LoginService/login.service';
 import { Jobs } from '../../../Jobs';
 import { Router } from '@angular/router';
 

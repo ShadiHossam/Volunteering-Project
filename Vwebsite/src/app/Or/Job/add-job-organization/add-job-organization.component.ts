@@ -1,11 +1,11 @@
 import { City } from './../../../City';
 import { Country } from '../../../Country';
 import { Component, OnInit } from '@angular/core';
-import { JobsService } from '../../../Services/jobs.service';
-import { AreaOfExpertiseService } from '../../../Services/AreaOfExpertise.service';
-import { YearsOfExperienceService } from '../../../Services/years-of-experience.service';
-import { CountryService } from '../../../Services/country.service';
-import { CityService } from '../../../Services/city.service';
+import { JobsService } from '../../../Services/JobsService/jobs.service';
+import { AreaOfExpertiseService } from '../../../Services/AreaOfExpertiseService/AreaOfExpertise.service';
+import { YearsOfExperienceService } from '../../../Services/YearsOfExperience/years-of-experience.service';
+import { CountryService } from '../../../Services/CountryService/country.service';
+import { CityService } from '../../../Services/CityService/city.service';
 import { Jobs } from '../../../Jobs';
 import { JobListOrganizationComponent } from '../job-list-organization/job-list-organization.component';
 import { Observable } from 'rxjs';
@@ -55,16 +55,18 @@ export class AddJobOrganizationComponent implements OnInit {
       City: ['', [Validators.required]],
       AreaOfExpertise: ['', [Validators.required]],
     });
-    this.AreaOfExpertiseService.GetJobs().subscribe((res) => {
+    this.AreaOfExpertiseService.GetAreaOfExpertiseList().subscribe((res) => {
       this.AreaOfExpertise = res;
     });
-    this.YearsOfExperienceService.GetYears().subscribe((res) => {
-      this.YearsOfExperience = res;
-    });
-    this.cityService.Getcity().subscribe((res) => {
+    this.YearsOfExperienceService.GetYearsOfExperienceList().subscribe(
+      (res) => {
+        this.YearsOfExperience = res;
+      }
+    );
+    this.cityService.GetCityList().subscribe((res) => {
       this.City = res;
     });
-    this.CountryService.GetCountry().subscribe((res) => {
+    this.CountryService.GetCountryList().subscribe((res) => {
       this.Country = res;
     });
   }

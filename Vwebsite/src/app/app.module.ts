@@ -25,17 +25,28 @@ import { RippleModule } from 'primeng/ripple';
 import { TabViewModule } from 'primeng/tabview';
 
 import { UniversityService } from './Services/university.service';
-import { LoginService } from './Services/login.service';
-import { JobsService } from './Services/jobs.service';
-import { EventPostingService } from './Services/event-posting.service';
-import { CountryService } from './Services/country.service';
-import { CityService } from './Services/city.service';
+import { LoginService } from './Services/LoginService/login.service';
+import { JobsService } from './Services/JobsService/jobs.service';
+import { EventPostingService } from './Services/EventsService/event-posting.service';
+import { CountryService } from './Services/CountryService/country.service';
+import { CityService } from './Services/CityService/city.service';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
-import { AreaOfExpertiseService } from './Services/AreaOfExpertise.service';
+import { AreaOfExpertiseService } from './Services/AreaOfExpertiseService/AreaOfExpertise.service';
 import { PasswordModule } from 'primeng/password';
-import { YearsOfExperienceService } from './Services/years-of-experience.service';
+import { YearsOfExperienceService } from './Services/YearsOfExperience/years-of-experience.service';
+
+import { UserSkillsService } from './Services/UserSkills/user-skills.service';
+import { UserAnswersService } from './Services/UserAnswers/user-answers.service';
+import { SkillsService } from './Services/Skills/skills.service';
+import { SegmentsService } from './Services/Segments/segments.service';
+import { RequirementsService } from './Services/Requirements/requirements.service';
+import { QuestionsChoicesService } from './Services/QuestionsChoices/questions-choices.service';
+import { JobFormService } from './Services/JobForm/job-form.service';
+import { JobApplyService } from './Services/JobApply/job-apply.service';
+import { JobApplianceStatusService } from './Services/JobApplianceStatus/job-appliance-status.service';
+import { CorporatesService } from './Services/Corporates/corporates.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, CRouting],
@@ -73,6 +84,16 @@ import { YearsOfExperienceService } from './Services/years-of-experience.service
     EventPostingService,
     CountryService,
     CityService,
+    UserSkillsService,
+    SkillsService,
+    SegmentsService,
+    UserAnswersService,
+    RequirementsService,
+    QuestionsChoicesService,
+    JobFormService,
+    JobApplyService,
+    JobApplianceStatusService,
+    CorporatesService,
   ],
   bootstrap: [AppComponent],
 })

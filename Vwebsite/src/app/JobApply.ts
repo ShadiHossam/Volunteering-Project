@@ -1,4 +1,4 @@
-export class Corporates {
+export class JobApply {
   JobId: number;
   UserId: number;
   CorporateId: number;

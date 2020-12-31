@@ -5,7 +5,7 @@ import {
   ViewChild,
   AfterViewInit,
 } from '@angular/core';
-import { JobsService } from '../../../Services/jobs.service';
+import { JobsService } from '../../../Services/JobsService/jobs.service';
 import { ActivatedRoute } from '@angular/router';
 import { Jobs } from 'src/app/Jobs';
 @Component({

@@ -1,4 +1,4 @@
-export class Corporates {
+export class UserAnswers {
   UserId: number;
   QuestionId: number;
   CountryId: number;

@@ -75,3 +75,46 @@
     </div>
   </div>
 </form>
+<!-- <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+  <div class="form-group">
+    <input
+      type="text"
+      formControlName="username"
+      class="form-control"
+      placeholder="UserName"
+    />
+    <div
+      class="error has-error alert-danger errorDiv"
+      *ngIf="
+        loginForm.controls['username'].errors &&
+        loginForm.controls['username'].touched
+      "
+    >
+      <div>Username is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <input
+      type="text"
+      formControlName="password"
+      class="form-control"
+      placeholder="Password"
+    />
+    <div
+      class="error has-error alert-danger errorDiv"
+      *ngIf="
+        loginForm.controls['password'].errors &&
+        loginForm.controls['password'].touched
+      "
+    >
+      <div>Password is required</div>
+    </div>
+  </div>
+  <div>
+    <mat-card-actions>
+      <div class="form-group">
+        <button mat-raised-button color="primary" type="submit">Sign In</button>
+      </div>
+    </mat-card-actions>
+  </div>
+</form> -->

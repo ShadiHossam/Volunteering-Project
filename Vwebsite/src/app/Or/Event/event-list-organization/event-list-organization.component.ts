@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { EventPostingService } from '../../../Services/event-posting.service';
+import { EventPostingService } from '../../../Services/EventsService/event-posting.service';
 import { EventPosting } from '../../../EventPosting';
 import { Router } from '@angular/router';
 

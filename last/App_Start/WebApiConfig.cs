@@ -1,4 +1,5 @@
-﻿using System;
+﻿using last.Business;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -16,8 +17,10 @@ namespace last
             // Web API configuration and services
 
             config.Formatters.JsonFormatter.SupportedMediaTypes
-    .Add(new MediaTypeHeaderValue("text/html"));
+            .Add(new MediaTypeHeaderValue("text/html"));
             // Web API routes
+            config.MessageHandlers.Add(new TokenValidationHandler());
+
             config.MapHttpAttributeRoutes();
             EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);

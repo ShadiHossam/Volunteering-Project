@@ -10,7 +10,7 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { UniversityService } from '../Services/university.service';
-import { LoginService } from './../../app/Services/login.service';
+import { LoginService } from '../Services/LoginService/login.service';
 import { Register } from '../Register';
 import * as $ from 'jquery';
 @Component({

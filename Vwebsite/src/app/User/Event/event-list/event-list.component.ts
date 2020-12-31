@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../../Services/login.service';
+import { LoginService } from '../../../Services/LoginService/login.service';
 
-import { EventPostingService } from '../../../Services/event-posting.service';
+import { EventPostingService } from '../../../Services/EventsService/event-posting.service';
 import { EventPosting } from '../../../EventPosting';
 import { Router } from '@angular/router';
 import { Register } from '../../../Register';

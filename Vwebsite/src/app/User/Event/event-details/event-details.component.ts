@@ -5,7 +5,7 @@ import {
   ViewChild,
   AfterViewInit,
 } from '@angular/core';
-import { EventPostingService } from '../../../Services/event-posting.service';
+import { EventPostingService } from '../../../Services/EventsService/event-posting.service';
 import { ActivatedRoute } from '@angular/router';
 import { EventPosting } from 'src/app/EventPosting';
 @Component({

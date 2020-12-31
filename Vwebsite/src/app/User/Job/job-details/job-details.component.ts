@@ -5,8 +5,8 @@ import {
   ViewChild,
   AfterViewInit,
 } from '@angular/core';
-import { JobsService } from '../../../Services/jobs.service';
-import { ActivatedRoute } from '@angular/router';
+import { JobsService } from '../../../Services/JobsService/jobs.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Jobs } from 'src/app/Jobs';
 @Component({
   selector: 'app-job-details',
@@ -19,7 +19,8 @@ export class JobDetailsComponent implements OnInit {
 
   constructor(
     private JobsService: JobsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -28,5 +29,8 @@ export class JobDetailsComponent implements OnInit {
     this.JobsService.GetJob(Number(this.Id)).subscribe((x: any) => {
       this.Job = <Jobs>x;
     });
+  }
+  Apply() {
+    this.router.navigate(['/jobform', this.Id]);
   }
 }

@@ -1,3 +1,3 @@
-export class Corporates {
+export class JobApplianceStatus {
   StatusName: string;
 }

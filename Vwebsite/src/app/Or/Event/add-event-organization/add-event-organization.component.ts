@@ -13,10 +13,10 @@ import {
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { EventPostingService } from '../../../Services/event-posting.service';
-import { AreaOfExpertiseService } from '../../../Services/AreaOfExpertise.service';
-import { CityService } from '../../../Services/city.service';
-import { CountryService } from '../../../Services/country.service';
+import { EventPostingService } from '../../../Services/EventsService/event-posting.service';
+import { AreaOfExpertiseService } from '../../../Services/AreaOfExpertiseService/AreaOfExpertise.service';
+import { CityService } from '../../../Services/CityService/city.service';
+import { CountryService } from '../../../Services/CountryService/country.service';
 import { EventPosting } from '../../../EventPosting';
 
 import { Observable } from 'rxjs';
@@ -105,13 +105,13 @@ export class AddEventOrganizationComponent implements OnInit {
       EventName: ['', [Validators.required]],
       AreaOfExpertiseId: ['', [Validators.required]],
     });
-    this.AreaOfExpertisesService.GetJobs().subscribe((res) => {
+    this.AreaOfExpertisesService.GetAreaOfExpertiseList().subscribe((res) => {
       this.AreaOfExpertises = res;
     });
-    this.CityService.Getcity().subscribe((res) => {
+    this.CityService.GetCityList().subscribe((res) => {
       this.City = res;
     });
-    this.CountryService.GetCountry().subscribe((res) => {
+    this.CountryService.GetCountryList().subscribe((res) => {
       this.Country = res;
     });
   }

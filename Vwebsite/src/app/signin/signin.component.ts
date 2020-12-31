@@ -1,4 +1,4 @@
-import { LoginService } from './../Services/login.service';
+import { LoginService } from '../Services/LoginService/login.service';
 import { Register } from '../Register';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -35,5 +35,12 @@ export class SigninComponent implements OnInit {
         this.errorMessage = error.message;
       }
     );
+    // this.loginmodel.Username = this.get('username');
+    // this.loginmodel.Password = this.get('password');
+    // this.LoginService.Login(this.loginmodel).subscribe((response) => {
+    //   console.log(response);
+    //   localStorage.setItem('token', response.toString());
+    //   sessionStorage.setItem('token', response.toString());
+    // });
   }
 }

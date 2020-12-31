@@ -15,10 +15,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
-import { LoginService } from '../Services/login.service';
-import { AreaOfExpertiseService } from '../Services/AreaOfExpertise.service';
-import { CityService } from '../Services/city.service';
-import { CountryService } from '../Services/country.service';
+import { LoginService } from '../Services/LoginService/login.service';
+import { AreaOfExpertiseService } from '../Services/AreaOfExpertiseService/AreaOfExpertise.service';
+import { CityService } from '../Services/CityService/city.service';
+import { CountryService } from '../Services/CountryService/country.service';
 import { Register } from '../Register';
 @Component({
   selector: 'app-profile',
@@ -93,13 +93,13 @@ export class ProfileComponent implements OnInit {
     this.LoginService.getUsers().subscribe((data) => {
       this.UserData = <Register>data;
     });
-    this.AreaOfExpertiseService.GetJobs().subscribe((res) => {
+    this.AreaOfExpertiseService.GetAreaOfExpertiseList().subscribe((res) => {
       this.AreaOfExpertise = res;
     });
-    this.CityService.Getcity().subscribe((res) => {
+    this.CityService.GetCityList().subscribe((res) => {
       this.City = res;
     });
-    this.CountryService.GetCountry().subscribe((res) => {
+    this.CountryService.GetCountryList().subscribe((res) => {
       this.Country = res;
     });
     // this.LoginService.GetUserList();

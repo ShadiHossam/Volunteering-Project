@@ -27,10 +27,16 @@ import { EventListOrganizationComponent } from './Or/Event/event-list-organizati
 import { AddJobOrganizationComponent } from './Or/Job/add-job-organization/add-job-organization.component';
 import { JobDetailsOrganizationComponent } from './Or/Job/job-details-organization/job-details-organization.component';
 import { JobListOrganizationComponent } from './Or/Job/job-list-organization/job-list-organization.component';
+import { ProfileOrganizationComponent } from './profile-organization/profile-organization.component';
+import { SignupOrganizationComponent } from './signup-organization/signup-organization.component';
+import { JobFormComponent } from './User/Job/job-form/job-form.component';
+import { AddJobFormComponent } from './Or/Job/add-job-form/add-job-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/organizations', pathMatch: 'full' },
   { path: 'signup', component: SignupComponent },
+  { path: 'organizationsignup', component: SignupOrganizationComponent },
+
   { path: 'joblist', component: JobListComponent },
   { path: 'jobdetails/:id', component: JobDetailsComponent },
   { path: 'eventlist', component: EventListComponent },
@@ -45,11 +51,17 @@ const routes: Routes = [
   { path: 'or-jobdetails/:id', component: JobDetailsOrganizationComponent },
   { path: 'or-eventlist', component: EventListOrganizationComponent },
   { path: 'or-joblist', component: JobListOrganizationComponent },
+  { path: 'jobform/:id', component: JobFormComponent },
+  { path: 'addjobform/:id', component: AddJobFormComponent },
 
   { path: 'aboutus', component: AboutusComponent },
   {
     path: 'profile',
     component: ProfileComponent,
+  },
+  {
+    path: 'organizatiomprofile',
+    component: ProfileOrganizationComponent,
   },
 
   { path: 'volunteer', component: VolunteerComponent },
@@ -74,6 +86,10 @@ export const CRouting = [
   EventListOrganizationComponent,
   AddEventOrganizationComponent,
   EventDetailsOrganizationComponent,
+  ProfileOrganizationComponent,
+  SignupOrganizationComponent,
+  JobFormComponent,
+  AddJobFormComponent,
   AddJobOrganizationComponent,
   JobDetailsOrganizationComponent,
   JobListOrganizationComponent,
