@@ -15,8 +15,8 @@ export class LoginService {
   Url: string;
   token: string;
   header: any;
+  x = localStorage.getItem('UserName');
 
-  // UserData:string [];
   constructor(private http: HttpClient) {
     this.Url = 'http://localhost:49826/api/Login/';
     const headerSettings: { [name: string]: string | string[] } = {};
@@ -53,6 +53,22 @@ export class LoginService {
   //     return this.http.delete(this.Url + 'Deleteusers?UserName=' + id);
   //   }
   // }
+
+  IsUserLoggedIn() {
+    //JWT
+    // let user = localStorage.getItem('token');
+    // return !(user === null);
+    return !!localStorage.getItem('UserName');
+  }
+  LogOut() {
+    //JWT
+    // sessionStorage.removeItem('token');
+    // localStorage.removeItem('token');
+    sessionStorage.removeItem('UserName');
+    localStorage.removeItem('UserName');
+    sessionStorage.clear();
+    localStorage.clear();
+  }
   CreateUser(register: Register) {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -64,7 +80,6 @@ export class LoginService {
     );
   }
 
-  x = localStorage.getItem('UserName');
   GetJobListByUserName() {
     return this.http.get<Register>(
       this.Url + 'GetJobListByUserName?UserName=' + this.x
@@ -76,9 +91,9 @@ export class LoginService {
     );
   }
 
-  getUsers(): Observable<Register> {
+  getUsers(x): Observable<Register> {
     return this.http.get<Register>(
-      this.Url + 'GetUserByUserName?UserName=' + this.x
+      this.Url + 'GetUserByUserName?UserName=' + x
     );
   }
   ValidateUser(UserName) {

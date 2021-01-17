@@ -38,29 +38,74 @@ const routes: Routes = [
   { path: 'organizationsignup', component: SignupOrganizationComponent },
 
   { path: 'joblist', component: JobListComponent },
-  { path: 'jobdetails/:id', component: JobDetailsComponent },
-  { path: 'eventlist', component: EventListComponent },
-  { path: 'eventdetails/:id', component: EventDetailsComponent },
+  {
+    path: 'jobdetails/:id',
+    canActivate: [AuthGuard],
+    component: JobDetailsComponent,
+  },
+  {
+    path: 'eventlist',
+    canActivate: [AuthGuard],
+    component: EventListComponent,
+  },
+  {
+    path: 'eventdetails/:id',
+    canActivate: [AuthGuard],
+    component: EventDetailsComponent,
+  },
   { path: 'signin', component: SigninComponent },
   { path: 'contactus', component: ContactusComponent },
 
   { path: 'organizations', component: OrganizationsComponent },
-  { path: 'or-addevent', component: AddEventOrganizationComponent },
-  { path: 'or-addjob', component: AddJobOrganizationComponent },
-  { path: 'or-eventdetails/:id', component: EventDetailsOrganizationComponent },
-  { path: 'or-jobdetails/:id', component: JobDetailsOrganizationComponent },
-  { path: 'or-eventlist', component: EventListOrganizationComponent },
-  { path: 'or-joblist', component: JobListOrganizationComponent },
-  { path: 'jobform/:id', component: JobFormComponent },
-  { path: 'addjobform/:id', component: AddJobFormComponent },
+  {
+    path: 'or-addevent',
+    canActivate: [AuthGuard],
+    component: AddEventOrganizationComponent,
+  },
+  {
+    path: 'or-addjob',
+    canActivate: [AuthGuard],
+    component: AddJobOrganizationComponent,
+  },
+  {
+    path: 'or-eventdetails/:id',
+    canActivate: [AuthGuard],
+    component: EventDetailsOrganizationComponent,
+  },
+  {
+    path: 'or-jobdetails/:id',
+    canActivate: [AuthGuard],
+    component: JobDetailsOrganizationComponent,
+  },
+  {
+    path: 'or-eventlist',
+    canActivate: [AuthGuard],
+    component: EventListOrganizationComponent,
+  },
+  {
+    path: 'or-joblist',
+    canActivate: [AuthGuard],
+    component: JobListOrganizationComponent,
+  },
+  {
+    path: 'jobform/:id',
+    canActivate: [AuthGuard],
+    component: JobFormComponent,
+  },
+  {
+    path: 'or-addjobform/:id',
+    canActivate: [AuthGuard],
+    component: AddJobFormComponent,
+  },
 
   { path: 'aboutus', component: AboutusComponent },
   {
     path: 'profile',
+    canActivate: [AuthGuard],
     component: ProfileComponent,
   },
   {
-    path: 'organizatiomprofile',
+    path: 'or-profile',
     component: ProfileOrganizationComponent,
   },
 

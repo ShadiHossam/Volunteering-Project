@@ -6,7 +6,7 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { JobsService } from '../../../Services/JobsService/jobs.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Jobs } from 'src/app/Jobs';
 @Component({
   selector: 'app-job-details-organization',
@@ -19,7 +19,8 @@ export class JobDetailsOrganizationComponent implements OnInit {
 
   constructor(
     private JobsService: JobsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   // GetJob(id: number) {
@@ -53,5 +54,8 @@ export class JobDetailsOrganizationComponent implements OnInit {
         });
       });
     }
+  }
+  JobForm() {
+    this.router.navigate(['/or-addjobform/' + this.Id]);
   }
 }

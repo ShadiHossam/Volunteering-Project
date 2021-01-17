@@ -2,6 +2,7 @@ export class Jobs {
   Id: number;
   JobTitle: string;
   CreationDate: Date;
+  CreationDateSTR: Date;
   JobDescription: string;
   DisplaySalary: boolean;
   Salary: number;

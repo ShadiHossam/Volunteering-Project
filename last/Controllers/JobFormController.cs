@@ -43,20 +43,52 @@ namespace last.Controllers
 
         // GET: api/JobForm/5
         [ResponseType(typeof(JobFormViewModel))]
-        public JobFormViewModel GetJobForm(int id)
+        public List<JobFormViewModel> GetJobForm(int id)
 
         {
-            JobFormViewModel JobFormViewModel = new JobFormViewModel();
-            NGOdata.JobForm GetJobForm;
 
-            GetJobForm = db.JobForm.Where(x => x.Id == id).FirstOrDefault();
+            //return JobFormViewModel;
 
-            Mapper.CreateMap<JobForm, JobFormViewModel>();
-            JobFormViewModel = Mapper.Map<JobForm, JobFormViewModel>(GetJobForm);
-            JobFormViewModel.JobName = GetJobForm.Jobs.JobTitle;
+            var GetJobFormList = db.JobForm.Where(w=> w.JobId == id).ToList();
+            List<JobFormViewModel> JobFormViewModelList = new List<JobFormViewModel>();
+            foreach (var item in GetJobFormList)
+            {
+                JobFormViewModel JobFormViewModel = new JobFormViewModel();
+
+                Mapper.CreateMap<JobForm, JobFormViewModel>();
+                JobFormViewModel = Mapper.Map<JobForm, JobFormViewModel>(item);
+
+                var QuestionChoices = db.QuestionsChoices.Where(w => w.QuestionsId == item.Id).ToList();
+
+                if (QuestionChoices !=null)
+                {
+                    foreach (var item1 in QuestionChoices)
+                    {
+                        JobFormViewModel.QuestionsChoicesViewModelList = new List<QuestionsChoicesViewModel>();
+                        QuestionsChoicesViewModel QuestionsChoicesViewModel = new QuestionsChoicesViewModel();
+                        Mapper.CreateMap<QuestionsChoices, QuestionsChoicesViewModel>();
+                        QuestionsChoicesViewModel = Mapper.Map<QuestionsChoices, QuestionsChoicesViewModel>(item1);
+                        JobFormViewModel.QuestionsChoicesViewModelList.Add(QuestionsChoicesViewModel);
 
 
-            return JobFormViewModel;
+                    }
+
+                }
+                else
+                {
+                    JobFormViewModel.QuestionsChoicesViewModelList = new List<QuestionsChoicesViewModel>();
+                }
+
+
+                
+
+
+
+                JobFormViewModelList.Add(JobFormViewModel);
+            }
+
+
+            return JobFormViewModelList;
         }
         // PUT: api/JobForm/5
         [ResponseType(typeof(void))]

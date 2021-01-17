@@ -12,6 +12,8 @@ using last.Models;
 using System.Web.Http.Results;
 using NGOdata;
 using AutoMapper;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace last.Controllers
 {
@@ -29,9 +31,9 @@ namespace last.Controllers
             var log = db.Users.Where(x => x.UserName.Equals(login.UserName) && x.Password.Equals(login.Password)).FirstOrDefault();
             if (log == null)
             {
-         
+
                 return new Response { Status = "Invalid", Message = "Invalid User or passwor." };
-               
+
             }
             else
             {
@@ -49,69 +51,76 @@ namespace last.Controllers
 
 
 
-            //    public IHttpActionResult Authenticate([FromBody] last.Models.login login)
+            //public IHttpActionResult Authenticate([FromBody] last.Models.login login)
+            //{
+            //    var loginResponse = new LoginResponse { };
+            //    login loginrequest = new login { };
+            //    loginrequest.UserName = login.UserName.ToLower();
+            //    loginrequest.Password = login.Password;
+
+            //    IHttpActionResult response;
+            //    //HttpResponseMessage responseMsg = new HttpResponseMessage();
+            //    bool isUserNamePasswordValid = false;
+
+            //if (login != null)
+            //{
+            //    var UserName = db.Users.Where(x => x.UserName == loginrequest.UserName).FirstOrDefault();
+            //    if (UserName != null)
             //    {
-            //        var loginResponse = new LoginResponse { };
-            //        login loginrequest = new login { };
-            //        loginrequest.UserName = login.UserName.ToLower();
-            //        loginrequest.Password = login.Password;
-
-            //        IHttpActionResult response;
-            //        //HttpResponseMessage responseMsg = new HttpResponseMessage();
-            //        bool isUsernamePasswordValid = false;
-
-            //        if (login != null)
-            //            isUsernamePasswordValid = loginrequest.Password == "admin" ? true : false;
-            //        // if credentials are valid
-            //        if (isUsernamePasswordValid)
-            //        {
-            //            string token = createToken(loginrequest.UserName);
-            //            //return the token
-            //            return Ok<string>(token);
-            //        }
-            //        else
-            //        {
-            //            // if credentials are not valid send unauthorized status code in response
-            //            loginResponse.responseMsg.StatusCode = HttpStatusCode.Unauthorized;
-            //            response = ResponseMessage(loginResponse.responseMsg);
-            //            return response;
-            //        }
+            //         isUserNamePasswordValid = UserName.Password == loginrequest.Password ? true : false;
             //    }
-
-
-            //    private string createToken(string username)
+            //}
+            //// if credentials are valid
+            //if (isUserNamePasswordValid)
             //    {
-            //        //Set issued at date
-            //        DateTime issuedAt = DateTime.UtcNow;
-            //        //set the time when it expires
-            //        DateTime expires = DateTime.UtcNow.AddMinutes(10);
+            //        string token = createToken(loginrequest.UserName);
+            //        //return the token
+            //        return Ok<string>(token);
+            //    }
+            //    else
+            //    {
+            //        // if credentials are not valid send unauthorized status code in response
+            //        loginResponse.responseMsg.StatusCode = HttpStatusCode.Unauthorized;
+            //        response = ResponseMessage(loginResponse.responseMsg);
+            //        return response;
+            //    }
+            //}
 
-            //        //http://stackoverflow.com/questions/18223868/how-to-encrypt-jwt-security-token
-            //        var tokenHandler = new JwtSecurityTokenHandler();
 
-            //        //create a identity and add claims to the user which we want to log in
-            //        ClaimsIdentity claimsIdentity = new ClaimsIdentity(new[]
-            //        {
+            //private string createToken(string username)
+            //{
+            //    //Set issued at date
+            //    DateTime issuedAt = DateTime.UtcNow;
+            //    //set the time when it expires
+            //    DateTime expires = DateTime.UtcNow.AddMinutes(10);
+
+            //    //http://stackoverflow.com/questions/18223868/how-to-encrypt-jwt-security-token
+            //    var tokenHandler = new JwtSecurityTokenHandler();
+
+            //    //create a identity and add claims to the user which we want to log in
+            //    ClaimsIdentity claimsIdentity = new ClaimsIdentity(new[]
+            //    {
             //            new Claim(ClaimTypes.Name, username)
             //        });
 
-            //        const string sec = "401b09eab3c013d4ca54922bb802bec8fd5318192b0a75f201d8b3727429090fb337591abd3e44453b954555b7a0812e1081c39b740293f765eae731f5a65ed1";
-            //        var now = DateTime.UtcNow;
-            //        var securityKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.Default.GetBytes(sec));
-            //        var signingCredentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(securityKey, Microsoft.IdentityModel.Tokens.SecurityAlgorithms.HmacSha256Signature);
+            //    const string sec = "401b09eab3c013d4ca54922bb802bec8fd5318192b0a75f201d8b3727429090fb337591abd3e44453b954555b7a0812e1081c39b740293f765eae731f5a65ed1";
+            //    var now = DateTime.UtcNow;
+            //    var securityKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.Default.GetBytes(sec));
+            //    var signingCredentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(securityKey, Microsoft.IdentityModel.Tokens.SecurityAlgorithms.HmacSha256Signature);
 
 
-            //        //create the jwt
-            //        var token =
-            //            (JwtSecurityToken)
-            //                tokenHandler.CreateJwtSecurityToken(issuer: "http://localhost:50191", audience: "http://localhost:4200",
-            //                    subject: claimsIdentity, notBefore: issuedAt, expires: expires, signingCredentials: signingCredentials);
-            //        var tokenString = tokenHandler.WriteToken(token);
+            //    //create the jwt
+            //    var token =
+            //        (JwtSecurityToken)
+            //            tokenHandler.CreateJwtSecurityToken(issuer: "http://localhost:50191", audience: "http://localhost:4200",
+            //                subject: claimsIdentity, notBefore: issuedAt, expires: expires, signingCredentials: signingCredentials);
+            //    var tokenString = tokenHandler.WriteToken(token);
 
-            //        return tokenString;
+            //    return tokenString;
 
 
-        }
+            }
+
 
         //For new user Registration  
         [Route("Api/Login/createcontact")]
@@ -215,10 +224,10 @@ namespace last.Controllers
             User = Mapper.Map<Users, UserViewModel>(GetUser);
 
             
-           // User.CityName = GetUser.Cities.CityName;
             User.AreaOfExpertiseName = GetUser.AreaOfExpertise.AreaOfExpertiseName;
             User.CountryName = GetUser.Country.CountryName;
             User.CityName = GetUser.City.CityName;
+            User.BirthdateSTR = GetUser.Birthdate.Value.ToString("MM/dd/yyyy");
 
 
             return User;

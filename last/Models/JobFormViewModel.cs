@@ -12,7 +12,7 @@ namespace last.Models
         public string QuestionHeader { get; set; }
         public string Type { get; set; }
         public string JobName { get; set; }
-
+        public List<QuestionsChoicesViewModel> QuestionsChoicesViewModelList { get; set; }
 
     }
 }

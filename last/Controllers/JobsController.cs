@@ -42,6 +42,8 @@ namespace last.Controllers
                 JobsViewModel.CorporateName = item.Corporates.CorporateName;
                // JobsViewModel.RequirementsName = item. Requirements.Requirements;
                 JobsViewModel.YearsOFExpertiseName = item.YearsOfExperience.YearsOfExperienceThreshold;
+                //JobsViewModel.CreationDateSTR = item.CreationDate.Value.ToString("MM/dd/yyyy");
+
 
                 JobsViewModelList.Add(JobsViewModel);
             }
@@ -66,12 +68,14 @@ namespace last.Controllers
             JobsViewModel = Mapper.Map<Jobs, JobsViewModel>(GetJob);
 
             JobsViewModel.CityName = GetJob.City.CityName;
-           // JobsViewModel.AreaOfExpertiseName = GetJob.AreaOfExpertise.AreaOfExpertiseName;
+            JobsViewModel.AreaOfExpertiseName = GetJob.AreaOfExpertise.AreaOfExpertiseName;
             JobsViewModel.CountryName = GetJob.Country.CountryName;
             JobsViewModel.CorporateName = GetJob.Corporates.CorporateName;
-        //    JobsViewModel.RequirementsName = GetJob. Requirements.Requirements;
+            //JobsViewModel.RequirementsName = GetJob. Requirements.Requirements;
             JobsViewModel.YearsOFExpertiseName = GetJob.YearsOfExperience.YearsOfExperienceThreshold;
- 
+            JobsViewModel.CreationDateSTR = GetJob.CreationDate.ToString("MM/dd/yyyy");
+
+
 
 
 
@@ -143,9 +147,6 @@ namespace last.Controllers
             Mapper.CreateMap<JobsViewModel, Jobs>();
             Jobs = Mapper.Map<JobsViewModel, Jobs>(JobsViewModel);
 
-
-
-  
             db.Jobs.Add(Jobs);
             db.SaveChanges();
 

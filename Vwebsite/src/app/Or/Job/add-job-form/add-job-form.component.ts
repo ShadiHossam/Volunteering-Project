@@ -6,7 +6,9 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
-import { Survey, Question, Option } from './data-models';
+import { ActivatedRoute, Router } from '@angular/router';
+import { JobForm } from 'src/app/JobForm';
+import { Survey, Question, Choices } from './data-models';
 import { JobFormService } from '../../../Services/JobForm/job-form.service';
 export interface Type {
   value: string;
@@ -21,7 +23,7 @@ export interface Type {
 export class AddJobFormComponent implements OnInit {
   surveyForm: FormGroup;
 
-  selectedOption = [];
+  selectedChoices = [];
 
   editMode = false;
 
@@ -31,6 +33,7 @@ export class AddJobFormComponent implements OnInit {
     { value: 'Text', viewValue: 'Text' },
     { value: 'Rating', viewValue: 'Rating' },
   ];
+  Data: JobForm[];
 
   constructor(private JobFormService: JobFormService) {} // private surveyService: SurveyService,
 
@@ -39,10 +42,10 @@ export class AddJobFormComponent implements OnInit {
   }
 
   private initForm() {
-    let surveyQuestions = new FormArray([]);
+    let JobForm = new FormArray([]);
 
     this.surveyForm = new FormGroup({
-      surveyQuestions: surveyQuestions,
+      JobForm: JobForm,
     });
 
     this.onAddQuestion();
@@ -52,55 +55,56 @@ export class AddJobFormComponent implements OnInit {
     console.log(this.surveyForm);
 
     const surveyQuestionItem = new FormGroup({
-      questionHeader: new FormControl('', Validators.required),
+      QuestionHeader: new FormControl('', Validators.required),
       Type: new FormControl('', Validators.required),
-      questionGroup: new FormGroup({}),
+      QuestionsChoicesViewModelList: new FormGroup({}),
     });
 
-    (<FormArray>this.surveyForm.get('surveyQuestions')).push(
-      surveyQuestionItem
-    );
+    (<FormArray>this.surveyForm.get('JobForm')).push(surveyQuestionItem);
   }
 
   onRemoveQuestion(index) {
-    this.surveyForm.controls.surveyQuestions['controls'][
+    this.surveyForm.controls.JobForm['controls'][
       index
-    ].controls.questionGroup = new FormGroup({});
-    this.surveyForm.controls.surveyQuestions['controls'][
+    ].controls.QuestionsChoicesViewModelList = new FormGroup({});
+    this.surveyForm.controls.JobForm['controls'][
       index
     ].controls.Type = new FormControl({});
 
-    (<FormArray>this.surveyForm.get('surveyQuestions')).removeAt(index);
-    this.selectedOption.splice(index, 1);
+    (<FormArray>this.surveyForm.get('JobForm')).removeAt(index);
+    this.selectedChoices.splice(index, 1);
     console.log(this.surveyForm);
   }
 
   onSeletType(Type, index) {
     if (Type === 'Single choice' || Type === 'Multi choice') {
-      this.addOptionControls(Type, index);
+      this.addChoicesControls(Type, index);
     }
   }
 
-  addOptionControls(Type, index) {
-    let options = new FormArray([]);
+  addChoicesControls(Type, index) {
+    let Choicess = new FormArray([]);
     let showRemarksBox = new FormControl(false);
 
-    this.surveyForm.controls.surveyQuestions['controls'][
+    this.surveyForm.controls.JobForm['controls'][
       index
-    ].controls.questionGroup.addControl('options', options);
-    this.surveyForm.controls.surveyQuestions['controls'][
+    ].controls.QuestionsChoicesViewModelList.addControl('Choicess', Choicess);
+    this.surveyForm.controls.JobForm['controls'][
       index
-    ].controls.questionGroup.addControl('showRemarksBox', showRemarksBox);
+    ].controls.QuestionsChoicesViewModelList.addControl(
+      'showRemarksBox',
+      showRemarksBox
+    );
 
     this.clearFormArray(
       <FormArray>(
-        this.surveyForm.controls.surveyQuestions['controls'][index].controls
-          .questionGroup.controls.options
+        this.surveyForm.controls.JobForm['controls'][index].controls
+          .QuestionsChoicesViewModelList.controls.Choicess
       )
     );
 
-    this.addOption(index);
-    this.addOption(index);
+    this.addChoices(index);
+    this.addChoices(index);
   }
 
   private clearFormArray(formArray: FormArray) {
@@ -109,67 +113,112 @@ export class AddJobFormComponent implements OnInit {
     }
   }
 
-  addOption(index) {
-    const optionGroup = new FormGroup({
-      optionText: new FormControl('', Validators.required),
+  addChoices(index) {
+    const ChoicesGroup = new FormGroup({
+      ChoicesText: new FormControl('', Validators.required),
     });
     (<FormArray>(
-      this.surveyForm.controls.surveyQuestions['controls'][index].controls
-        .questionGroup.controls.options
-    )).push(optionGroup);
+      this.surveyForm.controls.JobForm['controls'][index].controls
+        .QuestionsChoicesViewModelList.controls.Choicess
+    )).push(ChoicesGroup);
   }
 
-  removeOption(questionIndex, itemIndex) {
+  removeChoices(questionIndex, itemIndex) {
     (<FormArray>(
-      this.surveyForm.controls.surveyQuestions['controls'][questionIndex]
-        .controls.questionGroup.controls.options
+      this.surveyForm.controls.JobForm['controls'][questionIndex].controls
+        .QuestionsChoicesViewModelList.controls.Choicess
     )).removeAt(itemIndex);
   }
 
   postSurvey() {
     let formData = this.surveyForm.value;
     console.log(formData);
-    debugger;
-
+    this.JobFormService.PostJobForm(formData).subscribe((x) => {
+      this.Data = x;
+    });
     //  let Question: Question[] = [];
     let Questions = [];
 
-    let surveyQuestions = formData.surveyQuestions;
-    //  let optionArray = formData.surveyQuestions.questionGroup.options.optionText;
+    let JobForm = formData.JobForm;
+    //  let ChoicesArray = formData.JobForm.QuestionsChoicesViewModelList.Choicess.ChoicesText;
     let survey = new Survey(Questions);
 
-    surveyQuestions.forEach((question, index, array) => {
+    JobForm.forEach((question, index, array) => {
       let questionItem = {
         Type: question.Type,
-        Text: question.questionHeader,
-        options: [],
+        Text: question.QuestionHeader,
+        Choicess: [],
         Required: false,
         Remarks: '',
         hasRemarks: false,
       };
 
-      if (question.questionGroup.hasOwnProperty('showRemarksBox')) {
-        questionItem.hasRemarks = question.questionGroup.showRemarksBox;
+      if (
+        question.QuestionsChoicesViewModelList.hasOwnProperty('showRemarksBox')
+      ) {
+        questionItem.hasRemarks =
+          question.QuestionsChoicesViewModelList.showRemarksBox;
       }
 
-      if (question.questionGroup.hasOwnProperty('options')) {
-        question.questionGroup.options.forEach((option) => {
-          let optionItem: Option = {
-            OptionText: option.optionText,
-            OptionColor: '',
+      if (question.QuestionsChoicesViewModelList.hasOwnProperty('Choicess')) {
+        question.QuestionsChoicesViewModelList.Choicess.forEach((Choices) => {
+          let ChoicesItem: Choices = {
+            ChoicesText: Choices.ChoicesText,
+            ChoicesColor: '',
             hasRemarks: false,
           };
-          questionItem.options.push(optionItem);
+          questionItem.Choicess.push(ChoicesItem);
         });
       }
 
       survey.Question.push(questionItem);
     });
-
-    console.log('posting survey');
   }
-
+  QuestionsChoicesViewModelList;
   onSubmit() {
     this.postSurvey();
   }
+
+  // QuestionTypes = ['textbox', 'multichoices'];
+
+  // cc;
+  // JobForm: JobForm = <JobForm>{};
+  // QuestionsChoicesViewModelList: QuestionsChoicesViewModelList = <QuestionsChoicesViewModelList>{};
+  // bb;
+  // xx;
+  // vvv;
+  // JobId;
+
+  // constructor(
+  //   private route: ActivatedRoute,
+  //   private JobFormService: JobFormService,
+  //   private router: Router
+  // ) {}
+  // ngOnInit() {
+  //   this.JobId = this.route.snapshot.paramMap.get('id');
+  // }
+  // post(x) {
+  //   console.log(this.JobId);
+  //   this.JobForm.JobId = this.JobId;
+  //   this.vvv = this.bb + this.xx;
+  //   this.QuestionsChoicesViewModelList.Choices = this.vvv;
+  //   debugger;
+  //   console.log(this.QuestionsChoicesViewModelList);
+  //   this.JobFormService.PostJobForm(this.JobForm).subscribe(
+  //     (x) => (this.cc = x)
+  //   );
+  //   this.router.navigate(['/or-joblist']);
+  // }
+  // showText = false;
+  // showMultiChoices = false;
+
+  // onChange() {
+  //   if (this.JobForm.Type == 'textbox') {
+  //     this.showText = !this.showText;
+  //     this.showMultiChoices = false;
+  //   } else {
+  //     this.showMultiChoices = !this.showMultiChoices;
+  //     this.showText = false;
+  //   }
+  // }
 }

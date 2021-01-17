@@ -8,12 +8,11 @@ namespace last.Models
 {
     public class JobsViewModel
     { 
-
-     
     public int Id { get; set; }
     public string JobTitle { get; set; }
     public string JobDescription { get; set; }
     public DateTime CreationDate { get; set; }
+    public string CreationDateSTR { get; set; }
     public decimal  Salary { get; set; }
     public Boolean DisplaySalary { get; set; }
     public int? CityId { get; set; }

@@ -4,13 +4,15 @@ export class Register {
   UserName: string;
   Password: string;
   Email: string;
-  PhoneNumber: string;
+  Mobilenumber: string;
   HomeNumber: string;
-  BirthDate: Date;
+  Birthdate: Date;
+  BirthdateSTR: Date;
   Address: string;
+  UserImage: string;
   CityId: number;
   CountryId: number;
-  AreaOfExpertise: number;
+  AreaOfExpertiseId: number;
   AreaOfExpertiseName: string;
   CityName: string;
   CountryName: string;

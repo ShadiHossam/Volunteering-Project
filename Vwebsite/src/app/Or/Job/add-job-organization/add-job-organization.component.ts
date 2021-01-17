@@ -1,3 +1,4 @@
+import { Corporates } from './../../../Corporates';
 import { City } from './../../../City';
 import { Country } from '../../../Country';
 import { Component, OnInit } from '@angular/core';
@@ -47,13 +48,14 @@ export class AddJobOrganizationComponent implements OnInit {
     this.JobForm = this.formbulider.group({
       JobTitle: ['', [Validators.required]],
       JobDescription: ['', [Validators.required]],
-      DisplaySalary: [, [Validators.required]],
+      DisplaySalary: [Validators.required],
       Salary: [],
-      Requirement: ['', [Validators.required]],
+      Requirements: ['', [Validators.required]],
       YearsOfExperience: ['', [Validators.required]],
-      Country: ['', [Validators.required]],
-      City: ['', [Validators.required]],
+      CountryId: ['', [Validators.required]],
+      CityId: ['', [Validators.required]],
       AreaOfExpertise: ['', [Validators.required]],
+      CorporateId: ['', [Validators.required]],
     });
     this.AreaOfExpertiseService.GetAreaOfExpertiseList().subscribe((res) => {
       this.AreaOfExpertise = res;

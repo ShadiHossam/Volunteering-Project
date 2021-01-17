@@ -12,41 +12,40 @@
         <EntityTypeShape EntityType="NGODBModel.JobApplianceStatus" Width="1.5" PointX="11.25" PointY="17.25" IsExpanded="true" />
         <EntityTypeShape EntityType="NGODBModel.JobApply" Width="1.5" PointX="13.5" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="NGODBModel.JobForm" Width="1.5" PointX="12.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NGODBModel.Jobs" Width="1.5" PointX="10.5" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="NGODBModel.QuestionsChoices" Width="1.5" PointX="15" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NGODBModel.Requirements" Width="1.5" PointX="12.75" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NGODBModel.Segments" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="NGODBModel.Skills" Width="1.5" PointX="10.5" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="NGODBModel.UserAnswers" Width="1.5" PointX="16" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="NGODBModel.Users" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="NGODBModel.UserSkills" Width="1.5" PointX="10.5" PointY="10.25" IsExpanded="true" />
         <EntityTypeShape EntityType="NGODBModel.YearsOfExperience" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="NGODBModel.FK_Jobs_AreaOfExpertise" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_Skills_AreaOfExpertise" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_Users_AreaOfExpertise" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_City_Country" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_Corporates_City" ManuallyRouted="false" />
-        <AssociationConnector Association="NGODBModel.FK_Jobs_City" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_Users_City" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_Corporates_Country" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_Corporates_Segments" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_JobApply_Corporates" ManuallyRouted="false" />
-        <AssociationConnector Association="NGODBModel.FK_Jobs_Corporates" ManuallyRouted="false" />
-        <AssociationConnector Association="NGODBModel.FK_Jobs_Country" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_Users_Country" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_JobApply_JobApplianceStatus" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_JobApply_JobForm" ManuallyRouted="false" />
-        <AssociationConnector Association="NGODBModel.FK_JobApply_Jobs" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_JobApply_UserAnswers" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_JobApply_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="NGODBModel.FK_JobForm_Jobs" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_QuestionsChoices_JobForm" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_UserAnswers_JobForm" ManuallyRouted="false" />
-        <AssociationConnector Association="NGODBModel.FK_Jobs_Requirements" ManuallyRouted="false" />
-        <AssociationConnector Association="NGODBModel.FK_Jobs_YearsOfExperience" ManuallyRouted="false" />
-        <AssociationConnector Association="NGODBModel.FK_Requirements_Jobs" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_UserAnswers_Users" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_UserSkills_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NGODBModel.Jobs" Width="1.5" PointX="10.5" PointY="4.625" />
+        <AssociationConnector Association="NGODBModel.FK_Jobs_AreaOfExpertise" />
+        <AssociationConnector Association="NGODBModel.FK_Jobs_City" />
+        <AssociationConnector Association="NGODBModel.FK_Jobs_Corporates" />
+        <AssociationConnector Association="NGODBModel.FK_Jobs_Country" />
+        <AssociationConnector Association="NGODBModel.FK_JobApply_Jobs" />
+        <AssociationConnector Association="NGODBModel.FK_JobForm_Jobs" />
+        <AssociationConnector Association="NGODBModel.FK_Jobs_YearsOfExperience" />
+        <EntityTypeShape EntityType="NGODBModel.Requirements" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="NGODBModel.FK_Requirements_Jobs" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

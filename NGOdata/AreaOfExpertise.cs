@@ -17,9 +17,9 @@ namespace NGOdata
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AreaOfExpertise()
         {
-            this.Jobs = new HashSet<Jobs>();
             this.Skills = new HashSet<Skills>();
             this.Users = new HashSet<Users>();
+            this.Jobs = new HashSet<Jobs>();
         }
     
         public int Id { get; set; }
@@ -27,10 +27,10 @@ namespace NGOdata
         public string AreaOfExpertiseName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Jobs> Jobs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Skills> Skills { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Jobs> Jobs { get; set; }
     }
 }

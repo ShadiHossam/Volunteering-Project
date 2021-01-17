@@ -78,7 +78,6 @@
     <Property Name="CreationDate" Type="datetime" Nullable="false" />
     <Property Name="Salary" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="DisplaySalary" Type="bit" Nullable="false" />
-    <Property Name="RequirementsId" Type="int" Nullable="false" />
     <Property Name="CityId" Type="int" Nullable="false" />
     <Property Name="CountryId" Type="int" Nullable="false" />
     <Property Name="YearsOFExpertiseId" Type="int" Nullable="false" />
@@ -339,18 +338,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Jobs_Requirements">
-    <End Role="Requirements" Type="Self.Requirements" Multiplicity="1" />
-    <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Requirements">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Jobs">
-        <PropertyRef Name="RequirementsId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Jobs_YearsOfExperience">
     <End Role="YearsOfExperience" Type="Self.YearsOfExperience" Multiplicity="1" />
     <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
@@ -546,10 +533,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_Jobs_Country" Association="Self.FK_Jobs_Country">
       <End Role="Country" EntitySet="Country" />
-      <End Role="Jobs" EntitySet="Jobs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Jobs_Requirements" Association="Self.FK_Jobs_Requirements">
-      <End Role="Requirements" EntitySet="Requirements" />
       <End Role="Jobs" EntitySet="Jobs" />
     </AssociationSet>
     <AssociationSet Name="FK_Jobs_YearsOfExperience" Association="Self.FK_Jobs_YearsOfExperience">

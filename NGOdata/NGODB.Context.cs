@@ -32,14 +32,14 @@ namespace NGOdata
         public virtual DbSet<JobApplianceStatus> JobApplianceStatus { get; set; }
         public virtual DbSet<JobApply> JobApply { get; set; }
         public virtual DbSet<JobForm> JobForm { get; set; }
-        public virtual DbSet<Jobs> Jobs { get; set; }
         public virtual DbSet<QuestionsChoices> QuestionsChoices { get; set; }
-        public virtual DbSet<Requirements> Requirements { get; set; }
         public virtual DbSet<Segments> Segments { get; set; }
         public virtual DbSet<Skills> Skills { get; set; }
         public virtual DbSet<UserAnswers> UserAnswers { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserSkills> UserSkills { get; set; }
         public virtual DbSet<YearsOfExperience> YearsOfExperience { get; set; }
+        public virtual DbSet<Jobs> Jobs { get; set; }
+        public virtual DbSet<Requirements> Requirements { get; set; }
     }
 }

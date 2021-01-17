@@ -12,7 +12,6 @@ import {
 import { UniversityService } from '../Services/university.service';
 import { LoginService } from '../Services/LoginService/login.service';
 import { Register } from '../Register';
-import * as $ from 'jquery';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -44,19 +43,10 @@ export class SignupComponent implements OnInit {
     );
 
     this.UserForm = this.formbulider.group({
+      FirstName: ['', [Validators.required]],
+      LastName: ['', [Validators.required]],
+      MobileNumber: ['', [Validators.required]],
       UserName: ['', [Validators.required]],
-      PhoneNumber: [
-        '',
-        [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],
-      ],
-      Email: [
-        '',
-        [
-          Validators.required,
-          Validators.email,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-        ],
-      ],
       Password: ['', [Validators.required]],
     });
   }
@@ -102,7 +92,6 @@ export class SignupComponent implements OnInit {
       this.UserForm.reset();
     });
   }
-  x = localStorage.getItem('UserName');
   // onSubmit(form: NgForm) {
   //   if (form.value.UserID == null) {
   //     this.LoginService.postEmployee(form.value).subscribe((data) => {

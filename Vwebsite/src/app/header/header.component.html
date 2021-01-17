@@ -1,10 +1,5 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="!LoginService.IsUserLoggedIn()">
   <mat-toolbar-row>
-    <!--  <span>HOME</span> -->
-    <mat-form-field floatLabel="never">
-      <input matInput placeholder="Search" />
-    </mat-form-field>
     <span class="spacer"></span>
     <a mat-button routerLink="/organizations">
       <mat-icon> business</mat-icon>
@@ -16,9 +11,18 @@
       <div class="outer-div"></div>
       Events
     </a>
+    <a mat-button routerLink="/joblist">
+      <mat-icon> work</mat-icon>
+      <div class="outer-div"></div>
+      Jobs
+    </a>
     <a mat-button routerLink="/signup">
       <div class="outer-div"></div>
       Join Now
+    </a>
+    <a mat-button routerLink="/or-signup">
+      <div class="outer-div"></div>
+      Join Now as Corporates
     </a>
     <a mat-button routerLink="/signin">
       <mat-icon>login</mat-icon>
@@ -27,11 +31,8 @@
     </a>
   </mat-toolbar-row>
 </mat-toolbar>
-<mat-toolbar color="accent">
+<mat-toolbar color="accent" *ngIf="LoginService.IsUserLoggedIn()">
   <mat-toolbar-row>
-    <mat-form-field floatLabel="never">
-      <input matInput placeholder="Search" />
-    </mat-form-field>
     <span class="spacer"></span>
     <a mat-button [routerLink]="'/'">
       <mat-icon>home</mat-icon>
@@ -75,7 +76,7 @@
 
         <button mat-menu-item>Language</button>
         <button mat-menu-item>Settings</button>
-        <button mat-menu-item>Sign Out</button>
+        <button mat-menu-item (click)="LogOut()">Sign Out</button>
       </mat-menu>
       <img
         src="../assets/img/4ae94b54-0c55-493b-abad-23f79f7daae7.jpg"

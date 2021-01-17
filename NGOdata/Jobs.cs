@@ -19,7 +19,7 @@ namespace NGOdata
         {
             this.JobApply = new HashSet<JobApply>();
             this.JobForm = new HashSet<JobForm>();
-            this.Requirements1 = new HashSet<Requirements>();
+            this.Requirements = new HashSet<Requirements>();
         }
     
         public int Id { get; set; }
@@ -28,7 +28,6 @@ namespace NGOdata
         public System.DateTime CreationDate { get; set; }
         public decimal Salary { get; set; }
         public bool DisplaySalary { get; set; }
-        public int RequirementsId { get; set; }
         public int CityId { get; set; }
         public int CountryId { get; set; }
         public int YearsOFExpertiseId { get; set; }
@@ -43,9 +42,8 @@ namespace NGOdata
         public virtual ICollection<JobApply> JobApply { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JobForm> JobForm { get; set; }
-        public virtual Requirements Requirements { get; set; }
         public virtual YearsOfExperience YearsOfExperience { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Requirements> Requirements1 { get; set; }
+        public virtual ICollection<Requirements> Requirements { get; set; }
     }
 }

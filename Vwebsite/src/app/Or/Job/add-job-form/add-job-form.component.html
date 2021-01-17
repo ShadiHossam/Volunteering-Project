@@ -90,17 +90,17 @@
   </div>
 </form> -->
 
-<!-- <h2 class="page-title">Create Survey</h2>
+<h2 class="page-title">Create Survey</h2>
 <mat-card>
   <form [formGroup]="surveyForm" (ngSubmit)="onSubmit()" autocomplete="off">
-    <div class="survey-options">
-      <div formArrayName="surveyQuestions" class="poll-options">
+    <div class="survey-Choicess">
+      <div formArrayName="JobForm" class="poll-Choicess">
         <h3 class="list-title">Add Survey Questions</h3>
 
         <ol class="list-style">
           <li
             *ngFor="
-              let questionCtrl of surveyForm.get('surveyQuestions')['controls'];
+              let questionCtrl of surveyForm.get('JobForm')['controls'];
               let i = index
             "
           >
@@ -108,7 +108,7 @@
               <div>
                 <mat-form-field class="full-width">
                   <input
-                    formControlName="questionHeader"
+                    formControlName="QuestionHeader"
                     maxlength="200"
                     matInput
                     placeholder="Question title"
@@ -120,8 +120,8 @@
                     formControlName="Type"
                     placeholder="Question type"
                     ng-model="myVar"
-                    [(value)]="selectedOption[i]"
-                    (selectionChange)="onSeletType(selectedOption[i], i)"
+                    [(value)]="selectedChoices[i]"
+                    (selectionChange)="onSeletType(selectedChoices[i], i)"
                     [required]="true"
                   >
                     <mat-option
@@ -134,29 +134,31 @@
                 </mat-form-field>
 
                 <div
-                  formGroupName="questionGroup"
-                  [ngSwitch]="selectedOption[i]"
+                  formGroupName="QuestionsChoicesViewModelList"
+                  [ngSwitch]="selectedChoices[i]"
                 >
                   <div *ngSwitchCase="'Single choice'">
                     <div
                       *ngIf="
-                        questionCtrl.controls.questionGroup.controls.options
+                        questionCtrl.controls.QuestionsChoicesViewModelList
+                          .controls.Choicess
                       "
                     >
-                      <ul class="question-type" formArrayName="options">
+                      <ul class="question-type" formArrayName="Choicess">
                         <li
                           *ngFor="
-                            let optionCtrl of questionCtrl.controls
-                              .questionGroup.controls.options.controls;
+                            let ChoicesCtrl of questionCtrl.controls
+                              .QuestionsChoicesViewModelList.controls.Choicess
+                              .controls;
                             let j = index
                           "
                         >
                           <div [formGroupName]="j">
                             <mat-form-field>
                               <input
-                                formControlName="optionText"
+                                formControlName="ChoicesText"
                                 matInput
-                                placeholder="option text"
+                                placeholder="Choices text"
                                 maxlength="100"
                                 [required]="true"
                               />
@@ -164,7 +166,7 @@
 
                             <button
                               *ngIf="j >= 2"
-                              (click)="removeOption(i, j)"
+                              (click)="removeChoices(i, j)"
                               color="warn"
                             >
                               X
@@ -175,17 +177,17 @@
                       <button
                         mat-raised-button
                         type="button"
-                        (click)="addOption(i)"
-                        class="mat-sm-button add-option-btn"
+                        (click)="addChoices(i)"
+                        class="mat-sm-button add-Choices-btn"
                         color="accent"
                       >
-                        Add option
+                        Add Choices
                       </button>
                     </div>
                     <div
                       *ngIf="
-                        questionCtrl.controls.questionGroup.controls
-                          .showRemarksBox
+                        questionCtrl.controls.QuestionsChoicesViewModelList
+                          .controls.showRemarksBox
                       "
                     >
                       <mat-slide-toggle formControlName="showRemarksBox">
@@ -204,23 +206,25 @@
                   <div *ngSwitchCase="'Multi choice'">
                     <div
                       *ngIf="
-                        questionCtrl.controls.questionGroup.controls.options
+                        questionCtrl.controls.QuestionsChoicesViewModelList
+                          .controls.Choicess
                       "
                     >
-                      <ul class="question-type" formArrayName="options">
+                      <ul class="question-type" formArrayName="Choicess">
                         <li
                           *ngFor="
-                            let optionCtrl of questionCtrl.controls
-                              .questionGroup.controls.options.controls;
+                            let ChoicesCtrl of questionCtrl.controls
+                              .QuestionsChoicesViewModelList.controls.Choicess
+                              .controls;
                             let j = index
                           "
                         >
                           <div [formGroupName]="j">
                             <mat-form-field>
                               <input
-                                formControlName="optionText"
+                                formControlName="ChoicesText"
                                 matInput
-                                placeholder="option text"
+                                placeholder="Choices text"
                                 maxlength="100"
                                 [required]="true"
                               />
@@ -229,7 +233,7 @@
                             <button
                               mat-raised-button
                               *ngIf="j >= 2"
-                              (click)="removeOption(i, j)"
+                              (click)="removeChoices(i, j)"
                               color="warn"
                             >
                               X
@@ -240,17 +244,17 @@
                       <button
                         mat-raised-button
                         type="button"
-                        (click)="addOption(i)"
-                        class="mat-sm-button add-option-btn"
+                        (click)="addChoices(i)"
+                        class="mat-sm-button add-Choices-btn"
                         color="accent"
                       >
-                        Add option
+                        Add Choices
                       </button>
                     </div>
                     <div
                       *ngIf="
-                        questionCtrl.controls.questionGroup.controls
-                          .showRemarksBox
+                        questionCtrl.controls.QuestionsChoicesViewModelList
+                          .controls.showRemarksBox
                       "
                     >
                       <mat-slide-toggle formControlName="showRemarksBox">
@@ -313,4 +317,34 @@
       </button>
     </div>
   </form>
-</mat-card> -->
+</mat-card>
+
+<!-- <mat-form-field class="full-width">
+  <mat-select [(ngModel)]="JobForm.Type" (selectionChange)="onChange()">
+    <mat-option
+      *ngFor="let questionTypes of QuestionTypes"
+      [value]="questionTypes"
+    >
+      {{ questionTypes }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<div *ngIf="showText">
+  <label>Question Title</label>
+  <input type="text" [(ngModel)]="JobForm.QuestionHeader" />
+</div>
+<div *ngIf="showMultiChoices">
+  <label>Question Title</label>
+  <input type="text" [(ngModel)]="JobForm.QuestionHeader" />
+  <mat-radio-group>
+    <p>
+      <mat-radio-button>
+        <input type="text" [(ngModel)]="bb" />
+      </mat-radio-button>
+    </p>
+    <mat-radio-button>
+      <input type="text" [(ngModel)]="xx" />
+    </mat-radio-button>
+  </mat-radio-group>
+</div>
+<button (click)="post(JobForm)">submit</button> -->

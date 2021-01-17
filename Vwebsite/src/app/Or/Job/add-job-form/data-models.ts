@@ -6,17 +6,17 @@ export class Question {
   constructor(
     public Type: string,
     public Text: string,
-    public options: Option[],
+    public Choicess: Choices[],
     public Required: boolean,
     public Remarks: string,
     public hasRemarks: boolean
   ) {}
 }
 
-export class Option {
+export class Choices {
   constructor(
-    public OptionText: string,
-    public OptionColor: string,
+    public ChoicesText: string,
+    public ChoicesColor: string,
     public hasRemarks: boolean
   ) {}
 }

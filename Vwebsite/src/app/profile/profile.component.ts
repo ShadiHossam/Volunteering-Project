@@ -10,16 +10,22 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { LoginService } from '../Services/LoginService/login.service';
+import { UserSkillsService } from '../Services/UserSkills/user-skills.service';
+import { SkillsService } from '../Services/Skills/skills.service';
 import { AreaOfExpertiseService } from '../Services/AreaOfExpertiseService/AreaOfExpertise.service';
 import { CityService } from '../Services/CityService/city.service';
 import { CountryService } from '../Services/CountryService/country.service';
 import { Register } from '../Register';
+import { Skills } from '../Skills';
+import { UserSkills } from '../UserSkills';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -30,6 +36,8 @@ export class ProfileComponent implements OnInit {
   AreaOfExpertise: any;
   City: any;
   Country: any;
+  UserSkills: any;
+
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,
@@ -55,6 +63,8 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     public LoginService: LoginService,
+    public SkillsService: SkillsService,
+    public UserSkillsService: UserSkillsService,
     private AreaOfExpertiseService: AreaOfExpertiseService,
     private CityService: CityService,
     private CountryService: CountryService,
@@ -90,9 +100,11 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.LoginService.getUsers().subscribe((data) => {
-      this.UserData = <Register>data;
-    });
+    this.LoginService.getUsers(localStorage.getItem('UserName')).subscribe(
+      (data) => {
+        this.UserData = <Register>data;
+      }
+    );
     this.AreaOfExpertiseService.GetAreaOfExpertiseList().subscribe((res) => {
       this.AreaOfExpertise = res;
     });
@@ -102,7 +114,9 @@ export class ProfileComponent implements OnInit {
     this.CountryService.GetCountryList().subscribe((res) => {
       this.Country = res;
     });
-    // this.LoginService.GetUserList();
+    this.UserSkillsService.GetUserSkillsList().subscribe((res) => {
+      this.UserSkills = res;
+    });
   }
   DeleteUsers() {
     this.LoginService.DeleteUsers();
@@ -114,6 +128,11 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
+  LogOut() {
+    this.LoginService.LogOut();
+    this.router.navigate(['/signin']);
+  }
+
   // showForEdit(emp: Register) {
   //   this.LoginService.SelectedUser = Object.assign({}, emp);
   // }

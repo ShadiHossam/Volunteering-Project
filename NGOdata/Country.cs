@@ -19,8 +19,8 @@ namespace NGOdata
         {
             this.City = new HashSet<City>();
             this.Corporates = new HashSet<Corporates>();
-            this.Jobs = new HashSet<Jobs>();
             this.Users = new HashSet<Users>();
+            this.Jobs = new HashSet<Jobs>();
         }
     
         public int Id { get; set; }
@@ -31,8 +31,8 @@ namespace NGOdata
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Corporates> Corporates { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Jobs> Jobs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Jobs> Jobs { get; set; }
     }
 }

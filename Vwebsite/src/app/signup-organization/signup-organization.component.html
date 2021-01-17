@@ -1,1 +1,93 @@
-<p>signup-organization works!</p>
+<div class="container" style="padding-top: 40px">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card mx-4">
+        <div class="card-body p-4">
+          <form
+            [formGroup]="UserForm"
+            (ngSubmit)="onFormSubmit(UserForm.value)"
+          >
+            <h1 style="text-align: center">Register</h1>
+
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Username"
+                formControlName="UserName"
+              />
+
+              <!-- 
+              [(ngModel)]="UserName1"
+              (change)="CheckUser(UserName1)" -->
+            </div>
+            <!-- <mat-error>{{ errormessage }}</mat-error> -->
+            <mat-error *ngIf="f.UserName.touched && f.UserName.invalid">
+              <mat-error *ngIf="f.UserName.errors.required"
+                >UserName is required.</mat-error
+              >
+              <!-- <mat-error
+                  class="help is-danger"
+                  *ngIf="f.UserName.errors.existingEmail"
+                >
+                  User already exists.
+                </mat-error> -->
+            </mat-error>
+
+            <!-- <div class="input-group mb-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Phone Number"
+                  formControlName="PhoneNumber"
+                />
+              </div>
+              <mat-error *ngIf="f.PhoneNumber.touched && f.PhoneNumber.invalid">
+                <mat-error *ngIf="f.PhoneNumber.errors.required"
+                  >Phone Number is required.</mat-error
+                >
+                <mat-error *ngIf="f.PhoneNumber.errors.pattern"
+                  >Please, Enter valid Phone Number</mat-error
+                >
+              </mat-error>
+              <div class="input-group mb-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Email"
+                  formControlName="Email"
+                  #Email
+                />
+              </div>
+              <mat-error *ngIf="f.Email.touched && f.Email.invalid">
+                <mat-error *ngIf="f.Email.errors.required"
+                  >Email is required.</mat-error
+                >
+                <mat-error *ngIf="f.Email.errors.pattern"
+                  >Please, Enter valid Email</mat-error
+                >
+              </mat-error> -->
+
+            <div class="input-group mb-3">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                formControlName="Password"
+                pPassword
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-block btn-success"
+              [disabled]="!UserForm.valid || errormessage != null"
+            >
+              Sign Up
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

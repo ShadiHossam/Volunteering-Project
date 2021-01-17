@@ -19,7 +19,10 @@ namespace last
             config.Formatters.JsonFormatter.SupportedMediaTypes
             .Add(new MediaTypeHeaderValue("text/html"));
             // Web API routes
-            config.MessageHandlers.Add(new TokenValidationHandler());
+
+
+            // JWT
+          //  config.MessageHandlers.Add(new TokenValidationHandler());
 
             config.MapHttpAttributeRoutes();
             EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");

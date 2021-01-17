@@ -25,8 +25,8 @@ namespace NGOdata
         public virtual Corporates Corporates { get; set; }
         public virtual JobApplianceStatus JobApplianceStatus { get; set; }
         public virtual JobForm JobForm { get; set; }
-        public virtual Jobs Jobs { get; set; }
         public virtual UserAnswers UserAnswers { get; set; }
         public virtual Users Users { get; set; }
+        public virtual Jobs Jobs { get; set; }
     }
 }

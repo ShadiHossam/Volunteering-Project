@@ -76,39 +76,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Jobs">
-      <EntityTypeMapping TypeName="NGODBModel.Jobs">
-        <MappingFragment StoreEntitySet="Jobs">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
-          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
-          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-          <ScalarProperty Name="Salary" ColumnName="Salary" />
-          <ScalarProperty Name="DisplaySalary" ColumnName="DisplaySalary" />
-          <ScalarProperty Name="RequirementsId" ColumnName="RequirementsId" />
-          <ScalarProperty Name="CityId" ColumnName="CityId" />
-          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-          <ScalarProperty Name="YearsOFExpertiseId" ColumnName="YearsOFExpertiseId" />
-          <ScalarProperty Name="CorporateId" ColumnName="CorporateId" />
-          <ScalarProperty Name="AreaOfExpertiseId" ColumnName="AreaOfExpertiseId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="QuestionsChoices">
       <EntityTypeMapping TypeName="NGODBModel.QuestionsChoices">
         <MappingFragment StoreEntitySet="QuestionsChoices">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="QuestionsId" ColumnName="QuestionsId" />
           <ScalarProperty Name="Choices" ColumnName="Choices" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Requirements">
-      <EntityTypeMapping TypeName="NGODBModel.Requirements">
-        <MappingFragment StoreEntitySet="Requirements">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="JobId" ColumnName="JobId" />
-          <ScalarProperty Name="Requirements1" ColumnName="Requirements" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -173,6 +146,32 @@
         <MappingFragment StoreEntitySet="YearsOfExperience">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="YearsOfExperienceThreshold" ColumnName="YearsOfExperienceThreshold" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jobs">
+      <EntityTypeMapping TypeName="NGODBModel.Jobs">
+        <MappingFragment StoreEntitySet="Jobs">
+          <ScalarProperty Name="AreaOfExpertiseId" ColumnName="AreaOfExpertiseId" />
+          <ScalarProperty Name="CorporateId" ColumnName="CorporateId" />
+          <ScalarProperty Name="YearsOFExpertiseId" ColumnName="YearsOFExpertiseId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="DisplaySalary" ColumnName="DisplaySalary" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Requirements">
+      <EntityTypeMapping TypeName="NGODBModel.Requirements">
+        <MappingFragment StoreEntitySet="Requirements">
+          <ScalarProperty Name="Requirements1" ColumnName="Requirements" />
+          <ScalarProperty Name="JobId" ColumnName="JobId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

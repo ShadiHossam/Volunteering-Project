@@ -83,6 +83,55 @@
             (ngSubmit)="onFormSubmit(UserForm.value)"
           >
             <h1 style="text-align: center">Register</h1>
+            <div class="input-group mb-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="FirstName"
+                formControlName="FirstName"
+              />
+            </div>
+            <mat-error *ngIf="f.FirstName.touched && f.FirstName.invalid">
+              <mat-error *ngIf="f.FirstName.errors.required"
+                >First Name is required.</mat-error
+              >
+              <mat-error *ngIf="f.FirstName.errors.pattern"
+                >Please, Enter valid First Name</mat-error
+              >
+            </mat-error>
+
+            <div class="input-group mb-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Last Name"
+                formControlName="LastName"
+              />
+            </div>
+            <mat-error *ngIf="f.LastName.touched && f.LastName.invalid">
+              <mat-error *ngIf="f.LastName.errors.required"
+                >Last Name is required.</mat-error
+              >
+              <mat-error *ngIf="f.LastName.errors.pattern"
+                >Please, Enter valid Last Name</mat-error
+              >
+            </mat-error>
+            <div class="input-group mb-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Mobile Number"
+                formControlName="MobileNumber"
+              />
+            </div>
+            <mat-error *ngIf="f.MobileNumber.touched && f.MobileNumber.invalid">
+              <mat-error *ngIf="f.MobileNumber.errors.required"
+                >Mobile Number is required.</mat-error
+              >
+              <mat-error *ngIf="f.MobileNumber.errors.pattern"
+                >Please, Enter valid Mobile Number</mat-error
+              >
+            </mat-error>
 
             <div class="input-group mb-3">
               <input
@@ -99,30 +148,9 @@
               <mat-error *ngIf="f.UserName.errors.required"
                 >UserName is required.</mat-error
               >
-              <!-- <mat-error
-                class="help is-danger"
-                *ngIf="f.UserName.errors.existingEmail"
-              >
-                User already exists.
-              </mat-error> -->
             </mat-error>
 
-            <!-- <div class="input-group mb-4">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Phone Number"
-                formControlName="PhoneNumber"
-              />
-            </div>
-            <mat-error *ngIf="f.PhoneNumber.touched && f.PhoneNumber.invalid">
-              <mat-error *ngIf="f.PhoneNumber.errors.required"
-                >Phone Number is required.</mat-error
-              >
-              <mat-error *ngIf="f.PhoneNumber.errors.pattern"
-                >Please, Enter valid Phone Number</mat-error
-              >
-            </mat-error>
+            <!--
             <div class="input-group mb-4">
               <input
                 type="text"

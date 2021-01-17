@@ -15,14 +15,16 @@ namespace last.Models
         public string Password { get; set; }
 
         public string Email { get; set; }
-        public string PhoneNumber { get; set; }
+        public string Mobilenumber { get; set; }
         public DateTime Birthdate { get; set; }
+        public string BirthdateSTR { get; set; }
+
         public string Address { get; set; }
         public string HomeNumber { get; set; }
         public string UserImage { get; set; }
         
-        public Nullable<int> CitiesId { get; set; }
-        public Nullable<int> CountriesId { get; set; }
+        public Nullable<int> CityId { get; set; }
+        public Nullable<int> CountryId { get; set; }
 
         public Nullable<int> AreaOfExpertiseId { get; set; }
         public string CityName { get; set; }

@@ -7,9 +7,9 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="AreaOfExpertiseCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="AreaOfExpertiseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Jobs" Relationship="Self.FK_Jobs_AreaOfExpertise" FromRole="AreaOfExpertise" ToRole="Jobs" />
     <NavigationProperty Name="Skills" Relationship="Self.FK_Skills_AreaOfExpertise" FromRole="AreaOfExpertise" ToRole="Skills" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Users_AreaOfExpertise" FromRole="AreaOfExpertise" ToRole="Users" />
+    <NavigationProperty Name="Jobs" Relationship="NGODBModel.FK_Jobs_AreaOfExpertise" FromRole="AreaOfExpertise" ToRole="Jobs" />
   </EntityType>
   <EntityType Name="City">
     <Key>
@@ -20,8 +20,8 @@
     <Property Name="CountryId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Country" Relationship="Self.FK_City_Country" FromRole="City" ToRole="Country" />
     <NavigationProperty Name="Corporates" Relationship="Self.FK_Corporates_City" FromRole="City" ToRole="Corporates" />
-    <NavigationProperty Name="Jobs" Relationship="Self.FK_Jobs_City" FromRole="City" ToRole="Jobs" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Users_City" FromRole="City" ToRole="Users" />
+    <NavigationProperty Name="Jobs" Relationship="NGODBModel.FK_Jobs_City" FromRole="City" ToRole="Jobs" />
   </EntityType>
   <EntityType Name="Corporates">
     <Key>
@@ -43,7 +43,7 @@
     <NavigationProperty Name="Country" Relationship="Self.FK_Corporates_Country" FromRole="Corporates" ToRole="Country" />
     <NavigationProperty Name="Segments" Relationship="Self.FK_Corporates_Segments" FromRole="Corporates" ToRole="Segments" />
     <NavigationProperty Name="JobApply" Relationship="Self.FK_JobApply_Corporates" FromRole="Corporates" ToRole="JobApply" />
-    <NavigationProperty Name="Jobs" Relationship="Self.FK_Jobs_Corporates" FromRole="Corporates" ToRole="Jobs" />
+    <NavigationProperty Name="Jobs" Relationship="NGODBModel.FK_Jobs_Corporates" FromRole="Corporates" ToRole="Jobs" />
   </EntityType>
   <EntityType Name="Country">
     <Key>
@@ -53,8 +53,8 @@
     <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="City" Relationship="Self.FK_City_Country" FromRole="Country" ToRole="City" />
     <NavigationProperty Name="Corporates" Relationship="Self.FK_Corporates_Country" FromRole="Country" ToRole="Corporates" />
-    <NavigationProperty Name="Jobs" Relationship="Self.FK_Jobs_Country" FromRole="Country" ToRole="Jobs" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Users_Country" FromRole="Country" ToRole="Users" />
+    <NavigationProperty Name="Jobs" Relationship="NGODBModel.FK_Jobs_Country" FromRole="Country" ToRole="Jobs" />
   </EntityType>
   <EntityType Name="JobApplianceStatus">
     <Key>
@@ -78,9 +78,9 @@
     <NavigationProperty Name="Corporates" Relationship="Self.FK_JobApply_Corporates" FromRole="JobApply" ToRole="Corporates" />
     <NavigationProperty Name="JobApplianceStatus" Relationship="Self.FK_JobApply_JobApplianceStatus" FromRole="JobApply" ToRole="JobApplianceStatus" />
     <NavigationProperty Name="JobForm" Relationship="Self.FK_JobApply_JobForm" FromRole="JobApply" ToRole="JobForm" />
-    <NavigationProperty Name="Jobs" Relationship="Self.FK_JobApply_Jobs" FromRole="JobApply" ToRole="Jobs" />
     <NavigationProperty Name="UserAnswers" Relationship="Self.FK_JobApply_UserAnswers" FromRole="JobApply" ToRole="UserAnswers" />
     <NavigationProperty Name="Users" Relationship="Self.FK_JobApply_Users" FromRole="JobApply" ToRole="Users" />
+    <NavigationProperty Name="Jobs" Relationship="NGODBModel.FK_JobApply_Jobs" FromRole="JobApply" ToRole="Jobs" />
   </EntityType>
   <EntityType Name="JobForm">
     <Key>
@@ -91,35 +91,9 @@
     <Property Name="QuestionHeader" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="JobApply" Relationship="Self.FK_JobApply_JobForm" FromRole="JobForm" ToRole="JobApply" />
-    <NavigationProperty Name="Jobs" Relationship="Self.FK_JobForm_Jobs" FromRole="JobForm" ToRole="Jobs" />
     <NavigationProperty Name="QuestionsChoices" Relationship="Self.FK_QuestionsChoices_JobForm" FromRole="JobForm" ToRole="QuestionsChoices" />
     <NavigationProperty Name="UserAnswers" Relationship="Self.FK_UserAnswers_JobForm" FromRole="JobForm" ToRole="UserAnswers" />
-  </EntityType>
-  <EntityType Name="Jobs">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="JobTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="JobDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Salary" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="DisplaySalary" Type="Boolean" Nullable="false" />
-    <Property Name="RequirementsId" Type="Int32" Nullable="false" />
-    <Property Name="CityId" Type="Int32" Nullable="false" />
-    <Property Name="CountryId" Type="Int32" Nullable="false" />
-    <Property Name="YearsOFExpertiseId" Type="Int32" Nullable="false" />
-    <Property Name="CorporateId" Type="Int32" Nullable="false" />
-    <Property Name="AreaOfExpertiseId" Type="Int32" />
-    <NavigationProperty Name="AreaOfExpertise" Relationship="Self.FK_Jobs_AreaOfExpertise" FromRole="Jobs" ToRole="AreaOfExpertise" />
-    <NavigationProperty Name="City" Relationship="Self.FK_Jobs_City" FromRole="Jobs" ToRole="City" />
-    <NavigationProperty Name="Corporates" Relationship="Self.FK_Jobs_Corporates" FromRole="Jobs" ToRole="Corporates" />
-    <NavigationProperty Name="Country" Relationship="Self.FK_Jobs_Country" FromRole="Jobs" ToRole="Country" />
-    <NavigationProperty Name="JobApply" Relationship="Self.FK_JobApply_Jobs" FromRole="Jobs" ToRole="JobApply" />
-    <NavigationProperty Name="JobForm" Relationship="Self.FK_JobForm_Jobs" FromRole="Jobs" ToRole="JobForm" />
-    <NavigationProperty Name="Requirements" Relationship="Self.FK_Jobs_Requirements" FromRole="Jobs" ToRole="Requirements" />
-    <NavigationProperty Name="YearsOfExperience" Relationship="Self.FK_Jobs_YearsOfExperience" FromRole="Jobs" ToRole="YearsOfExperience" />
-    <NavigationProperty Name="Requirements1" Relationship="Self.FK_Requirements_Jobs" FromRole="Jobs" ToRole="Requirements" />
+    <NavigationProperty Name="Jobs" Relationship="NGODBModel.FK_JobForm_Jobs" FromRole="JobForm" ToRole="Jobs" />
   </EntityType>
   <EntityType Name="QuestionsChoices">
     <Key>
@@ -129,16 +103,6 @@
     <Property Name="QuestionsId" Type="Int32" Nullable="false" />
     <Property Name="Choices" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="JobForm" Relationship="Self.FK_QuestionsChoices_JobForm" FromRole="QuestionsChoices" ToRole="JobForm" />
-  </EntityType>
-  <EntityType Name="Requirements">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="JobId" Type="Int32" Nullable="false" />
-    <Property Name="Requirements1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Jobs" Relationship="Self.FK_Jobs_Requirements" FromRole="Requirements" ToRole="Jobs" />
-    <NavigationProperty Name="Jobs1" Relationship="Self.FK_Requirements_Jobs" FromRole="Requirements" ToRole="Jobs" />
   </EntityType>
   <EntityType Name="Segments">
     <Key>
@@ -209,20 +173,8 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="YearsOfExperienceThreshold" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Jobs" Relationship="Self.FK_Jobs_YearsOfExperience" FromRole="YearsOfExperience" ToRole="Jobs" />
+    <NavigationProperty Name="Jobs" Relationship="NGODBModel.FK_Jobs_YearsOfExperience" FromRole="YearsOfExperience" ToRole="Jobs" />
   </EntityType>
-  <Association Name="FK_Jobs_AreaOfExpertise">
-    <End Role="AreaOfExpertise" Type="Self.AreaOfExpertise" Multiplicity="0..1" />
-    <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AreaOfExpertise">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Jobs">
-        <PropertyRef Name="AreaOfExpertiseId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Skills_AreaOfExpertise">
     <End Role="AreaOfExpertise" Type="Self.AreaOfExpertise" Multiplicity="1" />
     <End Role="Skills" Type="Self.Skills" Multiplicity="*" />
@@ -267,18 +219,6 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Corporates">
-        <PropertyRef Name="CityId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Jobs_City">
-    <End Role="City" Type="Self.City" Multiplicity="1" />
-    <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="City">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Jobs">
         <PropertyRef Name="CityId" />
       </Dependent>
     </ReferentialConstraint>
@@ -331,30 +271,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Jobs_Corporates">
-    <End Role="Corporates" Type="Self.Corporates" Multiplicity="1" />
-    <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Corporates">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Jobs">
-        <PropertyRef Name="CorporateId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Jobs_Country">
-    <End Role="Country" Type="Self.Country" Multiplicity="1" />
-    <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Country">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Jobs">
-        <PropertyRef Name="CountryId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Users_Country">
     <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
     <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -391,18 +307,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_JobApply_Jobs">
-    <End Role="Jobs" Type="Self.Jobs" Multiplicity="1" />
-    <End Role="JobApply" Type="Self.JobApply" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Jobs">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="JobApply">
-        <PropertyRef Name="JobId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_JobApply_UserAnswers">
     <End Role="UserAnswers" Type="Self.UserAnswers" Multiplicity="1" />
     <End Role="JobApply" Type="Self.JobApply" Multiplicity="*" />
@@ -427,18 +331,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_JobForm_Jobs">
-    <End Role="Jobs" Type="Self.Jobs" Multiplicity="1" />
-    <End Role="JobForm" Type="Self.JobForm" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Jobs">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="JobForm">
-        <PropertyRef Name="JobId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_QuestionsChoices_JobForm">
     <End Role="JobForm" Type="Self.JobForm" Multiplicity="1" />
     <End Role="QuestionsChoices" Type="Self.QuestionsChoices" Multiplicity="*" />
@@ -460,42 +352,6 @@
       </Principal>
       <Dependent Role="UserAnswers">
         <PropertyRef Name="QuestionId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Jobs_Requirements">
-    <End Role="Requirements" Type="Self.Requirements" Multiplicity="1" />
-    <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Requirements">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Jobs">
-        <PropertyRef Name="RequirementsId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Jobs_YearsOfExperience">
-    <End Role="YearsOfExperience" Type="Self.YearsOfExperience" Multiplicity="1" />
-    <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="YearsOfExperience">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Jobs">
-        <PropertyRef Name="YearsOFExpertiseId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Requirements_Jobs">
-    <End Role="Jobs" Type="Self.Jobs" Multiplicity="1" />
-    <End Role="Requirements" Type="Self.Requirements" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Jobs">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Requirements">
-        <PropertyRef Name="JobId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -531,19 +387,13 @@
     <EntitySet Name="JobApplianceStatus" EntityType="Self.JobApplianceStatus" />
     <EntitySet Name="JobApply" EntityType="Self.JobApply" />
     <EntitySet Name="JobForm" EntityType="Self.JobForm" />
-    <EntitySet Name="Jobs" EntityType="Self.Jobs" />
     <EntitySet Name="QuestionsChoices" EntityType="Self.QuestionsChoices" />
-    <EntitySet Name="Requirements" EntityType="Self.Requirements" />
     <EntitySet Name="Segments" EntityType="Self.Segments" />
     <EntitySet Name="Skills" EntityType="Self.Skills" />
     <EntitySet Name="UserAnswers" EntityType="Self.UserAnswers" />
     <EntitySet Name="Users" EntityType="Self.Users" />
     <EntitySet Name="UserSkills" EntityType="Self.UserSkills" />
     <EntitySet Name="YearsOfExperience" EntityType="Self.YearsOfExperience" />
-    <AssociationSet Name="FK_Jobs_AreaOfExpertise" Association="Self.FK_Jobs_AreaOfExpertise">
-      <End Role="AreaOfExpertise" EntitySet="AreaOfExpertise" />
-      <End Role="Jobs" EntitySet="Jobs" />
-    </AssociationSet>
     <AssociationSet Name="FK_Skills_AreaOfExpertise" Association="Self.FK_Skills_AreaOfExpertise">
       <End Role="AreaOfExpertise" EntitySet="AreaOfExpertise" />
       <End Role="Skills" EntitySet="Skills" />
@@ -559,10 +409,6 @@
     <AssociationSet Name="FK_Corporates_City" Association="Self.FK_Corporates_City">
       <End Role="City" EntitySet="City" />
       <End Role="Corporates" EntitySet="Corporates" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Jobs_City" Association="Self.FK_Jobs_City">
-      <End Role="City" EntitySet="City" />
-      <End Role="Jobs" EntitySet="Jobs" />
     </AssociationSet>
     <AssociationSet Name="FK_Users_City" Association="Self.FK_Users_City">
       <End Role="City" EntitySet="City" />
@@ -580,14 +426,6 @@
       <End Role="Corporates" EntitySet="Corporates" />
       <End Role="JobApply" EntitySet="JobApply" />
     </AssociationSet>
-    <AssociationSet Name="FK_Jobs_Corporates" Association="Self.FK_Jobs_Corporates">
-      <End Role="Corporates" EntitySet="Corporates" />
-      <End Role="Jobs" EntitySet="Jobs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Jobs_Country" Association="Self.FK_Jobs_Country">
-      <End Role="Country" EntitySet="Country" />
-      <End Role="Jobs" EntitySet="Jobs" />
-    </AssociationSet>
     <AssociationSet Name="FK_Users_Country" Association="Self.FK_Users_Country">
       <End Role="Country" EntitySet="Country" />
       <End Role="Users" EntitySet="Users" />
@@ -600,10 +438,6 @@
       <End Role="JobForm" EntitySet="JobForm" />
       <End Role="JobApply" EntitySet="JobApply" />
     </AssociationSet>
-    <AssociationSet Name="FK_JobApply_Jobs" Association="Self.FK_JobApply_Jobs">
-      <End Role="Jobs" EntitySet="Jobs" />
-      <End Role="JobApply" EntitySet="JobApply" />
-    </AssociationSet>
     <AssociationSet Name="FK_JobApply_UserAnswers" Association="Self.FK_JobApply_UserAnswers">
       <End Role="UserAnswers" EntitySet="UserAnswers" />
       <End Role="JobApply" EntitySet="JobApply" />
@@ -611,10 +445,6 @@
     <AssociationSet Name="FK_JobApply_Users" Association="Self.FK_JobApply_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="JobApply" EntitySet="JobApply" />
-    </AssociationSet>
-    <AssociationSet Name="FK_JobForm_Jobs" Association="Self.FK_JobForm_Jobs">
-      <End Role="Jobs" EntitySet="Jobs" />
-      <End Role="JobForm" EntitySet="JobForm" />
     </AssociationSet>
     <AssociationSet Name="FK_QuestionsChoices_JobForm" Association="Self.FK_QuestionsChoices_JobForm">
       <End Role="JobForm" EntitySet="JobForm" />
@@ -624,18 +454,6 @@
       <End Role="JobForm" EntitySet="JobForm" />
       <End Role="UserAnswers" EntitySet="UserAnswers" />
     </AssociationSet>
-    <AssociationSet Name="FK_Jobs_Requirements" Association="Self.FK_Jobs_Requirements">
-      <End Role="Requirements" EntitySet="Requirements" />
-      <End Role="Jobs" EntitySet="Jobs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Jobs_YearsOfExperience" Association="Self.FK_Jobs_YearsOfExperience">
-      <End Role="YearsOfExperience" EntitySet="YearsOfExperience" />
-      <End Role="Jobs" EntitySet="Jobs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Requirements_Jobs" Association="Self.FK_Requirements_Jobs">
-      <End Role="Jobs" EntitySet="Jobs" />
-      <End Role="Requirements" EntitySet="Requirements" />
-    </AssociationSet>
     <AssociationSet Name="FK_UserAnswers_Users" Association="Self.FK_UserAnswers_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="UserAnswers" EntitySet="UserAnswers" />
@@ -644,5 +462,168 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="UserSkills" EntitySet="UserSkills" />
     </AssociationSet>
+    <EntitySet Name="Jobs" EntityType="NGODBModel.Jobs" />
+    <AssociationSet Name="FK_Jobs_AreaOfExpertise" Association="NGODBModel.FK_Jobs_AreaOfExpertise">
+      <End Role="AreaOfExpertise" EntitySet="AreaOfExpertise" />
+      <End Role="Jobs" EntitySet="Jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobs_City" Association="NGODBModel.FK_Jobs_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Jobs" EntitySet="Jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobs_Corporates" Association="NGODBModel.FK_Jobs_Corporates">
+      <End Role="Corporates" EntitySet="Corporates" />
+      <End Role="Jobs" EntitySet="Jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobs_Country" Association="NGODBModel.FK_Jobs_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Jobs" EntitySet="Jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobApply_Jobs" Association="NGODBModel.FK_JobApply_Jobs">
+      <End Role="Jobs" EntitySet="Jobs" />
+      <End Role="JobApply" EntitySet="JobApply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobForm_Jobs" Association="NGODBModel.FK_JobForm_Jobs">
+      <End Role="Jobs" EntitySet="Jobs" />
+      <End Role="JobForm" EntitySet="JobForm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobs_YearsOfExperience" Association="NGODBModel.FK_Jobs_YearsOfExperience">
+      <End Role="YearsOfExperience" EntitySet="YearsOfExperience" />
+      <End Role="Jobs" EntitySet="Jobs" />
+    </AssociationSet>
+    <EntitySet Name="Requirements" EntityType="NGODBModel.Requirements" />
+    <AssociationSet Name="FK_Requirements_Jobs" Association="NGODBModel.FK_Requirements_Jobs">
+      <End Role="Jobs" EntitySet="Jobs" />
+      <End Role="Requirements" EntitySet="Requirements" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Jobs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JobDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Salary" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="DisplaySalary" Type="Boolean" Nullable="false" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="YearsOFExpertiseId" Type="Int32" Nullable="false" />
+    <Property Name="CorporateId" Type="Int32" Nullable="false" />
+    <Property Name="AreaOfExpertiseId" Type="Int32" />
+    <NavigationProperty Name="AreaOfExpertise" Relationship="NGODBModel.FK_Jobs_AreaOfExpertise" FromRole="Jobs" ToRole="AreaOfExpertise" />
+    <NavigationProperty Name="City" Relationship="NGODBModel.FK_Jobs_City" FromRole="Jobs" ToRole="City" />
+    <NavigationProperty Name="Corporates" Relationship="NGODBModel.FK_Jobs_Corporates" FromRole="Jobs" ToRole="Corporates" />
+    <NavigationProperty Name="Country" Relationship="NGODBModel.FK_Jobs_Country" FromRole="Jobs" ToRole="Country" />
+    <NavigationProperty Name="JobApply" Relationship="NGODBModel.FK_JobApply_Jobs" FromRole="Jobs" ToRole="JobApply" />
+    <NavigationProperty Name="JobForm" Relationship="NGODBModel.FK_JobForm_Jobs" FromRole="Jobs" ToRole="JobForm" />
+    <NavigationProperty Name="YearsOfExperience" Relationship="NGODBModel.FK_Jobs_YearsOfExperience" FromRole="Jobs" ToRole="YearsOfExperience" />
+    <NavigationProperty Name="Requirements" Relationship="NGODBModel.FK_Requirements_Jobs" FromRole="Jobs" ToRole="Requirements" />
+  </EntityType>
+  <Association Name="FK_Jobs_AreaOfExpertise">
+    <End Type="NGODBModel.AreaOfExpertise" Role="AreaOfExpertise" Multiplicity="0..1" />
+    <End Type="NGODBModel.Jobs" Role="Jobs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AreaOfExpertise">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Jobs">
+        <PropertyRef Name="AreaOfExpertiseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobs_City">
+    <End Type="NGODBModel.City" Role="City" Multiplicity="1" />
+    <End Type="NGODBModel.Jobs" Role="Jobs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Jobs">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobs_Corporates">
+    <End Type="NGODBModel.Corporates" Role="Corporates" Multiplicity="1" />
+    <End Type="NGODBModel.Jobs" Role="Jobs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Corporates">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Jobs">
+        <PropertyRef Name="CorporateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobs_Country">
+    <End Type="NGODBModel.Country" Role="Country" Multiplicity="1" />
+    <End Type="NGODBModel.Jobs" Role="Jobs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Jobs">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobApply_Jobs">
+    <End Type="NGODBModel.Jobs" Role="Jobs" Multiplicity="1" />
+    <End Type="NGODBModel.JobApply" Role="JobApply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jobs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobApply">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobForm_Jobs">
+    <End Type="NGODBModel.Jobs" Role="Jobs" Multiplicity="1" />
+    <End Type="NGODBModel.JobForm" Role="JobForm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jobs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobForm">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobs_YearsOfExperience">
+    <End Type="NGODBModel.YearsOfExperience" Role="YearsOfExperience" Multiplicity="1" />
+    <End Type="NGODBModel.Jobs" Role="Jobs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YearsOfExperience">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Jobs">
+        <PropertyRef Name="YearsOFExpertiseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Requirements">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobId" Type="Int32" Nullable="false" />
+    <Property Name="Requirements1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Jobs" Relationship="NGODBModel.FK_Requirements_Jobs" FromRole="Requirements" ToRole="Jobs" />
+  </EntityType>
+  <Association Name="FK_Requirements_Jobs">
+    <End Type="NGODBModel.Jobs" Role="Jobs" Multiplicity="1" />
+    <End Type="NGODBModel.Requirements" Role="Requirements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jobs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Requirements">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

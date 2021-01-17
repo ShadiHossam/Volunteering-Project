@@ -8,6 +8,7 @@ import { JobForm } from '../../JobForm';
 export class JobFormService {
   token: string;
   header: any;
+  JobForm: JobForm[];
   JobFormUrl: string;
   constructor(private http: HttpClient) {
     this.JobFormUrl = 'http://localhost:49826/Api/JobForm/';

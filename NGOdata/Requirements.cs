@@ -14,18 +14,10 @@ namespace NGOdata
     
     public partial class Requirements
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Requirements()
-        {
-            this.Jobs = new HashSet<Jobs>();
-        }
-    
         public int Id { get; set; }
         public int JobId { get; set; }
         public string Requirements1 { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Jobs> Jobs { get; set; }
-        public virtual Jobs Jobs1 { get; set; }
+        public virtual Jobs Jobs { get; set; }
     }
 }

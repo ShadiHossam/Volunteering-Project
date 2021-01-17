@@ -1,6 +1,5 @@
 export class JobForm {
+  JobId: number;
   QuestionHeader: string;
   Type: string;
-  JobTitle: string;
-  JobId: number;
 }

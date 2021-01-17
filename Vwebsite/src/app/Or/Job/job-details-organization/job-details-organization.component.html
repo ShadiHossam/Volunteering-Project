@@ -2,10 +2,8 @@ JobTitle:<input type="text" [(ngModel)]="Job.JobTitle" /> JobDescription:<input
   type="text"
   [(ngModel)]="Job.JobDescription"
 />
-CreationDate:<input type="text" [(ngModel)]="Job.CreationDate" /> Salary:<input
-  type="text"
-  [(ngModel)]="Job.Salary"
-/>
+CreationDate:<input type="text" [(ngModel)]="Job.CreationDateSTR" />
+Salary:<input type="text" [(ngModel)]="Job.Salary" />
 YearsOfExperienceName:<input
   type="text"
   [(ngModel)]="Job.YearsOFExpertiseName"
@@ -21,10 +19,10 @@ CountryName:<input type="text" [(ngModel)]="Job.CountryName" /> CityName:<input
     type="text"
     [(ngModel)]="Job.AreaOfExpertiseName"
   />
-  RequirementName:<input type="text" [(ngModel)]="Job.RequirementName" />
 </p>
 <a class="btn text-danger" (click)="onDelete(Job.Id)">
   <i class="fa fa-trash-o"></i>
 </a>
 
 <a class="btn text-danger" (click)="Edit(Job.Id, Job)"> Edit</a>
+<a class="btn text-danger" (click)="JobForm()">Add JobForm</a>

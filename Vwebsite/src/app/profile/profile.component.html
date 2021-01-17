@@ -1,31 +1,12 @@
-<!-- <nav>
-    <img
-      src="../assets/img/4ae94b54-0c55-493b-abad-23f79f7daae7.jpg"
-      alt="Avatar"
-      class="avatar"
-    />
-
-    <mat-divider></mat-divider>
-    <div>
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-icon>description</mat-icon>
-              Forms
-            </mat-panel-title>
-            <mat-panel-description> Your Forms </mat-panel-description>
-          </mat-expansion-panel-header>
-
-          <button mat-button>Form 1</button>
-          <div>
-            <a mat-button matTooltip="Add New Form" routerLink="/forms">
-              <mat-icon>add</mat-icon>
-            </a>
-          </div>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </div>
+<section>
+  <nav>
+    <p>
+      <img
+        src="../assets/img/4ae94b54-0c55-493b-abad-23f79f7daae7.jpg"
+        alt="Avatar"
+        class="avatar"
+      />
+    </p>
     <mat-divider></mat-divider>
     <div>
       <mat-accordion>
@@ -149,11 +130,6 @@
       </div>
     </ng-template>
 
-    <button mat-raised-button class="a" routerLink="/members">
-      <mat-icon>view_list</mat-icon>Members
-    </button>
-    <router-outlet></router-outlet>
-
     <mat-divider></mat-divider>
     <div>
       <button mat-raised-button class="a">
@@ -163,93 +139,157 @@
     <mat-divider></mat-divider>
 
     <div>
-      <button mat-raised-button class="a">Log Out</button>
+      <button mat-raised-button class="a" (click)="LogOut()">Log Out</button>
     </div>
-  </nav> -->
-<div class="p-grid p-fluid">
-  <ul class="p-col-12 p-md-4">
-    <div class="p-inputgroup">
-      <span class="p-inputgroup-addon">User Name</span>
-      <input type="text" [(ngModel)]="UserData.UserName" disabled />
-    </div>
-  </ul>
-</div>
-<div class="p-grid p-fluid">
-  <ul class="p-col-12 p-md-4">
-    <div class="p-inputgroup">
-      <span class="p-inputgroup-addon">Password</span>
+  </nav>
+  <article>
+    <mat-tab-group>
+      <mat-tab label="First">
+        <div class="p-grid p-fluid">
+          <ul class="p-col-12 p-md-4">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">First Name</span>
+              <input type="text" [(ngModel)]="UserData.FirstName" />
+            </div>
+          </ul>
+        </div>
+        <div class="p-grid p-fluid">
+          <ul class="p-col-12 p-md-4">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">Last Name</span>
+              <input type="text" [(ngModel)]="UserData.LastName" />
+            </div>
+          </ul>
+        </div>
+        <div class="p-grid p-fluid">
+          <ul class="p-col-12 p-md-4">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">User Name</span>
+              <input type="text" [(ngModel)]="UserData.UserName" disabled />
+            </div>
+          </ul>
+        </div>
+        <div class="p-grid p-fluid">
+          <ul class="p-col-12 p-md-4">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">Address</span>
 
-      <input type="text" [(ngModel)]="UserData.Password" />
-    </div>
-  </ul>
-</div>
-<div class="p-grid p-fluid">
-  <ul class="p-col-12 p-md-4">
-    <div class="p-inputgroup">
-      <span class="p-inputgroup-addon">Email</span>
-      <input type="text" [(ngModel)]="UserData.Email" />
-    </div>
-  </ul>
-</div>
-<div class="p-grid p-fluid">
-  <ul class="p-col-12 p-md-4">
-    <div class="p-inputgroup">
-      <span class="p-inputgroup-addon">Phone Number</span>
-      <input type="text" [(ngModel)]="UserData.PhoneNumber" />
-    </div>
-  </ul>
-</div>
+              <input type="text" [(ngModel)]="UserData.Address" />
+            </div>
+          </ul>
+        </div>
+        <div class="p-grid p-fluid">
+          <ul class="p-col-12 p-md-4">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">Email</span>
+              <input type="text" [(ngModel)]="UserData.Email" />
+            </div>
+          </ul>
+        </div>
+        <div class="p-grid p-fluid">
+          <ul class="p-col-12 p-md-4">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">Mobile Number</span>
+              <input type="text" [(ngModel)]="UserData.Mobilenumber" />
+            </div>
+          </ul>
+        </div>
+        <div class="p-grid p-fluid">
+          <ul class="p-col-12 p-md-4">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">Home Number</span>
+              <input type="text" [(ngModel)]="UserData.HomeNumber" />
+            </div>
+          </ul>
+        </div>
+        <div class="p-grid p-fluid">
+          <ul class="p-col-12 p-md-4">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">Birth Date</span>
+              <input type="text" [(ngModel)]="UserData.BirthdateSTR" />
+            </div>
+          </ul>
+        </div>
 
-<mat-form-field appearance="fill">
-  <mat-label>City</mat-label>
-  <mat-select [(ngModel)]="UserData.CityId">
-    <mat-option *ngFor="let city of City" [value]="city.Id">
-      {{ city.CityName }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>City</mat-label>
+          <mat-select [(ngModel)]="UserData.CityId">
+            <mat-option *ngFor="let city of City" [value]="city.Id">
+              {{ city.CityName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-<mat-form-field appearance="fill">
-  <mat-label>Country</mat-label>
+        <mat-form-field appearance="fill">
+          <mat-label>Country</mat-label>
+          <mat-select [(ngModel)]="UserData.CountryId">
+            <mat-option *ngFor="let country of Country" [value]="country.Id">
+              {{ country.CountryName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button (click)="SaveChanges(UserData)">save</button>
+        <button>cancel</button>
+      </mat-tab>
+      <mat-tab label="Second">
+        <mat-form-field appearance="fill">
+          <mat-label>Area Of Expertise </mat-label>
+          <mat-select [(ngModel)]="UserData.AreaOfExpertiseId">
+            <mat-option
+              *ngFor="let areaOfExpertise of AreaOfExpertise"
+              [value]="areaOfExpertise.Id"
+            >
+              {{ areaOfExpertise.AreaOfExpertiseName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button (click)="SaveChanges(UserData)">save</button>
+        <button>cancel</button>
+      </mat-tab>
+    </mat-tab-group>
 
-  <mat-select [(ngModel)]="UserData.CountryName">
-    <mat-option *ngFor="let Country of Country" [value]="Country.Id">
-      {{ Country.CountryName }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Type Name </mat-label>
-  <mat-select [(ngModel)]="UserData.AreaOfExpertise">
-    <mat-option
-      *ngFor="let areaOfExpertise of AreaOfExpertise"
-      [value]="areaOfExpertise.Id"
-    >
-      {{ areaOfExpertise.AreaOfExpertiseName }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+    <!-- <div class="p-grid p-fluid">
+      <ul class="p-col-12 p-md-4">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">Password</span>
 
-<button (click)="SaveChanges(UserData)">save</button>
-<button>cancel</button>
-<!-- 
-    <div *ngFor="let user of UserData">
-      <p>{{ user.UserName }}</p>
+          <input type="text" [(ngModel)]="UserData.Password" />
+        </div>
+      </ul>
     </div> -->
+
+    <!-- <mat-form-field appearance="fill">
+      <mat-label>User Skills </mat-label>
+      <mat-select [(ngModel)]="UserSkills">
+        <mat-option
+          *ngFor="let userSkills of UserSkills"
+          [value]="userSkills.Id"
+        >
+          {{ userSkills.Name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+  </article>
+</section>
+
+<!-- 
+      <div *ngFor="let user of UserData">
+        <p>{{ user.UserName }}</p>
+      </div> -->
 
 <!-- <button (click)="DeleteUsers()">Delete User</button> -->
 <!-- 
-    <table class="table table-sm table-hover">
-      <tr *ngFor="let User of LoginService.UserList">
-        <td>{{ User.FirstName }} - {{ User.LastName }}</td>
-        <td>{{ User.EmpCode }}</td>
-        <td>
-          <a class="btn" (click)="showForEdit(User)">
-            <i class="fa fa-pencil-square-o"></i>
-          </a>
-          <a class="btn text-danger" (click)="onDelete(User.UserID)">
-            <i class="fa fa-trash-o"></i>
-          </a>
-        </td>
-      </tr>
-    </table> -->
+      <table class="table table-sm table-hover">
+        <tr *ngFor="let User of LoginService.UserList">
+          <td>{{ User.FirstName }} - {{ User.LastName }}</td>
+          <td>{{ User.EmpCode }}</td>
+          <td>
+            <a class="btn" (click)="showForEdit(User)">
+              <i class="fa fa-pencil-square-o"></i>
+            </a>
+            <a class="btn text-danger" (click)="onDelete(User.UserID)">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </td>
+        </tr>
+      </table> -->
