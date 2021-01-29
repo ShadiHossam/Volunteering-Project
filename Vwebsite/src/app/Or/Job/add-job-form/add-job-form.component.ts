@@ -43,23 +43,19 @@ export class AddJobFormComponent implements OnInit {
 
   private initForm() {
     let JobForm = new FormArray([]);
-
     this.surveyForm = new FormGroup({
       JobForm: JobForm,
     });
-
     this.onAddQuestion();
   }
 
   onAddQuestion() {
     console.log(this.surveyForm);
-
     const surveyQuestionItem = new FormGroup({
       QuestionHeader: new FormControl('', Validators.required),
       Type: new FormControl('', Validators.required),
       QuestionsChoicesViewModelList: new FormGroup({}),
     });
-
     (<FormArray>this.surveyForm.get('JobForm')).push(surveyQuestionItem);
   }
 
@@ -83,26 +79,19 @@ export class AddJobFormComponent implements OnInit {
   }
 
   addChoicesControls(Type, index) {
-    let Choicess = new FormArray([]);
-    let showRemarksBox = new FormControl(false);
+    let Choices = new FormArray([]);
 
     this.surveyForm.controls.JobForm['controls'][
       index
-    ].controls.QuestionsChoicesViewModelList.addControl('Choicess', Choicess);
-    this.surveyForm.controls.JobForm['controls'][
-      index
-    ].controls.QuestionsChoicesViewModelList.addControl(
-      'showRemarksBox',
-      showRemarksBox
-    );
+    ].controls.QuestionsChoicesViewModelList.addControl('Choices', Choices);
+    this.surveyForm.controls.JobForm['controls'][index];
 
     this.clearFormArray(
       <FormArray>(
         this.surveyForm.controls.JobForm['controls'][index].controls
-          .QuestionsChoicesViewModelList.controls.Choicess
+          .QuestionsChoicesViewModelList.controls.Choices
       )
     );
-
     this.addChoices(index);
     this.addChoices(index);
   }
@@ -115,66 +104,55 @@ export class AddJobFormComponent implements OnInit {
 
   addChoices(index) {
     const ChoicesGroup = new FormGroup({
-      ChoicesText: new FormControl('', Validators.required),
+      Choices: new FormControl('', Validators.required),
     });
     (<FormArray>(
       this.surveyForm.controls.JobForm['controls'][index].controls
-        .QuestionsChoicesViewModelList.controls.Choicess
+        .QuestionsChoicesViewModelList.controls.Choices
     )).push(ChoicesGroup);
   }
 
   removeChoices(questionIndex, itemIndex) {
     (<FormArray>(
       this.surveyForm.controls.JobForm['controls'][questionIndex].controls
-        .QuestionsChoicesViewModelList.controls.Choicess
+        .QuestionsChoicesViewModelList.controls.Choices
     )).removeAt(itemIndex);
   }
 
   postSurvey() {
+    debugger;
     let formData = this.surveyForm.value;
     console.log(formData);
-    this.JobFormService.PostJobForm(formData).subscribe((x) => {
-      this.Data = x;
-    });
+
     //  let Question: Question[] = [];
     let Questions = [];
 
     let JobForm = formData.JobForm;
-    //  let ChoicesArray = formData.JobForm.QuestionsChoicesViewModelList.Choicess.ChoicesText;
+    //  let ChoicesArray = formData.JobForm.QuestionsChoicesViewModelList.Choices.Choices;
     let survey = new Survey(Questions);
 
     JobForm.forEach((question, index, array) => {
       let questionItem = {
         Type: question.Type,
         Text: question.QuestionHeader,
-        Choicess: [],
+        Choices: [],
         Required: false,
-        Remarks: '',
-        hasRemarks: false,
       };
 
-      if (
-        question.QuestionsChoicesViewModelList.hasOwnProperty('showRemarksBox')
-      ) {
-        questionItem.hasRemarks =
-          question.QuestionsChoicesViewModelList.showRemarksBox;
-      }
-
-      if (question.QuestionsChoicesViewModelList.hasOwnProperty('Choicess')) {
-        question.QuestionsChoicesViewModelList.Choicess.forEach((Choices) => {
+      if (question.QuestionsChoicesViewModelList.hasOwnProperty('Choices')) {
+        question.QuestionsChoicesViewModelList.Choices.forEach((Choices) => {
           let ChoicesItem: Choices = {
-            ChoicesText: Choices.ChoicesText,
-            ChoicesColor: '',
-            hasRemarks: false,
+            Choices: Choices.Choices,
           };
-          questionItem.Choicess.push(ChoicesItem);
+          questionItem.Choices.push(ChoicesItem);
         });
       }
-
       survey.Question.push(questionItem);
     });
+    this.JobFormService.PostJobForm(formData).subscribe((x) => {
+      this.Data = x;
+    });
   }
-  QuestionsChoicesViewModelList;
   onSubmit() {
     this.postSurvey();
   }

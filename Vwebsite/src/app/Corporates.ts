@@ -1,4 +1,4 @@
-export class Corporates {
+export interface Corporates {
   CorporateName: string;
   UserName: string;
   Password: string;

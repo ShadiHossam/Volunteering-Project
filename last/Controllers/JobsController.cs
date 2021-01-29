@@ -14,7 +14,7 @@ using AutoMapper;
 
 
 namespace last.Controllers
-{
+{ 
     public class JobsController : ApiController
     {
         NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();
@@ -36,13 +36,12 @@ namespace last.Controllers
                 JobsViewModel = Mapper.Map<Jobs, JobsViewModel>(item);
 
 
-                JobsViewModel.CityName = item.City.CityName;
-            ///    JobsViewModel.AreaOfExpertiseName = item.AreaOfExpertise.AreaOfExpertiseName;
-                JobsViewModel.CountryName = item.Country.CountryName;
-                JobsViewModel.CorporateName = item.Corporates.CorporateName;
-               // JobsViewModel.RequirementsName = item. Requirements.Requirements;
-                JobsViewModel.YearsOFExpertiseName = item.YearsOfExperience.YearsOfExperienceThreshold;
-                //JobsViewModel.CreationDateSTR = item.CreationDate.Value.ToString("MM/dd/yyyy");
+                JobsViewModel.CityName = item.City?.CityName;
+                JobsViewModel.AreaOfExpertiseName = item.AreaOfExpertise.AreaOfExpertiseName;
+                JobsViewModel.CountryName = item.Country?.CountryName;
+                JobsViewModel.CorporateName = item.Corporates?.CorporateName;
+                JobsViewModel.YearsOFExpertiseName = item.YearsOfExperience?.YearsOfExperienceThreshold;
+                JobsViewModel.CreationDateSTR = item.CreationDate.ToString("MM/dd/yyyy");
 
 
                 JobsViewModelList.Add(JobsViewModel);
@@ -67,19 +66,13 @@ namespace last.Controllers
             Mapper.CreateMap<Jobs, JobsViewModel>(); 
             JobsViewModel = Mapper.Map<Jobs, JobsViewModel>(GetJob);
 
-            JobsViewModel.CityName = GetJob.City.CityName;
-            JobsViewModel.AreaOfExpertiseName = GetJob.AreaOfExpertise.AreaOfExpertiseName;
-            JobsViewModel.CountryName = GetJob.Country.CountryName;
-            JobsViewModel.CorporateName = GetJob.Corporates.CorporateName;
+            JobsViewModel.CityName = GetJob.City?.CityName;
+            JobsViewModel.AreaOfExpertiseName = GetJob.AreaOfExpertise?.AreaOfExpertiseName;
+            JobsViewModel.CountryName = GetJob.Country?.CountryName;
+            JobsViewModel.CorporateName = GetJob.Corporates?.CorporateName;
             //JobsViewModel.RequirementsName = GetJob. Requirements.Requirements;
-            JobsViewModel.YearsOFExpertiseName = GetJob.YearsOfExperience.YearsOfExperienceThreshold;
+            JobsViewModel.YearsOFExpertiseName = GetJob.YearsOfExperience?.YearsOfExperienceThreshold;
             JobsViewModel.CreationDateSTR = GetJob.CreationDate.ToString("MM/dd/yyyy");
-
-
-
-
-
-
             return JobsViewModel;
 
             //Jobs Jobs = db.Jobs.Find(id);
@@ -218,6 +211,37 @@ namespace last.Controllers
 
 
 
+        [Route("Api/Jobs/FilterJob")]
 
+        [HttpGet]
+        [ResponseType(typeof(Jobs))]
+        public List<JobsViewModel> FilterJob(FilterViewModel FilterViewModel)
+        {
+            var JobsList = new List<Jobs>();
+          /////
+            List<JobsViewModel> JobsViewModelList = new List<JobsViewModel>();
+            foreach (var item in JobsList)
+            {
+                JobsViewModel JobsViewModel = new JobsViewModel();
+
+                Mapper.CreateMap<Jobs, JobsViewModel>();
+                JobsViewModel = Mapper.Map<Jobs, JobsViewModel>(item);
+
+
+                JobsViewModel.CityName = item.City?.CityName;
+                JobsViewModel.AreaOfExpertiseName = item.AreaOfExpertise.AreaOfExpertiseName;
+                JobsViewModel.CountryName = item.Country?.CountryName;
+                JobsViewModel.CorporateName = item.Corporates?.CorporateName;
+                JobsViewModel.YearsOFExpertiseName = item.YearsOfExperience?.YearsOfExperienceThreshold;
+                JobsViewModel.CreationDateSTR = item.CreationDate.ToString("MM/dd/yyyy");
+
+
+                JobsViewModelList.Add(JobsViewModel);
+            }
+
+
+            return JobsViewModelList;
+
+        }
     }
 }

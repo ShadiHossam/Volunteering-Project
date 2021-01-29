@@ -1,7 +1,6 @@
-export class UserAnswers {
+export interface UserAnswers {
   UserId: number;
   QuestionId: number;
-  CountryId: number;
   Answer: string;
   UserName: string;
   QuestionName: string;

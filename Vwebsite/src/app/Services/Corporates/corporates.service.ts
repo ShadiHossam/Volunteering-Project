@@ -10,22 +10,28 @@ export class CorporatesService {
   token: string;
   header: any;
   CorporatesUrl: string;
+  x = localStorage.getItem('Corporate');
+
   constructor(private http: HttpClient) {
     this.CorporatesUrl = 'http://localhost:49826/Api/Corporates/';
     const headerSettings: { [name: string]: string | string[] } = {};
     this.header = new HttpHeaders(headerSettings);
   }
+  GetCorporateByUserName(x): Observable<Corporates> {
+    return this.http.get<Corporates>(
+      'http://localhost:49826/Api/GetCorporateByUserName?UserName=' + x
+    );
+  }
 
   GetCorporatesList(): Observable<Corporates[]> {
     return this.http.get<Corporates[]>(this.CorporatesUrl);
   }
-  DeleteCorporates(id: number) {
-    return this.http.delete(this.CorporatesUrl + id);
+  DeleteCorporates() {
+    return this.http.delete(this.CorporatesUrl + this.x);
   }
-  GetCorporates(id: number): Observable<Corporates> {
-    return this.http.get<Corporates>(this.CorporatesUrl + id);
+  GetCorporates(): Observable<Corporates> {
+    return this.http.get<Corporates>(this.CorporatesUrl + this.x);
   }
-
   PostCorporates(emp: Corporates) {
     var body = JSON.stringify(emp);
     const httpOptions = {
@@ -34,15 +40,11 @@ export class CorporatesService {
     return this.http.post<Corporates[]>(this.CorporatesUrl, body, httpOptions);
   }
 
-  PutCorporates(id: number, emp: Corporates) {
+  PutCorporates(emp: Corporates) {
     var body = JSON.stringify(emp);
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
-    return this.http.put<Corporates[]>(
-      this.CorporatesUrl + id,
-      body,
-      httpOptions
-    );
+    return this.http.put<Corporates>(this.CorporatesUrl, body, httpOptions);
   }
 }

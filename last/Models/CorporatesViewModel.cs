@@ -16,7 +16,7 @@ namespace last.Models
 		public string Fax { get; set; }
 		public string Address { get; set; }
 		public string Logo { get; set; }
-		public int CountryId { get; set; }
+		public Nullable<int> CountryId { get; set; }
 		public int SegmentId { get; set; }
 		public int CityId { get; set; }
 		public string CountryName { get; set; }

@@ -35,7 +35,7 @@ import { AddJobFormComponent } from './Or/Job/add-job-form/add-job-form.componen
 const routes: Routes = [
   { path: '', redirectTo: '/organizations', pathMatch: 'full' },
   { path: 'signup', component: SignupComponent },
-  { path: 'organizationsignup', component: SignupOrganizationComponent },
+  { path: 'or-signup', component: SignupOrganizationComponent },
 
   { path: 'joblist', component: JobListComponent },
   {

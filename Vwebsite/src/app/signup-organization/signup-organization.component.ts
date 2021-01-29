@@ -9,7 +9,7 @@ import {
   NgForm,
   AbstractControl,
 } from '@angular/forms';
-import { UniversityService } from '../Services/university.service';
+import { LoginService } from '../Services/LoginService/login.service';
 import { CorporatesService } from '../Services/Corporates/corporates.service';
 import { Corporates } from '../Corporates';
 @Component({
@@ -20,51 +20,64 @@ import { Corporates } from '../Corporates';
 export class SignupOrganizationComponent implements OnInit {
   constructor(
     public CorporatesService: CorporatesService,
+    public LoginService: LoginService,
+
     private formbulider: FormBuilder
   ) {}
-  UserForm: FormGroup = new FormGroup({});
+  CorporateForm: FormGroup = new FormGroup({});
   data = false;
   massage: string;
+  CorporateUserName;
+  CorporateName;
   errormessage: string;
+  ErrorMessage: string;
 
   ngOnInit(): void {
-    this.UserForm = this.formbulider.group({
+    this.CorporateForm = this.formbulider.group({
+      CorporateName: ['', [Validators.required]],
       UserName: ['', [Validators.required]],
+      Phonenumber: ['', [Validators.required]],
       Password: ['', [Validators.required]],
     });
   }
 
   get f() {
-    return this.UserForm.controls;
+    return this.CorporateForm.controls;
   }
 
-  onFormSubmit(user) {
-    this.CreateUser(user);
-    if (this.UserForm.invalid) {
+  onFormSubmit(corporate) {
+    this.CreateCorporate(corporate);
+    if (this.CorporateForm.invalid) {
       return;
     }
   }
-  // CheckUser(username) {
-  //   this.CorporatesService.ValidateUser(username).subscribe((x: any) => {
-  //     if (x.Status == 'Invalid') {
-  //       this.errormessage = x.Message;
-  //     } else {
-  //       this.errormessage = null;
-  //     }
-  //   });
-  // }
-  // usernameValidator(errormessage: AbstractControl): { [key: string]: boolean } {
-  //   // check a property of c, the Control this validator is attached to
-  //   if (errormessage.value === 'user is found please choose another one') {
-  //     // if a bad username is detected, return an error
-  //     return { 'user is found please choose another one': true };
-  //   }
-  //   return null;
-  // }
-  CreateUser(corporates: Corporates) {
+
+  CreateCorporate(corporates: Corporates) {
     this.CorporatesService.PostCorporates(corporates).subscribe(() => {
       this.data = true;
-      this.UserForm.reset();
+      this.CorporateForm.reset();
     });
+  }
+  CheckCorporateByUserName(CorporateUserName) {
+    this.LoginService.ValidCorporateByUserName(CorporateUserName).subscribe(
+      (x: any) => {
+        if (x.Status == 'Invalid') {
+          this.errormessage = x.Message;
+        } else {
+          this.errormessage = null;
+        }
+      }
+    );
+  }
+  CheckCorporateByCorporateName(CorporateName) {
+    this.LoginService.ValidCorporateByCorporateName(CorporateName).subscribe(
+      (y: any) => {
+        if (y.Status == 'Invalid') {
+          this.ErrorMessage = y.Message;
+        } else {
+          this.ErrorMessage = null;
+        }
+      }
+    );
   }
 }

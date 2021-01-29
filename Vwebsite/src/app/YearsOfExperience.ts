@@ -1,3 +1,3 @@
-export class YearsOfExperience {
+export interface YearsOfExperience {
   YearsOfExperienceThreshold: string;
 }

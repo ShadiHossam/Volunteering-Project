@@ -89,12 +89,41 @@
     </div>
   </div>
 </form> -->
+<!-- <mat-form-field class="full-width">
+  <mat-select [(ngModel)]="JobForm.Type" (selectionChange)="onChange()">
+    <mat-option
+      *ngFor="let questionTypes of QuestionTypes"
+      [value]="questionTypes"
+    >
+      {{ questionTypes }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<div *ngIf="showText">
+  <label>Question Title</label>
+  <input type="text" [(ngModel)]="JobForm.QuestionHeader" />
+</div>
+<div *ngIf="showMultiChoices">
+  <label>Question Title</label>
+  <input type="text" [(ngModel)]="JobForm.QuestionHeader" />
+  <mat-radio-group>
+    <p>
+      <mat-radio-button>
+        <input type="text" [(ngModel)]="bb" />
+      </mat-radio-button>
+    </p>
+    <mat-radio-button>
+      <input type="text" [(ngModel)]="xx" />
+    </mat-radio-button>
+  </mat-radio-group>
+</div>
+<button (click)="post(JobForm)">submit</button> -->
 
 <h2 class="page-title">Create Survey</h2>
 <mat-card>
   <form [formGroup]="surveyForm" (ngSubmit)="onSubmit()" autocomplete="off">
-    <div class="survey-Choicess">
-      <div formArrayName="JobForm" class="poll-Choicess">
+    <div class="survey-Choices">
+      <div formArrayName="JobForm" class="poll-Choices">
         <h3 class="list-title">Add Survey Questions</h3>
 
         <ol class="list-style">
@@ -141,14 +170,14 @@
                     <div
                       *ngIf="
                         questionCtrl.controls.QuestionsChoicesViewModelList
-                          .controls.Choicess
+                          .controls.Choices
                       "
                     >
-                      <ul class="question-type" formArrayName="Choicess">
+                      <ul class="question-type" formArrayName="Choices">
                         <li
                           *ngFor="
                             let ChoicesCtrl of questionCtrl.controls
-                              .QuestionsChoicesViewModelList.controls.Choicess
+                              .QuestionsChoicesViewModelList.controls.Choices
                               .controls;
                             let j = index
                           "
@@ -156,7 +185,7 @@
                           <div [formGroupName]="j">
                             <mat-form-field>
                               <input
-                                formControlName="ChoicesText"
+                                formControlName="Choices"
                                 matInput
                                 placeholder="Choices text"
                                 maxlength="100"
@@ -207,14 +236,14 @@
                     <div
                       *ngIf="
                         questionCtrl.controls.QuestionsChoicesViewModelList
-                          .controls.Choicess
+                          .controls.Choices
                       "
                     >
-                      <ul class="question-type" formArrayName="Choicess">
+                      <ul class="question-type" formArrayName="Choices">
                         <li
                           *ngFor="
                             let ChoicesCtrl of questionCtrl.controls
-                              .QuestionsChoicesViewModelList.controls.Choicess
+                              .QuestionsChoicesViewModelList.controls.Choices
                               .controls;
                             let j = index
                           "
@@ -222,7 +251,7 @@
                           <div [formGroupName]="j">
                             <mat-form-field>
                               <input
-                                formControlName="ChoicesText"
+                                formControlName="Choices"
                                 matInput
                                 placeholder="Choices text"
                                 maxlength="100"
@@ -318,33 +347,3 @@
     </div>
   </form>
 </mat-card>
-
-<!-- <mat-form-field class="full-width">
-  <mat-select [(ngModel)]="JobForm.Type" (selectionChange)="onChange()">
-    <mat-option
-      *ngFor="let questionTypes of QuestionTypes"
-      [value]="questionTypes"
-    >
-      {{ questionTypes }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-<div *ngIf="showText">
-  <label>Question Title</label>
-  <input type="text" [(ngModel)]="JobForm.QuestionHeader" />
-</div>
-<div *ngIf="showMultiChoices">
-  <label>Question Title</label>
-  <input type="text" [(ngModel)]="JobForm.QuestionHeader" />
-  <mat-radio-group>
-    <p>
-      <mat-radio-button>
-        <input type="text" [(ngModel)]="bb" />
-      </mat-radio-button>
-    </p>
-    <mat-radio-button>
-      <input type="text" [(ngModel)]="xx" />
-    </mat-radio-button>
-  </mat-radio-group>
-</div>
-<button (click)="post(JobForm)">submit</button> -->

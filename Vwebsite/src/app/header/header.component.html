@@ -1,4 +1,7 @@
-<mat-toolbar color="primary" *ngIf="!LoginService.IsUserLoggedIn()">
+<mat-toolbar
+  color="primary"
+  *ngIf="!LoginService.IsUserLoggedIn() && !LoginService.IsCorporateLoggedIn()"
+>
   <mat-toolbar-row>
     <span class="spacer"></span>
     <a mat-button routerLink="/organizations">
@@ -31,7 +34,10 @@
     </a>
   </mat-toolbar-row>
 </mat-toolbar>
-<mat-toolbar color="accent" *ngIf="LoginService.IsUserLoggedIn()">
+<mat-toolbar
+  color="accent"
+  *ngIf="LoginService.IsUserLoggedIn() || LoginService.IsCorporateLoggedIn()"
+>
   <mat-toolbar-row>
     <span class="spacer"></span>
     <a mat-button [routerLink]="'/'">

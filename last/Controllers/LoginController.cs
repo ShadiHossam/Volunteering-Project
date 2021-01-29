@@ -14,6 +14,7 @@ using NGOdata;
 using AutoMapper;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Mail;
 
 namespace last.Controllers
 {
@@ -121,10 +122,107 @@ namespace last.Controllers
 
             }
 
+        [Route("Api/Login/CorporateLogin")]
+        [HttpPost]
+        public Response CorporateLogin(last.Models.login login)
+        {
+            var log = db.Corporates.Where(x => x.UserName.Equals(login.UserName) && x.Password.Equals(login.Password)).FirstOrDefault();
+            if (log == null)
+            {
+
+                return new Response { Status = "Invalid", Message = "Invalid User or passwor." };
+
+            }
+            else
+            {
+                var session = HttpContext.Current.Session;
+                if (session != null)
+                {
+                    if (session["UserName"] == null)
+                    {
+                        session["UserName"] = login.UserName;
+                    }
+                }
+                var x = session["UserName"].ToString();
+                return new Response { Status = "Success", Message = "Login Successfully" };
+            }
+
+
+
+            //public IHttpActionResult Authenticate([FromBody] last.Models.login login)
+            //{
+            //    var loginResponse = new LoginResponse { };
+            //    login loginrequest = new login { };
+            //    loginrequest.UserName = login.UserName.ToLower();
+            //    loginrequest.Password = login.Password;
+
+            //    IHttpActionResult response;
+            //    //HttpResponseMessage responseMsg = new HttpResponseMessage();
+            //    bool isUserNamePasswordValid = false;
+
+            //if (login != null)
+            //{
+            //    var UserName = db.Users.Where(x => x.UserName == loginrequest.UserName).FirstOrDefault();
+            //    if (UserName != null)
+            //    {
+            //         isUserNamePasswordValid = UserName.Password == loginrequest.Password ? true : false;
+            //    }
+            //}
+            //// if credentials are valid
+            //if (isUserNamePasswordValid)
+            //    {
+            //        string token = createToken(loginrequest.UserName);
+            //        //return the token
+            //        return Ok<string>(token);
+            //    }
+            //    else
+            //    {
+            //        // if credentials are not valid send unauthorized status code in response
+            //        loginResponse.responseMsg.StatusCode = HttpStatusCode.Unauthorized;
+            //        response = ResponseMessage(loginResponse.responseMsg);
+            //        return response;
+            //    }
+            //}
+
+
+            //private string createToken(string username)
+            //{
+            //    //Set issued at date
+            //    DateTime issuedAt = DateTime.UtcNow;
+            //    //set the time when it expires
+            //    DateTime expires = DateTime.UtcNow.AddMinutes(10);
+
+            //    //http://stackoverflow.com/questions/18223868/how-to-encrypt-jwt-security-token
+            //    var tokenHandler = new JwtSecurityTokenHandler();
+
+            //    //create a identity and add claims to the user which we want to log in
+            //    ClaimsIdentity claimsIdentity = new ClaimsIdentity(new[]
+            //    {
+            //            new Claim(ClaimTypes.Name, username)
+            //        });
+
+            //    const string sec = "401b09eab3c013d4ca54922bb802bec8fd5318192b0a75f201d8b3727429090fb337591abd3e44453b954555b7a0812e1081c39b740293f765eae731f5a65ed1";
+            //    var now = DateTime.UtcNow;
+            //    var securityKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.Default.GetBytes(sec));
+            //    var signingCredentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(securityKey, Microsoft.IdentityModel.Tokens.SecurityAlgorithms.HmacSha256Signature);
+
+
+            //    //create the jwt
+            //    var token =
+            //        (JwtSecurityToken)
+            //            tokenHandler.CreateJwtSecurityToken(issuer: "http://localhost:50191", audience: "http://localhost:4200",
+            //                subject: claimsIdentity, notBefore: issuedAt, expires: expires, signingCredentials: signingCredentials);
+            //    var tokenString = tokenHandler.WriteToken(token);
+
+            //    return tokenString;
+
+
+        }
 
         //For new user Registration  
         [Route("Api/Login/createcontact")]
         [HttpPost]
+
         public object createcontact(UserViewModel userViewModel)
         {
             try
@@ -164,27 +262,51 @@ namespace last.Controllers
        
         [Route("api/Login/Validuser")]
         [HttpGet]
-
-      ///  public string Validuser(string UserName)
       public Response Validuser(string UserName)
-     //public Boolean Validuser(string UserName)
 
         {
             var User = db.Users.Where(w => w.UserName == UserName).FirstOrDefault();
 
             if (User==null)
-                  // return "user is valid";
                 return new Response { Status = "valid", Message = " user is valid" };
-            // return true;
 
             else
-              //return false;
-
-           //return "user is found please choose another one";
+             
         return new Response { Status = "Invalid", Message = "user is found please choose another one" };
 
 
         }
+        [Route("api/Login/ValidCorporateByUserName")]
+        [HttpGet]
+        public Response ValidCorporateByUserName(string UserName)
+        {
+            var User = db.Corporates.Where(w => w.UserName == UserName).FirstOrDefault();
+
+            if (User == null)
+                return new Response { Status = "valid", Message = " user is valid" };
+
+            else
+                
+                return new Response { Status = "Invalid", Message = "UserName is found please choose another one" };
+
+
+        }
+        [Route("api/Login/ValidCorporateByCorporateName")]
+        [HttpGet]
+        public Response ValidCorporateByCorporateName(string CorporateName)
+        {
+            var User = db.Corporates.Where(w => w.CorporateName == CorporateName).FirstOrDefault();
+
+            if (User == null)
+                return new Response { Status = "valid", Message = " user is valid" };
+
+            else
+
+                return new Response { Status = "Invalid", Message = "CorporateName is found please choose another one" };
+
+
+        }
+
         //[Route("Api/Login/GetUser")]
 
         //[HttpGet]
@@ -224,27 +346,22 @@ namespace last.Controllers
             User = Mapper.Map<Users, UserViewModel>(GetUser);
 
             
-            User.AreaOfExpertiseName = GetUser.AreaOfExpertise.AreaOfExpertiseName;
-            User.CountryName = GetUser.Country.CountryName;
-            User.CityName = GetUser.City.CityName;
+            User.AreaOfExpertiseName = GetUser.AreaOfExpertise?.AreaOfExpertiseName;
+            User.CountryName = GetUser.Country?.CountryName;
+            User.CityName = GetUser.City?.CityName;
             User.BirthdateSTR = GetUser.Birthdate.Value.ToString("MM/dd/yyyy");
 
 
             return User;
         }
         [Route("Api/Login/GetJobListByUserName")]
-
         [HttpGet]
         public IEnumerable<JobsViewModel> GetJobListByUserName(string UserName)
         {            
             List<JobsViewModel> JobsViewModelList = new List<JobsViewModel>();
-            
             List<Jobs> JobsList = new List<Jobs>();
             NGOdata.Users GetUser;
-
             GetUser = db.Users.Where(x => x.UserName == UserName).FirstOrDefault();
-
-
             if (GetUser == null || GetUser.AreaOfExpertiseId == null)
             {
                 JobsList = db.Jobs.Take(2).ToList();
@@ -258,19 +375,14 @@ namespace last.Controllers
                 // JobsList = db.Jobs.Where(w => w.JobTypeId == JobTypeId).OrderByDescending(o => o.Language).Take(20).ToList();
                 //return JobsList1;
             }
-
             foreach (var item in JobsList)
             {
                 JobsViewModel JobsViewModel = new JobsViewModel();
-
                 JobsViewModel.Id = item.Id;
-
                 JobsViewModel.JobTitle = item.JobTitle;
                 JobsViewModel.JobDescription = item.JobDescription;
-
                 JobsViewModelList.Add(JobsViewModel);
             }
-
             return JobsViewModelList;
         }
         //[Route("Api/Login/GetEventListByUserName")]
@@ -329,8 +441,8 @@ namespace last.Controllers
                 userViewModel = Mapper.Map<Users, UserViewModel>(item);
 
 
-                userViewModel.CityName = item.City.CityName;
-                userViewModel.AreaOfExpertiseName = item.AreaOfExpertise.AreaOfExpertiseName;
+                userViewModel.CityName = item.City?.CityName;
+                userViewModel.AreaOfExpertiseName = item.AreaOfExpertise?.AreaOfExpertiseName;
                 userViewModelViewModelList.Add(userViewModel);
 
                 }
@@ -378,8 +490,37 @@ namespace last.Controllers
 
             return Ok(UserName);
         }
+        [Route("Api/Login/SendEmail")]
+        [HttpGet]
+        public Response SendEmail(string EmailBody)
 
+        {
+            try
+            {
 
+                MailMessage mailMessage = new MailMessage("chadihossam1@gmail.com", "chadihossam1@gmail.com");
+                mailMessage.Subject = "Exception";
+                mailMessage.Body = EmailBody;
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                smtpClient.Credentials = new System.Net.NetworkCredential()
+                {
+                    UserName = "my email",
+                    Password = "my password"
+
+                };
+                smtpClient.EnableSsl = true;
+
+                smtpClient.Send(mailMessage);
+                return new Response { Status = "valid", Message = " Mail delivered successfully" };
+
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                { Status = "Error", Message = "Message could not be sent.\nThe following error was returned" + ex.Message };
+            }
+
+        }
 
 
 

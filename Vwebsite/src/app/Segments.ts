@@ -1,3 +1,3 @@
-export class Segments {
+export interface Segments {
   SegmentsName: string;
 }

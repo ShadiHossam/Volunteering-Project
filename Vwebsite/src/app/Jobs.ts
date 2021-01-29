@@ -1,4 +1,4 @@
-export class Jobs {
+export interface Jobs {
   Id: number;
   JobTitle: string;
   CreationDate: Date;

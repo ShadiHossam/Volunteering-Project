@@ -1,3 +1,3 @@
-export class JobApplianceStatus {
+export interface JobApplianceStatus {
   StatusName: string;
 }

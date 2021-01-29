@@ -1,4 +1,4 @@
-export class AreaOfExpertise {
+export interface AreaOfExpertise {
   AreaOfExpertiseName: string;
   AreaOfExpertiseCode: string;
 }

@@ -1,4 +1,4 @@
-export class Requirements {
+export interface Requirements {
   JobTitle: string;
   Requirements: string;
   JobId: number;

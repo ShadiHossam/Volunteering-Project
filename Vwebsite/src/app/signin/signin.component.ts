@@ -16,8 +16,9 @@ import { LoginModel } from '../LoginModel';
 })
 export class SigninComponent implements OnInit {
   model: any = {};
-
   errorMessage: string;
+  CorporateModel: any = {};
+  ErrorMessage: string;
 
   // loginForm: FormGroup;
   // loginmodel: LoginModel = new LoginModel();
@@ -38,13 +39,13 @@ export class SigninComponent implements OnInit {
   // }
   // ErrorMessage;
 
-  login() {
+  Login() {
     this.LoginService.Login(this.model).subscribe(
       (data) => {
         if (data.Status == 'Success') {
           this.router.navigate(['/profile']);
           localStorage.setItem('UserName', this.model.UserName);
-          sessionStorage.setItem('UserName', this.model.UserName);
+          //  sessionStorage.setItem('UserName', this.model.UserName);
         } else {
           this.errorMessage = data.Message;
         }
@@ -69,5 +70,21 @@ export class SigninComponent implements OnInit {
     //     console.log(this.ErrorMessage);
     //   }
     // });
+  }
+  CorporateLogin() {
+    this.LoginService.CorporateLogin(this.CorporateModel).subscribe(
+      (data) => {
+        if (data.Status == 'Success') {
+          this.router.navigate(['/or-profile']);
+          localStorage.setItem('Corporate', this.CorporateModel.UserName);
+          //  sessionStorage.setItem('UserName', this.model.UserName);
+        } else {
+          this.ErrorMessage = data.Message;
+        }
+      },
+      (error) => {
+        this.ErrorMessage = error.message;
+      }
+    );
   }
 }

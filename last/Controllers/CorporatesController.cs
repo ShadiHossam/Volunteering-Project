@@ -22,6 +22,7 @@ namespace last.Controllers
 
         public List<CorporatesViewModel> GetCoroprates()
         {
+
             var CorporatesList = db.Corporates.ToList();
             List<CorporatesViewModel>CorporatesViewModelList = new List<CorporatesViewModel>();
             foreach (var item in CorporatesList)
@@ -29,12 +30,12 @@ namespace last.Controllers
                 CorporatesViewModel CorporatesViewModel = new CorporatesViewModel();
 
                 Mapper.CreateMap<Corporates, CorporatesViewModel>();
-               CorporatesViewModel = Mapper.Map<Corporates, CorporatesViewModel>(item);
+                CorporatesViewModel = Mapper.Map<Corporates, CorporatesViewModel>(item);
 
 
-               CorporatesViewModel.CityName = item.City.CityName;
-               CorporatesViewModel.CountryName = item.Country.CountryName;
-               CorporatesViewModel.SegmentName = item.Segments.SegmentsName;
+               CorporatesViewModel.CityName = item.City?.CityName;
+               CorporatesViewModel.CountryName = item.Country?.CountryName;
+               CorporatesViewModel.SegmentName = item.Segments?.SegmentsName;
 
 
                CorporatesViewModelList.Add(CorporatesViewModel);
@@ -43,8 +44,33 @@ namespace last.Controllers
 
             return CorporatesViewModelList;
         }
-            // GET: api/Coroprates/5
-            [ResponseType(typeof(Corporates))]
+        [Route("Api/GetCorporateByUserName")]
+
+        [HttpGet]
+        public CorporatesViewModel GetUserByCorporateName(string UserName)
+        {
+            CorporatesViewModel Corporate = new CorporatesViewModel();
+
+            NGOdata.Corporates GetCorporate;
+
+            GetCorporate = db.Corporates.Where(x => x.UserName == UserName).FirstOrDefault();
+
+
+
+            Mapper.CreateMap<Corporates, CorporatesViewModel>();
+            Corporate = Mapper.Map<Corporates, CorporatesViewModel>(GetCorporate);
+
+
+            Corporate.CountryName = GetCorporate.Country?.CountryName;
+            Corporate.SegmentName = GetCorporate.Segments?.SegmentsName;
+            Corporate.CityName = GetCorporate.City?.CityName;
+
+
+
+            return Corporate;
+        }
+        // GET: api/Coroprates/5
+        [ResponseType(typeof(Corporates))]
         public CorporatesViewModel GetCoroprate(int id)
         {
                 CorporatesViewModel CorporatesViewModel = new CorporatesViewModel();
@@ -56,8 +82,8 @@ namespace last.Controllers
                CorporatesViewModel = Mapper.Map<Corporates, CorporatesViewModel>(GetCorporates);
 
                CorporatesViewModel.CityName = GetCorporates.City.CityName;
-               CorporatesViewModel.CountryName = GetCorporates.Country.CountryName;
-               CorporatesViewModel.SegmentName = GetCorporates.Segments.SegmentsName;
+               CorporatesViewModel.CountryName = GetCorporates.Country?.CountryName;
+               CorporatesViewModel.SegmentName = GetCorporates.Segments?.SegmentsName;
 
             return CorporatesViewModel;
             }

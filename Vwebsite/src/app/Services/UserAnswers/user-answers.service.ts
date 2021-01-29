@@ -25,7 +25,7 @@ export class UserAnswersService {
     return this.http.get<UserAnswers>(this.UserAnswersUrl + id);
   }
 
-  PostUserAnswers(emp: UserAnswers) {
+  PostUserAnswers(emp) {
     var body = JSON.stringify(emp);
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

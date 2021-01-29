@@ -1,15 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
-import {BidiModule} from '@angular/cdk/bidi';
-import {LayoutModule} from '@angular/cdk/layout';
-import {ObserversModule} from '@angular/cdk/observers';
-import {OverlayModule} from '@angular/cdk/overlay';
-import {PlatformModule} from '@angular/cdk/platform';
-import {TextFieldModule} from '@angular/cdk/text-field';
-
-
+import { BidiModule } from '@angular/cdk/bidi';
+import { LayoutModule } from '@angular/cdk/layout';
+import { ObserversModule } from '@angular/cdk/observers';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { PlatformModule } from '@angular/cdk/platform';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 import { A11yModule } from '@angular/cdk/a11y';
 import { ClipboardModule } from '@angular/cdk/clipboard';
@@ -53,6 +50,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -63,9 +61,16 @@ import {
   TableModule,
 } from 'angular-bootstrap-md';
 
-const material = [ 
-    
-  CommonModule,TextFieldModule,PlatformModule,OverlayModule,ObserversModule,LayoutModule,BidiModule,
+const material = [
+  CommonModule,
+  TextFieldModule,
+  PlatformModule,
+  OverlayModule,
+  ObserversModule,
+  LayoutModule,
+  BidiModule,
+  FormsModule,
+  ReactiveFormsModule,
   A11yModule,
   ClipboardModule,
   CdkStepperModule,

@@ -100,11 +100,11 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.LoginService.getUsers(localStorage.getItem('UserName')).subscribe(
-      (data) => {
-        this.UserData = <Register>data;
-      }
-    );
+    this.LoginService.GetUserByUserName(
+      localStorage.getItem('UserName')
+    ).subscribe((data) => {
+      this.UserData = <Register>data;
+    });
     this.AreaOfExpertiseService.GetAreaOfExpertiseList().subscribe((res) => {
       this.AreaOfExpertise = res;
     });

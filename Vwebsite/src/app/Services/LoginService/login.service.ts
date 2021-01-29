@@ -27,6 +27,11 @@ export class LoginService {
       headers: this.header,
     });
   }
+  CorporateLogin(model: any) {
+    return this.http.post<any>(this.Url + 'CorporateLogin', model, {
+      headers: this.header,
+    });
+  }
   //   SelectedUser: Register;
   //   UserList: Register[];
 
@@ -60,12 +65,18 @@ export class LoginService {
     // return !(user === null);
     return !!localStorage.getItem('UserName');
   }
+  IsCorporateLoggedIn() {
+    //JWT
+    // let user = localStorage.getItem('token');
+    // return !(user === null);
+    return !!localStorage.getItem('Corporate');
+  }
   LogOut() {
     //JWT
     // sessionStorage.removeItem('token');
     // localStorage.removeItem('token');
-    sessionStorage.removeItem('UserName');
-    localStorage.removeItem('UserName');
+    sessionStorage.removeItem('UserName' + 'Corporate');
+    localStorage.removeItem('UserName' + 'Corporate');
     sessionStorage.clear();
     localStorage.clear();
   }
@@ -91,7 +102,7 @@ export class LoginService {
     );
   }
 
-  getUsers(x): Observable<Register> {
+  GetUserByUserName(x): Observable<Register> {
     return this.http.get<Register>(
       this.Url + 'GetUserByUserName?UserName=' + x
     );
@@ -100,6 +111,22 @@ export class LoginService {
     return this.http.get(this.Url + 'Validuser?UserName=' + UserName, {
       headers: this.header,
     });
+  }
+  ValidCorporateByUserName(UserName) {
+    return this.http.get(
+      this.Url + 'ValidCorporateByUserName?UserName=' + UserName,
+      {
+        headers: this.header,
+      }
+    );
+  }
+  ValidCorporateByCorporateName(CorporateName) {
+    return this.http.get(
+      this.Url + 'ValidCorporateByCorporateName?CorporateName=' + CorporateName,
+      {
+        headers: this.header,
+      }
+    );
   }
 
   DeleteUsers(): Observable<Register> {

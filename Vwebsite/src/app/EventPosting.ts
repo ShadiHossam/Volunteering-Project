@@ -1,4 +1,4 @@
-export class EventPosting {
+export interface EventPosting {
   EventDescription: string;
   EventHeadline: string;
   EventName: string;

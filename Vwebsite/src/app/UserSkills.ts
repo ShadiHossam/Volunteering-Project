@@ -1,4 +1,4 @@
-export class UserSkills {
+export interface UserSkills {
   UserId: number;
   Name: string;
   UserName: string;

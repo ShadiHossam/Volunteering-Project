@@ -44,20 +44,14 @@ namespace last.Controllers
         // GET: api/JobForm/5
         [ResponseType(typeof(JobFormViewModel))]
         public List<JobFormViewModel> GetJobForm(int id)
-
         {
-
-            //return JobFormViewModel;
-
             var GetJobFormList = db.JobForm.Where(w=> w.JobId == id).ToList();
             List<JobFormViewModel> JobFormViewModelList = new List<JobFormViewModel>();
             foreach (var item in GetJobFormList)
             {
                 JobFormViewModel JobFormViewModel = new JobFormViewModel();
-
                 Mapper.CreateMap<JobForm, JobFormViewModel>();
                 JobFormViewModel = Mapper.Map<JobForm, JobFormViewModel>(item);
-
                 var QuestionChoices = db.QuestionsChoices.Where(w => w.QuestionsId == item.Id).ToList();
 
                 if (QuestionChoices !=null)
@@ -70,24 +64,15 @@ namespace last.Controllers
                         QuestionsChoicesViewModel = Mapper.Map<QuestionsChoices, QuestionsChoicesViewModel>(item1);
                         JobFormViewModel.QuestionsChoicesViewModelList.Add(QuestionsChoicesViewModel);
 
-
                     }
-
                 }
                 else
                 {
                     JobFormViewModel.QuestionsChoicesViewModelList = new List<QuestionsChoicesViewModel>();
                 }
-
-
-                
-
-
-
                 JobFormViewModelList.Add(JobFormViewModel);
+
             }
-
-
             return JobFormViewModelList;
         }
         // PUT: api/JobForm/5
@@ -130,20 +115,40 @@ namespace last.Controllers
 
         // POST: api/JobForm
         [ResponseType(typeof(JobFormViewModel))]
-        public IHttpActionResult PostJobFormViewModel(JobFormViewModel jobFormViewModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            JobForm JobForm = new JobForm();
-            Mapper.CreateMap<JobFormViewModel, JobForm>();
-            JobForm = Mapper.Map<JobFormViewModel, JobForm>(jobFormViewModel);
-            db.JobForm.Add(JobForm);
-            db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = jobFormViewModel.Id }, jobFormViewModel);
+        public IHttpActionResult PostJobFormViewModel(JobFormViewModel JobFormViewModel)
+        {
+            
+                JobForm JobForm = new JobForm();
+                Mapper.CreateMap<JobFormViewModel, JobForm>();
+                JobForm = Mapper.Map<JobFormViewModel, JobForm>(JobFormViewModel);
+
+                db.JobForm.Add(JobForm);
+                db.SaveChanges();
+
+
+            return CreatedAtRoute("DefaultApi", new { id = JobFormViewModel.Id }, JobFormViewModel);
+
+
         }
+
+        //public List<JobForm> PostJobFormViewModel(JobFormViewModel JobFormViewModel)
+        //{
+
+        //    var JobForm = new List<JobForm>();
+        //    foreach (var item in JobForm)
+        //    {
+        //        var JobForm1 = new JobForm();
+
+        //        Mapper.CreateMap<JobFormViewModel, JobForm>();
+        //        JobForm1 = Mapper.Map<JobFormViewModel, JobForm>(item);
+
+        //        db.JobForm.Add(JobForm1);
+        //        db.SaveChanges();
+        //    }
+
+        //    return JobForm;
+        //}
 
         // DELETE: api/JobForm/5
         [ResponseType(typeof(JobFormViewModel))]

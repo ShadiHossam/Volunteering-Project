@@ -280,6 +280,7 @@
     <Compile Include="Models\CorporatesViewModel.cs" />
     <Compile Include="Models\CountryViewModel.cs" />
     <Compile Include="Models\EventPostingViewModel.cs" />
+    <Compile Include="Models\FilterViewModel.cs" />
     <Compile Include="Models\JobApplianceStatusViewModel.cs" />
     <Compile Include="Models\JobApplyViewModel.cs" />
     <Compile Include="Models\JobFormViewModel.cs" />

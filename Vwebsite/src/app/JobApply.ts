@@ -1,4 +1,4 @@
-export class JobApply {
+export interface JobApply {
   JobId: number;
   UserId: number;
   CorporateId: number;
