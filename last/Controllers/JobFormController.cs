@@ -118,13 +118,13 @@ namespace last.Controllers
 
         public IHttpActionResult PostJobFormViewModel(JobFormViewModel JobFormViewModel)
         {
-            
-                JobForm JobForm = new JobForm();
-                Mapper.CreateMap<JobFormViewModel, JobForm>();
-                JobForm = Mapper.Map<JobFormViewModel, JobForm>(JobFormViewModel);
 
-                db.JobForm.Add(JobForm);
-                db.SaveChanges();
+            JobForm JobForm = new JobForm();
+            Mapper.CreateMap<JobFormViewModel, JobForm>();
+            JobForm = Mapper.Map<JobFormViewModel, JobForm>(JobFormViewModel);
+
+            db.JobForm.Add(JobForm);
+            db.SaveChanges();
 
 
             return CreatedAtRoute("DefaultApi", new { id = JobFormViewModel.Id }, JobFormViewModel);

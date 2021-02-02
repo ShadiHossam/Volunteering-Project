@@ -4,33 +4,32 @@
     *ngFor="let item of orderForm.get('items')['controls']; let i = index"
   >
     <div [formGroupName]="i">
-      <div *ngFor="let Items of items">
-        <p>{{ Items.QuestionHeader }}</p>
-        <input *ngIf="IsTextBox(Items)" type="text" formControlName="Answer" />
-        <section
-          class="example-section"
-          *ngFor="let Items2 of Items.QuestionsChoicesViewModelList"
-        >
-          <p *ngIf="IsChoices(Items)">
-            <input
-              type="checkbox"
-              class="example-margin"
-              formControlName="Answer"
-            />
-            {{ Items2.Choices }}
-          </p>
-          <p *ngIf="IsMultiChoices(Items)">
-            <input
-              type="checkbox"
-              class="example-margin"
-              formControlName="Answer"
-            />
-            {{ Items2.Choices }}
-          </p>
-        </section>
-      </div>
+      <p>{{ item.get("QuestionHeader").value }}</p>
+      <input type="text" formControlName="Answer" />
 
-      <button mat-button type="submit">submit</button>
+      <input *ngIf="IsTextBox()" type="text" formControlName="Answer" />
+      <section
+        class="example-section"
+        *ngFor="let y of item.QuestionsChoicesViewModelList"
+      >
+        <p *ngIf="IsChoices(y)">
+          <input
+            type="checkbox"
+            class="example-margin"
+            formControlName="Answer"
+          />
+          {{ y.Choices }}
+        </p>
+        <p *ngIf="IsMultiChoices(y)">
+          <input
+            type="checkbox"
+            class="example-margin"
+            formControlName="Answer"
+          />
+          {{ y.Choices }}
+        </p>
+      </section>
     </div>
   </div>
+  <button mat-button type="submit">submit</button>
 </form>

@@ -504,8 +504,8 @@ namespace last.Controllers
                 SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
                 smtpClient.Credentials = new System.Net.NetworkCredential()
                 {
-                    UserName = "my email",
-                    Password = "my password"
+                    UserName = "chadihossam1@gmail.com",
+                    Password = "Choss123"
 
                 };
                 smtpClient.EnableSsl = true;

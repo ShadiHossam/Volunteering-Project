@@ -1,3 +1,4 @@
+import { Type } from './../../../Or/Job/add-job-form/add-job-form.component';
 import { JobForm } from './../../../JobForm';
 import { UserAnswers } from './../../../UserAnswers';
 import { Component, OnInit } from '@angular/core';
@@ -19,12 +20,18 @@ import {
   styleUrls: ['./job-form.component.css'],
 })
 export class JobFormComponent implements OnInit {
-  Id;
-  User;
+  // lets take a strict aproach
+  Id: string;
+  User; // this is why it is undefined it is an object
   JobForm: JobForm[] = [];
   showText = true;
   showChoice = false;
   x = localStorage.getItem('UserName');
+  orderForm: FormGroup = this.formBuilder.group({
+    items: this.formBuilder.array([]),
+  });
+  // we are not using items since it is inside the forderForm definition
+  items: FormArray;
 
   constructor(
     private JobFormService: JobFormService,
@@ -41,59 +48,56 @@ export class JobFormComponent implements OnInit {
     this.LoginService.GetUserByUserName(this.x).subscribe((y: any) => {
       this.User = y;
     });
-    this.JobFormService.GetJobForm(this.Id).subscribe((x: any) => {
+
+    this.JobFormService.GetJobForm(+this.Id).subscribe((x: any) => {
       this.JobForm = <JobForm[]>x;
-      let ItemOfForm = this.orderForm.controls.item as FormArray;
-      for (const item of this.JobForm) {
-        ItemOfForm.push(
-          this.formBuilder.group({
-            QuestionId: item.Id,
-            UserId: this.User.Id,
-          })
-        );
+      this.orderForm = this.formBuilder.group({
+        items: this.formBuilder.array([]),
+      });
+      for (let item of this.JobForm) {
+        this.createItem(item);
       }
-      // this.JobForm.forEach((job) => {
-      //   if (job.Type == 'TextBox') {
-      //     this.showText = true;
-      //   } else {
-      //     this.showText = false;
-      //   }
-      // });
-    });
-    this.orderForm = this.formBuilder.group({
-      items: this.formBuilder.array([this.createItem()]),
+      console.log(this.orderForm.value);
     });
   }
-
-  orderForm: FormGroup;
-  items: FormArray;
-
-  createItem(): FormGroup {
-    return this.formBuilder.group({
-      UserId: '',
-      QuestionId: '',
-      Answer: '',
-    });
+  createItem(item) {
+    const qus = this.orderForm.controls.items as FormArray;
+    qus.push(
+      this.formBuilder.group({
+        Id: item.Id,
+        JobId: item.JobId,
+        Type: item.Type,
+        QuestionHeader: item.QuestionHeader,
+        QuestionsChoicesViewModelList: item.QuestionsChoicesViewModelList,
+        UserId: this.User.Id,
+        QuestionId: item.Id,
+        Answer: '',
+      })
+    );
   }
 
   submit() {
     console.log(this.orderForm.value);
     this.UserAnswersService.PostUserAnswers(this.orderForm.value);
   }
-  IsTextBox(job: JobForm) {
-    if (job.Type == 'TextBox') {
+  IsTextBox() {
+    debugger;
+
+    console.log(this.orderForm.value.items);
+
+    if (this.orderForm.value.items == 'TextBox') {
       return true;
     }
     return false;
   }
 
-  IsChoices(job: JobForm) {
-    if (job.Type == 'Choices') {
+  IsChoices(job) {
+    if (job.type == 'Choices') {
       return true;
     }
     return false;
   }
-  IsMultiChoices(job: JobForm) {
+  IsMultiChoices(job) {
     if (job.Type == 'MultiChoices') {
       return true;
     }
