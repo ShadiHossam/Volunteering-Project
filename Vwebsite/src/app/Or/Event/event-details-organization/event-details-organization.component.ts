@@ -1,5 +1,5 @@
 import { EventPostingService } from '../../../Services/EventsService/event-posting.service';
-import { EventPosting } from './../../../EventPosting';
+import { EventPosting } from '../../../Model/EventPosting';
 import {
   Component,
   Input,

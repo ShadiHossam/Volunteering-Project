@@ -3,31 +3,34 @@
     formArrayName="items"
     *ngFor="let item of orderForm.get('items')['controls']; let i = index"
   >
-    <div [formGroupName]="i">
+    <div [formGroupName]="i" [ngSwitch]="item.get('Type').value">
       <p>{{ item.get("QuestionHeader").value }}</p>
-      <input type="text" formControlName="Answer" />
 
-      <input *ngIf="IsTextBox()" type="text" formControlName="Answer" />
-      <section
-        class="example-section"
-        *ngFor="let y of item.QuestionsChoicesViewModelList"
-      >
-        <p *ngIf="IsChoices(y)">
-          <input
-            type="checkbox"
-            class="example-margin"
-            formControlName="Answer"
-          />
-          {{ y.Choices }}
-        </p>
-        <p *ngIf="IsMultiChoices(y)">
-          <input
-            type="checkbox"
-            class="example-margin"
-            formControlName="Answer"
-          />
-          {{ y.Choices }}
-        </p>
+      <p></p>
+      <input *ngSwitchCase="'TextBox'" type="text" formControlName="Answer" />
+      <section class="example-section">
+        <div *ngFor="let y of item.get('QuestionsChoicesViewModelList').value">
+          <div *ngSwitchCase="'Choices'">
+            <!-- {{ item.get("QuestionsChoicesViewModelList.Choices").value }} -->
+
+            <input
+              type="checkbox"
+              class="example-margin"
+              formControlName="Answer"
+            />
+          </div>
+
+          <p *ngSwitchCase="'MultiChoices'">
+            <!-- <mat-checkbox class="example-margin" formControlName="Answer"
+              ></mat-checkbox
+            > -->
+            <input
+              type="checkbox"
+              class="example-margin"
+              formControlName="Answer"
+            />
+          </p>
+        </div>
       </section>
     </div>
   </div>

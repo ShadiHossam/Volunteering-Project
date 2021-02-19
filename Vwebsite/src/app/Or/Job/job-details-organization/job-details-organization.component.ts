@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { JobsService } from '../../../Services/JobsService/jobs.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Jobs } from 'src/app/Jobs';
+import { Jobs } from 'src/app/Model/Jobs';
 @Component({
   selector: 'app-job-details-organization',
   templateUrl: './job-details-organization.component.html',

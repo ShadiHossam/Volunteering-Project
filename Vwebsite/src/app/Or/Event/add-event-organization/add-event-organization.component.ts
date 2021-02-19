@@ -17,7 +17,7 @@ import { EventPostingService } from '../../../Services/EventsService/event-posti
 import { AreaOfExpertiseService } from '../../../Services/AreaOfExpertiseService/AreaOfExpertise.service';
 import { CityService } from '../../../Services/CityService/city.service';
 import { CountryService } from '../../../Services/CountryService/country.service';
-import { EventPosting } from '../../../EventPosting';
+import { EventPosting } from '../../../Model/EventPosting';
 
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';

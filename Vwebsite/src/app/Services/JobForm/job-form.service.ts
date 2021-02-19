@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { JobForm } from '../../JobForm';
+import { JobForm } from '../../Model/JobForm';
 @Injectable({
   providedIn: 'root',
 })
@@ -22,7 +23,7 @@ export class JobFormService {
   DeleteJobForm(id: number) {
     return this.http.delete(this.JobFormUrl + id);
   }
-  GetJobForm(id: number): Observable<JobForm> {
+  GetJobForm(id): Observable<JobForm> {
     return this.http.get<JobForm>(this.JobFormUrl + id);
   }
 

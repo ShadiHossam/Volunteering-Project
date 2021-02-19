@@ -1,5 +1,5 @@
 import { LoginService } from '../Services/LoginService/login.service';
-import { Register } from '../Register';
+import { Register } from '../Model/register';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -8,7 +8,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginModel } from '../LoginModel';
+import { LoginModel } from '../Model/LoginModel';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',

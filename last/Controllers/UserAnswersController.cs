@@ -100,19 +100,40 @@ namespace last.Controllers
 
         // POST: api/UserAnswers
         [ResponseType(typeof(UserAnswersViewModel))]
-        public IHttpActionResult PostUserAnswersViewModel(UserAnswersViewModel userAnswersViewModel)
+        //public IHttpActionResult PostUserAnswersViewModel(UserAnswersViewModel userAnswersViewModel)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    UserAnswers UserAnswers = new UserAnswers();
+        //    Mapper.CreateMap<UserAnswersViewModel, UserAnswers>();
+        //    UserAnswers = Mapper.Map<UserAnswersViewModel, UserAnswers>(userAnswersViewModel);
+        //    db.UserAnswers.Add(UserAnswers); db.SaveChanges();
+
+        //    return CreatedAtRoute("DefaultApi", new { id = userAnswersViewModel.Id }, userAnswersViewModel);
+        //}
+
+        public List<UserAnswersViewModel> PostUserAnswersViewModel(List<UserAnswersViewModel> UserAnswersViewModel)
         {
-            if (!ModelState.IsValid)
+
+            var UserAnswers = new List<UserAnswersViewModel>();
+            foreach (var item in UserAnswersViewModel)
             {
-                return BadRequest(ModelState);
+                var UserAnswers1 = new UserAnswers();
+
+                Mapper.CreateMap<UserAnswersViewModel, UserAnswers>();
+                UserAnswers1 = Mapper.Map<UserAnswersViewModel, UserAnswers>(item);
+                db.UserAnswers.Add(UserAnswers1);
+
             }
+            UserAnswers.AddRange(UserAnswersViewModel);
 
-            UserAnswers UserAnswers = new UserAnswers();
-            Mapper.CreateMap<UserAnswersViewModel, UserAnswers>();
-            UserAnswers = Mapper.Map<UserAnswersViewModel, UserAnswers>(userAnswersViewModel);
-            db.UserAnswers.Add(UserAnswers); db.SaveChanges();
+            db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = userAnswersViewModel.Id }, userAnswersViewModel);
+
+            return UserAnswers;
         }
 
         // DELETE: api/UserAnswers/5

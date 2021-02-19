@@ -31,7 +31,11 @@ import { EventPostingService } from './Services/EventsService/event-posting.serv
 import { CountryService } from './Services/CountryService/country.service';
 import { CityService } from './Services/CityService/city.service';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+  HttpClient,
+} from '@angular/common/http';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { AreaOfExpertiseService } from './Services/AreaOfExpertiseService/AreaOfExpertise.service';
 import { PasswordModule } from 'primeng/password';
@@ -54,10 +58,13 @@ import { CorporatesService } from './Services/Corporates/corporates.service';
     BrowserModule,
     NgxJsonViewerModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+
     BrowserAnimationsModule,
     RouterModule,
     NgbModule,
@@ -77,6 +84,7 @@ import { CorporatesService } from './Services/Corporates/corporates.service';
 
   providers: [
     UniversityService,
+    HttpClient,
     LoginService,
     JobsService,
     AreaOfExpertiseService,

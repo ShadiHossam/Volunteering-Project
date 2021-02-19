@@ -4,10 +4,9 @@ export interface JobForm {
   QuestionHeader: string;
   Type: string;
   JobName: string;
-  QuestionsChoicesViewModelList: QuestionsChoices[];
+  QuestionsChoicesViewModelList: QuestionsChoices;
 }
 export interface QuestionsChoices {
-  QuestionsName: string;
   Choices: string;
   QuestionsId: number;
 }

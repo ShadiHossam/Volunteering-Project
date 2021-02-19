@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { EventPostingService } from '../../../Services/EventsService/event-posting.service';
 import { ActivatedRoute } from '@angular/router';
-import { EventPosting } from 'src/app/EventPosting';
+import { EventPosting } from 'src/app/Model/EventPosting';
 @Component({
   selector: 'app-event-details',
   templateUrl: './event-details.component.html',

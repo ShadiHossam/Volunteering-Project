@@ -11,7 +11,7 @@ import {
 } from '@angular/forms';
 import { UniversityService } from '../Services/university.service';
 import { LoginService } from '../Services/LoginService/login.service';
-import { Register } from '../Register';
+import { Register } from '../Model/register';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
-import { Jobs } from '../../Jobs';
+import { Jobs } from '../../Model/Jobs';
 @Injectable({
   providedIn: 'root',
 })
@@ -33,7 +33,7 @@ export class JobsService {
   DeleteJob(id: number) {
     return this.http.delete(this.JobUrl + id);
   }
-  GetJob(id: number): Observable<Jobs> {
+  GetJob(id): Observable<Jobs> {
     return this.http.get<Jobs>(this.JobUrl + id);
   }
 

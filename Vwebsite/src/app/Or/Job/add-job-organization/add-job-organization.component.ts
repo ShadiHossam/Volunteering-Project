@@ -1,13 +1,13 @@
-import { Corporates } from './../../../Corporates';
-import { City } from './../../../City';
-import { Country } from '../../../Country';
+import { Corporates } from '../../../Model/Corporates';
+import { City } from '../../../Model/City';
+import { Country } from '../../../Model/Country';
 import { Component, OnInit } from '@angular/core';
 import { JobsService } from '../../../Services/JobsService/jobs.service';
 import { AreaOfExpertiseService } from '../../../Services/AreaOfExpertiseService/AreaOfExpertise.service';
 import { YearsOfExperienceService } from '../../../Services/YearsOfExperience/years-of-experience.service';
 import { CountryService } from '../../../Services/CountryService/country.service';
 import { CityService } from '../../../Services/CityService/city.service';
-import { Jobs } from '../../../Jobs';
+import { Jobs } from '../../../Model/Jobs';
 import { JobListOrganizationComponent } from '../job-list-organization/job-list-organization.component';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';

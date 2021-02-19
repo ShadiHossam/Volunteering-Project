@@ -110,20 +110,40 @@ namespace last.Controllers
 
         // POST: api/JobApply
         [ResponseType(typeof(JobApplyViewModel))]
-        public IHttpActionResult PostJobApply(JobApplyViewModel jobApplyViewModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            JobApply JobApply = new JobApply();
-            Mapper.CreateMap<JobApplyViewModel, JobApply>();
-            JobApply = Mapper.Map<JobApplyViewModel, JobApply>(jobApplyViewModel);
+        //public IHttpActionResult PostJobApply(JobApplyViewModel jobApplyViewModel)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    JobApply JobApply = new JobApply();
+        //    Mapper.CreateMap<JobApplyViewModel, JobApply>();
+        //    JobApply = Mapper.Map<JobApplyViewModel, JobApply>(jobApplyViewModel);
 
-            db.JobApply.Add(JobApply);
+        //    db.JobApply.Add(JobApply);
+        //    db.SaveChanges();
+
+        //    return CreatedAtRoute("DefaultApi", new { id = jobApplyViewModel.Id }, jobApplyViewModel);
+        //}
+        public List<JobApplyViewModel>  PostJobApplyViewModel(List<JobApplyViewModel> JobApplyViewModel)
+        {
+
+            var JobApply = new List<JobApplyViewModel>();
+            foreach (var item in JobApplyViewModel)
+            {
+                var JobApply1 = new JobApply();
+
+                Mapper.CreateMap<JobApplyViewModel, JobApply>();
+                JobApply1 = Mapper.Map<JobApplyViewModel, JobApply>(item);
+                db.JobApply.Add(JobApply1);
+
+            }
+            JobApply.AddRange(JobApplyViewModel);
+
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = jobApplyViewModel.Id }, jobApplyViewModel);
+
+            return JobApply;
         }
 
         // DELETE: api/JobApply/5

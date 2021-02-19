@@ -23,9 +23,9 @@ import { SkillsService } from '../Services/Skills/skills.service';
 import { AreaOfExpertiseService } from '../Services/AreaOfExpertiseService/AreaOfExpertise.service';
 import { CityService } from '../Services/CityService/city.service';
 import { CountryService } from '../Services/CountryService/country.service';
-import { Register } from '../Register';
-import { Skills } from '../Skills';
-import { UserSkills } from '../UserSkills';
+import { Register } from '../Model/register';
+import { Skills } from '../Model/Skills';
+import { UserSkills } from '../Model/UserSkills';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

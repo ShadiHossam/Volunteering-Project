@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Http;
 using System.Data.Entity;
 using System.Web.UI.WebControls;
-using System.Web.Script.Serialization; 
+using System.Web.Script.Serialization;
 using last.Models;
 using System.Web.Http.Results;
 using NGOdata;
@@ -22,7 +22,7 @@ namespace last.Controllers
 
     public class LoginController : ApiController
     {
-        NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();       
+        NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();
 
         //For user login   
         [Route("Api/Login/userLogin")]
@@ -48,6 +48,7 @@ namespace last.Controllers
                 }
                 var x = session["UserName"].ToString();
                 return new Response { Status = "Success", Message = "Login Successfully" };
+
             }
 
 
@@ -120,7 +121,7 @@ namespace last.Controllers
             //    return tokenString;
 
 
-            }
+        }
 
         [Route("Api/Login/CorporateLogin")]
         [HttpPost]
@@ -257,22 +258,22 @@ namespace last.Controllers
                 return new Response
                 { Status = "Error", Message = "Invalid Data." + ex.Message };
             }
-            
+
         }
-       
+
         [Route("api/Login/Validuser")]
         [HttpGet]
-      public Response Validuser(string UserName)
+        public Response Validuser(string UserName)
 
         {
             var User = db.Users.Where(w => w.UserName == UserName).FirstOrDefault();
 
-            if (User==null)
+            if (User == null)
                 return new Response { Status = "valid", Message = " user is valid" };
 
             else
-             
-        return new Response { Status = "Invalid", Message = "user is found please choose another one" };
+
+                return new Response { Status = "Invalid", Message = "user is found please choose another one" };
 
 
         }
@@ -286,7 +287,7 @@ namespace last.Controllers
                 return new Response { Status = "valid", Message = " user is valid" };
 
             else
-                
+
                 return new Response { Status = "Invalid", Message = "UserName is found please choose another one" };
 
 
@@ -331,21 +332,21 @@ namespace last.Controllers
 
         [Route("Api/Login/GetUserByUserName")]
 
-        [HttpGet] 
+        [HttpGet]
         public UserViewModel GetUserByUserName(string UserName)
         {
             UserViewModel User = new UserViewModel();
-            
+
             NGOdata.Users GetUser;
 
             GetUser = db.Users.Where(x => x.UserName == UserName).FirstOrDefault();
 
-            
+
 
             Mapper.CreateMap<Users, UserViewModel>();
             User = Mapper.Map<Users, UserViewModel>(GetUser);
 
-            
+
             User.AreaOfExpertiseName = GetUser.AreaOfExpertise?.AreaOfExpertiseName;
             User.CountryName = GetUser.Country?.CountryName;
             User.CityName = GetUser.City?.CityName;
@@ -357,7 +358,7 @@ namespace last.Controllers
         [Route("Api/Login/GetJobListByUserName")]
         [HttpGet]
         public IEnumerable<JobsViewModel> GetJobListByUserName(string UserName)
-        {            
+        {
             List<JobsViewModel> JobsViewModelList = new List<JobsViewModel>();
             List<Jobs> JobsList = new List<Jobs>();
             NGOdata.Users GetUser;
@@ -428,16 +429,16 @@ namespace last.Controllers
         [Route("Api/Login/GetUser")]
         [HttpGet]
         public List<UserViewModel> GetUsers()
-            {
+        {
 
-                var UserList = db.Users.ToList();
-                List<UserViewModel> userViewModelViewModelList = new List<UserViewModel>();
-                foreach (var item in UserList)
-                {
+            var UserList = db.Users.ToList();
+            List<UserViewModel> userViewModelViewModelList = new List<UserViewModel>();
+            foreach (var item in UserList)
+            {
 
                 UserViewModel userViewModel = new UserViewModel();
 
-                    Mapper.CreateMap<Users, UserViewModel>();
+                Mapper.CreateMap<Users, UserViewModel>();
                 userViewModel = Mapper.Map<Users, UserViewModel>(item);
 
 
@@ -445,17 +446,17 @@ namespace last.Controllers
                 userViewModel.AreaOfExpertiseName = item.AreaOfExpertise?.AreaOfExpertiseName;
                 userViewModelViewModelList.Add(userViewModel);
 
-                }
-
-
-                return userViewModelViewModelList;
-
             }
 
 
-            [HttpPut]
+            return userViewModelViewModelList;
+
+        }
+
+
+        [HttpPut]
         [Route("Api/Login/UpdateUser")]
-        public IHttpActionResult PutUserMaster(String UserName ,UserViewModel userViewModel)
+        public IHttpActionResult PutUserMaster(String UserName, UserViewModel userViewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -466,12 +467,12 @@ namespace last.Controllers
                 return NotFound();
             }
             Users User = new Users();
-            Mapper.CreateMap<UserViewModel, Users>(); 
+            Mapper.CreateMap<UserViewModel, Users>();
             User = Mapper.Map<UserViewModel, Users>(userViewModel);
             db.Entry(User).State = EntityState.Modified;
 
-          
-               db.SaveChanges();
+
+            db.SaveChanges();
             return StatusCode(HttpStatusCode.NoContent);
 
         }

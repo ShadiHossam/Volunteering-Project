@@ -7,7 +7,7 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JobForm } from 'src/app/JobForm';
+import { JobForm } from 'src/app/Model/JobForm';
 import { Survey, Question, Choices } from './data-models';
 import { JobFormService } from '../../../Services/JobForm/job-form.service';
 export interface Type {

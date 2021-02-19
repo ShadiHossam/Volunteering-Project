@@ -1,8 +1,8 @@
-import { Register } from '../../../Register';
+import { Register } from '../../../Model/register';
 import { Component, OnInit } from '@angular/core';
 import { JobsService } from '../../../Services/JobsService/jobs.service';
 import { LoginService } from '../../../Services/LoginService/login.service';
-import { Jobs } from '../../../Jobs';
+import { Jobs } from '../../../Model/Jobs';
 import { Router } from '@angular/router';
 
 @Component({

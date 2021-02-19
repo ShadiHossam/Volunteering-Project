@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { JobApply } from '../../JobApply';
+import { JobApply } from '../../Model/JobApply';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -25,12 +26,11 @@ export class JobApplyService {
     return this.http.get<JobApply>(this.JobApplyUrl + id);
   }
 
-  PostJobApply(emp: JobApply) {
-    var body = JSON.stringify(emp);
+  PostJobApply(emp) {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
-    return this.http.post<JobApply[]>(this.JobApplyUrl, body, httpOptions);
+    return this.http.post<JobApply[]>(this.JobApplyUrl, httpOptions);
   }
 
   PutJobApply(id: number, emp: JobApply) {

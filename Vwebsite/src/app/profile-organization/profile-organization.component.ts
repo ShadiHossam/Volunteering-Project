@@ -9,7 +9,7 @@ import { CorporatesService } from '../Services/Corporates/corporates.service';
 import { AreaOfExpertiseService } from '../Services/AreaOfExpertiseService/AreaOfExpertise.service';
 import { CityService } from '../Services/CityService/city.service';
 import { CountryService } from '../Services/CountryService/country.service';
-import { Corporates } from '../Corporates';
+import { Corporates } from '../Model/Corporates';
 import { FormGroup } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({

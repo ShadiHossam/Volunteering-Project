@@ -6,8 +6,9 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { JobsService } from '../../../Services/JobsService/jobs.service';
+import { JobApplyService } from '../../../Services/JobApply/job-apply.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Jobs } from 'src/app/Jobs';
+import { Jobs } from 'src/app/Model/Jobs';
 @Component({
   selector: 'app-job-details',
   templateUrl: './job-details.component.html',
@@ -19,6 +20,7 @@ export class JobDetailsComponent implements OnInit {
 
   constructor(
     private JobsService: JobsService,
+    private JobApplyService: JobApplyService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -26,7 +28,7 @@ export class JobDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.Id = this.route.snapshot.paramMap.get('id');
 
-    this.JobsService.GetJob(Number(this.Id)).subscribe((x: any) => {
+    this.JobsService.GetJob(this.Id).subscribe((x: any) => {
       this.Job = <Jobs>x;
     });
   }

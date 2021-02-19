@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../../Services/LoginService/login.service';
 
 import { EventPostingService } from '../../../Services/EventsService/event-posting.service';
-import { EventPosting } from '../../../EventPosting';
+import { EventPosting } from '../../../Model/EventPosting';
 import { Router } from '@angular/router';
-import { Register } from '../../../Register';
+import { Register } from '../../../Model/register';
 
 @Component({
   selector: 'app-event-list',
