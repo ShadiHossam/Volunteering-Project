@@ -5,6 +5,10 @@ using System.Web;
 
 namespace last.Models
 {
+    public class Root
+    {
+        public List<UserAnswersViewModel> items { get; set; }
+    }
     public class UserAnswersViewModel
     {
         public int Id { get; set; }

@@ -23,8 +23,8 @@ export class JobFormService {
   DeleteJobForm(id: number) {
     return this.http.delete(this.JobFormUrl + id);
   }
-  GetJobForm(id): Observable<JobForm> {
-    return this.http.get<JobForm>(this.JobFormUrl + id);
+  GetJobForm(id): Observable<JobForm[]> {
+    return this.http.get<JobForm[]>(this.JobFormUrl + id);
   }
 
   PostJobForm(emp) {

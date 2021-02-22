@@ -1,3 +1,3 @@
 export interface YearsOfExperience {
-  YearsOfExperienceThreshold: string;
+  YearsOfExperienceThreshold?: string;
 }

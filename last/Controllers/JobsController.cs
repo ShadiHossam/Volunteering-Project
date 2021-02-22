@@ -11,7 +11,7 @@ using System.Web.Http.Description;
 using last.Models;
 using NGOdata;
 using AutoMapper;
-
+using System.Web;
 
 namespace last.Controllers
 { 
@@ -217,16 +217,24 @@ namespace last.Controllers
         [ResponseType(typeof(Jobs))]
         public List<JobsViewModel> FilterJob(FilterViewModel FilterViewModel)
         {
-            var JobsList = new List<Jobs>();
-          /////
+           
+            List<Jobs> JobsList = new List<Jobs>();
             List<JobsViewModel> JobsViewModelList = new List<JobsViewModel>();
+            JobsList = db.Jobs.Where(w =>
+            (w.CreationDate >= FilterViewModel.FromDate && w.CreationDate <= FilterViewModel.ToDate) && 
+            (w.AreaOfExpertiseId == FilterViewModel.AreaOfExpertiseId || 
+            (FilterViewModel.AreaOfExpertiseId == null && w.AreaOfExpertiseId == FilterViewModel.UserAreaOfExpertise)) &&
+            (w.CityId == FilterViewModel.CityId || FilterViewModel.CityId == null) && 
+            (w.CountryId == FilterViewModel.CountryId || FilterViewModel.CountryId == null)
+            //&& (w.AreaOfExpertiseId == FilterViewModel.AreaOfExpertiseId || FilterViewModel.AreaOfExpertiseId == null)
+            && (w.YearsOFExpertiseId == FilterViewModel.YearsOFExpertiseId || FilterViewModel.YearsOFExpertiseId == null)).Skip(FilterViewModel.StartRecord).Take(FilterViewModel.RecordPerpage).ToList();
+
             foreach (var item in JobsList)
             {
                 JobsViewModel JobsViewModel = new JobsViewModel();
 
                 Mapper.CreateMap<Jobs, JobsViewModel>();
                 JobsViewModel = Mapper.Map<Jobs, JobsViewModel>(item);
-
 
                 JobsViewModel.CityName = item.City?.CityName;
                 JobsViewModel.AreaOfExpertiseName = item.AreaOfExpertise.AreaOfExpertiseName;

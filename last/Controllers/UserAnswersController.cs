@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using last.Models;
 using NGOdata;
 using AutoMapper;
+using Newtonsoft.Json;
 
 namespace last.Controllers
 {
@@ -115,11 +116,13 @@ namespace last.Controllers
         //    return CreatedAtRoute("DefaultApi", new { id = userAnswersViewModel.Id }, userAnswersViewModel);
         //}
 
-        public List<UserAnswersViewModel> PostUserAnswersViewModel(List<UserAnswersViewModel> UserAnswersViewModel)
+        public List<UserAnswersViewModel> PostUserAnswersViewModel(object items)
         {
-
+            var yourObject = JsonConvert.DeserializeObject<Root>(items.ToString());
+                        
             var UserAnswers = new List<UserAnswersViewModel>();
-            foreach (var item in UserAnswersViewModel)
+            
+            foreach (var item in yourObject.items)
             {
                 var UserAnswers1 = new UserAnswers();
 
@@ -128,7 +131,7 @@ namespace last.Controllers
                 db.UserAnswers.Add(UserAnswers1);
 
             }
-            UserAnswers.AddRange(UserAnswersViewModel);
+            UserAnswers.AddRange(yourObject.items);
 
             db.SaveChanges();
 

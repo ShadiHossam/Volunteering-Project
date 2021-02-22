@@ -6,29 +6,19 @@
     <div [formGroupName]="i" [ngSwitch]="item.get('Type').value">
       <p>{{ item.get("QuestionHeader").value }}</p>
 
-      <p></p>
       <input *ngSwitchCase="'TextBox'" type="text" formControlName="Answer" />
       <section class="example-section">
-        <div *ngFor="let y of item.get('QuestionsChoicesViewModelList').value">
-          <div *ngSwitchCase="'Choices'">
-            <!-- {{ item.get("QuestionsChoicesViewModelList.Choices").value }} -->
-
-            <input
-              type="checkbox"
-              class="example-margin"
-              formControlName="Answer"
-            />
-          </div>
-
-          <p *ngSwitchCase="'MultiChoices'">
-            <!-- <mat-checkbox class="example-margin" formControlName="Answer"
-              ></mat-checkbox
-            > -->
-            <input
-              type="checkbox"
-              class="example-margin"
-              formControlName="Answer"
-            />
+        <div *ngSwitchCase="'MultiChoices'">
+          <mat-selection-list #Choices formControlName="Answer">
+            <mat-list-option
+              *ngFor="let y of item.get('QuestionsChoicesViewModelList').value"
+            >
+              {{ y.Choices }}
+            </mat-list-option>
+          </mat-selection-list>
+          <p>
+            Options selected:
+            {{ Choices.selectedOptions.selected.length }}
           </p>
         </div>
       </section>

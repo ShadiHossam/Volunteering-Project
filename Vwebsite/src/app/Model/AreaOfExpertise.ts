@@ -1,4 +1,4 @@
 export interface AreaOfExpertise {
-  AreaOfExpertiseName: string;
-  AreaOfExpertiseCode: string;
+  AreaOfExpertiseName?: string;
+  AreaOfExpertiseCode?: string;
 }

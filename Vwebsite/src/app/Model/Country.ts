@@ -1,3 +1,3 @@
 export interface Country {
-  CountryName: string;
+  CountryName?: string;
 }

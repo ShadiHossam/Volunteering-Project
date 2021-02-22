@@ -1,5 +1,5 @@
 export interface QuestionsChoices {
-  QuestionsName: string;
-  Choices: string;
-  QuestionsId: number;
+  QuestionsName?: string;
+  Choices?: string;
+  QuestionsId?: number;
 }

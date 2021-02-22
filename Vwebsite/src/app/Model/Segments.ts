@@ -1,3 +1,3 @@
 export interface Segments {
-  SegmentsName: string;
+  SegmentsName?: string;
 }

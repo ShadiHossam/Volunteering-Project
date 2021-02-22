@@ -1,5 +1,5 @@
 export interface UserSkills {
-  UserId: number;
-  Name: string;
-  UserName: string;
+  UserId?: number;
+  Name?: string;
+  UserName?: string;
 }

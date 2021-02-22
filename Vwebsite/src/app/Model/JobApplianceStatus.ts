@@ -1,3 +1,3 @@
 export interface JobApplianceStatus {
-  StatusName: string;
+  StatusName?: string;
 }

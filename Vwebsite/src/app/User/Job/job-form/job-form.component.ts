@@ -1,5 +1,6 @@
-import { map } from 'rxjs/operators';
-import { MatIconModule } from '@angular/material/icon';
+import { JobApply } from './../../../Model/JobApply';
+import { map, take } from 'rxjs/operators';
+
 import { JobForm } from '../../../Model/JobForm';
 import { UserAnswers } from '../../../Model/UserAnswers';
 import { Component, OnInit } from '@angular/core';
@@ -19,6 +20,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Jobs } from 'src/app/Model/Jobs';
+import { Register } from 'src/app/Model/register';
 @Component({
   selector: 'app-job-form',
   templateUrl: './job-form.component.html',
@@ -26,8 +28,8 @@ import { Jobs } from 'src/app/Model/Jobs';
 })
 export class JobFormComponent implements OnInit {
   Id: string;
-  User;
-  JobForm: JobForm[] = [];
+  User: Register;
+  JobForm: JobForm[];
   JobApplyForm: FormArray;
 
   x = localStorage.getItem('UserName');
@@ -36,8 +38,11 @@ export class JobFormComponent implements OnInit {
   });
   items: FormArray;
   UserAnswers: UserAnswers[];
-  Job: Jobs = <Jobs>{};
+  Job: Jobs;
+  JobApply: JobApply[] = new Array();
 
+  jobapply;
+  UserAnswerId;
   constructor(
     private JobFormService: JobFormService,
     private QuestionsChoicesService: QuestionsChoicesService,
@@ -52,26 +57,43 @@ export class JobFormComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.Id = this.route.snapshot.paramMap.get('id');
-    this.LoginService.GetUserByUserName(this.x).subscribe((y: any) => {
-      this.User = y;
-    });
-
-    this.JobsService.GetJob(this.Id).subscribe((x: any) => {
-      this.Job = <Jobs>x;
-    });
-
-    this.JobFormService.GetJobForm(this.Id).subscribe((x: any) => {
-      this.JobForm = <JobForm[]>x;
-      this.orderForm = this.formBuilder.group({
-        items: this.formBuilder.array([]),
+    // this.LoginService.GetUserByUserName(this.x).subscribe((y: any) => {
+    //   this.User = y;
+    // });
+    this.LoginService.GetUserByUserName(this.x)
+      .toPromise()
+      .then((y: any) => {
+        this.User = y;
       });
-      for (let item of this.JobForm) {
-        this.createItem(item);
-      }
-      console.log(this.orderForm.value);
-    });
+    this.User = await this.LoginService.GetUserByUserName(this.x).toPromise();
+
+    this.JobsService.GetJob(this.Id)
+      .toPromise()
+      .then((x: any) => {
+        this.Job = x;
+      });
+    this.Job = await this.JobsService.GetJob(this.Id).toPromise();
+
+    // this.JobsService.GetJob(this.Id).subscribe((x: any) => {
+    //   this.Job = x;
+    // });
+
+    this.JobFormService.GetJobForm(this.Id)
+      .toPromise()
+      .then((x: any) => {
+        this.JobForm = <JobForm[]>x;
+        console.log(x);
+        this.orderForm = this.formBuilder.group({
+          items: this.formBuilder.array([]),
+        });
+        for (let item of this.JobForm) {
+          this.createItem(item);
+        }
+        console.log(this.orderForm.value);
+      });
+    this.JobForm = await this.JobFormService.GetJobForm(this.Id).toPromise();
   }
 
   createItem(item: JobForm) {
@@ -90,37 +112,51 @@ export class JobFormComponent implements OnInit {
       })
     );
   }
-  JobId;
-  UserId;
-  CorporateId;
-  JobFormId;
-  jobapply;
-  UserAnswerId;
 
-  submit() {
+  async submit() {
+    //this.JobForm[0].get('Answer').setValue(this.choices.selectedOptions.selected)
     console.log(JSON.stringify(this.orderForm.value));
-    // this.UserAnswersService.PostUserAnswers(this.orderForm.value).subscribe(
-    //   (x) => {
+    // this.UserAnswersService.PostUserAnswers(this.orderForm.value)
+    //   .toPromise()
+    //   .then((x) => {
     //     this.UserAnswers = x;
-    //   }
-    // );
-    this.UserAnswersService.GetUserAnswersList().subscribe((x) => {
-      this.UserAnswers = x;
-      this.UserAnswers.map((i) =>
-        i.Id === this.JobApplyForm.value.UserAnswerId ? i.Id : null
-      );
-      console.log(this.UserAnswers);
+    //   });
+    // this.UserAnswers = await this.UserAnswersService.PostUserAnswers(
+    //   this.orderForm.value
+    // ).toPromise();
+
+    this.UserAnswersService.GetUserAnswersList()
+      .toPromise()
+      .then((x: any) => {
+        this.UserAnswers = x;
+      });
+    this.UserAnswers = await this.UserAnswersService.GetUserAnswersList().toPromise();
+
+    this.UserAnswers.forEach((x) => {
+      this.JobApply.push({
+        JobId: this.Job.Id,
+        UserId: this.User.Id,
+        CorporateId: this.Job.CorporateId,
+        JobFormId: this.Id,
+        UserAnswerId: x.Id,
+      });
     });
-    this.JobApplyForm = this.formBuilder.array([
-      (this.JobId = this.Job.Id),
-      (this.UserId = this.User.Id),
-      (this.CorporateId = this.Job.CorporatesId),
-      (this.JobFormId = this.Id),
-      this.UserAnswerId,
-    ]);
-    this.JobApplyService.PostJobApply(this.JobApplyForm).subscribe((x) => {
+    console.log(this.JobApply);
+    console.log(this.UserAnswers);
+
+    this.JobApplyService.PostJobApply(this.JobApply).subscribe((x) => {
       this.jobapply = x;
     });
-    console.log(this.JobApplyForm.value);
+    // this.JobApplyForm = this.formBuilder.array([
+    //   (this.JobId = this.Job.Id),
+    //   (this.UserId = this.User.Id),
+    //   (this.CorporateId = this.Job.CorporatesId),
+    //   (this.JobFormId = this.Id),
+    //   this.UserAnswerId,
+    // ]);
+    // this.JobApplyService.PostJobApply(this.JobApplyForm).subscribe((x) => {
+    //   this.jobapply = x;
+    // });
+    // console.log(this.JobApplyForm.value);
   }
 }

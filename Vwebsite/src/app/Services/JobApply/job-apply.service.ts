@@ -27,10 +27,12 @@ export class JobApplyService {
   }
 
   PostJobApply(emp) {
+    var body = JSON.stringify(emp);
+
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
-    return this.http.post<JobApply[]>(this.JobApplyUrl, httpOptions);
+    return this.http.post<JobApply[]>(this.JobApplyUrl, body, httpOptions);
   }
 
   PutJobApply(id: number, emp: JobApply) {
