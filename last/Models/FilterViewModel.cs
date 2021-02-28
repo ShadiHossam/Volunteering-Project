@@ -16,7 +16,7 @@ namespace last.Models
         public Nullable<int> UserAreaOfExpertise { get; set; } 
         public Nullable<int> YearsOFExpertiseId { get; set; }
         public string CreationDateSTR { get; set; }
-        public DateTime FromDate { get; set; }
-        public DateTime ToDate { get; set; }
+        public Nullable<DateTime> FromDate { get; set; }
+        public Nullable<DateTime> ToDate { get; set; }
     }
 }

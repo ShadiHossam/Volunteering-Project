@@ -12,14 +12,25 @@
           <mat-selection-list #Choices formControlName="Answer">
             <mat-list-option
               *ngFor="let y of item.get('QuestionsChoicesViewModelList').value"
+              [value]="y.Choices"
             >
               {{ y.Choices }}
             </mat-list-option>
           </mat-selection-list>
-          <p>
-            Options selected:
-            {{ Choices.selectedOptions.selected.length }}
-          </p>
+        </div>
+        <div *ngSwitchCase="'Choices'">
+          <mat-selection-list
+            #Choices
+            [multiple]="false"
+            formControlName="Answer"
+          >
+            <mat-list-option
+              *ngFor="let y of item.get('QuestionsChoicesViewModelList').value"
+              [value]="y.Choices"
+            >
+              {{ y.Choices }}
+            </mat-list-option>
+          </mat-selection-list>
         </div>
       </section>
     </div>

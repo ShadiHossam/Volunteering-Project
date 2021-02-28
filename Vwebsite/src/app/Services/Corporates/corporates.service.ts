@@ -37,7 +37,18 @@ export class CorporatesService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
-    return this.http.post<Corporates[]>(this.CorporatesUrl, body, httpOptions);
+    return this.http.post<Corporates>(this.CorporatesUrl, body, httpOptions);
+  }
+  Filter(emp) {
+    var body = JSON.stringify(emp);
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+    return this.http.post(
+      this.CorporatesUrl + 'FilterCorporates',
+      body,
+      httpOptions
+    );
   }
 
   PutCorporates(emp: Corporates) {

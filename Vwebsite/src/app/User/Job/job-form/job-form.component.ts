@@ -21,6 +21,7 @@ import {
 } from '@angular/forms';
 import { Jobs } from 'src/app/Model/Jobs';
 import { Register } from 'src/app/Model/register';
+import { PageEvent } from '@angular/material/paginator';
 @Component({
   selector: 'app-job-form',
   templateUrl: './job-form.component.html',
@@ -76,10 +77,6 @@ export class JobFormComponent implements OnInit {
       });
     this.Job = await this.JobsService.GetJob(this.Id).toPromise();
 
-    // this.JobsService.GetJob(this.Id).subscribe((x: any) => {
-    //   this.Job = x;
-    // });
-
     this.JobFormService.GetJobForm(this.Id)
       .toPromise()
       .then((x: any) => {
@@ -105,7 +102,6 @@ export class JobFormComponent implements OnInit {
         Type: item.Type,
         QuestionHeader: item.QuestionHeader,
         QuestionsChoicesViewModelList: [item.QuestionsChoicesViewModelList],
-        // Choices: item.QuestionsChoicesViewModelList.Choices,
         UserId: this.User.Id,
         QuestionId: item.Id,
         Answer: '',
@@ -114,16 +110,7 @@ export class JobFormComponent implements OnInit {
   }
 
   async submit() {
-    //this.JobForm[0].get('Answer').setValue(this.choices.selectedOptions.selected)
     console.log(JSON.stringify(this.orderForm.value));
-    // this.UserAnswersService.PostUserAnswers(this.orderForm.value)
-    //   .toPromise()
-    //   .then((x) => {
-    //     this.UserAnswers = x;
-    //   });
-    // this.UserAnswers = await this.UserAnswersService.PostUserAnswers(
-    //   this.orderForm.value
-    // ).toPromise();
 
     this.UserAnswersService.GetUserAnswersList()
       .toPromise()
@@ -147,16 +134,5 @@ export class JobFormComponent implements OnInit {
     this.JobApplyService.PostJobApply(this.JobApply).subscribe((x) => {
       this.jobapply = x;
     });
-    // this.JobApplyForm = this.formBuilder.array([
-    //   (this.JobId = this.Job.Id),
-    //   (this.UserId = this.User.Id),
-    //   (this.CorporateId = this.Job.CorporatesId),
-    //   (this.JobFormId = this.Id),
-    //   this.UserAnswerId,
-    // ]);
-    // this.JobApplyService.PostJobApply(this.JobApplyForm).subscribe((x) => {
-    //   this.jobapply = x;
-    // });
-    // console.log(this.JobApplyForm.value);
   }
 }

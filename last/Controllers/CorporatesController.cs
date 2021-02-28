@@ -175,5 +175,37 @@ namespace last.Controllers
         {
             return db.Corporates.Count(e => e.Id == id) > 0;
         }
+        [Route("Api/Corporates/FilterCorporates")]
+
+        [HttpPost]
+        [ResponseType(typeof(Corporates))]
+        public List<CorporatesViewModel> FilterJob(FilterViewModel FilterViewModel)
+        {
+
+            List<Corporates> CorporatesList = new List<Corporates>();
+            List<CorporatesViewModel> CorporatesViewModelList = new List<CorporatesViewModel>();
+            CorporatesList = db.Corporates.Where(w =>
+            (w.CityId == FilterViewModel.CityId || FilterViewModel.CityId == null) &&
+            (w.CountryId == FilterViewModel.CountryId || FilterViewModel.CountryId == null)).Skip(FilterViewModel.StartRecord).Take(FilterViewModel.RecordPerpage).ToList();
+
+            foreach (var item in CorporatesList)
+            {
+                CorporatesViewModel CorporatesViewModel = new CorporatesViewModel();
+
+                Mapper.CreateMap<Corporates, CorporatesViewModel>();
+                CorporatesViewModel = Mapper.Map<Corporates, CorporatesViewModel>(item);
+
+                CorporatesViewModel.CityName = item.City?.CityName;
+                CorporatesViewModel.CountryName = item.Country?.CountryName;
+                
+
+
+                CorporatesViewModelList.Add(CorporatesViewModel);
+            }
+
+
+            return CorporatesViewModelList;
+
+        }
     }
 }

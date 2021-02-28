@@ -1,3 +1,31 @@
+<form
+  class="example-form"
+  [formGroup]="Filter"
+  (ngSubmit)="onFormSubmit(Filter.value)"
+>
+  <p class="example-full-width" cellspacing="0">
+    <mat-form-field class="example-full-width">
+      <mat-label>Country</mat-label>
+      <mat-select class="form-control" formControlName="CountryId">
+        <mat-option *ngFor="let Country of Country" [value]="Country.Id">
+          {{ Country.CountryName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>City</mat-label>
+      <mat-select class="form-control" formControlName="CityId">
+        <mat-option *ngFor="let city of City" [value]="city.Id">
+          {{ city.CityName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button type="submit">search</button>
+  </p>
+</form>
+
 <form class="form" *ngFor="let corporatesData of CorporatesData">
   <span class="courses">
     <div class="course-card">

@@ -1,3 +1,4 @@
+import { Jobs } from './../../Model/Jobs';
 import { Injectable } from '@angular/core';
 import {
   HttpClient,
@@ -91,8 +92,8 @@ export class LoginService {
     );
   }
 
-  GetJobListByUserName() {
-    return this.http.get<Register>(
+  GetJobListByUserName(): Observable<Jobs[]> {
+    return this.http.get<Jobs[]>(
       this.Url + 'GetJobListByUserName?UserName=' + this.x
     );
   }

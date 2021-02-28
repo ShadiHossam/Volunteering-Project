@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
 import { Jobs } from '../../Model/Jobs';
+import { Filter } from 'src/app/Model/Filter';
 @Injectable({
   providedIn: 'root',
 })
@@ -43,6 +44,17 @@ export class JobsService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
     return this.http.post<Jobs[]>(this.JobUrl, body, httpOptions);
+  }
+  Filter(emp): Observable<Jobs[]> {
+    var body = JSON.stringify(emp);
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+    return this.http.post<Jobs[]>(
+      this.JobUrl + 'FilterJob/',
+      body,
+      httpOptions
+    );
   }
 
   PutJob(id: number, emp: Jobs) {

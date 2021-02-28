@@ -213,7 +213,7 @@ namespace last.Controllers
 
         [Route("Api/Jobs/FilterJob")]
 
-        [HttpGet]
+        [HttpPost]
         [ResponseType(typeof(Jobs))]
         public List<JobsViewModel> FilterJob(FilterViewModel FilterViewModel)
         {

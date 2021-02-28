@@ -29,7 +29,6 @@ export class AddJobOrganizationComponent implements OnInit {
   data = false;
   massage: string;
   AreaOfExpertise;
-  Job: Object;
   City;
   Country;
   YearsOfExperience: any;
