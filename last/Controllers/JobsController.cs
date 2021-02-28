@@ -221,13 +221,13 @@ namespace last.Controllers
             List<Jobs> JobsList = new List<Jobs>();
             List<JobsViewModel> JobsViewModelList = new List<JobsViewModel>();
             JobsList = db.Jobs.Where(w =>
-            (w.CreationDate >= FilterViewModel.FromDate && w.CreationDate <= FilterViewModel.ToDate) && 
+            //(w.CreationDate >= FilterViewModel.FromDate && w.CreationDate <= FilterViewModel.ToDate) && 
             (w.AreaOfExpertiseId == FilterViewModel.AreaOfExpertiseId || 
             (FilterViewModel.AreaOfExpertiseId == null && w.AreaOfExpertiseId == FilterViewModel.UserAreaOfExpertise)) &&
             (w.CityId == FilterViewModel.CityId || FilterViewModel.CityId == null) && 
             (w.CountryId == FilterViewModel.CountryId || FilterViewModel.CountryId == null)
             //&& (w.AreaOfExpertiseId == FilterViewModel.AreaOfExpertiseId || FilterViewModel.AreaOfExpertiseId == null)
-            && (w.YearsOFExpertiseId == FilterViewModel.YearsOFExpertiseId || FilterViewModel.YearsOFExpertiseId == null)).Skip(FilterViewModel.StartRecord).Take(FilterViewModel.RecordPerpage).ToList();
+            && (w.YearsOFExpertiseId == FilterViewModel.YearsOFExpertiseId || FilterViewModel.YearsOFExpertiseId == null)).OrderByDescending(o => o.CreationDate).Skip(FilterViewModel.StartRecord).Take(FilterViewModel.RecordPerpage).ToList();
 
             foreach (var item in JobsList)
             {

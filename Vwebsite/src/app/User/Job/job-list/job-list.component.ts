@@ -28,6 +28,7 @@ export class JobListComponent implements OnInit {
   pageSize = 10;
   pageIndex = 0;
   showFirstLastButtons = true;
+  xx = { length: 0, pageIndex: 0, pageSize: 10 };
 
   constructor(
     private router: Router,
@@ -65,12 +66,14 @@ export class JobListComponent implements OnInit {
     this.Filter.get('UserAreaOfExpertise').setValue(
       this.UserData.AreaOfExpertiseId
     );
-    this.JobsService.Filter(this.Filter.value)
-      .toPromise()
-      .then((data) => {
-        this.Jobs = <Jobs[]>data;
-      });
-    this.Jobs = await this.JobsService.Filter(this.Filter.value).toPromise();
+    this.handlePageEvent(this.xx);
+
+    // this.JobsService.Filter(this.Filter.value)
+    //   .toPromise()
+    //   .then((data) => {
+    //     this.Jobs = <Jobs[]>data;
+    //   });
+    // this.Jobs = await this.JobsService.Filter(this.Filter.value).toPromise();
     this.AreaOfExpertiseService.GetAreaOfExpertiseList().subscribe((res) => {
       this.AreaOfExpertise = res;
     });
@@ -85,15 +88,12 @@ export class JobListComponent implements OnInit {
     this.CountryService.GetCountryList().subscribe((res) => {
       this.Country = res;
     });
-    this.length = this.Jobs.length;
   }
 
   onFormSubmit(x) {
     console.log(this.Filter.value);
     this.JobsService.Filter(x).subscribe((x: any) => {
       this.Jobs = x;
-      console.log(x);
-      this.length = this.Jobs.length;
     });
   }
 
@@ -104,6 +104,13 @@ export class JobListComponent implements OnInit {
     this.length = event.length;
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
-    console.log(this.pageIndex);
+    this.Filter.get('StartRecord').setValue(event.pageSize * event.pageIndex);
+    this.Filter.get('RecordPerpage').setValue(
+      event.pageSize * event.pageIndex + event.pageSize
+    );
+    this.JobsService.Filter(this.Filter.value).subscribe((x: any) => {
+      this.Jobs = <Jobs[]>x;
+      this.length = this.Jobs.length;
+    });
   }
 }
