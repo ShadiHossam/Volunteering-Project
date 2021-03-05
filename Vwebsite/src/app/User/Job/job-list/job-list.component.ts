@@ -28,7 +28,7 @@ export class JobListComponent implements OnInit {
   pageSize = 10;
   pageIndex = 0;
   showFirstLastButtons = true;
-  xx = { length: 0, pageIndex: 0, pageSize: 10 };
+  intial = { length: 0, pageIndex: 0, pageSize: 10 };
 
   constructor(
     private router: Router,
@@ -66,7 +66,7 @@ export class JobListComponent implements OnInit {
     this.Filter.get('UserAreaOfExpertise').setValue(
       this.UserData.AreaOfExpertiseId
     );
-    this.handlePageEvent(this.xx);
+    this.handlePageEvent(this.intial);
 
     // this.JobsService.Filter(this.Filter.value)
     //   .toPromise()

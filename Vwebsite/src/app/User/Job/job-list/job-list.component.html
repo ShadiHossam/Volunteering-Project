@@ -4,11 +4,15 @@
   (ngSubmit)="onFormSubmit(Filter.value)"
 >
   <p class="example-full-width" cellspacing="0">
-    <!-- <mat-form-field appearance="fill" class="example-form-field">
+    <mat-form-field appearance="fill" class="example-form-field">
       <mat-label>Enter a date range</mat-label>
       <mat-date-range-input [rangePicker]="rangePicker">
-        <input matStartDate placeholder="Start date" />
-        <input matEndDate placeholder="End date" />
+        <input
+          matStartDate
+          placeholder="Start date"
+          formControlName="FromDate"
+        />
+        <input matEndDate placeholder="End date" formControlName="ToDate" />
       </mat-date-range-input>
       <mat-datepicker-toggle
         matSuffix
@@ -22,7 +26,7 @@
           </button>
         </mat-date-range-picker-actions>
       </mat-date-range-picker>
-    </mat-form-field> -->
+    </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Years Of Experience </mat-label>
       <mat-select class="form-control" formControlName="YearsOFExpertiseId">

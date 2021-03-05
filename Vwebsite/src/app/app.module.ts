@@ -13,8 +13,6 @@ import { HeaderComponent } from './header/header.component';
 
 import { FooterComponent } from './footer/footer.component';
 
-import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MaterialModule } from './material/material.module';
 
 import { InputTextModule } from 'primeng/inputtext';
@@ -68,9 +66,7 @@ import { CorporatesService } from './Services/Corporates/corporates.service';
     BrowserAnimationsModule,
     RouterModule,
     NgbModule,
-    NbThemeModule,
-    NbLayoutModule,
-    NbEvaIconsModule,
+
     InputTextModule,
     CheckboxModule,
     ButtonModule,

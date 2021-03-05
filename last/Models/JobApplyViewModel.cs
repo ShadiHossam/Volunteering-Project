@@ -13,7 +13,7 @@ namespace last.Models
 		public int CorporateId { get; set; }
 		public int JobFormId { get; set; }
 		public int UserAnswerId { get; set; }
-		public int JobApplyStatusId { get; set; }
+		public Nullable<int> JobApplyStatusId { get; set; }
 		public string JobName { get; set; }
 		public string UserName { get; set; }
 		public string CorporateName { get; set; }
