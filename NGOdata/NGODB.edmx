@@ -62,7 +62,7 @@
           <Property Name="CorporateId" Type="int" Nullable="false" />
           <Property Name="JobFormId" Type="int" Nullable="false" />
           <Property Name="UserAnswerId" Type="int" Nullable="false" />
-          <Property Name="JobApplyStatusId" Type="int" Nullable="false" />
+          <Property Name="JobApplyStatusId" Type="int" />
         </EntityType>
         <EntityType Name="JobForm">
           <Key>
@@ -224,7 +224,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_JobApply_JobApplianceStatus">
-          <End Role="JobApplianceStatus" Type="Self.JobApplianceStatus" Multiplicity="1" />
+          <End Role="JobApplianceStatus" Type="Self.JobApplianceStatus" Multiplicity="0..1" />
           <End Role="JobApply" Type="Self.JobApply" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="JobApplianceStatus">
@@ -641,14 +641,6 @@
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_Country" FromRole="Country" ToRole="Users" />
           <NavigationProperty Name="Jobs" Relationship="NGODBModel.FK_Jobs_Country" FromRole="Country" ToRole="Jobs" />
         </EntityType>
-        <EntityType Name="JobApplianceStatus">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="JobApply" Relationship="Self.FK_JobApply_JobApplianceStatus" FromRole="JobApplianceStatus" ToRole="JobApply" />
-        </EntityType>
         <EntityType Name="JobApply">
           <Key>
             <PropertyRef Name="Id" />
@@ -659,13 +651,13 @@
           <Property Name="CorporateId" Type="Int32" Nullable="false" />
           <Property Name="JobFormId" Type="Int32" Nullable="false" />
           <Property Name="UserAnswerId" Type="Int32" Nullable="false" />
-          <Property Name="JobApplyStatusId" Type="Int32" Nullable="false" />
+          <Property Name="JobApplyStatusId" Type="Int32" />
           <NavigationProperty Name="Corporates" Relationship="Self.FK_JobApply_Corporates" FromRole="JobApply" ToRole="Corporates" />
-          <NavigationProperty Name="JobApplianceStatus" Relationship="Self.FK_JobApply_JobApplianceStatus" FromRole="JobApply" ToRole="JobApplianceStatus" />
           <NavigationProperty Name="JobForm" Relationship="Self.FK_JobApply_JobForm" FromRole="JobApply" ToRole="JobForm" />
           <NavigationProperty Name="UserAnswers" Relationship="Self.FK_JobApply_UserAnswers" FromRole="JobApply" ToRole="UserAnswers" />
           <NavigationProperty Name="Users" Relationship="Self.FK_JobApply_Users" FromRole="JobApply" ToRole="Users" />
           <NavigationProperty Name="Jobs" Relationship="NGODBModel.FK_JobApply_Jobs" FromRole="JobApply" ToRole="Jobs" />
+          <NavigationProperty Name="JobApplianceStatus" Relationship="NGODBModel.FK_JobApply_JobApplianceStatus" FromRole="JobApply" ToRole="JobApplianceStatus" />
         </EntityType>
         <EntityType Name="JobForm">
           <Key>
@@ -868,18 +860,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_JobApply_JobApplianceStatus">
-          <End Role="JobApplianceStatus" Type="Self.JobApplianceStatus" Multiplicity="1" />
-          <End Role="JobApply" Type="Self.JobApply" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="JobApplianceStatus">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="JobApply">
-              <PropertyRef Name="JobApplyStatusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_JobApply_JobForm">
           <End Role="JobForm" Type="Self.JobForm" Multiplicity="1" />
           <End Role="JobApply" Type="Self.JobApply" Multiplicity="*" />
@@ -969,7 +949,6 @@
           <EntitySet Name="City" EntityType="Self.City" />
           <EntitySet Name="Corporates" EntityType="Self.Corporates" />
           <EntitySet Name="Country" EntityType="Self.Country" />
-          <EntitySet Name="JobApplianceStatus" EntityType="Self.JobApplianceStatus" />
           <EntitySet Name="JobApply" EntityType="Self.JobApply" />
           <EntitySet Name="JobForm" EntityType="Self.JobForm" />
           <EntitySet Name="QuestionsChoices" EntityType="Self.QuestionsChoices" />
@@ -1014,10 +993,6 @@
           <AssociationSet Name="FK_Users_Country" Association="Self.FK_Users_Country">
             <End Role="Country" EntitySet="Country" />
             <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_JobApply_JobApplianceStatus" Association="Self.FK_JobApply_JobApplianceStatus">
-            <End Role="JobApplianceStatus" EntitySet="JobApplianceStatus" />
-            <End Role="JobApply" EntitySet="JobApply" />
           </AssociationSet>
           <AssociationSet Name="FK_JobApply_JobForm" Association="Self.FK_JobApply_JobForm">
             <End Role="JobForm" EntitySet="JobForm" />
@@ -1080,6 +1055,11 @@
           <AssociationSet Name="FK_Requirements_Jobs" Association="NGODBModel.FK_Requirements_Jobs">
             <End Role="Jobs" EntitySet="Jobs" />
             <End Role="Requirements" EntitySet="Requirements" />
+          </AssociationSet>
+          <EntitySet Name="JobApplianceStatus" EntityType="NGODBModel.JobApplianceStatus" />
+          <AssociationSet Name="FK_JobApply_JobApplianceStatus" Association="NGODBModel.FK_JobApply_JobApplianceStatus">
+            <End Role="JobApplianceStatus" EntitySet="JobApplianceStatus" />
+            <End Role="JobApply" EntitySet="JobApply" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Jobs">
@@ -1211,6 +1191,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="JobApplianceStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="JobApply" Relationship="NGODBModel.FK_JobApply_JobApplianceStatus" FromRole="JobApplianceStatus" ToRole="JobApply" />
+        </EntityType>
+        <Association Name="FK_JobApply_JobApplianceStatus">
+          <End Type="NGODBModel.JobApplianceStatus" Role="JobApplianceStatus" Multiplicity="0..1" />
+          <End Type="NGODBModel.JobApply" Role="JobApply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobApplianceStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobApply">
+              <PropertyRef Name="JobApplyStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1258,14 +1258,6 @@
               <MappingFragment StoreEntitySet="Country">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CountryName" ColumnName="CountryName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="JobApplianceStatus">
-            <EntityTypeMapping TypeName="NGODBModel.JobApplianceStatus">
-              <MappingFragment StoreEntitySet="JobApplianceStatus">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1387,6 +1379,14 @@
               <MappingFragment StoreEntitySet="Requirements">
                 <ScalarProperty Name="Requirements1" ColumnName="Requirements" />
                 <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobApplianceStatus">
+            <EntityTypeMapping TypeName="NGODBModel.JobApplianceStatus">
+              <MappingFragment StoreEntitySet="JobApplianceStatus">
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

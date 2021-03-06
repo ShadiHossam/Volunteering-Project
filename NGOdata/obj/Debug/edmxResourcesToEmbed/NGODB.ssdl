@@ -57,7 +57,7 @@
     <Property Name="CorporateId" Type="int" Nullable="false" />
     <Property Name="JobFormId" Type="int" Nullable="false" />
     <Property Name="UserAnswerId" Type="int" Nullable="false" />
-    <Property Name="JobApplyStatusId" Type="int" Nullable="false" />
+    <Property Name="JobApplyStatusId" Type="int" />
   </EntityType>
   <EntityType Name="JobForm">
     <Key>
@@ -219,7 +219,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_JobApply_JobApplianceStatus">
-    <End Role="JobApplianceStatus" Type="Self.JobApplianceStatus" Multiplicity="1" />
+    <End Role="JobApplianceStatus" Type="Self.JobApplianceStatus" Multiplicity="0..1" />
     <End Role="JobApply" Type="Self.JobApply" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="JobApplianceStatus">

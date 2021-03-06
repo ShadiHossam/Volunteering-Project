@@ -22,8 +22,8 @@ export class JobApplyService {
   DeleteJobApply(id: number) {
     return this.http.delete(this.JobApplyUrl + id);
   }
-  GetJobApply(id: number): Observable<JobApply> {
-    return this.http.get<JobApply>(this.JobApplyUrl + id);
+  GetJobApply(id): Observable<JobApply[]> {
+    return this.http.get<JobApply[]>(this.JobApplyUrl + id);
   }
 
   PostJobApply(emp) {

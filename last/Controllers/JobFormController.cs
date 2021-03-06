@@ -31,7 +31,7 @@ namespace last.Controllers
 
                 Mapper.CreateMap<JobForm, JobFormViewModel>();
                 JobFormViewModel = Mapper.Map<JobForm, JobFormViewModel>(item);
-                JobFormViewModel.JobName = item.Jobs.JobTitle;
+                JobFormViewModel.JobName = item.Jobs?.JobTitle;
 
 
                 JobFormViewModelList.Add(JobFormViewModel);

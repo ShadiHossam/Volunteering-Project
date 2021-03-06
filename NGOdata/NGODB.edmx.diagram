@@ -4,12 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="be3ce963a1a341c98d7883af0f13004f" Name="Diagram1">
+      <Diagram DiagramId="be3ce963a1a341c98d7883af0f13004f" Name="Diagram1" ZoomLevel="56">
         <EntityTypeShape EntityType="NGODBModel.AreaOfExpertise" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="NGODBModel.City" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="NGODBModel.Corporates" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="NGODBModel.Country" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="NGODBModel.JobApplianceStatus" Width="1.5" PointX="11.25" PointY="17.25" IsExpanded="true" />
         <EntityTypeShape EntityType="NGODBModel.JobApply" Width="1.5" PointX="13.5" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="NGODBModel.JobForm" Width="1.5" PointX="12.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="NGODBModel.QuestionsChoices" Width="1.5" PointX="15" PointY="3.875" IsExpanded="true" />
@@ -28,7 +27,6 @@
         <AssociationConnector Association="NGODBModel.FK_Corporates_Segments" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_JobApply_Corporates" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_Users_Country" ManuallyRouted="false" />
-        <AssociationConnector Association="NGODBModel.FK_JobApply_JobApplianceStatus" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_JobApply_JobForm" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_JobApply_UserAnswers" ManuallyRouted="false" />
         <AssociationConnector Association="NGODBModel.FK_JobApply_Users" ManuallyRouted="false" />
@@ -46,6 +44,8 @@
         <AssociationConnector Association="NGODBModel.FK_Jobs_YearsOfExperience" />
         <EntityTypeShape EntityType="NGODBModel.Requirements" Width="1.5" PointX="0.75" PointY="0.75" />
         <AssociationConnector Association="NGODBModel.FK_Requirements_Jobs" />
+        <EntityTypeShape EntityType="NGODBModel.JobApplianceStatus" Width="1.5" PointX="3.375" PointY="0.875" />
+        <AssociationConnector Association="NGODBModel.FK_JobApply_JobApplianceStatus" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -49,29 +49,53 @@ namespace last.Controllers
 
         // GET: api/JobApply/5
         [ResponseType(typeof(JobApplyViewModel))]
-        public JobApplyViewModel GetCoroprate(int id)
+        public List<JobApplyViewModel> GetJobApply(int id)
         {
-            JobApplyViewModel JobApplyViewModel = new JobApplyViewModel();
+            var GetJobApplyList = db.JobApply.Where(w => w.UserId == id).ToList();
+            List<JobApplyViewModel> JobApplyViewModelList = new List<JobApplyViewModel>();
+            foreach (var item in GetJobApplyList)
+            {
+                JobApplyViewModel JobApplyViewModel = new JobApplyViewModel();
+                Mapper.CreateMap<JobApply, JobApplyViewModel>();
+                JobApplyViewModel = Mapper.Map<JobApply, JobApplyViewModel>(item);
+                JobApplyViewModel.JobName = item.Jobs?.JobTitle;
+                JobApplyViewModel.JobDescription = item.Jobs?.JobDescription;
+                JobApplyViewModel.UserJobId = item.Jobs.Id;
+                JobApplyViewModel.UserName = item.Users?.UserName;
+                JobApplyViewModel.CorporateName = item.Corporates?.CorporateName;
+                JobApplyViewModel.JobFormName = item.JobForm?.QuestionHeader;
+                JobApplyViewModel.UserAnswerName = item.UserAnswers?.Answer;
+                JobApplyViewModel.JobApplyStatusName = item.JobApplianceStatus?.StatusName;
+                JobApplyViewModelList.Add(JobApplyViewModel);
 
-            NGOdata.JobApply GetJobApply;
 
-            GetJobApply = db.JobApply.Where(x => x.Id == id).FirstOrDefault();
-            Mapper.CreateMap<JobApply, JobApplyViewModel>();
-            JobApplyViewModel = Mapper.Map<JobApply, JobApplyViewModel>(GetJobApply);
-
-            JobApplyViewModel.JobName = GetJobApply.Jobs.JobTitle;
-            JobApplyViewModel.UserName = GetJobApply.Users.UserName;
-            JobApplyViewModel.CorporateName = GetJobApply.Corporates.CorporateName;
-            JobApplyViewModel.JobFormName = GetJobApply.JobForm.QuestionHeader;
-            JobApplyViewModel.UserAnswerName = GetJobApply.UserAnswers.Answer;
-            JobApplyViewModel.JobApplyStatusName = GetJobApply.JobApplianceStatus.StatusName;
-
-            return JobApplyViewModel;
+            }
+            return JobApplyViewModelList;
         }
 
+                //public JobApplyViewModel GetJobApply(int id)
+                //{
+                //    JobApplyViewModel JobApplyViewModel = new JobApplyViewModel();
 
-        // PUT: api/JobApply/5
-        [ResponseType(typeof(void))]
+                //    NGOdata.JobApply GetJobApply;
+
+                //    GetJobApply = db.JobApply.Where(x => x.Id == id).FirstOrDefault();
+                //    Mapper.CreateMap<JobApply, JobApplyViewModel>();
+                //    JobApplyViewModel = Mapper.Map<JobApply, JobApplyViewModel>(GetJobApply);
+
+                //    JobApplyViewModel.JobName = GetJobApply.Jobs.JobTitle;
+                //    JobApplyViewModel.UserName = GetJobApply.Users.UserName;
+                //    JobApplyViewModel.CorporateName = GetJobApply.Corporates.CorporateName;
+                //    JobApplyViewModel.JobFormName = GetJobApply.JobForm.QuestionHeader;
+                //    JobApplyViewModel.UserAnswerName = GetJobApply.UserAnswers.Answer;
+                //    JobApplyViewModel.JobApplyStatusName = GetJobApply.JobApplianceStatus.StatusName;
+
+                //    return JobApplyViewModel;
+                //}
+
+
+                // PUT: api/JobApply/5
+                [ResponseType(typeof(void))]
         public IHttpActionResult PutJobApply(int id, JobApplyViewModel jobApplyViewModel)
         {
             if (!ModelState.IsValid)

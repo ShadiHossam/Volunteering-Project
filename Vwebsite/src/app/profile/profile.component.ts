@@ -132,6 +132,9 @@ export class ProfileComponent implements OnInit {
     this.LoginService.LogOut();
     this.router.navigate(['/signin']);
   }
+  jobapply() {
+    this.router.navigate(['/jobapply']);
+  }
 
   // showForEdit(emp: Register) {
   //   this.LoginService.SelectedUser = Object.assign({}, emp);

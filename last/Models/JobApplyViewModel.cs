@@ -20,6 +20,10 @@ namespace last.Models
 		public string JobFormName { get; set; }
 		public string UserAnswerName { get; set; }
 		public string JobApplyStatusName { get; set; }
+		public string JobDescription { get; set; }
+		public int UserJobId { get; set; }
+
+
 
 
 

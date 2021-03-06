@@ -121,10 +121,10 @@ export class JobFormComponent implements OnInit {
 
     this.UserAnswers.forEach((x) => {
       this.JobApply.push({
-        JobId: this.Job.Id,
+        JobId: this.Id,
         UserId: this.User.Id,
         CorporateId: this.Job.CorporateId,
-        JobFormId: this.Id,
+        JobFormId: x.QuestionId,
         UserAnswerId: x.Id,
       });
     });

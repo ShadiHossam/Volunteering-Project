@@ -62,11 +62,9 @@ import { CorporatesService } from './Services/Corporates/corporates.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-
     BrowserAnimationsModule,
     RouterModule,
     NgbModule,
-
     InputTextModule,
     CheckboxModule,
     ButtonModule,

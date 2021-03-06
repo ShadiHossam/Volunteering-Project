@@ -20,13 +20,13 @@ namespace NGOdata
         public int CorporateId { get; set; }
         public int JobFormId { get; set; }
         public int UserAnswerId { get; set; }
-        public int JobApplyStatusId { get; set; }
+        public Nullable<int> JobApplyStatusId { get; set; }
     
         public virtual Corporates Corporates { get; set; }
-        public virtual JobApplianceStatus JobApplianceStatus { get; set; }
         public virtual JobForm JobForm { get; set; }
         public virtual UserAnswers UserAnswers { get; set; }
         public virtual Users Users { get; set; }
         public virtual Jobs Jobs { get; set; }
+        public virtual JobApplianceStatus JobApplianceStatus { get; set; }
     }
 }

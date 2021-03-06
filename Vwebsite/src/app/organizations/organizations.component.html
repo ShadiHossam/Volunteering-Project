@@ -1,38 +1,58 @@
-<form
-  class="example-form"
-  [formGroup]="Filter"
-  (ngSubmit)="onFormSubmit(Filter.value)"
->
-  <p class="example-full-width" cellspacing="0">
-    <mat-form-field class="example-full-width">
-      <mat-label>Country</mat-label>
-      <mat-select class="form-control" formControlName="CountryId">
-        <mat-option *ngFor="let Country of Country" [value]="Country.Id">
-          {{ Country.CountryName }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width">
-      <mat-label>City</mat-label>
-      <mat-select class="form-control" formControlName="CityId">
-        <mat-option *ngFor="let city of City" [value]="city.Id">
-          {{ city.CityName }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <button type="submit">search</button>
-  </p>
-</form>
-
-<form class="form" *ngFor="let corporatesData of CorporatesData">
-  <span class="courses">
-    <div class="course-card">
-      <img width="100" alt="Image " src="../assets/img/3327590.jpg" />
-      <p>
-        {{ corporatesData.CorporateName }}
-      </p>
+<div class="container-fluid">
+  <form
+    class="example-form"
+    [formGroup]="Filter"
+    (ngSubmit)="onFormSubmit(Filter.value)"
+  >
+    <div class="container mt-2 mb-2">
+      <div class="example-full-width row" cellspacing="0">
+        <div class="form-field col-md-5 col-12">
+          <mat-form-field class="example-full-width">
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="CountryId">
+              <mat-option *ngFor="let Country of Country" [value]="Country.Id">
+                {{ Country.CountryName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-field col-md-5 col-12">
+          <mat-form-field class="example-full-width">
+            <mat-label>City</mat-label>
+            <mat-select formControlName="CityId">
+              <mat-option *ngFor="let city of City" [value]="city.Id">
+                {{ city.CityName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-2 col-12">
+          <button class="btn btn-primary fwb" type="submit">search</button>
+        </div>
+      </div>
     </div>
-  </span>
-</form>
+  </form>
+  <!-- Somewhere is a style setting too width to some high level component -->
+
+  <div class="container mb-3 mt-3">
+    <div class="row">
+      <form
+        class="form col-md-4 col-sm-6 col-lg-2 col-12"
+        *ngFor="let corporatesData of CorporatesData"
+      >
+        <div class="card course-card text-center">
+          <img
+            class="card-image"
+            alt="Image "
+            src="../assets/img/3327590.jpg"
+          />
+          <div class="card-body">
+            <p>
+              {{ corporatesData.CorporateName }}
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

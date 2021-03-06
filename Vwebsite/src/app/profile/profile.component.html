@@ -13,10 +13,10 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <mat-icon>event</mat-icon>
-              Events
+              <mat-icon>event</mat-icon>&nbsp; Events
             </mat-panel-title>
-            <mat-panel-description> Your Events </mat-panel-description>
+            <!-- just to be simpler -->
+            <!-- <mat-panel-description> Your Events </mat-panel-description> -->
           </mat-expansion-panel-header>
 
           <button mat-button>Event 1</button>
@@ -132,123 +132,149 @@
 
     <mat-divider></mat-divider>
     <div>
-      <button mat-raised-button class="a">
+      <button mat-raised-button class="a pt-2 pb-2">
         <mat-icon>settings</mat-icon> Settings
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+    <div>
+      <button mat-raised-button class="a pt-2 pb-2" (click)="jobapply()">
+        <mat-icon>work</mat-icon> Job Apply
       </button>
     </div>
     <mat-divider></mat-divider>
 
     <div>
-      <button mat-raised-button class="a" (click)="LogOut()">Log Out</button>
+      <button mat-raised-button class="a pt-2 pb-2" (click)="LogOut()">
+        <mat-icon>logout</mat-icon> Log Out
+      </button>
     </div>
   </nav>
+
   <article>
-    <mat-tab-group>
-      <mat-tab label="Info">
-        <div class="p-grid p-fluid">
-          <ul class="p-col-12 p-md-4">
-            <div class="p-inputgroup">
-              <span class="p-inputgroup-addon">First Name</span>
-              <input type="text" [(ngModel)]="UserData.FirstName" />
+    <div class="container">
+      <mat-tab-group>
+        <mat-tab label="Info" class="row">
+          <div class="col-12">
+            <div class="p-grid p-fluid">
+              <ul class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">First Name</span>
+                  <input type="text" [(ngModel)]="UserData.FirstName" />
+                </div>
+              </ul>
             </div>
-          </ul>
-        </div>
-        <div class="p-grid p-fluid">
-          <ul class="p-col-12 p-md-4">
-            <div class="p-inputgroup">
-              <span class="p-inputgroup-addon">Last Name</span>
-              <input type="text" [(ngModel)]="UserData.LastName" />
+          </div>
+          <div class="col-12">
+            <div class="p-grid p-fluid">
+              <ul class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">Last Name</span>
+                  <input type="text" [(ngModel)]="UserData.LastName" />
+                </div>
+              </ul>
             </div>
-          </ul>
-        </div>
-        <div class="p-grid p-fluid">
-          <ul class="p-col-12 p-md-4">
-            <div class="p-inputgroup">
-              <span class="p-inputgroup-addon">User Name</span>
-              <input type="text" [(ngModel)]="UserData.UserName" disabled />
+          </div>
+          <div class="col-12">
+            <div class="p-grid p-fluid">
+              <ul class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">User Name</span>
+                  <input type="text" [(ngModel)]="UserData.UserName" disabled />
+                </div>
+              </ul>
             </div>
-          </ul>
-        </div>
-        <div class="p-grid p-fluid">
-          <ul class="p-col-12 p-md-4">
-            <div class="p-inputgroup">
-              <span class="p-inputgroup-addon">Address</span>
+          </div>
+          <div class="col-12">
+            <div class="p-grid p-fluid">
+              <ul class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">Address</span>
 
-              <input type="text" [(ngModel)]="UserData.Address" />
+                  <input type="text" [(ngModel)]="UserData.Address" />
+                </div>
+              </ul>
             </div>
-          </ul>
-        </div>
-        <div class="p-grid p-fluid">
-          <ul class="p-col-12 p-md-4">
-            <div class="p-inputgroup">
-              <span class="p-inputgroup-addon">Email</span>
-              <input type="text" [(ngModel)]="UserData.Email" />
+          </div>
+          <div class="col-12">
+            <div class="p-grid p-fluid">
+              <ul class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">Email</span>
+                  <input type="text" [(ngModel)]="UserData.Email" />
+                </div>
+              </ul>
             </div>
-          </ul>
-        </div>
-        <div class="p-grid p-fluid">
-          <ul class="p-col-12 p-md-4">
-            <div class="p-inputgroup">
-              <span class="p-inputgroup-addon">Mobile Number</span>
-              <input type="text" [(ngModel)]="UserData.Mobilenumber" />
+          </div>
+          <div class="col-12">
+            <div class="p-grid p-fluid">
+              <ul class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">Mobile Number</span>
+                  <input type="text" [(ngModel)]="UserData.Mobilenumber" />
+                </div>
+              </ul>
             </div>
-          </ul>
-        </div>
-        <div class="p-grid p-fluid">
-          <ul class="p-col-12 p-md-4">
-            <div class="p-inputgroup">
-              <span class="p-inputgroup-addon">Home Number</span>
-              <input type="text" [(ngModel)]="UserData.HomeNumber" />
+          </div>
+          <div class="col-12">
+            <div class="p-grid p-fluid">
+              <ul class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">Home Number</span>
+                  <input type="text" [(ngModel)]="UserData.HomeNumber" />
+                </div>
+              </ul>
             </div>
-          </ul>
-        </div>
-        <div class="p-grid p-fluid">
-          <ul class="p-col-12 p-md-4">
-            <div class="p-inputgroup">
-              <span class="p-inputgroup-addon">Birth Date</span>
-              <input type="text" [(ngModel)]="UserData.BirthdateSTR" />
+          </div>
+          <div class="col-12">
+            <div class="p-grid p-fluid">
+              <ul class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">Birth Date</span>
+                  <input type="text" [(ngModel)]="UserData.BirthdateSTR" />
+                </div>
+              </ul>
             </div>
-          </ul>
-        </div>
+          </div>
 
-        <mat-form-field appearance="fill">
-          <mat-label>City</mat-label>
-          <mat-select [(ngModel)]="UserData.CityId">
-            <mat-option *ngFor="let city of City" [value]="city.Id">
-              {{ city.CityName }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>City</mat-label>
+            <mat-select [(ngModel)]="UserData.CityId">
+              <mat-option *ngFor="let city of City" [value]="city.Id">
+                {{ city.CityName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Country</mat-label>
-          <mat-select [(ngModel)]="UserData.CountryId">
-            <mat-option *ngFor="let country of Country" [value]="country.Id">
-              {{ country.CountryName }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button (click)="SaveChanges(UserData)">save</button>
-        <button>cancel</button>
-      </mat-tab>
-      <mat-tab label="Business">
-        <mat-form-field appearance="fill">
-          <mat-label>Area Of Expertise </mat-label>
-          <mat-select [(ngModel)]="UserData.AreaOfExpertiseId">
-            <mat-option
-              *ngFor="let areaOfExpertise of AreaOfExpertise"
-              [value]="areaOfExpertise.Id"
-            >
-              {{ areaOfExpertise.AreaOfExpertiseName }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button (click)="SaveChanges(UserData)">save</button>
-        <button>cancel</button>
-      </mat-tab>
-    </mat-tab-group>
+          <mat-form-field appearance="fill">
+            <mat-label>Country</mat-label>
+            <mat-select [(ngModel)]="UserData.CountryId">
+              <mat-option *ngFor="let country of Country" [value]="country.Id">
+                {{ country.CountryName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button (click)="SaveChanges(UserData)">save</button>
+          <button>cancel</button>
+        </mat-tab>
+        <mat-tab label="Business">
+          <mat-form-field appearance="fill">
+            <mat-label>Area Of Expertise </mat-label>
+            <mat-select [(ngModel)]="UserData.AreaOfExpertiseId">
+              <mat-option
+                *ngFor="let areaOfExpertise of AreaOfExpertise"
+                [value]="areaOfExpertise.Id"
+              >
+                {{ areaOfExpertise.AreaOfExpertiseName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button (click)="SaveChanges(UserData)">save</button>
+          <button>cancel</button>
+        </mat-tab>
+      </mat-tab-group>
 
-    <!-- <div class="p-grid p-fluid">
+      <!-- <div class="p-grid p-fluid">
       <ul class="p-col-12 p-md-4">
         <div class="p-inputgroup">
           <span class="p-inputgroup-addon">Password</span>
@@ -258,7 +284,7 @@
       </ul>
     </div> -->
 
-    <!-- <mat-form-field appearance="fill">
+      <!-- <mat-form-field appearance="fill">
       <mat-label>User Skills </mat-label>
       <mat-select [(ngModel)]="UserSkills">
         <mat-option
@@ -269,7 +295,9 @@
         </mat-option>
       </mat-select>
     </mat-form-field> -->
+    </div>
   </article>
+  <div style="clear: both"></div>
 </section>
 
 <!-- 

@@ -1,0 +1,8 @@
+<div *ngFor="let job of result">
+  <div (click)="JobId(job.UserJobId)">
+    <h3 class="h">JobTitle:{{ job.JobName }}</h3>
+    <h4>Description:{{ job.JobDescription }}</h4>
+    <p></p>
+    <p></p>
+  </div>
+</div>

@@ -221,7 +221,7 @@ namespace last.Controllers
             List<Jobs> JobsList = new List<Jobs>();
             List<JobsViewModel> JobsViewModelList = new List<JobsViewModel>();
             JobsList = db.Jobs.Where(w =>
-            (w.CreationDate >= FilterViewModel.FromDate && w.CreationDate <= FilterViewModel.ToDate) &&
+            //(w.CreationDate >= FilterViewModel.FromDate && w.CreationDate <= FilterViewModel.ToDate) &&
             (w.AreaOfExpertiseId == FilterViewModel.AreaOfExpertiseId || 
             (FilterViewModel.AreaOfExpertiseId == null && w.AreaOfExpertiseId == FilterViewModel.UserAreaOfExpertise)) &&
             (w.CityId == FilterViewModel.CityId || FilterViewModel.CityId == null) && 

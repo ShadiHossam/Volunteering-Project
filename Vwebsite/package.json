@@ -47,7 +47,7 @@
     "eva-icons": "^1.1.2",
     "font-awesome": "^4.7.0",
     "google-libphonenumber": "^3.2.9",
-    "jquery": "^3.5.1",
+    "jquery": "^3.6.0",
     "ng-table": "^3.0.1",
     "ng2-file-upload": "^1.4.0",
     "ng2-page-scroll": "^4.0.0-beta.12",

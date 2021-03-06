@@ -29,7 +29,6 @@ namespace NGOdata
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Corporates> Corporates { get; set; }
         public virtual DbSet<Country> Country { get; set; }
-        public virtual DbSet<JobApplianceStatus> JobApplianceStatus { get; set; }
         public virtual DbSet<JobApply> JobApply { get; set; }
         public virtual DbSet<JobForm> JobForm { get; set; }
         public virtual DbSet<QuestionsChoices> QuestionsChoices { get; set; }
@@ -41,5 +40,6 @@ namespace NGOdata
         public virtual DbSet<YearsOfExperience> YearsOfExperience { get; set; }
         public virtual DbSet<Jobs> Jobs { get; set; }
         public virtual DbSet<Requirements> Requirements { get; set; }
+        public virtual DbSet<JobApplianceStatus> JobApplianceStatus { get; set; }
     }
 }

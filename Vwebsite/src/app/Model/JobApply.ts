@@ -1,14 +1,17 @@
 export interface JobApply {
-  JobId?: number;
+  Id?;
+  JobId?;
   UserId?: number;
   CorporateId?;
   JobFormId?;
   UserAnswerId?: number;
   JobApplyStatusId?: number;
-  JobTitle?: number;
-  UserName?: number;
-  CorporateName?: number;
-  JobFormName?: number;
-  UserAnswerName?: number;
-  JobApplyStatusName?: number;
+  JobName?;
+  UserName?;
+  CorporateName?;
+  JobFormName?;
+  UserAnswerName?;
+  JobApplyStatusName?;
+  JobDescription?: string;
+  UserJobId?;
 }

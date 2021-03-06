@@ -45,14 +45,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="JobApplianceStatus">
-      <EntityTypeMapping TypeName="NGODBModel.JobApplianceStatus">
-        <MappingFragment StoreEntitySet="JobApplianceStatus">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="JobApply">
       <EntityTypeMapping TypeName="NGODBModel.JobApply">
         <MappingFragment StoreEntitySet="JobApply">
@@ -171,6 +163,14 @@
         <MappingFragment StoreEntitySet="Requirements">
           <ScalarProperty Name="Requirements1" ColumnName="Requirements" />
           <ScalarProperty Name="JobId" ColumnName="JobId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobApplianceStatus">
+      <EntityTypeMapping TypeName="NGODBModel.JobApplianceStatus">
+        <MappingFragment StoreEntitySet="JobApplianceStatus">
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

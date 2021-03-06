@@ -21,6 +21,8 @@ import { EventListComponent } from './User/Event/event-list/event-list.component
 import { JobDetailsComponent } from './User/Job/job-details/job-details.component';
 import { EventDetailsComponent } from './User/Event/event-details/event-details.component';
 import { AuthGuard } from './auth/auth.guard';
+import { JobApplyComponent } from './User/Job/job-apply/job-apply.component';
+
 import { AddEventOrganizationComponent } from './Or/Event/add-event-organization/add-event-organization.component';
 import { EventDetailsOrganizationComponent } from './Or/Event/event-details-organization/event-details-organization.component';
 import { EventListOrganizationComponent } from './Or/Event/event-list-organization/event-list-organization.component';
@@ -105,6 +107,11 @@ const routes: Routes = [
     component: ProfileComponent,
   },
   {
+    path: 'jobapply',
+    canActivate: [AuthGuard],
+    component: JobApplyComponent,
+  },
+  {
     path: 'or-profile',
     component: ProfileOrganizationComponent,
   },
@@ -137,6 +144,7 @@ export const CRouting = [
   AddJobFormComponent,
   AddJobOrganizationComponent,
   JobDetailsOrganizationComponent,
+  JobApplyComponent,
   JobListOrganizationComponent,
   EventDetailsComponent,
   JobDetailsComponent,
