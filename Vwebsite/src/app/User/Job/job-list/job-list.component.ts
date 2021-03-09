@@ -91,16 +91,20 @@ export class JobListComponent implements OnInit {
   }
 
   onFormSubmit(x) {
-    console.log(this.Filter.value);
+    if (!x || x === '--') {
+      return false;
+    }
+
     this.JobsService.Filter(x).subscribe((x: any) => {
       this.Jobs = x;
+      this.length = this.Jobs.length;
     });
   }
 
   JobId(jobId: string) {
     this.router.navigate(['/jobdetails', jobId]);
   }
-  handlePageEvent(event: PageEvent) {
+  async handlePageEvent(event: PageEvent) {
     this.length = event.length;
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
@@ -108,9 +112,13 @@ export class JobListComponent implements OnInit {
     this.Filter.get('RecordPerpage').setValue(
       event.pageSize * event.pageIndex + event.pageSize
     );
-    this.JobsService.Filter(this.Filter.value).subscribe((x: any) => {
-      this.Jobs = <Jobs[]>x;
-      this.length = this.Jobs.length;
-    });
+
+    this.JobsService.Filter(this.Filter.value)
+      .toPromise()
+      .then((x: any) => {
+        this.Jobs = <Jobs[]>x;
+        this.length = this.Jobs.length;
+        console.log(this.length);
+      });
   }
 }

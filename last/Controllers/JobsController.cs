@@ -70,7 +70,7 @@ namespace last.Controllers
             JobsViewModel.AreaOfExpertiseName = GetJob.AreaOfExpertise?.AreaOfExpertiseName;
             JobsViewModel.CountryName = GetJob.Country?.CountryName;
             JobsViewModel.CorporateName = GetJob.Corporates?.CorporateName;
-            //JobsViewModel.RequirementsName = GetJob. Requirements.Requirements;
+           // JobsViewModel.RequirementsName = GetJob. Requirements.Requirements;
             JobsViewModel.YearsOFExpertiseName = GetJob.YearsOfExperience?.YearsOfExperienceThreshold;
             JobsViewModel.CreationDateSTR = GetJob.CreationDate.ToString("MM/dd/yyyy");
             return JobsViewModel;
@@ -216,7 +216,7 @@ namespace last.Controllers
         [HttpPost]
         [ResponseType(typeof(Jobs))]
         public List<JobsViewModel> FilterJob(FilterViewModel FilterViewModel)
-        {
+       {
            
             List<Jobs> JobsList = new List<Jobs>();
             List<JobsViewModel> JobsViewModelList = new List<JobsViewModel>();

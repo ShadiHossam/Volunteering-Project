@@ -29,22 +29,22 @@ export class CorporatesService {
   DeleteCorporates() {
     return this.http.delete(this.CorporatesUrl + this.x);
   }
-  GetCorporates(): Observable<Corporates> {
-    return this.http.get<Corporates>(this.CorporatesUrl + this.x);
+  GetCorporates(x): Observable<Corporates> {
+    return this.http.get<Corporates>(this.CorporatesUrl + x);
   }
-  PostCorporates(emp: Corporates) {
+  PostCorporates(emp) {
     var body = JSON.stringify(emp);
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
     return this.http.post<Corporates>(this.CorporatesUrl, body, httpOptions);
   }
-  Filter(emp) {
+  Filter(emp): Observable<Corporates[]> {
     var body = JSON.stringify(emp);
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
-    return this.http.post(
+    return this.http.post<Corporates[]>(
       this.CorporatesUrl + 'FilterCorporates',
       body,
       httpOptions

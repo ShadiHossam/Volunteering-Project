@@ -8,10 +8,6 @@ import { Register } from 'src/app/Model/register';
 import { distinct } from 'rxjs/operators';
 import { from } from 'rxjs';
 
-interface person {
-  JobDescription;
-  JobName;
-}
 @Component({
   selector: 'app-job-apply',
   templateUrl: './job-apply.component.html',

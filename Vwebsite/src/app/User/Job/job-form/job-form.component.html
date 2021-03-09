@@ -9,7 +9,7 @@
       <input *ngSwitchCase="'TextBox'" type="text" formControlName="Answer" />
       <section class="example-section">
         <div *ngSwitchCase="'MultiChoices'">
-          <mat-selection-list #Choices formControlName="Answer">
+          <mat-selection-list #Choices>
             <mat-list-option
               *ngFor="let y of item.get('QuestionsChoicesViewModelList').value"
               [value]="y.Choices"
@@ -19,11 +19,7 @@
           </mat-selection-list>
         </div>
         <div *ngSwitchCase="'Choices'">
-          <mat-selection-list
-            #Choices
-            [multiple]="false"
-            formControlName="Answer"
-          >
+          <mat-selection-list #Choices [multiple]="false">
             <mat-list-option
               *ngFor="let y of item.get('QuestionsChoicesViewModelList').value"
               [value]="y.Choices"

@@ -17,7 +17,7 @@ namespace last.Models
 		public string JobName { get; set; }
 		public string UserName { get; set; }
 		public string CorporateName { get; set; }
-		public string JobFormName { get; set; }
+		public string QuestionHeader { get; set; }
 		public string UserAnswerName { get; set; }
 		public string JobApplyStatusName { get; set; }
 		public string JobDescription { get; set; }

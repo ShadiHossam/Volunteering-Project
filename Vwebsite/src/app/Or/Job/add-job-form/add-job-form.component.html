@@ -153,6 +153,8 @@
                     (selectionChange)="onSeletType(selectedChoices[i], i)"
                     [required]="true"
                   >
+                    <mat-option selected>--</mat-option>
+
                     <mat-option
                       *ngFor="let type of questions"
                       [value]="type.value"

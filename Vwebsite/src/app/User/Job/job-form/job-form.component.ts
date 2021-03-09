@@ -43,7 +43,6 @@ export class JobFormComponent implements OnInit {
   JobApply: JobApply[] = new Array();
 
   jobapply;
-  UserAnswerId;
   constructor(
     private JobFormService: JobFormService,
     private QuestionsChoicesService: QuestionsChoicesService,
@@ -97,7 +96,7 @@ export class JobFormComponent implements OnInit {
     const qus = this.orderForm.controls.items as FormArray;
     qus.push(
       this.formBuilder.group({
-        Id: item.Id,
+        // Id: item.Id,
         JobId: item.JobId,
         Type: item.Type,
         QuestionHeader: item.QuestionHeader,
@@ -112,12 +111,15 @@ export class JobFormComponent implements OnInit {
   async submit() {
     console.log(JSON.stringify(this.orderForm.value));
 
-    this.UserAnswersService.GetUserAnswersList()
+    this.UserAnswersService.PostUserAnswers(this.orderForm.value)
       .toPromise()
       .then((x: any) => {
         this.UserAnswers = x;
+        console.log(x);
       });
-    this.UserAnswers = await this.UserAnswersService.GetUserAnswersList().toPromise();
+    this.UserAnswers = await this.UserAnswersService.PostUserAnswers(
+      this.orderForm.value
+    ).toPromise();
 
     this.UserAnswers.forEach((x) => {
       this.JobApply.push({
@@ -127,9 +129,9 @@ export class JobFormComponent implements OnInit {
         JobFormId: x.QuestionId,
         UserAnswerId: x.Id,
       });
+
+      console.log(this.UserAnswers);
     });
-    console.log(this.JobApply);
-    console.log(this.UserAnswers);
 
     this.JobApplyService.PostJobApply(this.JobApply).subscribe((x) => {
       this.jobapply = x;

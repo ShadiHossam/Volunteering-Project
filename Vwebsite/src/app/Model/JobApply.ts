@@ -9,7 +9,7 @@ export interface JobApply {
   JobName?;
   UserName?;
   CorporateName?;
-  JobFormName?;
+  QuestionHeader?;
   UserAnswerName?;
   JobApplyStatusName?;
   JobDescription?: string;

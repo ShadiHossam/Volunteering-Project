@@ -34,7 +34,7 @@ namespace last.Controllers
                 JobApplyViewModel.JobName = item.Jobs.JobTitle;
                 JobApplyViewModel.UserName = item.Users.UserName;
                 JobApplyViewModel.CorporateName = item.Corporates.CorporateName;
-                JobApplyViewModel.JobFormName = item.JobForm.QuestionHeader;
+                JobApplyViewModel.QuestionHeader = item.JobForm.QuestionHeader;
                 JobApplyViewModel.UserAnswerName = item.UserAnswers.Answer;
                 JobApplyViewModel.JobApplyStatusName = item.JobApplianceStatus.StatusName;
 
@@ -63,7 +63,7 @@ namespace last.Controllers
                 JobApplyViewModel.UserJobId = item.Jobs.Id;
                 JobApplyViewModel.UserName = item.Users?.UserName;
                 JobApplyViewModel.CorporateName = item.Corporates?.CorporateName;
-                JobApplyViewModel.JobFormName = item.JobForm?.QuestionHeader;
+                JobApplyViewModel.QuestionHeader = item.JobForm?.QuestionHeader;
                 JobApplyViewModel.UserAnswerName = item.UserAnswers?.Answer;
                 JobApplyViewModel.JobApplyStatusName = item.JobApplianceStatus?.StatusName;
                 JobApplyViewModelList.Add(JobApplyViewModel);

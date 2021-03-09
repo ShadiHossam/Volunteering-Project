@@ -10,6 +10,8 @@
           <mat-form-field class="example-full-width">
             <mat-label>Country</mat-label>
             <mat-select formControlName="CountryId">
+              <mat-option selected>--</mat-option>
+
               <mat-option *ngFor="let Country of Country" [value]="Country.Id">
                 {{ Country.CountryName }}
               </mat-option>
@@ -20,6 +22,8 @@
           <mat-form-field class="example-full-width">
             <mat-label>City</mat-label>
             <mat-select formControlName="CityId">
+              <mat-option selected>--</mat-option>
+
               <mat-option *ngFor="let city of City" [value]="city.Id">
                 {{ city.CityName }}
               </mat-option>
@@ -46,7 +50,7 @@
             alt="Image "
             src="../assets/img/3327590.jpg"
           />
-          <div class="card-body">
+          <div class="card-body" (click)="CorporatesId(corporatesData.Id)">
             <p>
               {{ corporatesData.CorporateName }}
             </p>

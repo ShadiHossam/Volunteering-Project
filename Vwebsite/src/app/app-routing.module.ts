@@ -31,8 +31,11 @@ import { JobDetailsOrganizationComponent } from './Or/Job/job-details-organizati
 import { JobListOrganizationComponent } from './Or/Job/job-list-organization/job-list-organization.component';
 import { ProfileOrganizationComponent } from './profile-organization/profile-organization.component';
 import { SignupOrganizationComponent } from './signup-organization/signup-organization.component';
+import { OrganizationDetailsComponent } from './organization-details/organization-details.component';
+
 import { JobFormComponent } from './User/Job/job-form/job-form.component';
 import { AddJobFormComponent } from './Or/Job/add-job-form/add-job-form.component';
+import { UserFormComponent } from './User/Job/user-form/user-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/organizations', pathMatch: 'full' },
@@ -80,6 +83,11 @@ const routes: Routes = [
     component: JobDetailsOrganizationComponent,
   },
   {
+    path: 'organizationdetails/:id',
+    canActivate: [AuthGuard],
+    component: OrganizationDetailsComponent,
+  },
+  {
     path: 'or-eventlist',
     canActivate: [AuthGuard],
     component: EventListOrganizationComponent,
@@ -93,6 +101,11 @@ const routes: Routes = [
     path: 'jobform/:id',
     canActivate: [AuthGuard],
     component: JobFormComponent,
+  },
+  {
+    path: 'userjobform/:id',
+    canActivate: [AuthGuard],
+    component: UserFormComponent,
   },
   {
     path: 'or-addjobform/:id',
@@ -142,6 +155,7 @@ export const CRouting = [
   SignupOrganizationComponent,
   JobFormComponent,
   AddJobFormComponent,
+  OrganizationDetailsComponent,
   AddJobOrganizationComponent,
   JobDetailsOrganizationComponent,
   JobApplyComponent,
@@ -152,6 +166,7 @@ export const CRouting = [
   ContactusComponent,
   JobListComponent,
   EventListComponent,
+  UserFormComponent,
   OrganizationsComponent,
   AboutusComponent,
   PageNotFoundComponent,

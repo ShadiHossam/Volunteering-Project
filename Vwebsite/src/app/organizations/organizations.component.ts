@@ -1,11 +1,7 @@
-import { Register } from './../Model/register';
-import { Component, OnInit } from '@angular/core';
-import { JobsService } from './../Services/JobsService/jobs.service';
-import { LoginService } from './../Services/LoginService/login.service';
-import { Filter } from './../Model/Filter';
 import { Router } from '@angular/router';
-import { AreaOfExpertiseService } from './../Services/AreaOfExpertiseService/AreaOfExpertise.service';
-import { YearsOfExperienceService } from './../Services/YearsOfExperience/years-of-experience.service';
+import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
+
 import { CountryService } from './../Services/CountryService/country.service';
 import { CityService } from './../Services/CityService/city.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -22,23 +18,33 @@ export class OrganizationsComponent implements OnInit {
   Filter: FormGroup = new FormGroup({});
   City;
   Country;
+  length: number = 0;
+  pageSize = 10;
+  pageIndex = 0;
+  showFirstLastButtons = true;
+  intial = { length: 0, pageIndex: 0, pageSize: 10 };
   constructor(
     public CorporatesService: CorporatesService,
 
     private cityService: CityService,
     private CountryService: CountryService,
+    private router: Router,
+
     private formbulider: FormBuilder
   ) {}
 
-  async ngOnInit(): Promise<void> {
-    this.CorporatesService.GetCorporatesList().subscribe((data) => {
-      this.CorporatesData = <Corporates[]>data;
-      console.log(data);
-    });
+  async ngOnInit() {
     this.Filter = this.formbulider.group({
       CountryId: [''],
       CityId: [''],
     });
+
+    this.CorporatesService.GetCorporatesList()
+      .toPromise()
+      .then((data) => {
+        this.CorporatesData = <Corporates[]>data;
+      });
+    this.CorporatesData = await this.CorporatesService.GetCorporatesList().toPromise();
 
     this.cityService.GetCityList().subscribe((res) => {
       this.City = res;
@@ -48,9 +54,34 @@ export class OrganizationsComponent implements OnInit {
     });
   }
   onFormSubmit(x) {
-    console.log(this.Filter.value);
+    if (!x || x === '--') {
+      return false;
+    }
+
     this.CorporatesService.Filter(x).subscribe((x: any) => {
       this.CorporatesData = x;
+      this.length = this.CorporatesData.length;
     });
+  }
+  async handlePageEvent(event: PageEvent) {
+    this.length = event.length;
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
+    this.Filter.get('StartRecord').setValue(event.pageSize * event.pageIndex);
+    this.Filter.get('RecordPerpage').setValue(
+      event.pageSize * event.pageIndex + event.pageSize
+    );
+
+    this.CorporatesService.Filter(this.Filter.value)
+      .toPromise()
+      .then((x: any) => {
+        this.CorporatesData = <Corporates[]>x;
+      });
+    this.CorporatesData = await this.CorporatesService.Filter(
+      this.Filter.value
+    ).toPromise();
+  }
+  CorporatesId(CorporatesId: any) {
+    this.router.navigate(['/organizationdetails', CorporatesId]);
   }
 }

@@ -81,7 +81,7 @@ namespace last.Controllers
                 Mapper.CreateMap<Corporates, CorporatesViewModel>();
                CorporatesViewModel = Mapper.Map<Corporates, CorporatesViewModel>(GetCorporates);
 
-               CorporatesViewModel.CityName = GetCorporates.City.CityName;
+               CorporatesViewModel.CityName = GetCorporates.City?.CityName;
                CorporatesViewModel.CountryName = GetCorporates.Country?.CountryName;
                CorporatesViewModel.SegmentName = GetCorporates.Segments?.SegmentsName;
 
@@ -186,7 +186,7 @@ namespace last.Controllers
             List<CorporatesViewModel> CorporatesViewModelList = new List<CorporatesViewModel>();
             CorporatesList = db.Corporates.Where(w =>
             (w.CityId == FilterViewModel.CityId || FilterViewModel.CityId == null) &&
-            (w.CountryId == FilterViewModel.CountryId || FilterViewModel.CountryId == null)).Skip(FilterViewModel.StartRecord).Take(FilterViewModel.RecordPerpage).ToList();
+            (w.CountryId == FilterViewModel.CountryId || FilterViewModel.CountryId == null)).OrderByDescending(o => o.UserName).Skip(FilterViewModel.StartRecord).Take(FilterViewModel.RecordPerpage).ToList();
 
             foreach (var item in CorporatesList)
             {

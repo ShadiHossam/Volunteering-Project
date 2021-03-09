@@ -20,4 +20,5 @@ AreaOfExpertise:
 Requirement:
 <p>{{ Job.RequirementName }}</p>
 
-<button (click)="Apply()">Apply</button>
+<button (click)="Apply()" *ngIf="showapply()">Apply</button>
+<button (click)="formsubmit()" *ngIf="showform()">Form</button>
