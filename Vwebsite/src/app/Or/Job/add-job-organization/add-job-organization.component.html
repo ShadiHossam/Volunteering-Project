@@ -19,13 +19,13 @@
       </mat-error>
     </mat-form-field>
   </p>
-  <p class="example-full-width" class="input-group mb-3" cellspacing="0">
+  <!-- <p class="example-full-width" class="input-group mb-3" cellspacing="0">
     <mat-form-field class="example-full-width">
-      <mat-label>CorporateId</mat-label>
+      <mat-label>Corporate</mat-label>
       <input
         matInput
         class="form-control"
-        placeholder="CorporateId"
+        placeholder="Corporate Name"
         formControlName="CorporateId"
       />
       <mat-error *ngIf="f.CorporateId.touched && f.CorporateId.invalid">
@@ -34,8 +34,22 @@
         >
       </mat-error>
     </mat-form-field>
-  </p>
+  </p> -->
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Corporate Name </mat-label>
+    <mat-select class="form-control" formControlName="CorporateId">
+      <mat-option selected>--</mat-option>
 
+      <mat-option *ngFor="let corporate of Corporate" [value]="corporate.Id">
+        {{ corporate.CorporateName }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="f.CorporateId.touched && f.CorporateId.invalid">
+      <mat-error *ngIf="f.CorporateId.errors.required"
+        >Corporate Name is required.</mat-error
+      >
+    </mat-error>
+  </mat-form-field> -->
   <p class="example-full-width" cellspacing="0">
     <mat-form-field class="example-full-width">
       <mat-label> Job Description</mat-label>
@@ -73,6 +87,7 @@
       <mat-label>Salary </mat-label>
       <input
         matInput
+        type="number"
         class="form-control"
         placeholder="Salary "
         formControlName="Salary"

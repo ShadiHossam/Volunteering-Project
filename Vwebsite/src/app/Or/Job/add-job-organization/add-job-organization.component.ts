@@ -3,6 +3,7 @@ import { City } from '../../../Model/City';
 import { Country } from '../../../Model/Country';
 import { Component, OnInit } from '@angular/core';
 import { JobsService } from '../../../Services/JobsService/jobs.service';
+import { CorporatesService } from '../../../Services/Corporates/corporates.service';
 import { AreaOfExpertiseService } from '../../../Services/AreaOfExpertiseService/AreaOfExpertise.service';
 import { YearsOfExperienceService } from '../../../Services/YearsOfExperience/years-of-experience.service';
 import { CountryService } from '../../../Services/CountryService/country.service';
@@ -29,14 +30,17 @@ export class AddJobOrganizationComponent implements OnInit {
   data = false;
   massage: string;
   AreaOfExpertise;
+  Corporate: Corporates;
   City;
   Country;
   YearsOfExperience: any;
+  x = localStorage.getItem('Corporate');
 
   constructor(
     private JobsService: JobsService,
     private router: Router,
     private AreaOfExpertiseService: AreaOfExpertiseService,
+    private CorporatesService: CorporatesService,
     private YearsOfExperienceService: YearsOfExperienceService,
     private cityService: CityService,
     private CountryService: CountryService,
@@ -54,10 +58,14 @@ export class AddJobOrganizationComponent implements OnInit {
       CountryId: ['', [Validators.required]],
       CityId: ['', [Validators.required]],
       AreaOfExpertise: ['', [Validators.required]],
-      CorporateId: ['', [Validators.required]],
+      CorporateId: [],
     });
     this.AreaOfExpertiseService.GetAreaOfExpertiseList().subscribe((res) => {
       this.AreaOfExpertise = res;
+    });
+    this.CorporatesService.GetCorporateByUserName(this.x).subscribe((res) => {
+      this.Corporate = res;
+      console.log(res);
     });
     this.YearsOfExperienceService.GetYearsOfExperienceList().subscribe(
       (res) => {
@@ -81,6 +89,7 @@ export class AddJobOrganizationComponent implements OnInit {
     }
   }
   CreateJobs(Jobs: Jobs) {
+    this.JobForm.get(' CorporateId').setValue(this.Corporate.Id);
     console.log(Jobs);
     this.JobsService.PostJob(Jobs).subscribe(() => {
       this.data = true;

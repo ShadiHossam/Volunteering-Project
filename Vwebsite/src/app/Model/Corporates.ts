@@ -1,4 +1,5 @@
 export interface Corporates {
+  Id;
   CorporateName?: string;
   UserName?: string;
   Password?: string;

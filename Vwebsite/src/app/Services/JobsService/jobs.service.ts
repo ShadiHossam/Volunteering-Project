@@ -43,7 +43,7 @@ export class JobsService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
-    return this.http.post<Jobs[]>(this.JobUrl, body, httpOptions);
+    return this.http.post<Jobs>(this.JobUrl, body, httpOptions);
   }
   Filter(emp): Observable<Jobs[]> {
     var body = JSON.stringify(emp);

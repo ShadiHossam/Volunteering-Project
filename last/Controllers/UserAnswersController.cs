@@ -118,25 +118,67 @@ namespace last.Controllers
 
         public List<UserAnswersViewModel> PostUserAnswersViewModel(object items)
         {
+            //var yourObject = JsonConvert.DeserializeObject<Root>(items.ToString());
+
+            //var UserAnswers = new List<UserAnswersViewModel>();
+
+            //foreach (var item in yourObject.items)
+            //{
+            //    var UserAnswers1 = new UserAnswers();
+
+            //    Mapper.CreateMap<UserAnswersViewModel, UserAnswers>();
+            //    UserAnswers1 = Mapper.Map<UserAnswersViewModel, UserAnswers>(item);
+            //    db.UserAnswers.Add(UserAnswers1);
+
+            //}
+            //db.SaveChanges();
+
+            //UserAnswers.AddRange(yourObject.items);
+
+
+            //return UserAnswers;
+
+
+
+
             var yourObject = JsonConvert.DeserializeObject<Root>(items.ToString());
-                        
-            var UserAnswers = new List<UserAnswersViewModel>();
-            
-            foreach (var item in yourObject.items)
-            {
-                var UserAnswers1 = new UserAnswers();
 
-                Mapper.CreateMap<UserAnswersViewModel, UserAnswers>();
-                UserAnswers1 = Mapper.Map<UserAnswersViewModel, UserAnswers>(item);
-                db.UserAnswers.Add(UserAnswers1);
+            var userAnswersViewModel = new List<UserAnswersViewModel>();
+            var userAnswers = new List<UserAnswers>();
+            var userAnswers1 = new UserAnswers();
 
-            }
-            UserAnswers.AddRange(yourObject.items);
-
-            db.SaveChanges();
+            Mapper.CreateMap<List<UserAnswersViewModel>, List<UserAnswers>>();
+            userAnswers = Mapper.Map<List<UserAnswersViewModel>, List<UserAnswers>>(yourObject.items);
+            Mapper.CreateMap<List<UserAnswers>, List<UserAnswersViewModel>>();
+            userAnswersViewModel = Mapper.Map<List<UserAnswers>, List<UserAnswersViewModel>>(userAnswers);
 
 
-            return UserAnswers;
+            db.UserAnswers.AddRange(userAnswers);
+
+            return userAnswersViewModel;
+
+
+
+            ////    return UserAnswers; // map viewModels to entities
+            //var userAnswers = yourObject.items.Select(Mapper.Map<UserAnswersViewModel, UserAnswers>).ToList();
+
+            //// add to table
+            //db.UserAnswers.AddRange(userAnswers);
+            //db.SaveChanges();
+            //// userAnswers have Id here
+
+            //// copy viewModels to a new list
+            //var result = yourObject.items.ToList();
+
+            //// copy Id from entities to viewModels
+            //foreach ((var entity, var viewModel) in userAnswers.Zip(result,(a,b=>(a,b))))
+            //{
+            //    viewModel.Id = entity.Id;
+            //}
+
+
+
+            //return result;
         }
 
         // DELETE: api/UserAnswers/5

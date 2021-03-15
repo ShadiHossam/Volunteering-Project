@@ -6,7 +6,6 @@
 .footer a {
   padding-left: 0;
   color: #eee;
-  /* color: rgb(21, 32, 34); this color isn't apreciated with a dark bg */
 }
 html {
   position: relative;

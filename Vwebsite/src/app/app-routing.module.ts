@@ -1,3 +1,4 @@
+import { Corporates } from './Model/Corporates';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -66,36 +67,57 @@ const routes: Routes = [
     path: 'or-addevent',
     canActivate: [AuthGuard],
     component: AddEventOrganizationComponent,
+    data: {
+      Corporate: true,
+    },
   },
   {
     path: 'or-addjob',
     canActivate: [AuthGuard],
     component: AddJobOrganizationComponent,
+    data: {
+      Corporate: true,
+    },
   },
   {
     path: 'or-eventdetails/:id',
     canActivate: [AuthGuard],
     component: EventDetailsOrganizationComponent,
+    data: {
+      Corporate: true,
+    },
   },
   {
     path: 'or-jobdetails/:id',
     canActivate: [AuthGuard],
     component: JobDetailsOrganizationComponent,
+    data: {
+      Corporate: true,
+    },
   },
   {
     path: 'organizationdetails/:id',
     canActivate: [AuthGuard],
     component: OrganizationDetailsComponent,
+    data: {
+      Corporate: true,
+    },
   },
   {
     path: 'or-eventlist',
     canActivate: [AuthGuard],
     component: EventListOrganizationComponent,
+    data: {
+      Corporate: true,
+    },
   },
   {
     path: 'or-joblist',
     canActivate: [AuthGuard],
     component: JobListOrganizationComponent,
+    data: {
+      Corporate: true,
+    },
   },
   {
     path: 'jobform/:id',
@@ -111,6 +133,9 @@ const routes: Routes = [
     path: 'or-addjobform/:id',
     canActivate: [AuthGuard],
     component: AddJobFormComponent,
+    data: {
+      Corporate: true,
+    },
   },
 
   { path: 'aboutus', component: AboutusComponent },
@@ -127,6 +152,9 @@ const routes: Routes = [
   {
     path: 'or-profile',
     component: ProfileOrganizationComponent,
+    data: {
+      Corporate: true,
+    },
   },
 
   { path: 'volunteer', component: VolunteerComponent },
