@@ -1,0 +1,327 @@
+<section>
+  <nav>
+    <p>
+      <img
+        src="../assets/img/4ae94b54-0c55-493b-abad-23f79f7daae7.jpg"
+        alt="Avatar"
+        class="avatar"
+      />
+    </p>
+    <mat-divider></mat-divider>
+    <!-- <div>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>event</mat-icon>&nbsp; Events
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <button mat-button>Event 1</button>
+          <div>
+            <a mat-button matTooltip="Add New Event" (click)="open(content)">
+              <mat-icon>add</mat-icon>
+            </a>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-divider></mat-divider>
+    </div>
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Event</h4>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="modal.dismiss('Cross click')"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="dateOfBirth">Date of event</label>
+            <div class="input-group">
+              <input
+                id="dateOfBirth"
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="dp"
+                ngbDatepicker
+                #dp="ngbDatepicker"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary calendar"
+                  (click)="dp.toggle()"
+                  type="button"
+                >
+                  <i class="material-icons">today</i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <mat-form-field class="modal-body">
+        <mat-label>Event Name </mat-label>
+        <input matInput placeholder="Event name" name="eventname" required />
+      </mat-form-field>
+      <mat-form-field class="modal-body">
+        <mat-label for="Field">Field:</mat-label>
+        <select id="Field" matNativeControl required>
+          <option value="Business">Business</option>
+          <option value="Charity">Charity</option>
+          <option value="Engenering">Engenering</option>
+          <option value="Medical">Medical</option>
+          <option value="Others">Others</option>
+        </select>
+      </mat-form-field>
+      <mat-form-field class="modal-body">
+        <mat-label for="Place">Place:</mat-label>
+        <select id="Place" matNativeControl required>
+          <option value="Alexandria">Alexandria</option>
+          <option value="Cairo">Cairo</option>
+        </select>
+      </mat-form-field>
+      <mat-form-field class="modal-body">
+        <mat-label maxlength="25">Headline</mat-label>
+        <input matInput placeholder="Headline" name="Headline" required />
+      </mat-form-field>
+      <mat-form-field class="modal-body" appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+      <mat-form-field
+        class="modal-body"
+        [formGroup]="form"
+        (ngSubmit)="submit()"
+      >
+        <mat-label for="url">Tickets Link </mat-label>
+        <input
+          formControlName="url"
+          id="url"
+          type="text"
+          matInput
+          placeholder="Tickets Link"
+          name="Tickets Link"
+        />
+        <mat-error
+          *ngIf="f.url.touched && f.url.invalid"
+          class="alert alert-danger"
+        >
+          <mat-error *ngIf="f.url.errors.pattern"
+            >Please enter valid url</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
+      <div class="modal-footer">
+        <button
+          class="btn btn-outline-dark"
+          type="submit"
+          [disabled]="!form.valid"
+        >
+          Add
+        </button>
+      </div>
+    </ng-template>  -->
+
+    <div>
+      <button mat-raised-button class="a pt-2 pb-2">
+        <mat-icon>settings</mat-icon> Settings
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+    <div>
+      <button mat-raised-button class="a pt-2 pb-2" (click)="jobapply()">
+        <mat-icon>work</mat-icon> Job Apply
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div>
+      <button mat-raised-button class="a pt-2 pb-2" (click)="LogOut()">
+        <mat-icon>logout</mat-icon> Log Out
+      </button>
+    </div>
+  </nav>
+
+  <article>
+    <div class="container">
+      <mat-tab-group>
+        <mat-tab label="Info" class="row">
+          <div class="col-12">
+            <div class="p-grid p-fluid">
+              <ul class="p-col-12">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">First Name</span>
+                  <input type="text" [(ngModel)]="UserData.FirstName" />
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="p-grid p-fluid">
+              <ul class="p-col-12">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">Last Name</span>
+                  <input type="text" [(ngModel)]="UserData.LastName" />
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="p-grid p-fluid">
+              <ul class="p-col-12">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">User Name</span>
+                  <input type="text" [(ngModel)]="UserData.UserName" disabled />
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="p-grid p-fluid">
+              <ul class="p-col-12">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">Address</span>
+
+                  <input type="text" [(ngModel)]="UserData.Address" />
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="p-grid p-fluid">
+              <ul class="p-col-12">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">Email</span>
+                  <input type="text" [(ngModel)]="UserData.Email" />
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="p-grid p-fluid">
+              <ul class="p-col-12">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">Mobile Number</span>
+                  <input type="text" [(ngModel)]="UserData.Mobilenumber" />
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="p-grid p-fluid">
+              <ul class="p-col-12">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">Home Number</span>
+                  <input type="text" [(ngModel)]="UserData.HomeNumber" />
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="p-grid p-fluid">
+              <ul class="p-col-12">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">Birth Date</span>
+                  <input type="text" [(ngModel)]="UserData.BirthdateSTR" />
+                </div>
+              </ul>
+            </div>
+          </div>
+
+          <mat-form-field appearance="fill">
+            <mat-label>City</mat-label>
+            <mat-select [(ngModel)]="UserData.CityId">
+              <mat-option selected>--</mat-option>
+
+              <mat-option *ngFor="let city of City" [value]="city.Id">
+                {{ city.CityName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Country</mat-label>
+            <mat-select [(ngModel)]="UserData.CountryId">
+              <mat-option selected>--</mat-option>
+
+              <mat-option *ngFor="let country of Country" [value]="country.Id">
+                {{ country.CountryName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button (click)="SaveChanges(UserData)">save</button>
+          <button>cancel</button>
+        </mat-tab>
+        <mat-tab label="Business">
+          <mat-form-field appearance="fill">
+            <mat-label>Area Of Expertise </mat-label>
+            <mat-select [(ngModel)]="UserData.AreaOfExpertiseId">
+              <mat-option selected>--</mat-option>
+
+              <mat-option
+                *ngFor="let areaOfExpertise of AreaOfExpertise"
+                [value]="areaOfExpertise.Id"
+              >
+                {{ areaOfExpertise.AreaOfExpertiseName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button (click)="SaveChanges(UserData)">save</button>
+          <button>cancel</button>
+        </mat-tab>
+      </mat-tab-group>
+
+      <!-- <div class="p-grid p-fluid">
+      <ul class="p-col-12">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">Password</span>
+
+          <input type="text" [(ngModel)]="UserData.Password" />
+        </div>
+      </ul>
+    </div> -->
+
+      <!-- <mat-form-field appearance="fill">
+      <mat-label>User Skills </mat-label>
+      <mat-select [(ngModel)]="UserSkills">
+        <mat-option
+          *ngFor="let userSkills of UserSkills"
+          [value]="userSkills.Id"
+        >
+          {{ userSkills.Name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+    </div>
+  </article>
+  <div style="clear: both"></div>
+</section>
+
+<!-- 
+      <div *ngFor="let user of UserData">
+        <p>{{ user.UserName }}</p>
+      </div> -->
+
+<!-- <button (click)="DeleteUsers()">Delete User</button> -->
+<!-- 
+      <table class="table table-sm table-hover">
+        <tr *ngFor="let User of LoginService.UserList">
+          <td>{{ User.FirstName }} - {{ User.LastName }}</td>
+          <td>{{ User.EmpCode }}</td>
+          <td>
+            <a class="btn" (click)="showForEdit(User)">
+              <i class="fa fa-pencil-square-o"></i>
+            </a>
+            <a class="btn text-danger" (click)="onDelete(User.UserID)">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </td>
+        </tr>
+      </table> -->

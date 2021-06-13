@@ -70,7 +70,7 @@ namespace last.Controllers
             JobsViewModel.AreaOfExpertiseName = GetJob.AreaOfExpertise?.AreaOfExpertiseName;
             JobsViewModel.CountryName = GetJob.Country?.CountryName;
             JobsViewModel.CorporateName = GetJob.Corporates?.CorporateName;
-           // JobsViewModel.RequirementsName = GetJob. Requirements.Requirements;
+            //JobsViewModel.RequirementsName = GetJob. Requirements.;
             JobsViewModel.YearsOFExpertiseName = GetJob.YearsOfExperience?.YearsOfExperienceThreshold;
             JobsViewModel.CreationDateSTR = GetJob.CreationDate.ToString("MM/dd/yyyy");
             return JobsViewModel;
@@ -82,6 +82,34 @@ namespace last.Controllers
             //}
 
             //return Ok(Jobs);
+        }
+       
+        public List<JobsViewModel> GetJobsByCorporateId(int CorporateId)
+        {
+            var JobsList = db.Jobs.Where(x => x.CorporateId == CorporateId).ToList();
+            List<JobsViewModel> JobsViewModelList = new List<JobsViewModel>();
+            foreach (var item in JobsList)
+            {
+                JobsViewModel JobsViewModel = new JobsViewModel();
+
+                Mapper.CreateMap<Jobs, JobsViewModel>();
+                JobsViewModel = Mapper.Map<Jobs, JobsViewModel>(item);
+
+
+                JobsViewModel.CityName = item.City?.CityName;
+                JobsViewModel.AreaOfExpertiseName = item.AreaOfExpertise.AreaOfExpertiseName;
+                JobsViewModel.CountryName = item.Country?.CountryName;
+                JobsViewModel.CorporateName = item.Corporates?.CorporateName;
+                JobsViewModel.YearsOFExpertiseName = item.YearsOfExperience?.YearsOfExperienceThreshold;
+                JobsViewModel.CreationDateSTR = item.CreationDate.ToString("MM/dd/yyyy");
+
+
+                JobsViewModelList.Add(JobsViewModel);
+            }
+
+
+            return JobsViewModelList;
+
         }
 
 
@@ -142,6 +170,17 @@ namespace last.Controllers
 
             db.Jobs.Add(Jobs);
             db.SaveChanges();
+
+            
+
+            Requirements req = new Requirements();
+
+            req.JobId = Jobs.Id;
+            req.Requirements1 = JobsViewModel.RequirementsName;
+
+
+            db.Requirements.Add(req); db.SaveChanges();
+
 
             return CreatedAtRoute("DefaultApi", new { id = Jobs.Id }, Jobs);
         }

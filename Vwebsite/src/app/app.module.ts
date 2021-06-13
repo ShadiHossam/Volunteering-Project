@@ -9,11 +9,11 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './Website/header/header.component';
 
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './Website/footer/footer.component';
 
-import { MaterialModule } from './material/material.module';
+import { MaterialModule } from './Website/material/material.module';
 
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
@@ -22,12 +22,12 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { RippleModule } from 'primeng/ripple';
 import { TabViewModule } from 'primeng/tabview';
 
-import { UniversityService } from './Services/university.service';
-import { LoginService } from './Services/LoginService/login.service';
-import { JobsService } from './Services/JobsService/jobs.service';
-import { EventPostingService } from './Services/EventsService/event-posting.service';
-import { CountryService } from './Services/CountryService/country.service';
-import { CityService } from './Services/CityService/city.service';
+import { UniversityService } from './Website/Services/university.service';
+import { LoginService } from './Website/Services/LoginService/login.service';
+import { JobsService } from './Website/Services/JobsService/jobs.service';
+import { EventPostingService } from './Website/Services/EventsService/event-posting.service';
+import { CountryService } from './Website/Services/CountryService/country.service';
+import { CityService } from './Website/Services/CityService/city.service';
 
 import {
   HttpClientModule,
@@ -35,20 +35,20 @@ import {
   HttpClient,
 } from '@angular/common/http';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
-import { AreaOfExpertiseService } from './Services/AreaOfExpertiseService/AreaOfExpertise.service';
+import { AreaOfExpertiseService } from './Website/Services/AreaOfExpertiseService/AreaOfExpertise.service';
 import { PasswordModule } from 'primeng/password';
-import { YearsOfExperienceService } from './Services/YearsOfExperience/years-of-experience.service';
+import { YearsOfExperienceService } from './Website/Services/YearsOfExperience/years-of-experience.service';
 
-import { UserSkillsService } from './Services/UserSkills/user-skills.service';
-import { UserAnswersService } from './Services/UserAnswers/user-answers.service';
-import { SkillsService } from './Services/Skills/skills.service';
-import { SegmentsService } from './Services/Segments/segments.service';
-import { RequirementsService } from './Services/Requirements/requirements.service';
-import { QuestionsChoicesService } from './Services/QuestionsChoices/questions-choices.service';
-import { JobFormService } from './Services/JobForm/job-form.service';
-import { JobApplyService } from './Services/JobApply/job-apply.service';
-import { JobApplianceStatusService } from './Services/JobApplianceStatus/job-appliance-status.service';
-import { CorporatesService } from './Services/Corporates/corporates.service';
+import { UserSkillsService } from './Website/Services/UserSkills/user-skills.service';
+import { UserAnswersService } from './Website/Services/UserAnswers/user-answers.service';
+import { SkillsService } from './Website/Services/Skills/skills.service';
+import { SegmentsService } from './Website/Services/Segments/segments.service';
+import { RequirementsService } from './Website/Services/Requirements/requirements.service';
+import { QuestionsChoicesService } from './Website/Services/QuestionsChoices/questions-choices.service';
+import { JobFormService } from './Website/Services/JobForm/job-form.service';
+import { JobApplyService } from './Website/Services/JobApply/job-apply.service';
+import { JobApplianceStatusService } from './Website/Services/JobApplianceStatus/job-appliance-status.service';
+import { CorporatesService } from './Website/Services/Corporates/corporates.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, CRouting],

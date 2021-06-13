@@ -116,46 +116,49 @@ namespace last.Controllers
         //    return CreatedAtRoute("DefaultApi", new { id = userAnswersViewModel.Id }, userAnswersViewModel);
         //}
 
-        public List<UserAnswersViewModel> PostUserAnswersViewModel(object items)
+        public List<UserAnswers> PostUserAnswersViewModel(object items)
         {
-            //var yourObject = JsonConvert.DeserializeObject<Root>(items.ToString());
-
-            //var UserAnswers = new List<UserAnswersViewModel>();
-
-            //foreach (var item in yourObject.items)
-            //{
-            //    var UserAnswers1 = new UserAnswers();
-
-            //    Mapper.CreateMap<UserAnswersViewModel, UserAnswers>();
-            //    UserAnswers1 = Mapper.Map<UserAnswersViewModel, UserAnswers>(item);
-            //    db.UserAnswers.Add(UserAnswers1);
-
-            //}
-            //db.SaveChanges();
-
-            //UserAnswers.AddRange(yourObject.items);
-
-
-            //return UserAnswers;
-
-
-
-
             var yourObject = JsonConvert.DeserializeObject<Root>(items.ToString());
 
-            var userAnswersViewModel = new List<UserAnswersViewModel>();
-            var userAnswers = new List<UserAnswers>();
-            var userAnswers1 = new UserAnswers();
+            //var userAnswers = new List<UserAnswersViewModel>();
 
-            Mapper.CreateMap<List<UserAnswersViewModel>, List<UserAnswers>>();
-            userAnswers = Mapper.Map<List<UserAnswersViewModel>, List<UserAnswers>>(yourObject.items);
-            Mapper.CreateMap<List<UserAnswers>, List<UserAnswersViewModel>>();
-            userAnswersViewModel = Mapper.Map<List<UserAnswers>, List<UserAnswersViewModel>>(userAnswers);
+            List<UserAnswers> firstlist = new List<UserAnswers>();
+
+            foreach (var item in yourObject.items)
+            {
+                var userAnswers1 = new UserAnswers();
+
+                Mapper.CreateMap<UserAnswersViewModel, UserAnswers>();
+                userAnswers1 = Mapper.Map<UserAnswersViewModel, UserAnswers>(item);
+                db.UserAnswers.Add(userAnswers1);
+
+                db.SaveChanges();
+                firstlist.Add(userAnswers1);
+            }
+
+            //userAnswers.AddRange(yourObject.items);
 
 
-            db.UserAnswers.AddRange(userAnswers);
+            return firstlist;
 
-            return userAnswersViewModel;
+
+
+
+            //var yourObject = JsonConvert.DeserializeObject<Root>(items.ToString());
+
+            //var userAnswersViewModel = new List<UserAnswersViewModel>();
+            //var userAnswers = new List<UserAnswers>();
+            //var userAnswers1 = new UserAnswers();
+
+            //Mapper.CreateMap<List<UserAnswersViewModel>, List<UserAnswers>>();
+            //userAnswers = Mapper.Map<List<UserAnswersViewModel>, List<UserAnswers>>(yourObject.items);
+            //Mapper.CreateMap<List<UserAnswers>, List<UserAnswersViewModel>>();
+            //userAnswersViewModel = Mapper.Map<List<UserAnswers>, List<UserAnswersViewModel>>(userAnswers);
+
+
+            //db.UserAnswers.AddRange(userAnswers);
+
+            //return userAnswersViewModel;
 
 
 

@@ -347,10 +347,10 @@ namespace last.Controllers
             User = Mapper.Map<Users, UserViewModel>(GetUser);
 
 
-            User.AreaOfExpertiseName = GetUser.AreaOfExpertise?.AreaOfExpertiseName;
-            User.CountryName = GetUser.Country?.CountryName;
-            User.CityName = GetUser.City?.CityName;
-            User.BirthdateSTR = GetUser.Birthdate.Value.ToString("MM/dd/yyyy");
+            User.AreaOfExpertiseName = GetUser?.AreaOfExpertise?.AreaOfExpertiseName;
+            User.CountryName = GetUser?.Country?.CountryName;
+            User.CityName = GetUser?.City?.CityName;
+            User.BirthdateSTR = GetUser?.Birthdate.Value.ToString("MM/dd/yyyy");
 
 
             return User;

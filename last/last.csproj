@@ -226,8 +226,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Administration\Controllers\AdminController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\AdminController.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
     <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
     <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
@@ -260,6 +262,7 @@
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\EventPostingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JApplyController.cs" />
     <Compile Include="Controllers\JobApplianceStatusController.cs" />
     <Compile Include="Controllers\JobApplyController.cs" />
     <Compile Include="Controllers\JobFormController.cs" />
@@ -354,6 +357,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Administration\App_Start\" />
+    <Folder Include="Areas\Administration\ModelDescriptions\" />
+    <Folder Include="Areas\Administration\Models\" />
+    <Folder Include="Areas\Administration\SampleGeneration\" />
+    <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>

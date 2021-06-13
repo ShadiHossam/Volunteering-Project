@@ -1,0 +1,21 @@
+<div *ngFor="let user of JobApply">
+  <div>
+    <p>{{ user.UserName }}</p>
+    <p>{{ user.UserFirstName }}</p>
+    <p>{{ user.UserLastName }}</p>
+    <p>{{ user.UserCountry }}</p>
+    ?;
+    <p>{{ user.UserCity }}</p>
+    <p>{{ user.UserMobilenumber }}</p>
+    <p>{{ user.UserBirthdate }}</p>
+    <p>{{ user.UserEmail }}</p>
+    <p>{{ user.UserAddress }}</p>
+  </div>
+  <div>
+    <p>{{ user.QuestionHeader }}</p>
+    <p>{{ user.UserAnswerName }}</p>
+  </div>
+
+  <button *ngIf="checkifaccepted()" click="Accept() ">Accept</button>
+  <button *ngIf="checkifrejected()" click="Reject() ">Reject</button>
+</div>

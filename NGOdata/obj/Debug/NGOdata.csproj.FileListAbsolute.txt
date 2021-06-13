@@ -9,4 +9,3 @@ D:\Volunteering-Project\NGOdata\obj\Debug\NGOdata.csproj.CoreCompileInputs.cache
 D:\Volunteering-Project\NGOdata\obj\Debug\NGOdata.csproj.CopyComplete
 D:\Volunteering-Project\NGOdata\obj\Debug\NGOdata.dll
 D:\Volunteering-Project\NGOdata\obj\Debug\NGOdata.pdb
-D:\Volunteering-Project\NGOdata\obj\Debug\NGOdata.csprojAssemblyReference.cache

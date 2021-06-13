@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using last.Models;
 using NGOdata;
 using AutoMapper;
+using Newtonsoft.Json;
 
 namespace last.Controllers
 {
@@ -20,7 +21,7 @@ namespace last.Controllers
 
         // GET: api/JobApply
         public List<JobApplyViewModel> GetJobApply()
-        {
+        { 
             var JobApplyList = db.JobApply.ToList();
             List<JobApplyViewModel> JobApplyViewModelList = new List<JobApplyViewModel>();
             foreach (var item in JobApplyList)
@@ -38,8 +39,6 @@ namespace last.Controllers
                 JobApplyViewModel.UserAnswerName = item.UserAnswers.Answer;
                 JobApplyViewModel.JobApplyStatusName = item.JobApplianceStatus.StatusName;
 
-
-
                 JobApplyViewModelList.Add(JobApplyViewModel);
             }
 
@@ -48,8 +47,9 @@ namespace last.Controllers
         }
 
         // GET: api/JobApply/5
-        [ResponseType(typeof(JobApplyViewModel))]
-        public List<JobApplyViewModel> GetJobApply(int id)
+        //[ResponseType(typeof(JobApplyViewModel))]
+
+        public List<JobApplyViewModel> GetJobApplyById(int id)
         {
             var GetJobApplyList = db.JobApply.Where(w => w.UserId == id).ToList();
             List<JobApplyViewModel> JobApplyViewModelList = new List<JobApplyViewModel>();
@@ -62,40 +62,55 @@ namespace last.Controllers
                 JobApplyViewModel.JobDescription = item.Jobs?.JobDescription;
                 JobApplyViewModel.UserJobId = item.Jobs.Id;
                 JobApplyViewModel.UserName = item.Users?.UserName;
+                JobApplyViewModel.UserFirstName = item.Users?.FirstName;
+                JobApplyViewModel.UserLastName = item.Users?.LastName;
+                JobApplyViewModel.UserCountry = item.Users?.Country.CountryName;
+                JobApplyViewModel.UserCity = item.Users?.City.CityName;
+                JobApplyViewModel.UserAddress = item.Users?.Address;
+                JobApplyViewModel.UserBirthdate = item.Users?.Birthdate.Value.ToString("MM/dd/yyyy");
+                JobApplyViewModel.UserEmail = item.Users?.Email;
+                JobApplyViewModel.UserMobilenumber = item.Users?.Mobilenumber;
                 JobApplyViewModel.CorporateName = item.Corporates?.CorporateName;
                 JobApplyViewModel.QuestionHeader = item.JobForm?.QuestionHeader;
                 JobApplyViewModel.UserAnswerName = item.UserAnswers?.Answer;
                 JobApplyViewModel.JobApplyStatusName = item.JobApplianceStatus?.StatusName;
                 JobApplyViewModelList.Add(JobApplyViewModel);
 
-
             }
             return JobApplyViewModelList;
         }
+        
+        
+        //public List<JobApplyViewModel> GetJobApplyByJobId(int id)
+        //{
+        //    var GetJobApplyList = db.JobApply.Where(w => w.JobId == id).ToList();
+        //    List<JobApplyViewModel> JobApplyViewModelList = new List<JobApplyViewModel>();
+        //    foreach (var item in GetJobApplyList)
+        //    {
+        //        JobApplyViewModel JobApplyViewModel = new JobApplyViewModel();
+        //        Mapper.CreateMap<JobApply, JobApplyViewModel>();
+        //        JobApplyViewModel = Mapper.Map<JobApply, JobApplyViewModel>(item);
+        //        JobApplyViewModel.JobName = item.Jobs?.JobTitle;
+        //        JobApplyViewModel.JobDescription = item.Jobs?.JobDescription;
+        //        JobApplyViewModel.UserJobId = item.Jobs.Id;
+        //        JobApplyViewModel.UserName = item.Users?.UserName;
+        //        JobApplyViewModel.UserId = item.Users.Id;
+        //        JobApplyViewModel.CorporateName = item.Corporates?.CorporateName;
+        //        JobApplyViewModel.QuestionHeader = item.JobForm?.QuestionHeader;
+        //        JobApplyViewModel.UserAnswerName = item.UserAnswers?.Answer;
+        //        JobApplyViewModel.JobApplyStatusName = item.JobApplianceStatus?.StatusName;
+        //        JobApplyViewModelList.Add(JobApplyViewModel);
 
-                //public JobApplyViewModel GetJobApply(int id)
-                //{
-                //    JobApplyViewModel JobApplyViewModel = new JobApplyViewModel();
 
-                //    NGOdata.JobApply GetJobApply;
-
-                //    GetJobApply = db.JobApply.Where(x => x.Id == id).FirstOrDefault();
-                //    Mapper.CreateMap<JobApply, JobApplyViewModel>();
-                //    JobApplyViewModel = Mapper.Map<JobApply, JobApplyViewModel>(GetJobApply);
-
-                //    JobApplyViewModel.JobName = GetJobApply.Jobs.JobTitle;
-                //    JobApplyViewModel.UserName = GetJobApply.Users.UserName;
-                //    JobApplyViewModel.CorporateName = GetJobApply.Corporates.CorporateName;
-                //    JobApplyViewModel.JobFormName = GetJobApply.JobForm.QuestionHeader;
-                //    JobApplyViewModel.UserAnswerName = GetJobApply.UserAnswers.Answer;
-                //    JobApplyViewModel.JobApplyStatusName = GetJobApply.JobApplianceStatus.StatusName;
-
-                //    return JobApplyViewModel;
-                //}
+        //    }
+        //    return JobApplyViewModelList;
+        //}
 
 
-                // PUT: api/JobApply/5
-                [ResponseType(typeof(void))]
+
+
+        // PUT: api/JobApply/5
+        [ResponseType(typeof(void))]
         public IHttpActionResult PutJobApply(int id, JobApplyViewModel jobApplyViewModel)
         {
             if (!ModelState.IsValid)
@@ -134,40 +149,45 @@ namespace last.Controllers
 
         // POST: api/JobApply
         [ResponseType(typeof(JobApplyViewModel))]
-        //public IHttpActionResult PostJobApply(JobApplyViewModel jobApplyViewModel)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-        //    JobApply JobApply = new JobApply();
-        //    Mapper.CreateMap<JobApplyViewModel, JobApply>();
-        //    JobApply = Mapper.Map<JobApplyViewModel, JobApply>(jobApplyViewModel);
-
-        //    db.JobApply.Add(JobApply);
-        //    db.SaveChanges();
-
-        //    return CreatedAtRoute("DefaultApi", new { id = jobApplyViewModel.Id }, jobApplyViewModel);
-        //}
-        public List<JobApplyViewModel>  PostJobApplyViewModel(List<JobApplyViewModel> JobApplyViewModel)
+        public IHttpActionResult PostJobApply(JobApplyViewModel jobApplyViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            JobApply JobApply = new JobApply();
+            Mapper.CreateMap<JobApplyViewModel, JobApply>();
+            JobApply = Mapper.Map<JobApplyViewModel, JobApply>(jobApplyViewModel);
+
+            db.JobApply.Add(JobApply);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = jobApplyViewModel.Id }, jobApplyViewModel);
+        }
+        [Route("Api/JobApply/PostJobApplyViewModel")]
+
+        [HttpPost]
+
+        [ResponseType(typeof(JobApplyViewModelList))]
+        // POST: api/JobApplyViewModel
+        public List<JobApply> PostJobApplyViewModel(object items)
+        {
+            var yourObject = JsonConvert.DeserializeObject<JobApplyViewModelList>(items.ToString());
+            List<JobApply> firstlist = new List<JobApply>();
 
             var JobApply = new List<JobApplyViewModel>();
-            foreach (var item in JobApplyViewModel)
+            foreach (var item in yourObject.items)
             {
                 var JobApply1 = new JobApply();
 
                 Mapper.CreateMap<JobApplyViewModel, JobApply>();
                 JobApply1 = Mapper.Map<JobApplyViewModel, JobApply>(item);
                 db.JobApply.Add(JobApply1);
+                db.SaveChanges();
+                firstlist.Add(JobApply1);
 
             }
-            JobApply.AddRange(JobApplyViewModel);
-
-            db.SaveChanges();
-
-
-            return JobApply;
+            return firstlist;
         }
 
         // DELETE: api/JobApply/5
@@ -199,5 +219,51 @@ namespace last.Controllers
         {
             return db.JobApply.Count(e => e.Id == id) > 0;
         }
+/*
+        [ResponseType(typeof(void))]
+        public IHttpActionResult UpatelistJobApply(int id, JobApplyViewModel jobApplyViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != jobApplyViewModel.Id)
+            {
+                return BadRequest();
+
+            }
+
+
+            var jobapplylist = db.JobApply.Where(w => w.UserId == id).ToList(); ;
+            List<JobApplyViewModel> JobApplyViewModelList = new List<JobApplyViewModel>();
+            foreach (var item in jobapplylist)
+            {
+
+                JobApply JobApply = new JobApply();
+                Mapper.CreateMap<JobApplyViewModel, JobApply>();
+                JobApply = Mapper.Map<JobApplyViewModel, JobApply>(jobApplyViewModel);
+                db.Entry(JobApply).State = EntityState.Modified;
+            }
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!JobApplyExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        */
     }
 }
