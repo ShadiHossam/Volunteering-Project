@@ -16,7 +16,12 @@ namespace last.Controllers
 {
     public class SegmentsController : ApiController
     {
-        NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();
+        private NGOdata.NGODBEntities db = null;
+
+        public SegmentsController()
+        {
+            db = new NGOdata.NGODBEntities();
+        }
 
         // GET: api/Segments
         public List<SegmentsViewModel> GetQuestionChoices()

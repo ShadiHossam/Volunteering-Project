@@ -16,7 +16,12 @@ namespace last.Controllers
 {
     public class JobApplianceStatusController : ApiController
     {
-        private NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();
+        private NGOdata.NGODBEntities db = null;
+
+        public JobApplianceStatusController()
+        {
+            db = new NGOdata.NGODBEntities();
+        }
 
         // GET: api/JobApplianceStatus
         public List<JobApplianceStatusViewModel> GetJobApplianceStatus()

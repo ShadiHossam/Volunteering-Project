@@ -16,7 +16,12 @@ namespace last.Controllers
 {
     public class JobFormController : ApiController
     {
-        NGOdata.NGODBEntities db = new NGOdata.NGODBEntities(); 
+        private NGOdata.NGODBEntities db = null;
+
+        public JobFormController()
+        {
+            db = new NGOdata.NGODBEntities();
+        }
 
         // GET: api/JobForm
         public List<JobFormViewModel> GetJobForm()

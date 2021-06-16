@@ -15,7 +15,12 @@ namespace last.Controllers
 {
     public class UserSkillsController : ApiController
     {
-        NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();
+        private NGOdata.NGODBEntities db = null;
+
+        public UserSkillsController()
+        {
+            db = new NGOdata.NGODBEntities();
+        }
 
         // GET: api/UserSkills
         public List<UserSkillsViewModel> GetUserSkills()

@@ -15,7 +15,12 @@ namespace last.Controllers
 {
     public class RequirementsController : ApiController
     {
-        NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();
+        private NGOdata.NGODBEntities db = null;
+
+        public RequirementsController()
+        {
+            db = new NGOdata.NGODBEntities();
+        }
 
         // GET: api/Requirements
         public List<RequirementsViewModel> GetRequirements()

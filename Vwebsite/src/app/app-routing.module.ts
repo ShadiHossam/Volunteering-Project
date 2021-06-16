@@ -39,6 +39,8 @@ import { AddJobFormComponent } from './Website/OR/Job/add-job-form/add-job-form.
 import { UserFormComponent } from './Website/User/Job/user-form/user-form.component';
 import { JobApplianceComponent } from './Website/OR/Job/job-appliance/job-appliance.component';
 import { UserDetailsComponent } from './Website/OR/Job/user-details/user-details.component';
+import { LoginComponent } from './Administration/login/login.component';
+import { AdminProfileComponent } from './Administration/admin-profile/admin-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/organizations', pathMatch: 'full' },
@@ -175,6 +177,18 @@ const routes: Routes = [
       Corporate: true,
     },
   },
+  {
+    path: 'admin-login',
+    component: LoginComponent,
+  },
+  {
+    path: 'admin-profile',
+    canActivate: [AuthGuard],
+    component: AdminProfileComponent,
+    data: {
+      Admin: true,
+    },
+  },
 
   { path: 'volunteer', component: VolunteerComponent },
   { path: 'bd', component: BusinessdevelopmentComponent },
@@ -221,6 +235,8 @@ export const CRouting = [
   PageNotFoundComponent,
   ProfileComponent,
   VolunteerComponent,
+  LoginComponent,
+  AdminProfileComponent,
   SeoComponent,
   MarketingMediaComponent,
   DesigingComponent,

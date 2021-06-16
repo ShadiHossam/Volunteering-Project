@@ -22,7 +22,12 @@ namespace last.Controllers
 
     public class LoginController : ApiController
     {
-        NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();
+        private NGOdata.NGODBEntities db = null;
+         
+        public LoginController()
+        {
+            db = new NGOdata.NGODBEntities();
+        }
 
         //For user login   
         [Route("Api/Login/userLogin")]

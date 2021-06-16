@@ -17,7 +17,12 @@ namespace last.Controllers
 {
     public class JobApplyController : ApiController
     {
-        private NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();
+        private NGOdata.NGODBEntities db = null;
+
+        public JobApplyController()
+        {
+            db = new NGOdata.NGODBEntities();
+        }
 
         // GET: api/JobApply
         public List<JobApplyViewModel> GetJobApply()
@@ -48,6 +53,7 @@ namespace last.Controllers
 
         // GET: api/JobApply/5
         //[ResponseType(typeof(JobApplyViewModel))]
+        [Route("Api/JobApply/GetJobApplyById")]
 
         public List<JobApplyViewModel> GetJobApplyById(int id)
         {

@@ -17,7 +17,12 @@ namespace last.Controllers
 {
     public class UserAnswersController : ApiController
     {
-        NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();
+        private NGOdata.NGODBEntities db = null;
+
+        public UserAnswersController()
+        {
+            db = new NGOdata.NGODBEntities();
+        }
 
         // GET: api/UserAnswers
         public List<UserAnswersViewModel> GetUserAnswers()

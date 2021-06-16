@@ -16,7 +16,12 @@ namespace last.Controllers
 {
     public class QuestionChoicesController : ApiController
     {
-        NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();
+        private NGOdata.NGODBEntities db = null;
+
+        public QuestionChoicesController()
+        {
+            db = new NGOdata.NGODBEntities();
+        }
 
         // GET: api/QuestionChoices
         public List<QuestionsChoicesViewModel> GetQuestionChoices()

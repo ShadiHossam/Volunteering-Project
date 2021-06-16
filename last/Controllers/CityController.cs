@@ -17,7 +17,12 @@ namespace last.Controllers
     public class CityController : ApiController
     {
         //        private lastContext db = new lastContext();
-        NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();
+        private NGOdata.NGODBEntities db = null;
+
+        public CityController()
+        {
+            db = new NGOdata.NGODBEntities();
+        }
 
         // GET: api/City
         public List<CityViewModel> GetCity()

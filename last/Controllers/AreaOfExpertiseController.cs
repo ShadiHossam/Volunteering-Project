@@ -16,7 +16,12 @@ namespace last.Controllers
 {
     public class AreaOfExpertiseController : ApiController
     {
-        NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();
+        private NGOdata.NGODBEntities db = null;
+
+        public AreaOfExpertiseController()
+        {
+            db = new NGOdata.NGODBEntities();
+        }
 
         // GET: api/AreaOfExpertise
         public List<AreaOfExpertiseViewModel> GetAreaOfExpertise()

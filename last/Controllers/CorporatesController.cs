@@ -16,7 +16,12 @@ namespace last.Controllers
 {
     public class CorporatesController : ApiController
     {
-        private   NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();
+        private NGOdata.NGODBEntities db = null;
+
+        public CorporatesController()
+        {
+            db = new NGOdata.NGODBEntities();
+        }
 
         // GET: api/Coroprates
 

@@ -18,11 +18,19 @@ export class AuthGuard implements CanActivate {
   ): boolean {
     if (
       localStorage.getItem('UserName') ||
+      localStorage.getItem('Admin') ||
       localStorage.getItem('Corporate') != null
     ) {
       if (next.data) {
         if (next.data.Corporate) {
           if (localStorage.getItem('Corporate')) {
+            return true;
+          } else {
+            this.router.navigate(['/**']);
+          }
+        }
+        if (next.data.Admin) {
+          if (localStorage.getItem('Admin')) {
             return true;
           } else {
             this.router.navigate(['/**']);

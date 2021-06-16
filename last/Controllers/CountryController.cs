@@ -16,7 +16,12 @@ namespace last.Controllers
 {
     public class CountryController : ApiController
     {
-        NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();
+        private NGOdata.NGODBEntities db = null;
+
+        public CountryController()
+        {
+            db = new NGOdata.NGODBEntities();
+        }
 
         // GET: api/Country
         public List<CountryViewModel> GetCountry()

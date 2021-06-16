@@ -16,7 +16,12 @@ namespace last.Controllers
 {
     public class YearsOfExperienceController : ApiController
     {
-        NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();
+        private NGOdata.NGODBEntities db = null;
+
+        public YearsOfExperienceController()
+        {
+            db = new NGOdata.NGODBEntities();
+        }
 
         // GET: api/YearsOfExperience
         public List<YearsOfExperienceViewModel> GetYearsOfExperience()

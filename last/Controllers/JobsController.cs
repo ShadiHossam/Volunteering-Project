@@ -17,7 +17,12 @@ namespace last.Controllers
 { 
     public class JobsController : ApiController
     {
-        NGOdata.NGODBEntities db = new NGOdata.NGODBEntities();
+        private NGOdata.NGODBEntities db = null;
+
+        public JobsController()
+        {
+            db = new NGOdata.NGODBEntities();
+        }
 
         // GET: api/Jobs
         //public IQueryable<Jobs> GetJobs()
