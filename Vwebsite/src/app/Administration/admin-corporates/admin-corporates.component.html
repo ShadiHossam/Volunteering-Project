@@ -1,0 +1,7 @@
+<div *ngFor="let corporates of Corporates">
+  <div (click)="CorporatesId(corporates.Id)">
+    <h3 class="h">CorporatesTitle:{{ corporates.CorporateName }}</h3>
+    <h4>Email:{{ corporates.Email }}</h4>
+    <mat-divider></mat-divider>
+  </div>
+</div>

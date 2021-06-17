@@ -34,7 +34,7 @@ namespace last.Controllers
         [HttpPost]
         public Response userLogin(last.Models.login login)
         {
-            var log = db.Users.Where(x => x.UserName.Equals(login.UserName) && x.Password.Equals(login.Password)).FirstOrDefault();
+            var log = db.Roles.Where(x => x.UserName.Equals(login.UserName) && x.Password.Equals(login.Password)).FirstOrDefault();
             if (log == null)
             {
 
@@ -345,6 +345,31 @@ namespace last.Controllers
             NGOdata.Users GetUser;
 
             GetUser = db.Users.Where(x => x.UserName == UserName).FirstOrDefault();
+
+
+
+            Mapper.CreateMap<Users, UserViewModel>();
+            User = Mapper.Map<Users, UserViewModel>(GetUser);
+
+
+            User.AreaOfExpertiseName = GetUser?.AreaOfExpertise?.AreaOfExpertiseName;
+            User.CountryName = GetUser?.Country?.CountryName;
+            User.CityName = GetUser?.City?.CityName;
+            User.BirthdateSTR = GetUser?.Birthdate.Value.ToString("MM/dd/yyyy");
+
+
+            return User;
+        }
+        [Route("Api/Login/GetUserById")]
+
+        [HttpGet]
+        public UserViewModel GetUserById(int Id)
+        {
+            UserViewModel User = new UserViewModel();
+
+            NGOdata.Users GetUser;
+
+            GetUser = db.Users.Where(x => x.Id == Id).FirstOrDefault();
 
 
 

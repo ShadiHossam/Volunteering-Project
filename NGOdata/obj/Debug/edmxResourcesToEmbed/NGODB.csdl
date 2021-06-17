@@ -476,6 +476,17 @@
       <End Role="JobApplianceStatus" EntitySet="JobApplianceStatus" />
       <End Role="JobApply" EntitySet="JobApply" />
     </AssociationSet>
+    <EntitySet Name="Privileges" EntityType="NGODBModel.Privileges" />
+    <EntitySet Name="Roles" EntityType="NGODBModel.Roles" />
+    <EntitySet Name="UserPrivileges" EntityType="NGODBModel.UserPrivileges" />
+    <AssociationSet Name="FK_UserPrivileges_Privileges" Association="NGODBModel.FK_UserPrivileges_Privileges">
+      <End Role="Privileges" EntitySet="Privileges" />
+      <End Role="UserPrivileges" EntitySet="UserPrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPrivileges_Roles" Association="NGODBModel.FK_UserPrivileges_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserPrivileges" EntitySet="UserPrivileges" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Jobs">
     <Key>
@@ -623,6 +634,63 @@
       </Principal>
       <Dependent Role="JobApply">
         <PropertyRef Name="JobApplyStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Privileges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PrivilegesCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrivilegesDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserPrivileges" Relationship="NGODBModel.FK_UserPrivileges_Privileges" FromRole="Privileges" ToRole="UserPrivileges" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserPrivileges" Relationship="NGODBModel.FK_UserPrivileges_Roles" FromRole="Roles" ToRole="UserPrivileges" />
+  </EntityType>
+  <EntityType Name="UserPrivileges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="PrivilegesId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Privileges" Relationship="NGODBModel.FK_UserPrivileges_Privileges" FromRole="UserPrivileges" ToRole="Privileges" />
+    <NavigationProperty Name="Roles" Relationship="NGODBModel.FK_UserPrivileges_Roles" FromRole="UserPrivileges" ToRole="Roles" />
+  </EntityType>
+  <Association Name="FK_UserPrivileges_Privileges">
+    <End Type="NGODBModel.Privileges" Role="Privileges" Multiplicity="1" />
+    <End Type="NGODBModel.UserPrivileges" Role="UserPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Privileges">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserPrivileges">
+        <PropertyRef Name="PrivilegesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPrivileges_Roles">
+    <End Type="NGODBModel.Roles" Role="Roles" Multiplicity="1" />
+    <End Type="NGODBModel.UserPrivileges" Role="UserPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserPrivileges">
+        <PropertyRef Name="RoleId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

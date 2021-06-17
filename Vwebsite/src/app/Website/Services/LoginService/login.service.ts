@@ -97,6 +97,9 @@ export class LoginService {
       this.Url + 'GetJobListByUserName?UserName=' + this.x
     );
   }
+  GetJobListById(id): Observable<Jobs[]> {
+    return this.http.get<Jobs[]>(this.Url + 'GetJobListById?=' + id);
+  }
   GetEventListByUserName() {
     return this.http.get<Register>(
       this.Url + 'GetEventListByUserName?UserName=' + this.x
@@ -108,6 +111,13 @@ export class LoginService {
       this.Url + 'GetUserByUserName?UserName=' + x
     );
   }
+  GetUserById(id): Observable<Register> {
+    return this.http.get<Register>(this.Url + 'GetUserById?Id=' + id);
+  }
+  GetUserList(): Observable<Register[]> {
+    return this.http.get<Register[]>(this.Url + 'GetUser');
+  }
+
   ValidateUser(UserName) {
     return this.http.get(this.Url + 'Validuser?UserName=' + UserName, {
       headers: this.header,

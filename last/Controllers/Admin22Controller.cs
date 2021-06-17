@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,23 +13,26 @@ using last.Models;
 using System.Web.Http.Results;
 using NGOdata;
 using AutoMapper;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using System.Net.Mail;
 
-namespace last.Areas.HelpPage.Controllers
+namespace last.Controllers
 {
-    public class AdminController : ApiController
+    public class Admin22Controller : ApiController
     {
         private NGOdata.NGODBEntities db = null;
 
-        public AdminController()
+        public Admin22Controller()
         {
             db = new NGOdata.NGODBEntities();
         }
 
-        [Route("Api/AdminController/AdminLogin")]
+        [Route("Api/Admin22Controller/AdminLogin")]
         [HttpPost]
         public Response AdminLogin(last.Models.login login)
         {
-            var log = db.Users.Where(x => x.UserName.Equals(login.UserName) && x.Password.Equals(login.Password)).FirstOrDefault();
+            var log = db.Roles.Where(x => x.UserName.Equals(login.UserName) && x.Password.Equals(login.Password)).FirstOrDefault();
             if (log == null)
             {
 
@@ -37,15 +41,7 @@ namespace last.Areas.HelpPage.Controllers
             }
             else
             {
-                var session = HttpContext.Current.Session;
-                if (session != null)
-                {
-                    if (session["UserName"] == null)
-                    {
-                        session["UserName"] = login.UserName;
-                    }
-                }
-                var x = session["UserName"].ToString();
+                
                 return new Response { Status = "Success", Message = "Login Successfully" };
 
             }

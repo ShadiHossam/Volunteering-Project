@@ -1,1 +1,31 @@
-<p>admin-profile works!</p>
+<section>
+  <nav>
+    <p>
+      <img
+        src="../assets/img/4ae94b54-0c55-493b-abad-23f79f7daae7.jpg"
+        alt="Avatar"
+        class="avatar"
+      />
+    </p>
+    <mat-divider></mat-divider>
+    <div>
+      <button mat-raised-button class="a pt-2 pb-2">
+        <mat-icon>settings</mat-icon> Settings
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+    <div>
+      <button mat-raised-button class="a pt-2 pb-2" (click)="LogOut()">
+        <mat-icon>logout</mat-icon> Log Out
+      </button>
+    </div>
+  </nav>
+
+  <article>
+    <div class="container"></div>
+    <button mat-button (click)="getusers()">Users</button>
+    <button mat-button (click)="getcorporates()">Organization</button>
+    <button mat-button (click)="getjobs()">Jobs</button>
+  </article>
+  <div style="clear: both"></div>
+</section>

@@ -41,7 +41,12 @@ import { JobApplianceComponent } from './Website/OR/Job/job-appliance/job-applia
 import { UserDetailsComponent } from './Website/OR/Job/user-details/user-details.component';
 import { LoginComponent } from './Administration/login/login.component';
 import { AdminProfileComponent } from './Administration/admin-profile/admin-profile.component';
-
+import { AdminUsersComponent } from './Administration/admin-users/admin-users.component';
+import { AdminJobsComponent } from './Administration/admin-jobs/admin-jobs.component';
+import { AdminCorporatesComponent } from './Administration/admin-corporates/admin-corporates.component';
+import { AdminJobDetailsComponent } from './Administration/admin-job-details/admin-job-details.component';
+import { AdminUserDetailsComponent } from './Administration/admin-user-details/admin-user-details.component';
+import { AdminCorporateDetailsComponent } from './Administration/admin-corporate-details/admin-corporate-details.component';
 const routes: Routes = [
   { path: '', redirectTo: '/organizations', pathMatch: 'full' },
   { path: 'signup', component: SignupComponent },
@@ -189,7 +194,54 @@ const routes: Routes = [
       Admin: true,
     },
   },
-
+  {
+    path: 'admin-corporates',
+    canActivate: [AuthGuard],
+    component: AdminCorporatesComponent,
+    data: {
+      Admin: true,
+    },
+  },
+  {
+    path: 'admin-jobs',
+    canActivate: [AuthGuard],
+    component: AdminJobsComponent,
+    data: {
+      Admin: true,
+    },
+  },
+  {
+    path: 'admin-users',
+    canActivate: [AuthGuard],
+    component: AdminUsersComponent,
+    data: {
+      Admin: true,
+    },
+  },
+  {
+    path: 'admin-corporatedetails/:id',
+    canActivate: [AuthGuard],
+    component: AdminCorporateDetailsComponent,
+    data: {
+      Admin: true,
+    },
+  },
+  {
+    path: 'admin-usersdetails/:id',
+    canActivate: [AuthGuard],
+    component: AdminUserDetailsComponent,
+    data: {
+      Admin: true,
+    },
+  },
+  {
+    path: 'admin-jobdetails/:id',
+    canActivate: [AuthGuard],
+    component: AdminJobDetailsComponent,
+    data: {
+      Admin: true,
+    },
+  },
   { path: 'volunteer', component: VolunteerComponent },
   { path: 'bd', component: BusinessdevelopmentComponent },
   { path: 'desiging', component: DesigingComponent },
@@ -228,6 +280,9 @@ export const CRouting = [
   SigninComponent,
   ContactusComponent,
   JobListComponent,
+  AdminUsersComponent,
+  AdminJobsComponent,
+  AdminCorporatesComponent,
   EventListComponent,
   UserFormComponent,
   OrganizationsComponent,
@@ -236,6 +291,9 @@ export const CRouting = [
   ProfileComponent,
   VolunteerComponent,
   LoginComponent,
+  AdminJobDetailsComponent,
+  AdminUserDetailsComponent,
+  AdminCorporateDetailsComponent,
   AdminProfileComponent,
   SeoComponent,
   MarketingMediaComponent,

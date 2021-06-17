@@ -46,6 +46,11 @@
         <AssociationConnector Association="NGODBModel.FK_Requirements_Jobs" />
         <EntityTypeShape EntityType="NGODBModel.JobApplianceStatus" Width="1.5" PointX="3.375" PointY="0.875" />
         <AssociationConnector Association="NGODBModel.FK_JobApply_JobApplianceStatus" />
+        <EntityTypeShape EntityType="NGODBModel.Privileges" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="NGODBModel.Roles" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="NGODBModel.UserPrivileges" Width="1.5" PointX="4.75" PointY="3.75" />
+        <AssociationConnector Association="NGODBModel.FK_UserPrivileges_Privileges" />
+        <AssociationConnector Association="NGODBModel.FK_UserPrivileges_Roles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

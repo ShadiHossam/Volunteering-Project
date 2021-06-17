@@ -1,30 +1,23 @@
-import { Jobs } from '../../../Website/Model/Jobs';
 import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpClientModule,
-  HttpHeaders,
-} from '@angular/common/http';
-import { from, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-import { Register } from '../../../Website/Model/register';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService {
+export class AdminLoginService {
   Url: string;
   token: string;
   header: any;
   x = localStorage.getItem('Admin');
 
   constructor(private http: HttpClient) {
-    this.Url = 'http://localhost:49826/Api/AdminController/AdminLogin';
+    this.Url =
+      'http://localhost:49826/Api/Areas/Administration/Controller/AdminController/';
+
     const headerSettings: { [name: string]: string | string[] } = {};
     this.header = new HttpHeaders(headerSettings);
   }
   Login(model: any) {
-    return this.http.post<any>(this.Url + 'userLogin', model, {
+    return this.http.post<any>(this.Url + 'AdminLogin', model, {
       headers: this.header,
     });
   }

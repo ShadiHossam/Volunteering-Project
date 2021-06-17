@@ -1,0 +1,8 @@
+<div *ngFor="let user of Users">
+  <div (click)="UserDetails(user.Id)">
+    <h3>FirstName:{{ user.FirstName }}</h3>
+    <h3>LastName:{{ user.LastName }}</h3>
+    <h3>UserName:{{ user.UserName }}</h3>
+    <mat-divider></mat-divider>
+  </div>
+</div>

@@ -1,9 +1,7 @@
-import { LoginService } from '../../Administration/Services/Login/login.service';
-import { Register } from '../../Website/Model/register';
+import { AdminLoginService } from '../Services/Login/admin.login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginModel } from '../../Website/Model/LoginModel';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,22 +10,21 @@ import { LoginModel } from '../../Website/Model/LoginModel';
 export class LoginComponent implements OnInit {
   model: any = {};
   errorMessage: string;
-  CorporateModel: any = {};
   ErrorMessage: string;
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private LoginService: LoginService
+    private AdminLoginService: AdminLoginService
   ) {}
 
   ngOnInit(): void {}
 
   Login() {
-    this.LoginService.Login(this.model).subscribe(
+    this.AdminLoginService.Login(this.model).subscribe(
       (data) => {
         if (data.Status == 'Success') {
-          // this.router.navigate(['/profile']);
+          this.router.navigate(['/admin-profile']);
           localStorage.setItem('Admin', this.model.UserName);
         } else {
           this.errorMessage = data.Message;

@@ -84,6 +84,14 @@
     <Property Name="CorporateId" Type="int" Nullable="false" />
     <Property Name="AreaOfExpertiseId" Type="int" />
   </EntityType>
+  <EntityType Name="Privileges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PrivilegesCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrivilegesDescription" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="QuestionsChoices">
     <Key>
       <PropertyRef Name="Id" />
@@ -99,6 +107,19 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="JobId" Type="int" Nullable="false" />
     <Property Name="Requirements" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Segments">
     <Key>
@@ -123,6 +144,14 @@
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="QuestionId" Type="int" Nullable="false" />
     <Property Name="Answer" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserPrivileges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="PrivilegesId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -410,6 +439,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_UserPrivileges_Privileges">
+    <End Role="Privileges" Type="Self.Privileges" Multiplicity="1" />
+    <End Role="UserPrivileges" Type="Self.UserPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Privileges">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserPrivileges">
+        <PropertyRef Name="PrivilegesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPrivileges_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="UserPrivileges" Type="Self.UserPrivileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserPrivileges">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Users_AreaOfExpertise">
     <End Role="AreaOfExpertise" Type="Self.AreaOfExpertise" Multiplicity="0..1" />
     <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -467,11 +520,14 @@
     <EntitySet Name="JobApply" EntityType="Self.JobApply" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JobForm" EntityType="Self.JobForm" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Privileges" EntityType="Self.Privileges" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QuestionsChoices" EntityType="Self.QuestionsChoices" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Requirements" EntityType="Self.Requirements" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Segments" EntityType="Self.Segments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Skills" EntityType="Self.Skills" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserAnswers" EntityType="Self.UserAnswers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserPrivileges" EntityType="Self.UserPrivileges" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserSkills" EntityType="Self.UserSkills" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="YearsOfExperience" EntityType="Self.YearsOfExperience" Schema="dbo" store:Type="Tables" />
@@ -558,6 +614,14 @@
     <AssociationSet Name="FK_UserAnswers_Users" Association="Self.FK_UserAnswers_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="UserAnswers" EntitySet="UserAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPrivileges_Privileges" Association="Self.FK_UserPrivileges_Privileges">
+      <End Role="Privileges" EntitySet="Privileges" />
+      <End Role="UserPrivileges" EntitySet="UserPrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPrivileges_Roles" Association="Self.FK_UserPrivileges_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserPrivileges" EntitySet="UserPrivileges" />
     </AssociationSet>
     <AssociationSet Name="FK_Users_AreaOfExpertise" Association="Self.FK_Users_AreaOfExpertise">
       <End Role="AreaOfExpertise" EntitySet="AreaOfExpertise" />

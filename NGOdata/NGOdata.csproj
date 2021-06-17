@@ -103,10 +103,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NGODB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Privileges.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
+    </Compile>
     <Compile Include="QuestionsChoices.cs">
       <DependentUpon>NGODB.tt</DependentUpon>
     </Compile>
     <Compile Include="Requirements.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Roles.cs">
       <DependentUpon>NGODB.tt</DependentUpon>
     </Compile>
     <Compile Include="Segments.cs">
@@ -116,6 +122,9 @@
       <DependentUpon>NGODB.tt</DependentUpon>
     </Compile>
     <Compile Include="UserAnswers.cs">
+      <DependentUpon>NGODB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserPrivileges.cs">
       <DependentUpon>NGODB.tt</DependentUpon>
     </Compile>
     <Compile Include="Users.cs">

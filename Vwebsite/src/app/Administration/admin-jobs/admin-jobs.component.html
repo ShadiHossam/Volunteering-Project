@@ -1,0 +1,7 @@
+<div *ngFor="let job of Jobs">
+  <div (click)="JobId(job.Id)">
+    <h3 class="h">JobTitle:{{ job.JobTitle }}</h3>
+    <h4>Description:{{ job.JobDescription }}</h4>
+    <mat-divider></mat-divider>
+  </div>
+</div>

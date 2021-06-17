@@ -41,5 +41,8 @@ namespace NGOdata
         public virtual DbSet<Jobs> Jobs { get; set; }
         public virtual DbSet<Requirements> Requirements { get; set; }
         public virtual DbSet<JobApplianceStatus> JobApplianceStatus { get; set; }
+        public virtual DbSet<Privileges> Privileges { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<UserPrivileges> UserPrivileges { get; set; }
     }
 }
